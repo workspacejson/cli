@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { Command } from 'commander';
