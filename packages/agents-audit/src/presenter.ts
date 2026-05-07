@@ -21,9 +21,8 @@ export function renderScoreCard(result: AuditResult, version: string): void {
     ${pc.dim('─'.repeat(48))}
     File:    ${pc.dim(result.agentsMdPath)}
     Score:   ${scoreDisplay}
-    Errors:  ${score.errorCount > 0 ? pc.red(String(score.errorCount)) : pc.green('0')}
-    Warnings: ${score.warningCount > 0 ? pc.yellow(String(score.warningCount)) : pc.green('0')}
-    Info:    ${pc.dim(String(score.infoCount))}
+    Errors:  ${score.breakdown.failCount > 0 ? pc.red(String(score.breakdown.failCount)) : pc.green('0')}
+    Warnings: ${score.breakdown.warnCount > 0 ? pc.yellow(String(score.breakdown.warnCount)) : pc.green('0')}
     Time:    ${pc.dim(`${result.durationMs}ms`)}
     ${pc.dim('─'.repeat(48))}
   `;
@@ -43,8 +42,9 @@ export function renderFindingsTable(findings: Finding[]): void {
   });
 
   for (const finding of findings) {
-    const severityColor = finding.severity === 'error' ? pc.red : finding.severity === 'warning' ? pc.yellow : pc.dim;
-    table.push([pc.dim(finding.ruleId), severityColor(finding.severity), finding.message, finding.evidence.file ? pc.dim(finding.evidence.file) : '']);
+    const sev = finding.severity ?? finding.state.toLowerCase();
+    const severityColor = sev === 'error' ? pc.red : sev === 'warning' ? pc.yellow : pc.dim;
+    table.push([pc.dim(finding.ruleId), severityColor(sev), finding.message, finding.evidence.file ? pc.dim(finding.evidence.file) : '']);
   }
 
   console.log(table.toString());

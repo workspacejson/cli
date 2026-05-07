@@ -18,7 +18,7 @@ describe('presenter', () => {
         {
           agentsMdPath: '/repo/AGENTS.md',
           findings: [],
-          score: { value: 100, grade: 'A', errorCount: 0, warningCount: 0, infoCount: 0 },
+          score: { value: 100, grade: 'A', breakdown: { failCount: 0, warnCount: 0, insufficientDataCount: 0, skipCount: 0, previewCount: 0 }, coverageRatio: 0 },
           workspaceJsonFound: false,
           workspaceJsonStale: true,
           workspaceJsonStatus: 'missing',

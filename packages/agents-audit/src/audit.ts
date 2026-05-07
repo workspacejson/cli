@@ -3,7 +3,62 @@ import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { WorkspaceJson } from '@workspacejson/spec';
 import { AgentsMdParser, RepoScanner, RuleEngine, WorkspaceJsonValidator, computeHygieneScore, conventionMismatch, frameworkDrift, missingFileReference, patternZeroMatch, sectionStaleness } from '@workspacejson/rules';
-import type { AuditConfig, AuditResult, RuleContext } from '@workspacejson/rules';
+import type { AuditConfig, AuditResult, ParsedAgentsMd, RepoState, RuleContext } from '@workspacejson/rules';
+
+function buildLegacyContext(
+  agentsMd: ParsedAgentsMd,
+  repo: RepoState,
+  config: AuditConfig,
+  workspace?: WorkspaceJson,
+): RuleContext {
+  // Construct a v0.2 RuleContext with stubs for per-file fields.
+  // The five migrated rules access agentsMd/repo/config via a legacy bridge cast
+  // (ctx as unknown as { agentsMd; repo; config }) — so we pass them through
+  // via Object.assign to make them available at runtime.
+  // TODO(v0.3): migrate rules to use ctx.workspace / ctx.git properly.
+  const base: RuleContext = {
+    repo: {
+      root: repo.root,
+      files: repo.files ?? [],
+      isMonorepo: repo.isMonorepo ?? false,
+    },
+    workspace: {
+      // Map workspace JSON fields into WorkspaceSignals where available.
+      // When workspace is present it has been loaded and validated — use its data.
+      topology: workspace
+        ? ((workspace as Record<string, unknown>).topology as 'single-package' | 'monorepo' | 'polyglot-monorepo' ?? (repo.isMonorepo ? 'monorepo' : 'single-package'))
+        : (repo.isMonorepo ? 'monorepo' : 'single-package'),
+      ciProvider: 'unknown',
+      manifests: {},
+      packages: repo.packages ?? [],
+      agentFiles: {},
+    },
+    config: config as unknown as Record<string, unknown>,
+    file: {
+      path: agentsMd.filePath,
+      language: 'unknown',
+      content: agentsMd.raw,
+    },
+    git: {
+      recentCommits: async () => [],
+      fileAge: async () => 0,
+      churnScore: async () => 0,
+      lastModified: async () => new Date(),
+      authorCount: async () => 0,
+      commitsBetween: async () => [],
+      modificationVelocity: async () => 0,
+    },
+    findings: {
+      findingsFor: () => [],
+      hasFinding: () => false,
+      confidence: () => null,
+    },
+    emit: () => {},
+  };
+
+  // Attach legacy fields at runtime for the bridge cast used by migrated rules.
+  return Object.assign(base, { agentsMd, repo, config }) as RuleContext;
+}
 
 export const DEFAULT_AUDIT_CONFIG: AuditConfig = {
   stalenessThresholdDays: 60,
@@ -38,15 +93,7 @@ export async function runAudit(repoRoot: string, config: Partial<AuditConfig> = 
 
   const { workspaceJson, workspaceJsonFound, workspaceJsonStale, workspaceJsonStatus, workspaceJsonErrors } = await loadWorkspaceJson(resolvedRoot, agentsMd.lastModified, validator);
 
-  const ctx: RuleContext = {
-    agentsMd,
-    repo,
-    config: fullConfig,
-  };
-
-  if (workspaceJson !== undefined) {
-    ctx.workspace = workspaceJson;
-  }
+  const ctx = buildLegacyContext(agentsMd, repo, fullConfig, workspaceJson);
 
   const run = await engine.run(ctx);
   const score = computeHygieneScore(run.findings);
