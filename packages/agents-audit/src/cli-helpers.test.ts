@@ -1,7 +1,8 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { getExitCode, loadConfig } from './cli-helpers.js';
+import { getExitCode, isActionable, loadConfig } from './cli-helpers.js';
+import type { Finding } from '@workspacejson/rules';
 
 describe('cli helpers', () => {
   const toClean: string[] = [];
@@ -69,5 +70,71 @@ describe('cli helpers', () => {
     const result = loadConfig('nested/.agentsauditrc', repoRoot);
     expect(result.config.stalenessThresholdDays).toBe(60);
     expect(result.warning).toContain('Ignoring invalid config file');
+  });
+
+  it('rejects --config path outside repo root', () => {
+    const result = loadConfig('../../etc/passwd', '/tmp/repo');
+    expect(result.warning).toContain('within the repo root');
+    expect(result.config.stalenessThresholdDays).toBe(60);
+  });
+
+  it('sanitizes non-array ignore field', async () => {
+    const repoRoot = tmpDir();
+    await mkdir(repoRoot, { recursive: true });
+    await writeFile(resolve(repoRoot, '.agentsauditrc'), JSON.stringify({ ignore: 'dist/**' }), 'utf8');
+
+    const result = loadConfig(undefined, repoRoot);
+    expect(result.config.ignore).toEqual([]);
+  });
+
+  it('sanitizes non-finite numeric fields', async () => {
+    const repoRoot = tmpDir();
+    await mkdir(repoRoot, { recursive: true });
+    await writeFile(
+      resolve(repoRoot, '.agentsauditrc'),
+      JSON.stringify({ stalenessThresholdDays: Infinity, highActivityCommitCount: NaN }),
+      'utf8',
+    );
+
+    const result = loadConfig(undefined, repoRoot);
+    expect(result.config.stalenessThresholdDays).toBe(60);
+    expect(result.config.highActivityCommitCount).toBe(20);
+  });
+
+  it('does not leak filesystem path in config warning', async () => {
+    const repoRoot = tmpDir();
+    await mkdir(repoRoot, { recursive: true });
+    await writeFile(resolve(repoRoot, '.agentsauditrc'), '{ bad json', 'utf8');
+
+    const result = loadConfig(undefined, repoRoot);
+    expect(result.warning).not.toContain(repoRoot);
+  });
+});
+
+describe('isActionable', () => {
+  function makeF(state: Finding['state']): Finding {
+    return {
+      ruleId: 'test',
+      ruleVersion: '1.0.0',
+      state,
+      confidence: 1,
+      signals: [],
+      temporalWeight: 1,
+      evidence: {},
+      message: 'test',
+      firedAt: new Date(),
+    };
+  }
+
+  it('returns true for FAIL and WARN', () => {
+    expect(isActionable(makeF('FAIL'))).toBe(true);
+    expect(isActionable(makeF('WARN'))).toBe(true);
+  });
+
+  it('returns false for PASS, SKIP, INSUFFICIENT_DATA, PREVIEW', () => {
+    expect(isActionable(makeF('PASS'))).toBe(false);
+    expect(isActionable(makeF('SKIP'))).toBe(false);
+    expect(isActionable(makeF('INSUFFICIENT_DATA'))).toBe(false);
+    expect(isActionable(makeF('PREVIEW'))).toBe(false);
   });
 });

@@ -109,8 +109,9 @@ async function loadWorkspaceJson(
 ): Promise<{ workspaceJsonFound: boolean; workspaceJsonStale: boolean; workspaceJsonStatus: AuditResult['workspaceJsonStatus']; workspaceJsonErrors: string[]; workspaceJson?: WorkspaceJson }> {
   const workspacePath = resolve(repoRoot, 'agents.workspace.json');
   const legacyWorkspacePath = resolve(repoRoot, '.agents/agents.workspace.json');
-  const pathToRead = existsSync(workspacePath) ? workspacePath : legacyWorkspacePath;
-  if (!existsSync(pathToRead)) {
+  const primaryExists = existsSync(workspacePath);
+  const pathToRead = primaryExists ? workspacePath : legacyWorkspacePath;
+  if (!primaryExists && !existsSync(legacyWorkspacePath)) {
     return {
       workspaceJsonFound: false,
       workspaceJsonStale: true,
@@ -123,7 +124,7 @@ async function loadWorkspaceJson(
     const raw = await readFile(pathToRead, 'utf8');
     const workspaceJson = JSON.parse(raw) as WorkspaceJson;
     const validation = validator.validate(workspaceJson);
-    const generatedAt = typeof workspaceJson === 'object' && workspaceJson !== null ? Reflect.get(workspaceJson, 'generatedAt') : undefined;
+    const generatedAt = (workspaceJson as Record<string, unknown>)['generatedAt'];
     const generatedDate = typeof generatedAt === 'string' ? new Date(generatedAt) : new Date(0);
     const stale = !validation.valid || Number.isNaN(generatedDate.getTime()) || generatedDate < agentsMdLastModified;
     const errors = validation.valid ? [] : validation.errors;

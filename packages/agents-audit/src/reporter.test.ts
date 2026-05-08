@@ -80,4 +80,43 @@ describe('reporter', () => {
     expect(fileName.includes(':')).toBe(false);
     expect(fileName.includes('.789')).toBe(false);
   });
+
+  it('throws when reportDir points outside the repo root', async () => {
+    const repoRoot = await tmpRepo();
+    await expect(saveReport(makeResult(), repoRoot, '../../etc')).rejects.toThrow(
+      'reportDir must be within the repo root',
+    );
+  });
+
+  it('filters PASS and SKIP findings from the saved report', async () => {
+    const repoRoot = await tmpRepo();
+    const result = makeResult();
+    result.findings = [
+      { ...result.findings[0]!, state: 'FAIL', severity: 'error' },
+      { ...result.findings[0]!, state: 'PASS', severity: undefined, ruleId: 'rule-pass' },
+      { ...result.findings[0]!, state: 'SKIP', severity: undefined, ruleId: 'rule-skip' },
+    ];
+
+    const outputPath = await saveReport(result, repoRoot, '.audit-history');
+    const content = await readFile(outputPath, 'utf8');
+
+    expect(content).toContain('rule-one');
+    expect(content).not.toContain('rule-pass');
+    expect(content).not.toContain('rule-skip');
+    expect(content).toContain('- Issues: 1');
+  });
+
+  it('writes "No issues found" when all findings are PASS', async () => {
+    const repoRoot = await tmpRepo();
+    const result = makeResult();
+    result.findings = [
+      { ...result.findings[0]!, state: 'PASS', severity: undefined, ruleId: 'rule-pass' },
+    ];
+
+    const outputPath = await saveReport(result, repoRoot, '.audit-history');
+    const content = await readFile(outputPath, 'utf8');
+
+    expect(content).toContain('_No issues found._');
+    expect(content).toContain('- Issues: 0');
+  });
 });

@@ -4,8 +4,9 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
 import ora from 'ora';
+import pc from 'picocolors';
 import { runAudit } from './audit.js';
-import { getExitCode, loadConfig } from './cli-helpers.js';
+import { getExitCode, isActionable, loadConfig } from './cli-helpers.js';
 import { generateWorkspaceJson } from './generate.js';
 import { renderFindingsTable, renderScoreCard, renderVrekoUpsell } from './presenter.js';
 import { startInteractiveNavigation } from './navigator.js';
@@ -59,21 +60,20 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
         }
 
         renderScoreCard(result, version);
-
-        if (result.findings.length > 0) {
-          renderFindingsTable(result.findings);
-        }
+        renderFindingsTable(result.findings);
 
         if (!result.workspaceJsonFound || result.workspaceJsonStale) {
           renderVrekoUpsell(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
         }
 
         if (options.save || config.save) {
-          await saveReport(result, repoRoot, config.reportDir);
+          const reportPath = await saveReport(result, repoRoot, config.reportDir);
+          console.log(pc.dim(`  Report saved: ${reportPath}`));
         }
 
-        if ((options.interactive ?? true) && result.findings.length > 0) {
-          await startInteractiveNavigation(result.findings);
+        const actionableFindings = result.findings.filter(isActionable);
+        if ((options.interactive ?? true) && actionableFindings.length > 0) {
+          await startInteractiveNavigation(actionableFindings);
         }
 
         exitCode = getExitCode(result, options.failOn);

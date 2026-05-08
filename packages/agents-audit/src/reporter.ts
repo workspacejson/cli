@@ -1,28 +1,45 @@
 import { mkdir, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import dedent from 'dedent';
 import type { AuditResult } from '@workspacejson/rules';
+import { isActionable } from './cli-helpers.js';
 
 export async function saveReport(result: AuditResult, repoRoot: string, reportDir: string): Promise<string> {
-  const outputDir = resolve(repoRoot, reportDir);
+  const resolvedRoot = resolve(repoRoot);
+  const outputDir = resolve(resolvedRoot, reportDir);
+  if (!outputDir.startsWith(resolvedRoot + sep)) {
+    throw new Error(`reportDir must be within the repo root; got: ${reportDir}`);
+  }
   await mkdir(outputDir, { recursive: true });
   const stamp = result.runAt.toISOString().replace(/[:.]/g, '-');
   const outputPath = resolve(outputDir, `agents-audit-${stamp}.md`);
 
-  const rows = result.findings
-    .map((finding) => `| ${finding.ruleId} | ${finding.severity} | ${escapePipe(finding.message)} | ${escapePipe(finding.evidence.file ?? '')} |`)
-    .join('\n');
+  const actionable = result.findings.filter(isActionable);
+
+  let findingsSection: string;
+  if (actionable.length === 0) {
+    findingsSection = '_No issues found._';
+  } else {
+    const rows = actionable
+      .map((f) => `| ${f.ruleId} | ${f.severity ?? ''} | ${escapePipe(f.message)} | ${escapePipe(f.evidence.file ?? '')} |`)
+      .join('\n');
+    findingsSection = dedent`
+      | Rule | Severity | Message | File |
+      | --- | --- | --- | --- |
+      ${rows}
+    `;
+  }
 
   const content = dedent`
     # agents-audit report
 
     - Score: ${result.score.value}/100 (${result.score.grade})
-    - Findings: ${result.findings.length}
+    - Issues: ${actionable.length}
     - Generated: ${result.runAt.toISOString()}
 
-    | Rule | Severity | Message | File |
-    | --- | --- | --- | --- |
-    ${rows || '| - | - | - | - |'}
+    ## Findings
+
+    ${findingsSection}
   `;
 
   await writeFile(outputPath, `${content}\n`, 'utf8');
