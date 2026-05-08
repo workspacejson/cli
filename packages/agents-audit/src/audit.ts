@@ -1,10 +1,11 @@
 import { existsSync } from 'node:fs';
-import { readdir, readFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { WorkspaceJson } from '@workspacejson/spec';
 import { AgentsMdParser, RepoScanner, RuleEngine, WorkspaceJsonValidator, computeHygieneScore, conventionMismatch, frameworkDrift, missingFileReference, patternZeroMatch, sectionStaleness } from '@workspacejson/rules';
 import type { AuditConfig, AuditResult, ParsedAgentsMd, RepoState, RuleContext } from '@workspacejson/rules';
-import { detectCiProvider } from './generate.js';
+import { DEFAULT_AUDIT_CONFIG, detectCiProvider } from './internal/config.js';
+import { findAgentsMdPath, readTextOrEmpty } from './internal/fs.js';
 
 function buildLegacyContext(
   agentsMd: ParsedAgentsMd,
@@ -57,15 +58,7 @@ function buildLegacyContext(
   return Object.assign(base, { agentsMd, repo, config }) as RuleContext;
 }
 
-export const DEFAULT_AUDIT_CONFIG: AuditConfig = {
-  stalenessThresholdDays: 60,
-  highActivityCommitCount: 20,
-  conventionMismatchPrecisionMode: true,
-  failOn: null,
-  save: false,
-  reportDir: '.agents/audit-history',
-  ignore: [],
-};
+export { DEFAULT_AUDIT_CONFIG };
 
 export async function runAudit(repoRoot: string, config: Partial<AuditConfig> = {}): Promise<AuditResult & { workspaceJson: WorkspaceJson | undefined }> {
   const resolvedRoot = resolve(repoRoot);
@@ -109,35 +102,15 @@ export async function runAudit(repoRoot: string, config: Partial<AuditConfig> = 
   };
 }
 
-async function findAgentsMdPath(repoRoot: string): Promise<string> {
-  const rootPath = resolve(repoRoot, 'AGENTS.md');
-  if (existsSync(rootPath)) {
-    return rootPath;
-  }
-
-  try {
-    const entries = await readdir(repoRoot, { withFileTypes: true });
-    for (const entry of entries) {
-      if (!entry.isDirectory()) continue;
-      const candidate = resolve(repoRoot, entry.name, 'AGENTS.md');
-      if (existsSync(candidate)) {
-        return candidate;
-      }
-    }
-  } catch {
-    // fall through to root path
-  }
-
-  return rootPath;
-}
-
 async function loadWorkspaceJson(
   repoRoot: string,
   agentsMdLastModified: Date,
   validator: WorkspaceJsonValidator,
 ): Promise<{ workspaceJsonFound: boolean; workspaceJsonStale: boolean; workspaceJsonStatus: AuditResult['workspaceJsonStatus']; workspaceJsonErrors: string[]; workspaceJson?: WorkspaceJson }> {
-  const workspacePath = resolve(repoRoot, '.agents/agents.workspace.json');
-  if (!existsSync(workspacePath)) {
+  const workspacePath = resolve(repoRoot, 'agents.workspace.json');
+  const legacyWorkspacePath = resolve(repoRoot, '.agents/agents.workspace.json');
+  const pathToRead = existsSync(workspacePath) ? workspacePath : legacyWorkspacePath;
+  if (!existsSync(pathToRead)) {
     return {
       workspaceJsonFound: false,
       workspaceJsonStale: true,
@@ -147,7 +120,7 @@ async function loadWorkspaceJson(
   }
 
   try {
-    const raw = await readFile(workspacePath, 'utf8');
+    const raw = await readFile(pathToRead, 'utf8');
     const workspaceJson = JSON.parse(raw) as WorkspaceJson;
     const validation = validator.validate(workspaceJson);
     const generatedAt = typeof workspaceJson === 'object' && workspaceJson !== null ? Reflect.get(workspaceJson, 'generatedAt') : undefined;
@@ -167,15 +140,7 @@ async function loadWorkspaceJson(
       workspaceJsonFound: true,
       workspaceJsonStale: true,
       workspaceJsonStatus: 'invalid',
-      workspaceJsonErrors: ['Unable to parse .agents/agents.workspace.json'],
+      workspaceJsonErrors: ['Unable to parse agents.workspace.json'],
     };
-  }
-}
-
-async function readTextOrEmpty(filePath: string): Promise<string> {
-  try {
-    return await readFile(filePath, 'utf8');
-  } catch {
-    return '';
   }
 }

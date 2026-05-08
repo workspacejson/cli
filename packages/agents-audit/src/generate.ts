@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import type { WorkspaceJson } from '@workspacejson/spec';
 import {
@@ -14,7 +14,8 @@ import {
   conventionMismatch,
 } from '@workspacejson/rules';
 import type { AuditConfig, RuleContext } from '@workspacejson/rules';
-import { DEFAULT_AUDIT_CONFIG } from './audit.js';
+import { DEFAULT_AUDIT_CONFIG, detectCiProvider } from './internal/config.js';
+import { findAgentsMdPath, readTextOrEmpty } from './internal/fs.js';
 
 export interface GenerateResult {
   path: string;
@@ -89,7 +90,9 @@ export async function generateWorkspaceJson(
       type: c.type,
       canonical: c.canonical,
     })),
-    ...(agentsMdRelative !== undefined ? { agentFiles: { agentsMd: agentsMdRelative } } : {}),
+    ...(agentsMdRelative !== undefined
+      ? { agentFiles: { agentsMd: agentsMdRelative, workspaceJson: 'agents.workspace.json' } }
+      : { agentFiles: { workspaceJson: 'agents.workspace.json' } }),
     packages: repo.packages.map((p) => ({
       name: p.name,
       path: p.path,
@@ -108,55 +111,11 @@ export async function generateWorkspaceJson(
     },
   };
 
-  const outputPath = resolve(resolvedRoot, '.agents/agents.workspace.json');
+  const outputPath = resolve(resolvedRoot, 'agents.workspace.json');
 
   if (!options.dryRun) {
-    await mkdir(resolve(resolvedRoot, '.agents'), { recursive: true });
     await writeFile(outputPath, JSON.stringify(workspace, null, 2) + '\n', 'utf8');
   }
 
   return { path: outputPath, written: !options.dryRun, content: workspace };
-}
-
-export function detectCiProvider(
-  files: string[],
-): 'github-actions' | 'gitlab-ci' | 'circleci' | 'jenkins' | 'none' | 'unknown' {
-  if (files.some((f) => f.startsWith('.github/workflows/') || f.includes('/.github/workflows/'))) {
-    return 'github-actions';
-  }
-  if (files.some((f) => f === '.gitlab-ci.yml' || f.endsWith('/.gitlab-ci.yml'))) {
-    return 'gitlab-ci';
-  }
-  if (files.some((f) => f.startsWith('.circleci/') || f.includes('/.circleci/'))) {
-    return 'circleci';
-  }
-  if (files.some((f) => f === 'Jenkinsfile' || f.endsWith('/Jenkinsfile'))) {
-    return 'jenkins';
-  }
-  return 'unknown';
-}
-
-async function findAgentsMdPath(repoRoot: string): Promise<string> {
-  const rootPath = resolve(repoRoot, 'AGENTS.md');
-  if (existsSync(rootPath)) return rootPath;
-  try {
-    const { readdir } = await import('node:fs/promises');
-    const entries = await readdir(repoRoot, { withFileTypes: true });
-    for (const entry of entries) {
-      if (!entry.isDirectory()) continue;
-      const candidate = resolve(repoRoot, entry.name, 'AGENTS.md');
-      if (existsSync(candidate)) return candidate;
-    }
-  } catch {
-    // fall through to root path
-  }
-  return rootPath;
-}
-
-async function readTextOrEmpty(filePath: string): Promise<string> {
-  try {
-    return await readFile(filePath, 'utf8');
-  } catch {
-    return '';
-  }
 }

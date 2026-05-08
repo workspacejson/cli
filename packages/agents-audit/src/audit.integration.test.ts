@@ -29,10 +29,10 @@ describe('audit integration', () => {
 
   it('surfaces invalid workspace metadata with a clear status', async () => {
     const repoRoot = tmpDir();
-    await mkdir(resolve(repoRoot, '.agents'), { recursive: true });
+    await mkdir(repoRoot, { recursive: true });
     await writeFile(resolve(repoRoot, 'AGENTS.md'), '# Temp\n\nUse `src/` for source code.\n', 'utf8');
     await writeFile(resolve(repoRoot, 'src.ts'), 'export const value = 1;\n', 'utf8');
-    await writeFile(resolve(repoRoot, '.agents/agents.workspace.json'), '{ invalid json', 'utf8');
+    await writeFile(resolve(repoRoot, 'agents.workspace.json'), '{ invalid json', 'utf8');
 
     const result = await runAudit(repoRoot);
 
@@ -43,9 +43,9 @@ describe('audit integration', () => {
 
   it('surfaces schema validation errors separately from parse errors', async () => {
     const repoRoot = tmpDir();
-    await mkdir(resolve(repoRoot, '.agents'), { recursive: true });
+    await mkdir(repoRoot, { recursive: true });
     await writeFile(resolve(repoRoot, 'AGENTS.md'), '# Temp\n\nUse `src/` for source code.\n', 'utf8');
-    await writeFile(resolve(repoRoot, '.agents/agents.workspace.json'), JSON.stringify({
+    await writeFile(resolve(repoRoot, 'agents.workspace.json'), JSON.stringify({
       version: '1',
       generatedAt: 'not-a-date',
       packages: [{ path: 'packages/app' }],
@@ -60,9 +60,9 @@ describe('audit integration', () => {
 
   it('treats workspace metadata newer than AGENTS.md as fresh', async () => {
     const repoRoot = tmpDir();
-    await mkdir(resolve(repoRoot, '.agents'), { recursive: true });
+    await mkdir(repoRoot, { recursive: true });
     await writeFile(resolve(repoRoot, 'AGENTS.md'), '# Temp\n\nUse `src/` for source code.\n', 'utf8');
-    await writeFile(resolve(repoRoot, '.agents/agents.workspace.json'), JSON.stringify({
+    await writeFile(resolve(repoRoot, 'agents.workspace.json'), JSON.stringify({
       version: '1',
       generatedAt: new Date(Date.now() + 60_000).toISOString(),
       repository: 'https://example.com/repo',
@@ -79,8 +79,8 @@ describe('audit integration', () => {
 
   it('marks workspace metadata older than AGENTS.md as stale', async () => {
     const repoRoot = tmpDir();
-    await mkdir(resolve(repoRoot, '.agents'), { recursive: true });
-    await writeFile(resolve(repoRoot, '.agents/agents.workspace.json'), JSON.stringify({
+    await mkdir(repoRoot, { recursive: true });
+    await writeFile(resolve(repoRoot, 'agents.workspace.json'), JSON.stringify({
       version: '1',
       generatedAt: new Date(Date.now() - 60_000).toISOString(),
       repository: 'https://example.com/repo',

@@ -1,21 +1,17 @@
 # agents-audit
 
-[![npm version](https://img.shields.io/npm/v/agents-audit.svg)](https://www.npmjs.com/package/agents-audit)
-[![npm downloads](https://img.shields.io/npm/dm/agents-audit.svg)](https://www.npmjs.com/package/agents-audit)
+CLI for auditing `AGENTS.md` hygiene and validating `agents.workspace.json` at the repository root.
 
-CLI for auditing `AGENTS.md` hygiene with deterministic rules and optional `agents.workspace.json` enrichment.
-
-This package is published from the `workspace-json/agents-audit` monorepo.
+This package is published from the `agents-audit` workspace and is the primary
+end-user entrypoint for the project.
 
 ## Install
 
 ```bash
 pnpm add -D agents-audit
-# or run directly
-npx agents-audit scan .
 ```
 
-## Use
+## Run
 
 ```bash
 agents-audit scan .
@@ -23,6 +19,16 @@ agents-audit scan . --json
 agents-audit scan . --fail-on error
 ```
 
-Homepage: https://workspacejson.dev/audit/
+## What It Does
 
-Package page: https://www.npmjs.com/package/agents-audit
+- scans a repository for `AGENTS.md` hygiene issues
+- validates `agents.workspace.json` when present
+- can generate workspace metadata from a repository scan
+- returns a non-zero exit code when configured to fail on findings
+
+## Package Boundary
+
+- `src/cli.ts` defines the command-line interface
+- `src/index.ts` exposes the public API
+- `src/audit.ts` performs the repository scan and validation
+- `src/generate.ts` writes `agents.workspace.json`
