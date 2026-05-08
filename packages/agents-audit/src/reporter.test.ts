@@ -91,10 +91,11 @@ describe('reporter', () => {
   it('filters PASS and SKIP findings from the saved report', async () => {
     const repoRoot = await tmpRepo();
     const result = makeResult();
+    const { severity: _sev, ...baseFinding } = result.findings[0]!;
     result.findings = [
       { ...result.findings[0]!, state: 'FAIL', severity: 'error' },
-      { ...result.findings[0]!, state: 'PASS', severity: undefined, ruleId: 'rule-pass' },
-      { ...result.findings[0]!, state: 'SKIP', severity: undefined, ruleId: 'rule-skip' },
+      { ...baseFinding, state: 'PASS', ruleId: 'rule-pass' },
+      { ...baseFinding, state: 'SKIP', ruleId: 'rule-skip' },
     ];
 
     const outputPath = await saveReport(result, repoRoot, '.audit-history');
@@ -109,8 +110,9 @@ describe('reporter', () => {
   it('writes "No issues found" when all findings are PASS', async () => {
     const repoRoot = await tmpRepo();
     const result = makeResult();
+    const { severity: _sev, ...baseFinding } = result.findings[0]!;
     result.findings = [
-      { ...result.findings[0]!, state: 'PASS', severity: undefined, ruleId: 'rule-pass' },
+      { ...baseFinding, state: 'PASS', ruleId: 'rule-pass' },
     ];
 
     const outputPath = await saveReport(result, repoRoot, '.audit-history');
