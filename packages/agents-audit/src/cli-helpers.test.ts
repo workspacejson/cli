@@ -1,9 +1,20 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { getExitCode, loadConfig } from './cli-helpers.js';
 
 describe('cli helpers', () => {
+  const toClean: string[] = [];
+  afterEach(async () => {
+    await Promise.all(toClean.splice(0).map((d) => rm(d, { recursive: true, force: true })));
+  });
+
+  function tmpDir(): string {
+    const dir = resolve(process.cwd(), `.tmp-cli-config-${Date.now()}`);
+    toClean.push(dir);
+    return dir;
+  }
+
   it('calculates fail-on exit codes correctly', () => {
     const base = {
       findings: [
@@ -24,7 +35,7 @@ describe('cli helpers', () => {
   });
 
   it('loads defaults when config is missing', async () => {
-    const repoRoot = resolve(process.cwd(), `.tmp-cli-config-${Date.now()}`);
+    const repoRoot = tmpDir();
     const result = loadConfig(undefined, repoRoot);
 
     expect(result.config.stalenessThresholdDays).toBe(60);
@@ -33,7 +44,7 @@ describe('cli helpers', () => {
   });
 
   it('resolves relative config paths from the repository root', async () => {
-    const repoRoot = resolve(process.cwd(), `.tmp-cli-config-${Date.now()}`);
+    const repoRoot = tmpDir();
     const configDir = resolve(repoRoot, 'nested');
     const configPath = resolve(configDir, '.agentsauditrc');
 
@@ -48,7 +59,7 @@ describe('cli helpers', () => {
   });
 
   it('warns and falls back on malformed config', async () => {
-    const repoRoot = resolve(process.cwd(), `.tmp-cli-config-${Date.now()}`);
+    const repoRoot = tmpDir();
     const configDir = resolve(repoRoot, 'nested');
     const configPath = resolve(configDir, '.agentsauditrc');
 

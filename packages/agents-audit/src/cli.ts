@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path';
 import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
 import ora from 'ora';
 import { runAudit } from './audit.js';
 import { getExitCode, loadConfig } from './cli-helpers.js';
+import { generateWorkspaceJson } from './generate.js';
 import { renderFindingsTable, renderScoreCard, renderVrekoUpsell } from './presenter.js';
 import { startInteractiveNavigation } from './navigator.js';
 import { saveReport } from './reporter.js';
@@ -13,77 +15,124 @@ import type { AuditResult } from '@workspacejson/rules';
 const require = createRequire(import.meta.url);
 const { version } = require('../package.json') as { version: string };
 
-const program = new Command();
+export async function runCli(argv: string[] = process.argv): Promise<number> {
+  let exitCode = 0;
+  const program = new Command();
 
-program
-  .name('agents-audit')
-  .description('Audit AGENTS.md hygiene - powered by workspace.json intelligence')
-  .version(version);
+  program
+    .name('agents-audit')
+    .description('Audit AGENTS.md hygiene - powered by workspace.json intelligence')
+    .version(version)
+    .exitOverride();
 
-program
-  .command('scan', { isDefault: true })
-  .description('Scan a repository for AGENTS.md hygiene issues')
-  .argument('[path]', 'Repository root to scan', '.')
-  .option('--fail-on <severity>', 'Exit non-zero if findings at severity level exist (error|warning|info)')
-  .option('--save', 'Save audit report to .agents/audit-history/')
-  .option('--json', 'Output findings as JSON')
-  .option('--no-interactive', 'Disable interactive findings navigation')
-  .option('--config <path>', 'Path to .agentsauditrc config file')
-  .action(async (path: string, options: { failOn?: string; save?: boolean; json?: boolean; interactive?: boolean; config?: string }) => {
-    const repoRoot = resolve(path);
-    const { config, warning } = loadConfig(options.config, repoRoot);
-    const spinner = options.json
-      ? null
-      : ora({
-          text: 'Scanning AGENTS.md...',
-          color: 'green',
-        }).start();
+  program
+    .command('scan', { isDefault: true })
+    .description('Scan a repository for AGENTS.md hygiene issues')
+    .argument('[path]', 'Repository root to scan', '.')
+    .option('--fail-on <severity>', 'Exit non-zero if findings at severity level exist (error|warning|info)')
+    .option('--save', 'Save audit report to .agents/audit-history/')
+    .option('--json', 'Output findings as JSON')
+    .option('--no-interactive', 'Disable interactive findings navigation')
+    .option('--config <path>', 'Path to .agentsauditrc config file')
+    .action(async (path: string, options: { failOn?: string; save?: boolean; json?: boolean; interactive?: boolean; config?: string }) => {
+      const repoRoot = resolve(path);
+      const { config, warning } = loadConfig(options.config, repoRoot);
+      const spinner = options.json
+        ? null
+        : ora({
+            text: 'Scanning AGENTS.md...',
+            color: 'green',
+          }).start();
 
-    try {
-      if (warning) {
-        console.error(`agents-audit config warning: ${warning}`);
+      try {
+        if (warning) {
+          console.error(`agents-audit config warning: ${warning}`);
+        }
+
+        const result = await runAudit(repoRoot, config);
+        spinner?.stop();
+
+        if (options.json) {
+          console.log(JSON.stringify(result, null, 2));
+          exitCode = getExitCode(result, options.failOn);
+          return;
+        }
+
+        renderScoreCard(result, version);
+
+        if (result.findings.length > 0) {
+          renderFindingsTable(result.findings);
+        }
+
+        if (!result.workspaceJsonFound || result.workspaceJsonStale) {
+          renderVrekoUpsell(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
+        }
+
+        if (options.save || config.save) {
+          await saveReport(result, repoRoot, config.reportDir);
+        }
+
+        if ((options.interactive ?? true) && result.findings.length > 0) {
+          await startInteractiveNavigation(result.findings);
+        }
+
+        exitCode = getExitCode(result, options.failOn);
+      } catch (error) {
+        spinner?.stop();
+        console.error('agents-audit encountered an error:', error instanceof Error ? error.message : error);
+        exitCode = 1;
       }
+    });
 
-      const result = await runAudit(repoRoot, config);
-      spinner?.stop();
+  program
+    .command('generate')
+    .description('Generate .agents/agents.workspace.json from a repository scan')
+    .argument('[path]', 'Repository root to scan', '.')
+    .option('--dry-run', 'Print the workspace.json that would be written without writing it')
+    .option('--config <path>', 'Path to .agentsauditrc config file')
+    .action(async (path: string, options: { dryRun?: boolean; config?: string }) => {
+      const repoRoot = resolve(path);
+      const { config, warning } = loadConfig(options.config, repoRoot);
+      const spinner = ora({ text: 'Scanning repository...', color: 'green' }).start();
 
-      if (options.json) {
-        console.log(JSON.stringify(result, null, 2));
-        process.exit(getExitCode(result, options.failOn));
+      try {
+        if (warning) {
+          console.error(`agents-audit config warning: ${warning}`);
+        }
+
+        const result = await generateWorkspaceJson(repoRoot, config, { dryRun: options.dryRun === true });
+        spinner.stop();
+
+        if (options.dryRun) {
+          console.log(JSON.stringify(result.content, null, 2));
+        } else {
+          console.log(`Generated ${result.path}`);
+        }
+      } catch (error) {
+        spinner.stop();
+        console.error('agents-audit generate failed:', error instanceof Error ? error.message : error);
+        exitCode = 1;
       }
+    });
 
-      renderScoreCard(result, version);
+  program
+    .command('version')
+    .description('Print version information')
+    .action(() => {
+      console.log(`agents-audit v${version}`);
+      console.log('https://workspacejson.dev/audit/');
+    });
 
-      if (result.findings.length > 0) {
-        renderFindingsTable(result.findings);
-      }
+  try {
+    await program.parseAsync(argv);
+  } catch (error) {
+    exitCode = typeof error === 'object' && error && 'exitCode' in error ? Number((error as { exitCode?: number }).exitCode) || 1 : 1;
+  }
 
-      if (!result.workspaceJsonFound || result.workspaceJsonStale) {
-        renderVrekoUpsell(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
-      }
+  return exitCode;
+}
 
-      if (options.save || config.save) {
-        await saveReport(result, repoRoot, config.reportDir);
-      }
-
-      if ((options.interactive ?? true) && result.findings.length > 0) {
-        await startInteractiveNavigation(result.findings);
-      }
-
-      process.exit(getExitCode(result, options.failOn));
-    } catch (error) {
-      spinner?.stop();
-      console.error('agents-audit encountered an error:', error instanceof Error ? error.message : error);
-      process.exit(1);
-    }
-  });
-
-program
-  .command('version')
-  .description('Print version information')
-  .action(() => {
-    console.log(`agents-audit v${version}`);
-    console.log('https://workspacejson.dev/audit/');
-  });
-
-await program.parseAsync(process.argv);
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const exitCode = await runCli(process.argv);
+  process.exit(exitCode);
+}

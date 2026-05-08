@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import type { WorkspaceJson } from '@workspacejson/spec';
 import { AgentsMdParser, RepoScanner, RuleEngine, WorkspaceJsonValidator, computeHygieneScore, conventionMismatch, frameworkDrift, missingFileReference, patternZeroMatch, sectionStaleness } from '@workspacejson/rules';
 import type { AuditConfig, AuditResult, ParsedAgentsMd, RepoState, RuleContext } from '@workspacejson/rules';
+import { detectCiProvider } from './generate.js';
 
 function buildLegacyContext(
   agentsMd: ParsedAgentsMd,
@@ -23,15 +24,11 @@ function buildLegacyContext(
       isMonorepo: repo.isMonorepo ?? false,
     },
     workspace: {
-      // Map workspace JSON fields into WorkspaceSignals where available.
-      // When workspace is present it has been loaded and validated — use its data.
-      topology: workspace
-        ? ((workspace as Record<string, unknown>).topology as 'single-package' | 'monorepo' | 'polyglot-monorepo' ?? (repo.isMonorepo ? 'monorepo' : 'single-package'))
-        : (repo.isMonorepo ? 'monorepo' : 'single-package'),
-      ciProvider: 'unknown',
+      topology: (workspace?.topology as 'single-package' | 'monorepo' | 'polyglot-monorepo' | undefined) ?? (repo.isMonorepo ? 'monorepo' : 'single-package'),
+      ciProvider: (workspace?.ciProvider as 'github-actions' | 'gitlab-ci' | 'circleci' | 'jenkins' | 'none' | 'unknown' | undefined) ?? detectCiProvider(repo.files ?? []),
       manifests: {},
       packages: repo.packages ?? [],
-      agentFiles: {},
+      agentFiles: workspace?.agentFiles ?? (agentsMd.filePath ? { agentsMd: agentsMd.filePath } : {}),
     },
     config: config as unknown as Record<string, unknown>,
     file: {

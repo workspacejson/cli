@@ -4,7 +4,7 @@
   "description": "Audit tool for AGENTS.md hygiene - reads agents.workspace.json for richer findings",
   "license": "Apache-2.0",
   "author": "workspace-json contributors",
-  "homepage": "https://workspacejson.dev/audit/",
+  "homepage": "https://www.workspacejson.dev/audit/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/workspace-json/agents-audit.git"
@@ -16,18 +16,24 @@
     "access": "public"
   },
   "keywords": [
-    "agents",
-    "AGENTS.md",
     "workspace.json",
-    "workspace-json",
+    "agents.workspace.json",
     "ai-agents",
-    "audit",
-    "lint",
-    "cli",
+    "ai-coding-agents",
+    "codebase-intelligence",
+    "open-standard",
+    "json-schema",
     "developer-tools",
     "aaif",
-    "monorepo",
-    "open-source"
+    "agents-audit",
+    "AGENTS.md",
+    "claude-code",
+    "cursor",
+    "goose",
+    "cline",
+    "audit",
+    "lint",
+    "cli"
   ],
   "engines": {
     "node": ">=20.0.0"
