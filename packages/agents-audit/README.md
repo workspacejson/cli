@@ -1,6 +1,6 @@
 # agents-audit
 
-CLI for auditing `AGENTS.md` hygiene and validating `agents.workspace.json`.
+CLI for auditing `AGENTS.md` hygiene and validating `.agents/agents.workspace.json`.
 
 ## Install
 
@@ -22,7 +22,7 @@ That's it. Point it at any repository with an `AGENTS.md` and it prints a hygien
 
 ### `scan` (default)
 
-Scans a repository for `AGENTS.md` hygiene issues and validates `agents.workspace.json` when present.
+Scans a repository for `AGENTS.md` hygiene issues and validates `.agents/agents.workspace.json` when present.
 
 ```bash
 agents-audit scan [path] [options]
@@ -63,7 +63,7 @@ agents-audit scan . --fail-on warning --save --no-interactive
 
 ### `generate`
 
-Generates `agents.workspace.json` from a full repository scan. The file is written to the repo root and can be committed so that future `scan` runs use richer context.
+Generates `.agents/agents.workspace.json` from a full repository scan. The file is written to the canonical `.agents/` path and can be committed so that future `scan` runs use richer context.
 
 ```bash
 agents-audit generate [path] [options]
@@ -79,7 +79,7 @@ agents-audit generate [path] [options]
 **Examples**
 
 ```bash
-# Generate agents.workspace.json
+# Generate .agents/agents.workspace.json
 agents-audit generate .
 
 # Preview without writing
@@ -142,14 +142,14 @@ Pass `--config <path>` to use a config file at a non-default location.
 
 Without `--fail-on`, the exit code is always `0` regardless of findings.
 
-## agents.workspace.json
+## .agents/agents.workspace.json
 
-When `agents.workspace.json` is present and up to date, rules use richer context (topology, CI provider, package graph). When it is missing or stale, the CLI suggests running `agents-audit generate` to create it.
+When `.agents/agents.workspace.json` is present and up to date, rules use richer context (topology, CI provider, package graph). When it is missing or stale, the CLI suggests running `agents-audit generate` to create it. Root-path `agents.workspace.json` is still read as a fallback during the v0.x migration window.
 
 ```bash
 # First time setup
 agents-audit generate .
-git add agents.workspace.json
+git add .agents/agents.workspace.json
 
 # Keep it fresh in CI
 agents-audit generate . && agents-audit scan . --fail-on error

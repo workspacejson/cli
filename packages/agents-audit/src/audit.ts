@@ -107,11 +107,11 @@ async function loadWorkspaceJson(
   agentsMdLastModified: Date,
   validator: WorkspaceJsonValidator,
 ): Promise<{ workspaceJsonFound: boolean; workspaceJsonStale: boolean; workspaceJsonStatus: AuditResult['workspaceJsonStatus']; workspaceJsonErrors: string[]; workspaceJson?: WorkspaceJson }> {
-  const workspacePath = resolve(repoRoot, 'agents.workspace.json');
   const legacyWorkspacePath = resolve(repoRoot, '.agents/agents.workspace.json');
-  const primaryExists = existsSync(workspacePath);
-  const pathToRead = primaryExists ? workspacePath : legacyWorkspacePath;
-  if (!primaryExists && !existsSync(legacyWorkspacePath)) {
+  const workspacePath = resolve(repoRoot, 'agents.workspace.json');
+  const canonicalExists = existsSync(legacyWorkspacePath);
+  const pathToRead = canonicalExists ? legacyWorkspacePath : workspacePath;
+  if (!canonicalExists && !existsSync(workspacePath)) {
     return {
       workspaceJsonFound: false,
       workspaceJsonStale: true,
@@ -128,12 +128,13 @@ async function loadWorkspaceJson(
     const generatedDate = typeof generatedAt === 'string' ? new Date(generatedAt) : new Date(0);
     const stale = !validation.valid || Number.isNaN(generatedDate.getTime()) || generatedDate < agentsMdLastModified;
     const errors = validation.valid ? [] : validation.errors;
+    const deprecationWarning = canonicalExists ? [] : ['Found agents.workspace.json at repository root. The canonical path is now .agents/agents.workspace.json. Root path support remains a fallback for v0.x.'];
 
     return {
       workspaceJsonFound: true,
       workspaceJsonStale: stale,
       workspaceJsonStatus: validation.valid ? (generatedDate < agentsMdLastModified ? 'stale' : 'fresh') : 'invalid',
-      workspaceJsonErrors: errors,
+      workspaceJsonErrors: [...errors, ...deprecationWarning],
       workspaceJson,
     };
   } catch {

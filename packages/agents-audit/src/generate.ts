@@ -91,8 +91,8 @@ export async function generateWorkspaceJson(
       canonical: c.canonical,
     })),
     ...(agentsMdRelative !== undefined
-      ? { agentFiles: { agentsMd: agentsMdRelative, workspaceJson: 'agents.workspace.json' } }
-      : { agentFiles: { workspaceJson: 'agents.workspace.json' } }),
+      ? { agentFiles: { agentsMd: agentsMdRelative, workspaceJson: '.agents/agents.workspace.json' } }
+      : { agentFiles: { workspaceJson: '.agents/agents.workspace.json' } }),
     packages: repo.packages.map((p) => ({
       name: p.name,
       path: p.path,
@@ -111,7 +111,7 @@ export async function generateWorkspaceJson(
     },
   };
 
-  const outputPath = resolve(resolvedRoot, 'agents.workspace.json');
+  const outputPath = resolve(resolvedRoot, '.agents/agents.workspace.json');
 
   if (!options.dryRun) {
     await writeFile(outputPath, JSON.stringify(workspace, null, 2) + '\n', 'utf8');

@@ -4,6 +4,9 @@ All notable changes to `agents-audit` are documented here.
 
 ## Unreleased
 
+- Prepare the CLI for the canonical `.agents/agents.workspace.json` path while retaining the root-path fallback during the v0.x migration window.
+- Add an external `@workspacejson/spec` dependency pin in the published package manifest.
+
 ## 0.2.0 - 2026-05-08
 
 ### Added
@@ -22,8 +25,9 @@ All notable changes to `agents-audit` are documented here.
   `PASS`, `SKIP`, `INSUFFICIENT_DATA`, and `PREVIEW` rows are no longer shown.
 - Interactive findings navigator receives only `FAIL`/`WARN` findings.
 - Score card alignment improved; `D` grade no longer rendered in yellow (now red).
-- `agents.workspace.json` is read from the repository root first; `.agents/agents.workspace.json`
-  remains a read fallback. New files written by `generate` go to the repository root.
+- `.agents/agents.workspace.json` is the canonical workspace file path. `agents.workspace.json`
+  remains a read fallback during the v0.x migration window. New files written by `generate`
+  go to `.agents/agents.workspace.json`.
 
 ### Fixed
 
