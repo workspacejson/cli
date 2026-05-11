@@ -4,8 +4,15 @@ All notable changes to `agents-audit` are documented here.
 
 ## Unreleased
 
-- Prepare the CLI for the canonical `.agents/agents.workspace.json` path while retaining the root-path fallback during the v0.x migration window.
+## 0.2.1 - 2026-05-10
+
+### Changed
+
+- Prepare the CLI for the canonical `.agents/agents.workspace.json` path while retaining the
+  root-path fallback during the v0.x migration window.
 - Add an external `@workspacejson/spec` dependency pin in the published package manifest.
+
+## Unreleased
 
 ## 0.2.0 - 2026-05-08
 
