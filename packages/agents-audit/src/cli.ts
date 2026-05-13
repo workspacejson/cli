@@ -120,7 +120,7 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
     .description('Print version information')
     .action(() => {
       console.log(`agents-audit v${version}`);
-      console.log('https://workspacejson.dev/audit/');
+      console.log('https://www.workspacejson.dev/audit/');
     });
 
   try {

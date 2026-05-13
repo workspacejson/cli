@@ -124,7 +124,11 @@ async function loadWorkspaceJson(
     const raw = await readFile(pathToRead, 'utf8');
     const workspaceJson = JSON.parse(raw) as WorkspaceJson;
     const validation = validator.validate(workspaceJson);
-    const generatedAt = (workspaceJson as Record<string, unknown>)['generatedAt'];
+    const parsed = workspaceJson as Record<string, unknown>;
+    const generated = typeof parsed['generated'] === 'object' && parsed['generated'] !== null
+      ? parsed['generated'] as Record<string, unknown>
+      : null;
+    const generatedAt = generated ? generated['generatedAt'] : parsed['generatedAt'];
     const generatedDate = typeof generatedAt === 'string' ? new Date(generatedAt) : new Date(0);
     const stale = !validation.valid || Number.isNaN(generatedDate.getTime()) || generatedDate < agentsMdLastModified;
     const errors = validation.valid ? [] : validation.errors;

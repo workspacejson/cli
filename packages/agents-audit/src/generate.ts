@@ -1,7 +1,8 @@
 import { existsSync } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
-import { relative, resolve } from 'node:path';
-import type { WorkspaceJson } from '@workspacejson/spec';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { dirname, relative, resolve } from 'node:path';
+import type { WorkspaceJsonV3 } from '@workspacejson/spec';
 import {
   AgentsMdParser,
   RepoScanner,
@@ -17,10 +18,13 @@ import type { AuditConfig, RuleContext } from '@workspacejson/rules';
 import { DEFAULT_AUDIT_CONFIG, detectCiProvider } from './internal/config.js';
 import { findAgentsMdPath, readTextOrEmpty } from './internal/fs.js';
 
+const _require = createRequire(import.meta.url);
+const { version: pkgVersion } = _require('../package.json') as { version: string };
+
 export interface GenerateResult {
   path: string;
   written: boolean;
-  content: WorkspaceJson;
+  content: WorkspaceJsonV3;
 }
 
 export async function generateWorkspaceJson(
@@ -79,41 +83,47 @@ export async function generateWorkspaceJson(
     ? relative(resolvedRoot, agentsMd.filePath)
     : undefined;
 
-  const workspace: WorkspaceJson = {
-    version: '1',
-    generatedAt: now,
-    topology: repo.isMonorepo ? 'monorepo' : 'single-package',
-    ciProvider: detectCiProvider(repo.files),
-    frameworks: agentsMd.frameworkTokens,
-    conventions: agentsMd.conventions.map((c) => ({
-      raw: c.raw,
-      type: c.type,
-      canonical: c.canonical,
-    })),
-    ...(agentsMdRelative !== undefined
-      ? { agentFiles: { agentsMd: agentsMdRelative, workspaceJson: '.agents/agents.workspace.json' } }
-      : { agentFiles: { workspaceJson: '.agents/agents.workspace.json' } }),
-    packages: repo.packages.map((p) => ({
-      name: p.name,
-      path: p.path,
-      ...(p.agentsMd !== undefined ? { agentsMd: p.agentsMd } : {}),
-    })),
-    gitSummary: {
-      nonAgentsCommitCount30Days: repo.gitHistory.nonAgentsCommitCount30Days,
-      filesChangedLast30Days: repo.gitHistory.filesChangedLast30Days,
+  const workspace: WorkspaceJsonV3 = {
+    manual: {},
+    generated: {
+      specVersion: '0.3',
+      generatedAt: now,
+      by: { name: 'agents-audit', version: pkgVersion },
+      frameworkManifest: agentsMd.frameworkTokens.map((name) => ({ name, confidence: 0.5 })),
+      fileIndex: {},
+      topology: {
+        packageCount: repo.packages.length,
+        type: repo.isMonorepo ? 'monorepo' : 'single-package',
+        ciProvider: detectCiProvider(repo.files),
+        ...(agentsMdRelative !== undefined
+          ? {
+              agentFiles: {
+                agentsMd: agentsMdRelative,
+                workspaceJson: '.agents/agents.workspace.json',
+              },
+            }
+          : { agentFiles: { workspaceJson: '.agents/agents.workspace.json' } }),
+      },
+      hygiene: {
+        score: score.value,
+        grade: score.grade,
+        failCount: score.breakdown.failCount,
+        warnCount: score.breakdown.warnCount,
+        scannedAt: now,
+      },
     },
-    hygiene: {
-      score: score.value,
-      grade: score.grade,
-      failCount: score.breakdown.failCount,
-      warnCount: score.breakdown.warnCount,
-      scannedAt: now,
+    agents: {},
+    health: {
+      intelligenceState: 'INSUFFICIENT_DATA',
+      observationCount: 0,
+      confidence: 0,
     },
   };
 
   const outputPath = resolve(resolvedRoot, '.agents/agents.workspace.json');
 
   if (!options.dryRun) {
+    await mkdir(dirname(outputPath), { recursive: true });
     await writeFile(outputPath, JSON.stringify(workspace, null, 2) + '\n', 'utf8');
   }
 

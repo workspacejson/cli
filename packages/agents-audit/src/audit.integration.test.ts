@@ -63,10 +63,16 @@ describe('audit integration', () => {
     await mkdir(repoRoot, { recursive: true });
     await writeFile(resolve(repoRoot, 'AGENTS.md'), '# Temp\n\nUse `src/` for source code.\n', 'utf8');
     await writeFile(resolve(repoRoot, 'agents.workspace.json'), JSON.stringify({
-      version: '1',
-      generatedAt: new Date(Date.now() + 60_000).toISOString(),
-      repository: 'https://example.com/repo',
-      packages: [{ path: 'packages/app' }],
+      manual: {},
+      generated: {
+        specVersion: '0.3',
+        generatedAt: new Date(Date.now() + 60_000).toISOString(),
+        by: { name: 'agents-audit', version: '0.2.1' },
+        frameworkManifest: [],
+        fileIndex: {},
+      },
+      agents: {},
+      health: { intelligenceState: 'INSUFFICIENT_DATA', observationCount: 0, confidence: 0 },
     }), 'utf8');
 
     const result = await runAudit(repoRoot);
@@ -81,10 +87,16 @@ describe('audit integration', () => {
     const repoRoot = tmpDir();
     await mkdir(repoRoot, { recursive: true });
     await writeFile(resolve(repoRoot, 'agents.workspace.json'), JSON.stringify({
-      version: '1',
-      generatedAt: new Date(Date.now() - 60_000).toISOString(),
-      repository: 'https://example.com/repo',
-      packages: [{ path: 'packages/app' }],
+      manual: {},
+      generated: {
+        specVersion: '0.3',
+        generatedAt: new Date(Date.now() - 60_000).toISOString(),
+        by: { name: 'agents-audit', version: '0.2.1' },
+        frameworkManifest: [],
+        fileIndex: {},
+      },
+      agents: {},
+      health: { intelligenceState: 'INSUFFICIENT_DATA', observationCount: 0, confidence: 0 },
     }), 'utf8');
     await writeFile(resolve(repoRoot, 'AGENTS.md'), '# Temp\n\nUse `src/` for source code.\n', 'utf8');
 
