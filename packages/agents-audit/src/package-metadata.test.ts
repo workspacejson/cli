@@ -12,7 +12,7 @@ describe('package metadata', () => {
   it('keeps the spec package mature and discoverable', () => {
     const pkg = readPackageJson('packages/spec/package.json');
     expect(pkg.name).toBe('@workspacejson/spec');
-    expect(pkg.version).toBe('0.2.0');
+    expect(pkg.version).toBe('0.3.0');
     expect((pkg.repository as { directory?: string } | undefined)?.directory).toBeUndefined();
     expect((pkg.publishConfig as { access?: string } | undefined)?.access).toBe('public');
     const keywords = pkg.keywords as string[];
