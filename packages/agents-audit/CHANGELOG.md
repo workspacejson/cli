@@ -2,9 +2,26 @@
 
 All notable changes to `agents-audit` are documented here.
 
-## Unreleased
+## [0.4.1] - 2026-06-02
 
-## 0.2.1 - 2026-05-10
+### Changed
+- `generate` now writes to `.agents/workspace.json` (was `.agents/agents.workspace.json`).
+- `scan` audit reader checks `.agents/workspace.json` as canonical; falls back to
+  `.agents/agents.workspace.json` (old canonical) then `workspace.json` at repo root
+  (legacy), emitting a deprecation warning for both fallback paths.
+- CLI `generate` command description updated to reflect correct output path.
+- Upsell message strings updated from `agents.workspace.json` to `workspace.json`.
+- Package description and keywords updated to remove stale filename references.
+- `@workspacejson/spec` dependency updated to `0.4.1`.
+
+## [0.3.0] - 2026-05-12
+
+### Changed
+- Version bump to align with `@workspacejson/spec@0.3.0` monorepo restructure and
+  schema shape change (`manual`, `generated`, `agents`, `health` four-property layout).
+- `generate` output and `scan` reader updated to v0.3 schema shape.
+
+## [0.2.1] - 2026-05-10
 
 ### Changed
 
@@ -12,9 +29,7 @@ All notable changes to `agents-audit` are documented here.
   root-path fallback during the v0.x migration window.
 - Add an external `@workspacejson/spec` dependency pin in the published package manifest.
 
-## Unreleased
-
-## 0.2.0 - 2026-05-08
+## [0.2.0] - 2026-05-08
 
 ### Added
 
@@ -54,13 +69,13 @@ All notable changes to `agents-audit` are documented here.
   `reportDir`, and non-finite numeric thresholds are discarded.
 - Config parse errors no longer expose the absolute filesystem path or raw JSON error text.
 
-## 0.1.1 - 2026-05-06
+## [0.1.1] - 2026-05-06
 
 ### Changed
 
 - Added npm discoverability keywords.
 
-## 0.1.0 - 2026-05-06
+## [0.1.0] - 2026-05-06
 
 ### Added
 

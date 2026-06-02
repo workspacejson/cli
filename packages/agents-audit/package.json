@@ -1,6 +1,6 @@
 {
   "name": "agents-audit",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "Audit tool for AGENTS.md hygiene - reads .agents/workspace.json for richer findings",
   "license": "Apache-2.0",
   "author": "workspace-json contributors",
@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@workspacejson/rules": "workspace:*",
-    "@workspacejson/spec": "0.3.0",
+    "@workspacejson/spec": "0.4.1",
     "@inquirer/core": "^9.0.0",
     "boxen": "^7.1.1",
     "cli-table3": "^0.6.5",
