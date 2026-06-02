@@ -54,7 +54,7 @@ describe('presenter', () => {
     const output = calls.join('\n');
     const normalized = normalize(output);
 
-    expect(normalized).toContain('agents.workspace.json not found.');
+    expect(normalized).toContain('workspace.json not found.');
     expect(normalized).toContain('Vreko generates it automatically from real codebase structure and activity');
     expect(normalized).toContain('unlocking richer audit findings.');
   });

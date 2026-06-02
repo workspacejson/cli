@@ -12,12 +12,11 @@ describe('package metadata', () => {
   it('keeps the spec package mature and discoverable', () => {
     const pkg = readPackageJson('packages/spec/package.json');
     expect(pkg.name).toBe('@workspacejson/spec');
-    expect(pkg.version).toBe('0.3.0');
+    expect(pkg.version).toBe('0.4.1');
     expect((pkg.repository as { directory?: string } | undefined)?.directory).toBeUndefined();
     expect((pkg.publishConfig as { access?: string } | undefined)?.access).toBe('public');
     const keywords = pkg.keywords as string[];
     expect(keywords.includes('workspace.json')).toBe(true);
-    expect(keywords.includes('agents.workspace.json')).toBe(true);
     expect(keywords.includes('ai-agents')).toBe(true);
     expect(keywords.includes('ai-coding-agents')).toBe(true);
     expect(keywords.includes('codebase-intelligence')).toBe(true);
@@ -37,7 +36,6 @@ describe('package metadata', () => {
     expect((pkg.publishConfig as { access?: string } | undefined)?.access).toBe('public');
     const keywords = pkg.keywords as string[];
     expect(keywords.includes('workspace.json')).toBe(true);
-    expect(keywords.includes('agents.workspace.json')).toBe(true);
     expect(keywords.includes('ai-agents')).toBe(true);
     expect(keywords.includes('ai-coding-agents')).toBe(true);
     expect(keywords.includes('codebase-intelligence')).toBe(true);
@@ -56,7 +54,6 @@ describe('package metadata', () => {
     expect((pkg.publishConfig as { access?: string } | undefined)?.access).toBe('public');
     const keywords = pkg.keywords as string[];
     expect(keywords.includes('workspace.json')).toBe(true);
-    expect(keywords.includes('agents.workspace.json')).toBe(true);
     expect(keywords.includes('ai-agents')).toBe(true);
     expect(keywords.includes('ai-coding-agents')).toBe(true);
     expect(keywords.includes('codebase-intelligence')).toBe(true);

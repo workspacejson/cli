@@ -99,10 +99,10 @@ export async function generateWorkspaceJson(
           ? {
               agentFiles: {
                 agentsMd: agentsMdRelative,
-                workspaceJson: '.agents/agents.workspace.json',
+                workspaceJson: '.agents/workspace.json',
               },
             }
-          : { agentFiles: { workspaceJson: '.agents/agents.workspace.json' } }),
+          : { agentFiles: { workspaceJson: '.agents/workspace.json' } }),
       },
       hygiene: {
         score: score.value,
@@ -120,7 +120,7 @@ export async function generateWorkspaceJson(
     },
   };
 
-  const outputPath = resolve(resolvedRoot, '.agents/agents.workspace.json');
+  const outputPath = resolve(resolvedRoot, '.agents/workspace.json');
 
   if (!options.dryRun) {
     await mkdir(dirname(outputPath), { recursive: true });

@@ -69,12 +69,12 @@ export function renderVrekoUpsell(
 ): void {
   const message = workspaceJsonExists
     ? dedent`
-        ${brand('agents.workspace.json')} is stale or invalid.
+        ${brand('workspace.json')} is stale or invalid.
         Vreko updates it automatically from real codebase activity.
         ${pc.dim(terminalLink('vreko.dev', 'https://vreko.dev'))}
       `
     : dedent`
-        agents.workspace.json not found.
+        workspace.json not found.
         Vreko generates it automatically from real codebase structure and activity,
         unlocking richer audit findings.
         ${pc.dim(terminalLink('vreko.dev', 'https://vreko.dev'))}

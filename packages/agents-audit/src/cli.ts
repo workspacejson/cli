@@ -86,7 +86,7 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
 
   program
     .command('generate')
-    .description('Generate agents.workspace.json from a repository scan')
+    .description('Generate .agents/workspace.json from a repository scan')
     .argument('[path]', 'Repository root to scan', '.')
     .option('--dry-run', 'Print the workspace.json that would be written without writing it')
     .option('--config <path>', 'Path to .agentsauditrc config file')

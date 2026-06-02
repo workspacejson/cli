@@ -107,11 +107,13 @@ async function loadWorkspaceJson(
   agentsMdLastModified: Date,
   validator: WorkspaceJsonValidator,
 ): Promise<{ workspaceJsonFound: boolean; workspaceJsonStale: boolean; workspaceJsonStatus: AuditResult['workspaceJsonStatus']; workspaceJsonErrors: string[]; workspaceJson?: WorkspaceJson }> {
-  const legacyWorkspacePath = resolve(repoRoot, '.agents/agents.workspace.json');
-  const workspacePath = resolve(repoRoot, 'agents.workspace.json');
-  const canonicalExists = existsSync(legacyWorkspacePath);
-  const pathToRead = canonicalExists ? legacyWorkspacePath : workspacePath;
-  if (!canonicalExists && !existsSync(workspacePath)) {
+  const canonicalPath = resolve(repoRoot, '.agents/workspace.json');
+  const legacyAgentsPath = resolve(repoRoot, '.agents/agents.workspace.json');
+  const rootLegacyPath = resolve(repoRoot, 'workspace.json');
+  const canonicalExists = existsSync(canonicalPath);
+  const legacyAgentsExists = !canonicalExists && existsSync(legacyAgentsPath);
+  const pathToRead = canonicalExists ? canonicalPath : legacyAgentsExists ? legacyAgentsPath : rootLegacyPath;
+  if (!canonicalExists && !legacyAgentsExists && !existsSync(rootLegacyPath)) {
     return {
       workspaceJsonFound: false,
       workspaceJsonStale: true,
@@ -132,7 +134,11 @@ async function loadWorkspaceJson(
     const generatedDate = typeof generatedAt === 'string' ? new Date(generatedAt) : new Date(0);
     const stale = !validation.valid || Number.isNaN(generatedDate.getTime()) || generatedDate < agentsMdLastModified;
     const errors = validation.valid ? [] : validation.errors;
-    const deprecationWarning = canonicalExists ? [] : ['Found agents.workspace.json at repository root. The canonical path is now .agents/agents.workspace.json. Root path support remains a fallback for v0.x.'];
+    const deprecationWarning = canonicalExists
+      ? []
+      : legacyAgentsExists
+        ? ['Found workspace.json at .agents/agents.workspace.json. The canonical path is now .agents/workspace.json — please rename the file.']
+        : ['Found workspace.json at repository root. The canonical path is .agents/workspace.json — please move the file.'];
 
     return {
       workspaceJsonFound: true,
@@ -146,7 +152,7 @@ async function loadWorkspaceJson(
       workspaceJsonFound: true,
       workspaceJsonStale: true,
       workspaceJsonStatus: 'invalid',
-      workspaceJsonErrors: ['Unable to parse agents.workspace.json'],
+      workspaceJsonErrors: ['Unable to parse workspace.json'],
     };
   }
 }

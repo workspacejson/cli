@@ -91,7 +91,7 @@ describe('generateWorkspaceJson — v0.3 conformance', () => {
     const result = await generateWorkspaceJson(repoRoot, {}, { dryRun: false });
 
     expect(result.written).toBe(true);
-    expect(result.path).toMatch(/\.agents[/\\]agents\.workspace\.json$/);
+    expect(result.path).toMatch(/\.agents[/\\]workspace\.json$/);
 
     const written = JSON.parse(await readFile(result.path, 'utf8')) as unknown;
     expect(validate(written)).toBe(true);
