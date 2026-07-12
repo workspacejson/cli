@@ -1,0 +1,49 @@
+{
+  "name": "@workspacejson/cli",
+  "version": "0.0.1",
+  "description": "CLI that joins dbt models to workspace.json behavioral intelligence by repository-root-relative path (the DataHub / HAC-75 normalization shim).",
+  "license": "Apache-2.0",
+  "author": "workspace-json contributors",
+  "homepage": "https://www.workspacejson.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workspace-json/agents-audit.git",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "workspacejson": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm --dts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@workspacejson/spec": "0.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "tsup": "^8.0.0",
+    "vitest": "^1.6.0"
+  }
+}
