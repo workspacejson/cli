@@ -74,6 +74,8 @@ agents-audit generate [path] [options]
 | Flag | Description |
 | --- | --- |
 | `--dry-run` | Print the JSON that would be written without writing it |
+| `--check` | Exit non-zero when generated sections are missing, invalid, or stale; never writes |
+| `--force` | Move an invalid existing file aside as `.invalid.<timestamp>` before writing fresh generated sections |
 | `--config <path>` | Path to a `.agentsauditrc` config file |
 
 **Examples**
@@ -84,7 +86,15 @@ agents-audit generate .
 
 # Preview without writing
 agents-audit generate . --dry-run
+
+# Fail CI when generated sections drift; manual evidence is never changed
+agents-audit generate . --check
 ```
+
+`generate` preserves `manual` evidence verbatim. It regenerates `generated`, `agents`, and
+`health` only when their material content changes; a no-op preserves `generatedAt` and leaves
+the file untouched. If an existing file is invalid, generation refuses to overwrite it unless
+you pass `--force`, which first moves the original aside for recovery.
 
 ### `version`
 
@@ -151,8 +161,8 @@ When `.agents/agents.workspace.json` is present and up to date, rules use richer
 agents-audit generate .
 git add .agents/agents.workspace.json
 
-# Keep it fresh in CI
-agents-audit generate . && agents-audit scan . --fail-on error
+# Keep generated sections fresh in CI without writing
+agents-audit generate . --check && agents-audit scan . --fail-on error
 ```
 
 ## JSON output schema
