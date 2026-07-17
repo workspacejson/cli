@@ -1,10 +1,20 @@
 # Changelog
 
+## 0.4.2
+
+### Patch Changes
+
+- Ship strict schema-backed validation, producer-safe generation, and package tarball release guards.
+- Updated dependencies
+  - @workspacejson/spec@0.4.2
+  - @workspacejson/rules@0.4.2
+
 All notable changes to `agents-audit` are documented here.
 
 ## [0.4.1] - 2026-06-02
 
 ### Changed
+
 - `generate` now writes to `.agents/workspace.json` (was `.agents/agents.workspace.json`).
 - `scan` audit reader checks `.agents/workspace.json` as canonical; falls back to
   `.agents/agents.workspace.json` (old canonical) then `workspace.json` at repo root
@@ -17,6 +27,7 @@ All notable changes to `agents-audit` are documented here.
 ## [0.3.0] - 2026-05-12
 
 ### Changed
+
 - Version bump to align with `@workspacejson/spec@0.3.0` monorepo restructure and
   schema shape change (`manual`, `generated`, `agents`, `health` four-property layout).
 - `generate` output and `scan` reader updated to v0.3 schema shape.
