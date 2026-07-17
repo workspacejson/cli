@@ -89,8 +89,10 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
     .description('Generate .agents/workspace.json from a repository scan')
     .argument('[path]', 'Repository root to scan', '.')
     .option('--dry-run', 'Print the workspace.json that would be written without writing it')
+    .option('--check', 'Exit non-zero when producer-owned sections are missing, invalid, or stale without writing')
+    .option('--force', 'Move an invalid existing artifact aside before writing a fresh generated artifact')
     .option('--config <path>', 'Path to .agentsauditrc config file')
-    .action(async (path: string, options: { dryRun?: boolean; config?: string }) => {
+    .action(async (path: string, options: { dryRun?: boolean; check?: boolean; force?: boolean; config?: string }) => {
       const repoRoot = resolve(path);
       const { config, warning } = loadConfig(options.config, repoRoot);
       const spinner = ora({ text: 'Scanning repository...', color: 'green' }).start();
@@ -100,11 +102,24 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
           console.error(`agents-audit config warning: ${warning}`);
         }
 
-        const result = await generateWorkspaceJson(repoRoot, config, { dryRun: options.dryRun === true });
+        const result = await generateWorkspaceJson(repoRoot, config, {
+          dryRun: options.dryRun === true,
+          check: options.check === true,
+          force: options.force === true,
+        });
         spinner.stop();
 
         if (options.dryRun) {
           console.log(JSON.stringify(result.content, null, 2));
+        } else if (options.check) {
+          if (result.drift) {
+            console.error(`Generated sections are stale at ${result.path}; manual evidence is untouched. Run: agents-audit generate ${path}`);
+            exitCode = 1;
+          } else {
+            console.log(`Generated sections are current at ${result.path}`);
+          }
+        } else if (result.skipped) {
+          console.log(`Generated sections already current at ${result.path}; manual evidence preserved`);
         } else {
           console.log(`Generated ${result.path}`);
         }

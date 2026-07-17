@@ -1,6 +1,14 @@
 # agents-audit
 
-CLI for auditing `AGENTS.md` hygiene and validating `.agents/agents.workspace.json`.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/workspace-json/agents-audit/main/assets/workspace-json-lockup-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/workspace-json/agents-audit/main/assets/workspace-json-lockup-light.png">
+    <img src="https://raw.githubusercontent.com/workspace-json/agents-audit/main/assets/workspace-json-lockup-light.png" alt="workspace.json — Portable Repository Intelligence" width="520">
+  </picture>
+</p>
+
+CLI for auditing `AGENTS.md` hygiene and validating `.agents/workspace.json`.
 
 ## Install
 
@@ -22,7 +30,7 @@ That's it. Point it at any repository with an `AGENTS.md` and it prints a hygien
 
 ### `scan` (default)
 
-Scans a repository for `AGENTS.md` hygiene issues and validates `.agents/agents.workspace.json` when present.
+Scans a repository for `AGENTS.md` hygiene issues and validates `.agents/workspace.json` when present.
 
 ```bash
 agents-audit scan [path] [options]
@@ -63,7 +71,7 @@ agents-audit scan . --fail-on warning --save --no-interactive
 
 ### `generate`
 
-Generates `.agents/agents.workspace.json` from a full repository scan. The file is written to the canonical `.agents/` path and can be committed so that future `scan` runs use richer context.
+Generates `.agents/workspace.json` from a full repository scan. The file is written to the canonical `.agents/` path and can be committed so that future `scan` runs use richer context.
 
 ```bash
 agents-audit generate [path] [options]
@@ -74,17 +82,27 @@ agents-audit generate [path] [options]
 | Flag | Description |
 | --- | --- |
 | `--dry-run` | Print the JSON that would be written without writing it |
+| `--check` | Exit non-zero when generated sections are missing, invalid, or stale; never writes |
+| `--force` | Move an invalid existing file aside as `.invalid.<timestamp>` before writing fresh generated sections |
 | `--config <path>` | Path to a `.agentsauditrc` config file |
 
 **Examples**
 
 ```bash
-# Generate .agents/agents.workspace.json
+# Generate .agents/workspace.json
 agents-audit generate .
 
 # Preview without writing
 agents-audit generate . --dry-run
+
+# Fail CI when generated sections drift; manual evidence is never changed
+agents-audit generate . --check
 ```
+
+`generate` preserves `manual` evidence verbatim. It regenerates `generated`, `agents`, and
+`health` only when their material content changes; a no-op preserves `generatedAt` and leaves
+the file untouched. If an existing file is invalid, generation refuses to overwrite it unless
+you pass `--force`, which first moves the original aside for recovery.
 
 ### `version`
 
@@ -142,17 +160,17 @@ Pass `--config <path>` to use a config file at a non-default location.
 
 Without `--fail-on`, the exit code is always `0` regardless of findings.
 
-## .agents/agents.workspace.json
+## .agents/workspace.json
 
-When `.agents/agents.workspace.json` is present and up to date, rules use richer context (topology, CI provider, package graph). When it is missing or stale, the CLI suggests running `agents-audit generate` to create it. Root-path `agents.workspace.json` is still read as a fallback during the v0.x migration window.
+When `.agents/workspace.json` is present and up to date, rules use richer context (topology, CI provider, package graph). When it is missing or stale, the CLI suggests running `agents-audit generate` to create it. Legacy `.agents/agents.workspace.json` and root-path `workspace.json` files are still read as fallbacks during the v0.x migration window.
 
 ```bash
 # First time setup
 agents-audit generate .
-git add .agents/agents.workspace.json
+git add .agents/workspace.json
 
-# Keep it fresh in CI
-agents-audit generate . && agents-audit scan . --fail-on error
+# Keep generated sections fresh in CI without writing
+agents-audit generate . --check && agents-audit scan . --fail-on error
 ```
 
 ## JSON output schema
@@ -197,7 +215,7 @@ agents-audit generate . && agents-audit scan . --fail-on error
 | --- | --- |
 | `src/cli.ts` | Commander-based CLI entry point |
 | `src/audit.ts` | Orchestrates scan → parse → validate → rule engine |
-| `src/generate.ts` | Writes `agents.workspace.json` from a repo scan |
+| `src/generate.ts` | Writes `.agents/workspace.json` from a repo scan |
 | `src/presenter.ts` | Terminal rendering (score card, findings table, upsell) |
 | `src/reporter.ts` | Saves Markdown reports to disk |
 | `src/cli-helpers.ts` | Config loading and exit code logic |

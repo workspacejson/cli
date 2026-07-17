@@ -71,6 +71,46 @@ describe('CLI integration', () => {
     expect(mocks.runAudit).toHaveBeenCalledWith(resolve(repoRoot), expect.any(Object));
   });
 
+  it('uses --check as a non-writing drift gate for generate', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    mocks.generateWorkspaceJson.mockResolvedValueOnce({
+      path: '/repo/.agents/workspace.json',
+      written: false,
+      skipped: false,
+      drift: true,
+      preservedManual: true,
+      content: {},
+    });
+
+    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check']);
+
+    expect(exitCode).toBe(1);
+    const generateCalls = (mocks.generateWorkspaceJson as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    const errorCalls = (errorSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    expect(generateCalls[0]?.[0]).toBe('/repo');
+    expect(generateCalls[0]?.[2]).toEqual({ check: true, dryRun: false, force: false });
+    expect(errorCalls.flat().join(' ')).toContain('manual evidence is untouched');
+    errorSpy.mockRestore();
+  });
+
+  it('reports a current generated projection without writing', async () => {
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    mocks.generateWorkspaceJson.mockResolvedValueOnce({
+      path: '/repo/.agents/workspace.json',
+      written: false,
+      skipped: true,
+      drift: false,
+      preservedManual: true,
+      content: {},
+    });
+
+    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check']);
+
+    expect(exitCode).toBe(0);
+    expect(logSpy).toHaveBeenCalledWith('Generated sections are current at /repo/.agents/workspace.json');
+    logSpy.mockRestore();
+  });
+
   it('treats --dir as an invalid option', async () => {
     const exitCode = await runCli(['node', 'agents-audit', 'scan', '--dir', '/tmp/example']);
 
