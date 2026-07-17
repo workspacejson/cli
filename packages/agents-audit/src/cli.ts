@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path';
+import { realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
@@ -147,7 +148,10 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
   return exitCode;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+// npm exposes package bins through node_modules/.bin symlinks. Resolve both
+// paths before comparing them so the executable runs whether invoked directly
+// or through npx/npm exec.
+if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
   const exitCode = await runCli(process.argv);
   process.exit(exitCode);
 }
