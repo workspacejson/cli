@@ -1,6 +1,7 @@
 {
   "name": "@workspacejson/cli",
   "version": "0.0.1",
+  "private": true,
   "description": "CLI that joins dbt models to workspace.json behavioral intelligence by repository-root-relative path (the DataHub / HAC-75 normalization shim).",
   "license": "Apache-2.0",
   "author": "workspace-json contributors",
@@ -39,7 +40,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@workspacejson/spec": "0.4.1"
+    "@workspacejson/spec": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.4.0",

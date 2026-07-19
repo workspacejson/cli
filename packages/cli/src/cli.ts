@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { extractModels, findDbtProjects, type DbtManifest } from "./dbt.js";
 import { computeProjectPrefix, canonical } from "./normalize.js";
@@ -66,4 +67,6 @@ export function run(args: Args): number {
   return result.total > 0 && result.matched === 0 ? 1 : 0;
 }
 
-process.exit(run(parseArgs(process.argv.slice(2))));
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  process.exit(run(parseArgs(process.argv.slice(2))));
+}

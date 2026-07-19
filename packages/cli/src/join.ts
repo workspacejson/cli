@@ -1,3 +1,5 @@
+import type { FileIndexEntry } from "@workspacejson/spec";
+
 import { normalizeModelPath } from "./normalize.js";
 
 /** A dbt model as read from manifest.json. */
@@ -9,10 +11,10 @@ export interface DbtModel {
 
 /**
  * workspace.json behavioral intelligence, keyed by repository-root-relative
- * POSIX path (per @workspacejson/spec fileIndex, VR-640). Values are opaque
- * here — the join only needs key presence.
+ * POSIX path (per @workspacejson/spec fileIndex, VR-640). Values follow the
+ * spec's own FileIndexEntry contract — the join only needs key presence.
  */
-export type FileIndex = Record<string, unknown>;
+export type FileIndex = Record<string, FileIndexEntry>;
 
 export interface JoinRow {
   uniqueId: string;

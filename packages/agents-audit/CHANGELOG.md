@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.4] - Unreleased
+
+### Patch Changes
+
+- Updated dependencies: `@workspacejson/rules@0.4.4` and `@workspacejson/spec@0.4.4`.
+
 ## [0.4.3] - 2026-07-17
 
 ### Patch Changes
