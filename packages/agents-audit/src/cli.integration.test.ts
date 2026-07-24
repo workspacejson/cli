@@ -111,6 +111,50 @@ describe('CLI integration', () => {
     logSpy.mockRestore();
   });
 
+  it('still fails the drift gate when --check is combined with --dry-run', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    mocks.generateWorkspaceJson.mockResolvedValueOnce({
+      path: '/repo/.agents/workspace.json',
+      written: false,
+      skipped: false,
+      drift: true,
+      preservedManual: true,
+      content: { staged: true },
+    });
+
+    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check', '--dry-run']);
+
+    expect(exitCode).toBe(1);
+    const errorCalls = (errorSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    expect(errorCalls.flat().join(' ')).toContain('manual evidence is untouched');
+    expect(logSpy).toHaveBeenCalledWith(JSON.stringify({ staged: true }, null, 2));
+    errorSpy.mockRestore();
+    logSpy.mockRestore();
+  });
+
+  it('surfaces the relocated invalid file when --force recovers a fresh generate', async () => {
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    mocks.generateWorkspaceJson.mockResolvedValueOnce({
+      path: '/repo/.agents/workspace.json',
+      written: true,
+      skipped: false,
+      drift: true,
+      preservedManual: false,
+      invalidFileMoved: '/repo/.agents/workspace.json.invalid.2026-01-01T00-00-00-000Z',
+      content: {},
+    });
+
+    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--force']);
+
+    expect(exitCode).toBe(0);
+    const logCalls = (logSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    const logs = logCalls.flat().join(' ');
+    expect(logs).toContain('Generated /repo/.agents/workspace.json');
+    expect(logs).toContain('/repo/.agents/workspace.json.invalid.2026-01-01T00-00-00-000Z');
+    logSpy.mockRestore();
+  });
+
   it('treats --dir as an invalid option', async () => {
     const exitCode = await runCli(['node', 'agents-audit', 'scan', '--dir', '/tmp/example']);
 
