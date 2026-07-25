@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Patch Changes
+
+- `generate --check --dry-run` now fires the drift gate (exit 1, "manual evidence is untouched") instead of the dry-run branch silently winning and exiting 0; the JSON projection is still printed under `--dry-run`. Deferred from 0.4.4 (META-157) because it changes exit-code semantics; landed here as its own reviewed change with regression tests watched red against the pre-change CLI.
+- `generate` now surfaces `invalidFileMoved` (result data that has existed since 0.4.3 but was never displayed): when a previous `.agents/workspace.json` was invalid and moved aside, the CLI prints where it was relocated to and that its manual evidence could not be recovered.
+
 ## [0.4.4] - Unreleased
 
 ### Patch Changes
