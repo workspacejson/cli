@@ -1,5 +1,7 @@
+import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { WorkspaceJsonValidator } from '@workspacejson/rules';
 import { afterEach, describe, expect, it } from 'vitest';
 import { GenerateRefusalError, generateWorkspaceJson, writeWorkspaceAtomically } from './generate.js';
 
@@ -224,5 +226,127 @@ describe('generateWorkspaceJson — conventions emitter (META-203)', () => {
 
     expect(result.content.generated.coChange).toBeUndefined();
     expect(result.content.generated.fragility).toBeUndefined();
+  });
+});
+
+describe('generateWorkspaceJson — fileIndex and frameworkManifest (META-195)', () => {
+  const clean: string[] = [];
+
+  /**
+   * A real git repository with tracked files. `RepoScanner` reads the inventory
+   * via `git ls-files`, so a plain directory yields an empty one — these cases
+   * are about what lands once there is actually something to index.
+   */
+  async function trackedRepo(files: Record<string, string>): Promise<string> {
+    const root = resolve(process.cwd(), `.tmp-idx-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    clean.push(root);
+    await mkdir(root, { recursive: true });
+    for (const [path, content] of Object.entries(files)) {
+      await mkdir(dirname(resolve(root, path)), { recursive: true });
+      await writeFile(resolve(root, path), content, 'utf8');
+    }
+    // `stdio: 'pipe'` captures rather than prints, so this stays quiet. It is
+    // also the only value `types/ambient.d.ts` declares for `node:child_process`
+    // — the same shadowing of Node builtins OWNERSHIP.md flags as a follow-up.
+    const git = (...args: string[]): void => {
+      execFileSync('git', args, { cwd: root, stdio: 'pipe' });
+    };
+    git('init', '-q');
+    git('config', 'user.email', 'test@example.com');
+    git('config', 'user.name', 'Test');
+    git('add', '-A');
+    git('commit', '-qm', 'fixture');
+    return root;
+  }
+
+  afterEach(async () => {
+    await Promise.all(clean.splice(0).map((path) => rm(path, { recursive: true, force: true })));
+  });
+
+  it('indexes every tracked file by repository-root-relative POSIX path', async () => {
+    const root = await trackedRepo({
+      'src/a.ts': 'export const a = 1;\n',
+      'src/nested/b.ts': 'export const b = 2;\n',
+      'README.md': '# fixture\n',
+    });
+
+    const result = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const fileIndex = result.content.generated.fileIndex as Record<string, unknown>;
+
+    expect(Object.keys(fileIndex)).toEqual(['README.md', 'src/a.ts', 'src/nested/b.ts']);
+  });
+
+  it('no longer emits an empty fileIndex, which is why downstream joins returned zero rows', async () => {
+    const root = await trackedRepo({ 'models/customers.sql': 'select 1\n' });
+
+    const result = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const fileIndex = result.content.generated.fileIndex as Record<string, unknown>;
+
+    // The consumer adapter extracted under META-248 joined by key presence
+    // alone — `hasOwnProperty`, never a value. An empty index made every such
+    // join silently return 0/N.
+    expect(Object.prototype.hasOwnProperty.call(fileIndex, 'models/customers.sql')).toBe(true);
+  });
+
+  it('emits only frameworks a declared dependency corroborates', async () => {
+    const root = await trackedRepo({
+      'package.json': JSON.stringify({ name: 'f', dependencies: { react: '18.0.0' } }, null, 2),
+      'AGENTS.md': '# Agents\n\nBuilt with react. We also considered vue.\n',
+    });
+
+    const result = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const manifest = result.content.generated.frameworkManifest as Array<{ name: string; confidence: number }>;
+
+    expect(manifest.map((e) => e.name)).toEqual(['react']);
+    // Every pre-META-195 entry was a bare token at 0.5 — under the floor the
+    // schema documents ("Detected frameworks (confidence >= 0.7)"), so a
+    // consumer filtering at the threshold saw nothing.
+    for (const entry of manifest) expect(entry.confidence).toBeGreaterThanOrEqual(0.7);
+  });
+
+  it('stays materially unchanged across runs, so generate --check survives as a CI gate', async () => {
+    const root = await trackedRepo({
+      'package.json': JSON.stringify({ name: 'f', dependencies: { react: '18.0.0' } }, null, 2),
+      'AGENTS.md': '# Agents\n\nBuilt with react.\n',
+      'src/a.ts': 'export const a = 1;\n',
+      'src/b.ts': 'export const b = 2;\n',
+    });
+
+    await generateWorkspaceJson(root);
+    const second = await generateWorkspaceJson(root);
+
+    // The whole point of the determinism constraint: both fields sit inside the
+    // material projection, so any churn here rewrites the artifact every run.
+    expect(second.skipped).toBe(true);
+    expect(second.drift).toBe(false);
+    expect(second.written).toBe(false);
+  });
+
+  it('does not drift when only wall-clock time moves', async () => {
+    const root = await trackedRepo({ 'src/a.ts': 'export const a = 1;\n' });
+
+    const first = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const later = await generateWorkspaceJson(root, {}, { dryRun: true });
+
+    // `RepoState.gitHistory` is a moving 30-day window and its no-git fallback
+    // is "every file". Neither field may derive from it, or an untouched
+    // repository reports drift as commits age out.
+    expect(JSON.stringify(first.content.generated.fileIndex))
+      .toBe(JSON.stringify(later.content.generated.fileIndex));
+    expect(JSON.stringify(first.content.generated.frameworkManifest))
+      .toBe(JSON.stringify(later.content.generated.frameworkManifest));
+  });
+
+  it('still validates against the published schema once populated', async () => {
+    const root = await trackedRepo({
+      'package.json': JSON.stringify({ name: 'f', dependencies: { react: '18.0.0' } }, null, 2),
+      'AGENTS.md': '# Agents\n\nBuilt with react.\n',
+      'src/a.ts': 'export const a = 1;\n',
+    });
+
+    await generateWorkspaceJson(root);
+    const artifact = JSON.parse(await readFile(resolve(root, '.agents/workspace.json'), 'utf8'));
+
+    expect(new WorkspaceJsonValidator().validate(artifact)).toEqual({ valid: true, errors: [] });
   });
 });
