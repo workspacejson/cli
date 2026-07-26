@@ -62,6 +62,53 @@ export function renderFindingsTable(findings: Finding[]): void {
   console.log('');
 }
 
+/**
+ * Neutral replacement for `renderVrekoUpsell` in default CLI output (META-236).
+ *
+ * The old notice pointed users at a vendor site. A neutral, Apache-2.0 producer
+ * on a standards-donation track should not advertise one implementation in its
+ * default output — but the underlying signal is genuinely useful, and the fix
+ * for "workspace.json is missing" is a command this very tool provides. So the
+ * signal and the validation errors are kept and the promotion is replaced by
+ * the actual remediation command.
+ *
+ * `renderVrekoUpsell` remains exported for API compatibility; it is simply no
+ * longer called by the CLI.
+ */
+export function renderMissingArtifactNotice(
+  workspaceJsonExists: boolean,
+  workspaceJsonStatus: AuditResult['workspaceJsonStatus'],
+  workspaceJsonErrors: string[],
+): void {
+  const message = workspaceJsonExists
+    ? dedent`
+        ${brand('workspace.json')} is stale or invalid.
+        Regenerate it with: ${pc.bold('agents-audit generate')}
+      `
+    : dedent`
+        ${brand('workspace.json')} not found.
+        Generate it with: ${pc.bold('agents-audit generate')}
+        A committed artifact unlocks richer audit findings.
+      `;
+
+  console.log(boxen(message, {
+    padding: { top: 0, bottom: 0, left: 1, right: 1 },
+    borderStyle: 'round',
+    borderColor: 'green',
+    dimBorder: true,
+  }));
+
+  if (workspaceJsonStatus === 'invalid' && workspaceJsonErrors.length > 0) {
+    console.log(pc.yellow(`\nworkspace.json validation issues:`));
+    for (const error of workspaceJsonErrors) {
+      console.log(pc.yellow(`- ${error}`));
+    }
+  }
+
+  console.log('');
+}
+
+/** @deprecated Retained only for API compatibility; no longer used by the CLI (META-236). */
 export function renderVrekoUpsell(
   workspaceJsonExists: boolean,
   workspaceJsonStatus: AuditResult['workspaceJsonStatus'],

@@ -7,6 +7,6 @@
 // must remain so.
 export { runAudit, DEFAULT_AUDIT_CONFIG } from './audit.js';
 export { generateWorkspaceJson, detectCiProvider } from '@workspacejson/cli';
-export { renderFindingsTable, renderScoreCard, renderVrekoUpsell } from './presenter.js';
+export { renderFindingsTable, renderScoreCard, renderVrekoUpsell, renderMissingArtifactNotice } from './presenter.js';
 export { startInteractiveNavigation } from './navigator.js';
 export { saveReport } from './reporter.js';

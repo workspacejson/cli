@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
   renderFindingsTable: vi.fn(),
   renderScoreCard: vi.fn(),
   renderVrekoUpsell: vi.fn(),
+  renderMissingArtifactNotice: vi.fn(),
   runGenerate: vi.fn(),
   ora: vi.fn(() => ({
     start: () => ({ stop: vi.fn() }),
@@ -22,6 +23,7 @@ vi.mock('./presenter.js', () => ({
   renderFindingsTable: mocks.renderFindingsTable,
   renderScoreCard: mocks.renderScoreCard,
   renderVrekoUpsell: mocks.renderVrekoUpsell,
+  renderMissingArtifactNotice: mocks.renderMissingArtifactNotice,
 }));
 vi.mock('@workspacejson/cli', () => ({ runGenerate: mocks.runGenerate }));
 vi.mock('ora', () => ({ default: mocks.ora }));
@@ -194,6 +196,8 @@ describe('CLI integration', () => {
     expect(exitCode).toBe(0);
     expect(mocks.renderScoreCard).not.toHaveBeenCalled();
     expect(mocks.renderFindingsTable).not.toHaveBeenCalled();
+    expect(mocks.renderMissingArtifactNotice).not.toHaveBeenCalled();
+    // The vendor upsell is never called by the CLI any more (META-236).
     expect(mocks.renderVrekoUpsell).not.toHaveBeenCalled();
 
     const parsed = JSON.parse(logs.find((line) => line.trim().startsWith('{')) ?? '{}') as Record<string, unknown>;

@@ -3,7 +3,24 @@
 ==============================================================
   PASS  agents-audit --help   (exit 1, output identical)
   PASS  agents-audit --version   (exit 1, output identical)
-  PASS  agents-audit scan .   (exit 0, output identical)
+  FAIL  agents-audit scan .
+        old exit=0  new exit=0
+        --- output diff ---
+        27,32c27,31
+        < ╭─────────────────────────────────────────────────────────────────────────────╮
+        < │ workspace.json not found.                                                   │
+        < │ Vreko generates it automatically from real codebase structure and activity, │
+        < │ unlocking richer audit findings.                                            │
+        < │ vreko.dev (​https://vreko.dev​)                                             │
+        < ╰─────────────────────────────────────────────────────────────────────────────╯
+        \ No newline at end of file
+        ---
+        > ╭─────────────────────────────────────────────────────╮
+        > │ [38;2;74;222;128mworkspace.json[0m not found.                           │
+        > │ Generate it with: agents-audit generate             │
+        > │ A committed artifact unlocks richer audit findings. │
+        > ╰─────────────────────────────────────────────────────╯
+        \ No newline at end of file
   PASS  agents-audit scan . --json   (exit 0, output identical)
   PASS  agents-audit generate --dry-run   (exit 0, output identical)
   PASS  agents-audit generate --check   (exit 1, output identical)
@@ -28,8 +45,8 @@
   --- assertions on perturbation side effects ---
   PASS  [old] manual.fragileFiles survived regeneration verbatim
   PASS  [new] manual.fragileFiles survived regeneration verbatim
-  PASS  [old] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-12-47-304Z)
-  PASS  [new] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-12-47-648Z)
+  PASS  [old] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-16-58-284Z)
+  PASS  [new] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-16-58-612Z)
   PASS  [old] --dry-run wrote nothing
   PASS  [old] --check wrote nothing
   PASS  [new] --dry-run wrote nothing
@@ -46,9 +63,11 @@
  D. PUBLIC IMPORT SURFACE
 ==============================================================
   old exports: DEFAULT_AUDIT_CONFIG,detectCiProvider,generateWorkspaceJson,renderFindingsTable,renderScoreCard,renderVrekoUpsell,runAudit,saveReport,startInteractiveNavigation
-  new exports: DEFAULT_AUDIT_CONFIG,detectCiProvider,generateWorkspaceJson,renderFindingsTable,renderScoreCard,renderVrekoUpsell,runAudit,saveReport,startInteractiveNavigation
-  PASS  public import surface identical
+  new exports: DEFAULT_AUDIT_CONFIG,detectCiProvider,generateWorkspaceJson,renderFindingsTable,renderMissingArtifactNotice,renderScoreCard,renderVrekoUpsell,runAudit,saveReport,startInteractiveNavigation
+  FAIL  public import surface differs
 
 ==============================================================
- RESULT: 29 passed, 0 failed  (total 29)
+ RESULT: 27 passed, 2 failed  (total 29)
+ FAILED: agents-audit scan .
+ FAILED: exports
 ==============================================================

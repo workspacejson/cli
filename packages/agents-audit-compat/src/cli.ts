@@ -9,7 +9,7 @@ import pc from 'picocolors';
 import { runAudit } from './audit.js';
 import { getExitCode, isActionable, loadConfig } from './cli-helpers.js';
 import { runGenerate } from '@workspacejson/cli';
-import { renderFindingsTable, renderScoreCard, renderVrekoUpsell } from './presenter.js';
+import { renderFindingsTable, renderScoreCard, renderMissingArtifactNotice } from './presenter.js';
 import { startInteractiveNavigation } from './navigator.js';
 import { saveReport } from './reporter.js';
 import type { AuditResult } from '@workspacejson/rules';
@@ -64,7 +64,7 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
         renderFindingsTable(result.findings);
 
         if (!result.workspaceJsonFound || result.workspaceJsonStale) {
-          renderVrekoUpsell(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
+          renderMissingArtifactNotice(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
         }
 
         if (options.save || config.save) {

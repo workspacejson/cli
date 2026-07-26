@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { renderScoreCard, renderVrekoUpsell } from './presenter.js';
+import { describe, expect, it, vi } from 'vitest';
+import { renderScoreCard, renderVrekoUpsell, renderMissingArtifactNotice } from './presenter.js';
 
 function normalize(output: string): string {
   return output.replace(/\u001b\[[0-9;]*m/g, '').replace(/[╭╮╰╯│─]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -77,5 +77,31 @@ describe('presenter', () => {
 
     expect(normalized).toContain('workspace.json validation issues:');
     expect(normalized).toContain('must have required property version');
+  });
+});
+
+describe('renderMissingArtifactNotice', () => {
+  it('names the producer command instead of promoting a vendor', () => {
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+    renderMissingArtifactNotice(false, 'missing', []);
+
+    const output = ((logSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls).flat().join(' ');
+    expect(output).toContain('agents-audit generate');
+    expect(output).toContain('workspace.json');
+    // META-236: the neutral producer must not advertise one implementation.
+    expect(output).not.toContain('vreko');
+    expect(output).not.toContain('Vreko');
+    logSpy.mockRestore();
+  });
+
+  it('still surfaces validation errors for an invalid artifact', () => {
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+
+    renderMissingArtifactNotice(true, 'invalid', ['/. must have required property version']);
+
+    const output = ((logSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls).flat().join(' ');
+    expect(output).toContain('must have required property version');
+    logSpy.mockRestore();
   });
 });
