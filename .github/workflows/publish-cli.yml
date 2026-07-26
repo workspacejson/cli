@@ -1,0 +1,127 @@
+name: Publish @workspacejson/cli
+
+# ---------------------------------------------------------------------------
+# `cli-v*.*.*` tags publish ONLY @workspacejson/cli.
+#
+# The compatibility package released from this repository has its own publish
+# authority (see OWNERSHIP.md) and must never be published by this workflow.
+# That is enforced structurally rather than by review: the tag namespaces are
+# disjoint, and the publish step is filtered to a single package directory.
+#
+# Release flow:
+#   pnpm changeset version          # bumps packages/cli/package.json + CHANGELOG
+#   git commit -am "release: ..." && git push
+#   git tag cli-v0.1.0 && git push --tags
+#
+# The tag is both the trigger and the source of truth for the version: it is
+# validated as clean semver and asserted equal to the manifest before anything
+# reaches the registry. A tag that disagrees with the manifest fails the run
+# instead of publishing a version nobody named.
+#
+# Required repository secret:
+#   NPM_TOKEN  npm automation token with publish rights on @workspacejson/cli
+# ---------------------------------------------------------------------------
+
+on:
+  push:
+    tags:
+      - "cli-v*.*.*"
+
+permissions:
+  contents: read
+  id-token: write # required for the npm provenance attestation
+
+concurrency:
+  group: publish-cli-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      # The tag name is attacker-influenceable, so it is read from an env var
+      # rather than inlined into the shell, and rejected unless it is clean
+      # semver — which also guarantees it carries no shell metacharacters for
+      # any later step that interpolates it.
+      - name: Derive and validate release version
+        id: version
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          VERSION="${REF_NAME#cli-v}"
+          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$'; then
+            echo "::error::tag '$REF_NAME' is not a valid cli-vX.Y.Z version"
+            exit 1
+          fi
+          MANIFEST="$(node -p "require('./packages/cli/package.json').version")"
+          if [ "$MANIFEST" != "$VERSION" ]; then
+            echo "::error::tag version $VERSION does not match packages/cli/package.json ($MANIFEST)"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing @workspacejson/cli v$VERSION"
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - name: Architecture and clean-room guards
+        run: pnpm run check:architecture
+
+      # Build precedes typecheck for the reason recorded in ci.yml: the
+      # compatibility package consumes this package's emitted declarations, so
+      # on a clean checkout those must exist before tsc can resolve them.
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Typecheck all packages
+        run: pnpm -r typecheck
+
+      - name: Run tests
+        run: pnpm -r test
+
+      # Packs, parses the PACKED manifest, rejects workspace:/file: leakage and
+      # unpinned contract dependencies, asserts the declared bin target is
+      # actually in the archive, then installs the tarball into a clean project
+      # and runs the binary end to end. This measures the bytes that will ship
+      # rather than the state of the branch.
+      - name: Verify the release tarball
+        run: pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs
+
+      - name: Confirm the publish credential reached the runner
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: node scripts/verify-npm-publish-access.mjs
+
+      # npm rather than pnpm, for two reasons: pnpm 9 exposes no --provenance
+      # flag, and `pnpm publish` refuses to run on a detached tag checkout
+      # unless git checks are disabled wholesale. That substitution is only
+      # safe because @workspacejson/cli declares no `workspace:` dependencies,
+      # so there is nothing for pnpm to rewrite at pack time — and the step
+      # above asserts that invariant against the packed manifest, so this stays
+      # true by gate rather than by assumption.
+      #
+      # `prepublishOnly` runs again here. That repetition is deliberate: it
+      # keeps the gate attached to the package, so a local or future manual
+      # publish cannot bypass what CI checks.
+      - name: Publish to npm
+        working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+      # A publish that npm accepts can still be unusable — wrong files, broken
+      # bin, unresolvable dependency. This installs the real published artifact
+      # from the registry and runs it, retrying through propagation lag.
+      - name: Verify the published package installs and runs
+        env:
+          WORKSPACEJSON_RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: node scripts/verify-published.mjs @workspacejson/cli
