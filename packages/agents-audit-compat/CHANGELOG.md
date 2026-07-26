@@ -1,6 +1,16 @@
 # Changelog
 
-## [Unreleased]
+> **`agents-audit` is frozen at `0.4.4`.** The published package is locked for
+> hackathon judging and this repository does not publish it. All forward
+> development moves to `@workspacejson/cli`, which continues this version line
+> at `0.5.0`.
+>
+> The entries under [Unreleased] exist in this working tree but will not ship
+> under the `agents-audit` name. Where they changed the shared producer they
+> reach users through `@workspacejson/cli`; where they changed this package's own
+> `scan` and presenter surface they remain unreleased.
+
+## [Unreleased — will not ship under this package name]
 
 ### Patch Changes
 
@@ -16,7 +26,7 @@
 - `generate --check --dry-run` now fires the drift gate (exit 1, "manual evidence is untouched") instead of the dry-run branch silently winning and exiting 0; the JSON projection is still printed under `--dry-run`. Deferred from 0.4.4 (META-157) because it changes exit-code semantics; landed here as its own reviewed change with regression tests watched red against the pre-change CLI.
 - `generate` now surfaces `invalidFileMoved` (result data that has existed since 0.4.3 but was never displayed): when a previous `.agents/workspace.json` was invalid and moved aside, the CLI prints where it was relocated to and that its manual evidence could not be recovered.
 
-## [0.4.4] - Unreleased
+## [0.4.4] - 2026-07-23
 
 ### Patch Changes
 
@@ -34,7 +44,7 @@
   - @workspacejson/rules@0.4.3
   - @workspacejson/spec@0.4.3
 
-## 0.4.2
+## [0.4.2] - 2026-07-17
 
 ### Patch Changes
 
