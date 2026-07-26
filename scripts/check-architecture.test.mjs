@@ -49,6 +49,19 @@ const cases = [
     }, null, 2)),
   },
   {
+    name: "shadowed-standard-types: ambient re-declaration of @workspacejson/spec",
+    expect: "shadowed-standard-types",
+    mutate: (root) => write(join(root, "types/ambient.d.ts"),
+      readFileSync(join(root, "types/ambient.d.ts"), "utf8")
+      + `\ndeclare module '@workspacejson/spec' {\n  export const version: string;\n}\n`),
+  },
+  {
+    name: "shadowed-standard-types: ambient re-declaration of @workspacejson/rules",
+    expect: "shadowed-standard-types",
+    mutate: (root) => write(join(root, "types/rogue.d.ts"),
+      `declare module "@workspacejson/rules" {\n  export type Finding = unknown;\n}\n`),
+  },
+  {
     name: "repository-boundary: host-integration code in the CLI repo",
     expect: "repository-boundary",
     mutate: (root) => write(join(root, "packages/mcp/index.ts"), `export const server = {};\n`),

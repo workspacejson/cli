@@ -83,112 +83,18 @@ declare module 'commander' {
   }
 }
 
-declare module '@workspacejson/spec' {
-  export const workspaceJsonSchema: {
-    readonly $schema: string;
-    readonly $id: string;
-    readonly title: string;
-    readonly type: string;
-    readonly required: readonly string[];
-    readonly additionalProperties: boolean;
-    readonly properties: Record<string, unknown>;
-  };
-
-  export const version: string;
-
-  export function validate(data: unknown): data is WorkspaceJsonV3;
-  export function validateLegacy(data: unknown): boolean;
-
-  export interface WorkspacePackage {
-    name?: string;
-    path: string;
-    agentsMd?: string;
-    dependencies?: string[];
-    [key: string]: unknown;
-  }
-
-  export interface WorkspaceConvention {
-    raw: string;
-    type: 'filename-case' | 'directory-layout' | 'naming' | 'structural' | 'other';
-    canonical: string;
-  }
-
-  export interface WorkspaceAgentFiles {
-    agentsMd?: string;
-    workspaceJson?: string;
-  }
-
-  export interface WorkspaceGitSummary {
-    nonAgentsCommitCount30Days: number;
-    filesChangedLast30Days: string[];
-  }
-
-  export interface WorkspaceHygiene {
-    score: number;
-    grade: 'A' | 'B' | 'C' | 'D' | 'F';
-    failCount: number;
-    warnCount: number;
-    scannedAt: string;
-  }
-
-  export interface WorkspaceJson {
-    version: string;
-    generatedAt?: string;
-    repository?: string;
-    topology?: 'single-package' | 'monorepo' | 'polyglot-monorepo';
-    ciProvider?: 'github-actions' | 'gitlab-ci' | 'circleci' | 'jenkins' | 'none' | 'unknown';
-    agentFiles?: WorkspaceAgentFiles;
-    frameworks?: string[];
-    conventions?: WorkspaceConvention[];
-    packages?: WorkspacePackage[];
-    gitSummary?: WorkspaceGitSummary;
-    hygiene?: WorkspaceHygiene;
-    metadata?: Record<string, unknown>;
-    [key: string]: unknown;
-  }
-
-  export interface FrameworkEntry {
-    name: string;
-    version?: string;
-    confidence: number;
-  }
-
-  export interface FileIndexEntry {
-    fragility?: number;
-    aiModificationCount?: number;
-    humanModificationCount?: number;
-    [key: string]: unknown;
-  }
-
-  export type IntelligenceState = 'INSUFFICIENT_DATA' | 'OBSERVING' | 'CONFIDENT';
-
-  export interface WorkspaceJsonV3 {
-    manual: {
-      fragileFiles?: Array<{ path: string; reason?: string }>;
-      coChangePatterns?: Array<{ files: string[]; note?: string }>;
-      [key: string]: unknown;
-    };
-    generated: {
-      specVersion: '0.3';
-      generatedAt: string;
-      by: { name: string; version: string };
-      frameworkManifest: FrameworkEntry[];
-      fileIndex: Record<string, FileIndexEntry>;
-      topology?: { packageCount?: number; [key: string]: unknown };
-      warnings?: string[];
-      [key: string]: unknown;
-    };
-    agents: Record<string, unknown>;
-    health: {
-      intelligenceState: IntelligenceState;
-      observationCount: number;
-      confidence: number;
-      averageFragility?: number;
-      fragileFileCount?: number;
-      [key: string]: unknown;
-    };
-  }
-}
+// The `@workspacejson/spec` contract is NOT declared here.
+//
+// It previously was: a handwritten `declare module '@workspacejson/spec'`
+// restating that package's type surface. Ambient module declarations win over
+// node_modules typings, so the stub shadowed the real published declarations
+// even though the dependency is a registry-backed pin — and it silently hid the
+// entire v0.4 contract (WorkspaceJsonV4, validateV4, CoChangeEntry,
+// FragilityEntry) from this repository's compiler.
+//
+// workspacejson/standard owns that contract. This repository consumes the real
+// published declarations and must not keep a second editable copy (META-244,
+// enforcing META-165). scripts/check-architecture.mjs rejects reintroduction.
 
 declare module 'ora' {
   export interface Spinner {
