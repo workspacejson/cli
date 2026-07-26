@@ -4,7 +4,7 @@ set -uo pipefail
 
 SCRATCH="/private/tmp/claude-502/-Users-user1-dev-cli/ed967700-e9b4-4202-b983-6faf9cee9f6d/scratchpad"
 OLD="$SCRATCH/source-agents-audit/packages/agents-audit"
-NEW="$SCRATCH/cli-extract/packages/agents-audit"
+NEW="$SCRATCH/cli-extract/packages/agents-audit-compat"
 OUT="$SCRATCH/parity"
 mkdir -p "$OUT/old" "$OUT/new"
 

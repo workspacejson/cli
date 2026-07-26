@@ -1,8 +1,9 @@
 # Workspace Notes
 
-- This repository holds two distinct CLI packages. `./packages/agents-audit/` is the published `agents-audit` package and contains the real workspace.json generator (`./packages/agents-audit/src/generate.ts`). `./packages/cli/` is the private `@workspacejson/cli` DataHub/dbt join shim and is not the generator.
-- Keep package entry points aligned with `./packages/agents-audit/src/index.ts` and `./packages/cli/src/index.ts`.
-- Review changes against `./packages/agents-audit/src/cli.ts` before release.
+- This repository holds three packages. `./packages/cli/` is `@workspacejson/cli`, the neutral workspace.json producer — generation lives in `./packages/cli/src/producer/` and command routing in `./packages/cli/src/commands/`. `./packages/agents-audit-compat/` is the published `agents-audit` compatibility package. `./packages/datahub-adapter/` is a private DataHub/dbt adapter staged here pending extraction to `workspacejson/datahub-agent`.
+- Keep package entry points aligned with `./packages/cli/src/index.ts` and `./packages/agents-audit-compat/src/index.ts`.
+- `agents-audit` is a frozen compatibility bridge. Do not add features to it; both binaries route through `./packages/cli/src/commands/generate.ts` so they cannot drift.
 - `@workspacejson/spec` and `@workspacejson/rules` are consumed as released packages from `workspacejson/standard`; never vendor, copy or workspace-link them here.
 - Keep workspace metadata in `./CHANGELOG.md` and `./README.md` current.
 - Workspace layout is defined in `./pnpm-workspace.yaml`; repository boundaries are defined in `./OWNERSHIP.md` and enforced by `./scripts/check-architecture.mjs`.
+- Compatibility is gated by the parity harnesses in `./migration/`. Run them before changing anything `agents-audit` exposes.

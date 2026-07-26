@@ -1,40 +1,60 @@
 # @workspacejson/cli
 
-Joins dbt models to [workspace.json](https://www.workspacejson.dev) behavioral
-intelligence (fragility, co-change, modification history) by
-**repository-root-relative POSIX path**.
+The **workspace.json producer**. Scans a repository and generates
+`.agents/workspace.json` deterministically, preserving human-authored `manual`
+evidence across regenerations.
 
-## The problem it solves
+> **Not yet published.** This package is not on npm. Until the coordinated
+> publish-authority cutover, the working public command is
+> `npx agents-audit generate`, which runs this same producer implementation.
+> Do not document `npm install @workspacejson/cli` as if it works.
 
-dbt's `manifest.json` reports `original_file_path` relative to the **dbt project
-root**. A workspace.json `fileIndex` is keyed relative to the **git repository
-root** (see `@workspacejson/spec`, VR-640). When the dbt project is nested in a
-subdirectory — `dbt/` under the repo root, the common real-world layout — the two
-path representations differ by exactly that prefix, and a naive join silently
-returns **zero rows** (no error). This was reproduced empirically in the HAC-75
-probe: 5/5 match at the repo root, 5/5 miss when nested.
-
-## The fix (the normalization shim)
-
-```
-projectPrefix = relative(gitRoot, dbtProjectDir)   // "dbt" when nested, "" at root
-joinKey        = projectPrefix ? `${projectPrefix}/${original_file_path}` : original_file_path
-```
-
-`dbtProjectDir` is wherever `dbt_project.yml` lives. Real repos hold more than one
-dbt project, so `findDbtProjects()` enumerates **all** of them rather than
-assuming a single knowable path.
-
-## Usage
+## Commands
 
 ```bash
-workspacejson --git-root . --manifest dbt/target/manifest.json --workspace-json .agents/workspace.json
+workspacejson generate            # write .agents/workspace.json
+workspacejson generate --dry-run  # print the projection, write nothing
+workspacejson generate --check    # non-writing drift gate for CI
+workspacejson generate --force    # recover from an invalid existing artifact
 ```
 
-Exits non-zero if any dbt project produces zero joined rows.
+## Behavior
 
-## Status
+- **Manual evidence is preserved verbatim.** Regeneration replaces
+  producer-owned sections only; anything under `manual` survives untouched.
+- **Writes are atomic** — a temporary file is renamed into place, so a crash
+  never leaves a half-written artifact.
+- **Invalid artifacts are refused, not overwritten.** If an existing
+  `.agents/workspace.json` cannot be parsed or fails validation, `generate`
+  exits non-zero rather than destroying evidence it cannot read. `--force`
+  moves the invalid file aside as `workspace.json.invalid.<timestamp>` instead
+  of deleting it.
+- **Unchanged material output does not create drift.** The producer compares a
+  stable projection of generated content that excludes volatile timestamps, so
+  re-running on an unchanged repository is a no-op and `--check` stays usable as
+  a CI gate.
 
-MVP. The path-normalization shim and join are implemented and tested (including
-the HAC-75 nested-repo case, red-first). Consumes `@workspacejson/spec` as a
-workspace sibling for the `fileIndex` key contract.
+## Library use
+
+```ts
+import { generateWorkspaceJson } from '@workspacejson/cli';
+
+const result = await generateWorkspaceJson(process.cwd());
+console.log(result.path, result.written, result.drift);
+```
+
+`generateWorkspaceJson(repoRoot, config?, options?)` accepts
+`{ dryRun, check, force, producer }`. The `producer` identity is written to
+`generated.by` and defaults to this package — `agents-audit` passes its own
+identity so its historical artifacts keep stamping the same provenance.
+
+## Contracts
+
+Schema, types and validation come from
+[`workspacejson/standard`](https://github.com/workspacejson/standard) as
+released packages (`@workspacejson/spec`, `@workspacejson/rules`). This package
+implements the contract; it does not define it.
+
+## License
+
+Apache-2.0.

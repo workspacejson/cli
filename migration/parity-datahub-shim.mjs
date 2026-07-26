@@ -13,7 +13,7 @@ import { spawnSync } from "node:child_process";
 const SCRATCH = "/private/tmp/claude-502/-Users-user1-dev-cli/ed967700-e9b4-4202-b983-6faf9cee9f6d/scratchpad";
 const SIDES = {
   old: join(SCRATCH, "source-agents-audit/packages/cli"),
-  new: join(SCRATCH, "cli-extract/packages/cli"),
+  new: join(SCRATCH, "cli-extract/packages/datahub-adapter"),
 };
 
 let pass = 0, fail = 0;
@@ -35,16 +35,23 @@ const manifests = {};
 for (const [side, dir] of Object.entries(SIDES)) {
   manifests[side] = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
 }
-check("name unchanged: @workspacejson/cli",
-  manifests.old.name === "@workspacejson/cli" && manifests.new.name === "@workspacejson/cli",
+// META-247 INTENTIONAL DIFFERENCE: the package was renamed so the neutral CLI
+// could take the `@workspacejson/cli` name. The rename is the ratified change;
+// everything below still asserts that BEHAVIOR is untouched.
+check("renamed to an accurate identity, old name released for the neutral CLI",
+  manifests.old.name === "@workspacejson/cli" && manifests.new.name === "@workspacejson/datahub-adapter",
   `old=${manifests.old.name} new=${manifests.new.name}`);
 check("version unchanged: 0.0.1",
   manifests.old.version === manifests.new.version && manifests.new.version === "0.0.1");
 check("STILL PRIVATE (private:true) — must never be published",
   manifests.old.private === true && manifests.new.private === true,
   `old=${manifests.old.private} new=${manifests.new.private}`);
-check("bin unchanged: workspacejson -> ./dist/cli.js",
-  equalish(manifests.old.bin, manifests.new.bin) && manifests.new.bin.workspacejson === "./dist/cli.js");
+// META-247 INTENTIONAL DIFFERENCE: the `workspacejson` bin now belongs to the
+// neutral CLI, so this private adapter had to surrender it or collide.
+check("bin surrendered `workspacejson` to the neutral CLI",
+  manifests.old.bin.workspacejson === "./dist/cli.js"
+  && manifests.new.bin["workspacejson-datahub-adapter"] === "./dist/cli.js"
+  && manifests.new.bin.workspacejson === undefined);
 check("exports/main/types unchanged",
   equalish(manifests.old.exports, manifests.new.exports)
   && manifests.old.main === manifests.new.main

@@ -13,16 +13,22 @@ RUN="$OUT/runtime"; rm -rf "$RUN"; mkdir -p "$RUN"
 PASS=0; FAIL=0
 declare -a FAILED
 
-install_side () { # $1=side $2=tarball
+install_side () { # $1=side $2=tarball $3...=extra sibling tarballs
   local dir="$RUN/$1-install"
+  local tarball="$2"; shift 2
   mkdir -p "$dir"
   printf '{"private":true,"type":"module"}' > "$dir/package.json"
-  (cd "$dir" && npm install --ignore-scripts --no-package-lock "$2" >/dev/null 2>&1) || { echo "install failed for $1"; exit 1; }
+  # META-247: `agents-audit` now depends on @workspacejson/cli, which is
+  # deliberately unpublished until the authority cutover. The new side installs
+  # that sibling from a packed tarball so the harness measures behavior rather
+  # than failing on a package that simply is not released yet.
+  (cd "$dir" && npm install --ignore-scripts --no-package-lock "$@" "$tarball" >/dev/null 2>&1) \
+    || { echo "install failed for $1"; exit 1; }
   echo "$dir"
 }
 
 OLD_DIR=$(install_side old "$OUT/oldpnpm/agents-audit-0.4.4.tgz")
-NEW_DIR=$(install_side new "$OUT/newpnpm/agents-audit-0.4.4.tgz")
+NEW_DIR=$(install_side new "$OUT/newpnpm/agents-audit-0.4.4.tgz" "$OUT/newpnpm/workspacejson-cli-0.1.0.tgz")
 
 # Build one canonical fixture repo, then clone it per invocation so old and new
 # always see byte-identical input.

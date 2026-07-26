@@ -2,7 +2,7 @@
 
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, join } from "node:path";
+import { basename, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const packageDirectory = process.cwd();
@@ -33,7 +33,11 @@ try {
     throw new Error(`${packer} pack did not create ${tarballName}.`);
   }
 
-  const manifest = tar("-xOf", tarballPath, "package/package.json");
+  // META-247: this was previously left as the raw string `tar` returns, so every
+  // assertion that indexed into it (`manifest.bin`, `manifest.dependencies`)
+  // silently read `undefined` and passed vacuously. Parsing it makes the
+  // packed-manifest checks real for the first time.
+  const manifest = JSON.parse(tar("-xOf", tarballPath, "package/package.json"));
   // Release evidence, 2026-07-16: this verifier's first run found that archive
   // listings do not guarantee directory entries. Normalize once so every runtime
   // asset assertion checks the archive's contents, not a packer formatting detail.
@@ -41,7 +45,9 @@ try {
   assertNoWorkspaceProtocol(manifest, "package");
   assertStandardDependenciesArePinned(manifest);
   assertRuntimeFiles(manifest, files);
-  if (packageName === "agents-audit") assertAgentsAuditBinGenerates(tarballPath);
+  if (packageName === "agents-audit" || packageName === "@workspacejson/cli") {
+    assertBinGenerates(tarballPath, manifest);
+  }
   console.log(`Verified ${basename(tarballPath)} with ${packer}: packed manifest and runtime files are release-safe.`);
 } finally {
   rmSync(tarballPath, { force: true });
@@ -106,8 +112,37 @@ function normalizeArchivePath(file) {
   return file.replace(/^\.\//, "").replaceAll("\\", "/").replace(/\/{2,}/g, "/");
 }
 
-function assertAgentsAuditBinGenerates(tarballPath) {
-  const smokeDirectory = mkdtempSync(join(tmpdir(), "agents-audit-pack-"));
+// Packs a workspace sibling this tarball depends on but which is not yet on the
+// registry, so the smoke install can resolve it. `agents-audit` depends on
+// @workspacejson/cli, which is deliberately unpublished until the authority
+// cutover (META-243) — without this the smoke test would fail on a package that
+// is simply not released yet, rather than on a real defect.
+function packUnpublishedSiblings(manifest, destinationDirectory) {
+  const packagesRoot = resolve(packageDirectory, "..");
+  const tarballs = [];
+  for (const dependency of Object.keys(manifest.dependencies ?? {})) {
+    for (const entry of readdirSync(packagesRoot)) {
+      const siblingManifestPath = join(packagesRoot, entry, "package.json");
+      if (!existsSync(siblingManifestPath)) continue;
+      const sibling = JSON.parse(readFileSync(siblingManifestPath, "utf8"));
+      if (sibling.name !== dependency) continue;
+      const siblingTarball = `${sibling.name.replace(/^@/, "").replaceAll("/", "-")}-${sibling.version}.tgz`;
+      const packArgs = packer === "npm"
+        ? ["pack", "--ignore-scripts", "--pack-destination", destinationDirectory]
+        : ["pack", "--pack-destination", destinationDirectory];
+      const packed = spawnSync(packer, packArgs, { cwd: join(packagesRoot, entry), encoding: "utf8" });
+      process.stdout.write(packed.stdout);
+      process.stderr.write(packed.stderr);
+      if (packed.status !== 0) throw new Error(`${packer} pack failed for sibling ${sibling.name}.`);
+      console.log(`Resolved unpublished workspace sibling ${sibling.name}@${sibling.version} from disk.`);
+      tarballs.push(join(destinationDirectory, siblingTarball));
+    }
+  }
+  return tarballs;
+}
+
+function assertBinGenerates(tarballPath, manifest) {
+  const smokeDirectory = mkdtempSync(join(tmpdir(), "workspacejson-pack-"));
   try {
     writeFileSync(join(smokeDirectory, "package.json"), JSON.stringify({ private: true }));
     // Migration note (META-240): the monorepo version of this smoke test packed
@@ -122,12 +157,14 @@ function assertAgentsAuditBinGenerates(tarballPath) {
     // can point WORKSPACEJSON_STANDARD_TARBALLS at a directory of packed
     // standard candidates to test against bytes that are not published yet.
     const candidateTarballs = standardCandidateTarballs();
-    run("npm", ["install", "--ignore-scripts", "--no-package-lock", ...candidateTarballs, tarballPath], smokeDirectory);
-    run("npx", ["--no-install", "agents-audit", "generate"], smokeDirectory);
+    const siblingTarballs = packUnpublishedSiblings(manifest, smokeDirectory);
+    run("npm", ["install", "--ignore-scripts", "--no-package-lock", ...candidateTarballs, ...siblingTarballs, tarballPath], smokeDirectory);
+    const [binName] = Object.keys(manifest.bin ?? {});
+    run("npx", ["--no-install", binName, "generate"], smokeDirectory);
 
     const artifact = join(smokeDirectory, ".agents", "workspace.json");
     if (!existsSync(artifact)) {
-      throw new Error("Packed agents-audit bin exited without creating .agents/workspace.json.");
+      throw new Error(`Packed ${packageName} bin exited without creating .agents/workspace.json.`);
     }
     JSON.parse(readFileSync(artifact, "utf8"));
   } finally {

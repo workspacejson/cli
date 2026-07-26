@@ -8,19 +8,25 @@ importers:
 
   .:
     dependencies:
+      '@workspacejson/cli':
+        specifier: workspace:*
+        version: link:packages/cli
       agents-audit:
         specifier: workspace:*
-        version: link:packages/agents-audit
+        version: link:packages/agents-audit-compat
     devDependencies:
       '@changesets/cli':
         specifier: ^2.31.0
         version: 2.31.1(@types/node@22.19.17)
 
-  packages/agents-audit:
+  packages/agents-audit-compat:
     dependencies:
       '@inquirer/core':
         specifier: ^9.0.0
         version: 9.2.1
+      '@workspacejson/cli':
+        specifier: workspace:*
+        version: link:../cli
       '@workspacejson/rules':
         specifier: 0.4.4
         version: 0.4.4
@@ -63,6 +69,37 @@ importers:
         version: 1.6.1(@types/node@22.19.17)
 
   packages/cli:
+    dependencies:
+      '@workspacejson/rules':
+        specifier: 0.4.4
+        version: 0.4.4
+      '@workspacejson/spec':
+        specifier: 0.4.4
+        version: 0.4.4
+      commander:
+        specifier: ^12.1.0
+        version: 12.1.0
+      ora:
+        specifier: ^8.0.1
+        version: 8.2.0
+      picocolors:
+        specifier: ^1.0.1
+        version: 1.1.1
+    devDependencies:
+      '@types/node':
+        specifier: 22.19.17
+        version: 22.19.17
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(postcss@8.5.23)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.4.0
+        version: 5.9.3
+      vitest:
+        specifier: ^1.6.0
+        version: 1.6.1(@types/node@22.19.17)
+
+  packages/datahub-adapter:
     dependencies:
       '@workspacejson/spec':
         specifier: 0.4.4

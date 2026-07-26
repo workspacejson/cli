@@ -141,6 +141,40 @@ for (const { path, owner } of FOREIGN_DIRECTORIES) {
 }
 
 // ---------------------------------------------------------------------------
+// 3b. The neutral producer stays neutral: no vendor-specific or host-specific
+// consumer logic inside packages/cli.
+//
+// The migrated DataHub/dbt adapter is staged in this repository pending
+// extraction to workspacejson/datahub-agent, which owns DataHub consumption.
+// It must not leak into the neutral producer on its way out, and no future
+// vendor adapter may take its place there.
+// ---------------------------------------------------------------------------
+// Substring matching, not word-boundary matching. A red test caught the
+// difference: `\bdatahub\b` does not match `joinDataHubUrn`, which is exactly
+// the shape vendor logic arrives in. The file NAME is checked too, since
+// `producer/datahub.ts` is a violation regardless of what it contains.
+const NEUTRALITY_PATTERNS = [
+  { pattern: /dbt[_-]?project|\bdbt\b/i, detail: "dbt-specific logic" },
+  { pattern: /datahub/i, detail: "DataHub-specific logic" },
+  { pattern: /vreko/i, detail: "vendor-specific (Vreko) content" },
+];
+
+const neutralPackage = join(repoRoot, "packages", "cli");
+if (existsSync(neutralPackage)) {
+  for (const file of sourceFiles) {
+    if (!file.startsWith(neutralPackage + "/")) continue;
+    if (SELF_REFERENTIAL.has(file)) continue;
+    const subject = `${relative(repoRoot, file)}\n${stripComments(readFileSync(file, "utf8"))}`;
+    for (const { pattern, detail } of NEUTRALITY_PATTERNS) {
+      if (pattern.test(subject)) {
+        report("neutral-producer-purity", file,
+          `${detail} must not live in the neutral producer; DataHub consumption is owned by workspacejson/datahub-agent`);
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // 4. Package manifests: no local links, standard deps pinned, shim stays private.
 // ---------------------------------------------------------------------------
 const LOCAL_LINK = /^(workspace:|file:|link:|portal:|\.\.?\/)/;
@@ -156,19 +190,32 @@ if (existsSync(packagesDirectory)) {
   }
 }
 
+// Names of packages defined inside THIS repository. A `workspace:` range that
+// points at one of these is a normal monorepo link that pnpm rewrites to a real
+// version at pack time. A `workspace:` range pointing anywhere else means a
+// cross-repository link, which cannot resolve for a consumer and is exactly
+// what the split was meant to eliminate. The original rule conflated the two
+// (META-247).
+const localPackageNames = new Set(
+  manifests
+    .map((p) => {
+      try { return JSON.parse(readFileSync(p, "utf8")).name; } catch { return undefined; }
+    })
+    .filter(Boolean),
+);
+
 for (const manifestPath of manifests) {
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
-  const isRoot = manifestPath === join(repoRoot, "package.json");
 
   for (const field of ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies"]) {
     for (const [name, range] of Object.entries(manifest[field] ?? {})) {
       if (typeof range !== "string") continue;
-      // The private root manifest may workspace-link its own local packages;
-      // a published package manifest may not, and no manifest may point at a
-      // sibling checkout on disk.
-      const isInternalWorkspaceLink = isRoot && range.startsWith("workspace:");
+      // `workspace:` is allowed only for packages this repository defines.
+      // `file:`, `link:`, `portal:` and relative paths are never allowed —
+      // they point outside the dependency graph a consumer can resolve.
+      const isInternalWorkspaceLink = range.startsWith("workspace:") && localPackageNames.has(name);
       if (LOCAL_LINK.test(range) && !isInternalWorkspaceLink) {
-        report("local-dependency", manifestPath, `${field}.${name}=${JSON.stringify(range)} is a local/sibling link and cannot resolve for a consumer`);
+        report("local-dependency", manifestPath, `${field}.${name}=${JSON.stringify(range)} is a local/sibling link to a package this repository does not define; it cannot resolve for a consumer`);
       }
       if (STANDARD_OWNED.has(name) && !EXACT_VERSION.test(range)) {
         report("unpinned-standard-dependency", manifestPath, `${field}.${name}=${JSON.stringify(range)} must be an exact published version`);
@@ -176,8 +223,8 @@ for (const manifestPath of manifests) {
     }
   }
 
-  if (manifest.name === "@workspacejson/cli" && manifest.private !== true) {
-    report("private-package-publication", manifestPath, "@workspacejson/cli must remain private:true until META-236 ratifies its identity; publishing it is prohibited");
+  if (manifest.name === "@workspacejson/datahub-adapter" && manifest.private !== true) {
+    report("private-package-publication", manifestPath, "@workspacejson/datahub-adapter must remain private:true; it is staged here pending extraction to workspacejson/datahub-agent and must never be published from this repository");
   }
 
   if (STANDARD_OWNED.has(manifest.name)) {
@@ -201,8 +248,8 @@ if (existsSync(workflowsDirectory)) {
         report("foreign-publish", file, `publishing workflow references ${owned}, which is published by workspacejson/standard`);
       }
     }
-    if (content.includes("@workspacejson/cli")) {
-      report("private-package-publication", file, "publishing workflow references the private @workspacejson/cli");
+    if (content.includes("@workspacejson/datahub-adapter")) {
+      report("private-package-publication", file, "publishing workflow references the private @workspacejson/datahub-adapter");
     }
   }
 }

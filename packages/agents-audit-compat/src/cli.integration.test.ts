@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   renderFindingsTable: vi.fn(),
   renderScoreCard: vi.fn(),
   renderVrekoUpsell: vi.fn(),
-  generateWorkspaceJson: vi.fn(),
+  runGenerate: vi.fn(),
   ora: vi.fn(() => ({
     start: () => ({ stop: vi.fn() }),
   })),
@@ -23,7 +23,7 @@ vi.mock('./presenter.js', () => ({
   renderScoreCard: mocks.renderScoreCard,
   renderVrekoUpsell: mocks.renderVrekoUpsell,
 }));
-vi.mock('./generate.js', () => ({ generateWorkspaceJson: mocks.generateWorkspaceJson }));
+vi.mock('@workspacejson/cli', () => ({ runGenerate: mocks.runGenerate }));
 vi.mock('ora', () => ({ default: mocks.ora }));
 
 import { runCli } from './cli.js';
@@ -71,88 +71,43 @@ describe('CLI integration', () => {
     expect(mocks.runAudit).toHaveBeenCalledWith(resolve(repoRoot), expect.any(Object));
   });
 
-  it('uses --check as a non-writing drift gate for generate', async () => {
-    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    mocks.generateWorkspaceJson.mockResolvedValueOnce({
-      path: '/repo/.agents/workspace.json',
-      written: false,
-      skipped: false,
-      drift: true,
-      preservedManual: true,
-      content: {},
-    });
-
-    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check']);
-
-    expect(exitCode).toBe(1);
-    const generateCalls = (mocks.generateWorkspaceJson as unknown as { mock: { calls: unknown[][] } }).mock.calls;
-    const errorCalls = (errorSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
-    expect(generateCalls[0]?.[0]).toBe('/repo');
-    expect(generateCalls[0]?.[2]).toEqual({ check: true, dryRun: false, force: false });
-    expect(errorCalls.flat().join(' ')).toContain('manual evidence is untouched');
-    errorSpy.mockRestore();
-  });
-
-  it('reports a current generated projection without writing', async () => {
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    mocks.generateWorkspaceJson.mockResolvedValueOnce({
-      path: '/repo/.agents/workspace.json',
-      written: false,
-      skipped: true,
-      drift: false,
-      preservedManual: true,
-      content: {},
-    });
+  // META-247: `generate` output behavior moved to @workspacejson/cli along with
+  // its implementation, and is tested there (src/commands/generate.test.ts).
+  // What this package is still responsible for is delegating correctly — with
+  // its own historical command name and provenance stamp — so the tests here
+  // assert the contract at that seam. End-to-end proof that the observable
+  // behavior is unchanged is the META-240 parity harness, which runs real
+  // packed candidates rather than mocks.
+  it('delegates generate to the neutral producer with the historical identity', async () => {
+    mocks.runGenerate.mockResolvedValueOnce(0);
 
     const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check']);
 
     expect(exitCode).toBe(0);
-    expect(logSpy).toHaveBeenCalledWith('Generated sections are current at /repo/.agents/workspace.json');
-    logSpy.mockRestore();
+    const calls = (mocks.runGenerate as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    expect(calls[0]?.[0]).toBe('/repo');
+    expect(calls[0]?.[1]).toMatchObject({ check: true });
+    expect(calls[0]?.[2]).toMatchObject({
+      commandName: 'agents-audit',
+      producer: { name: 'agents-audit' },
+    });
   });
 
-  it('still fails the drift gate when --check is combined with --dry-run', async () => {
-    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    mocks.generateWorkspaceJson.mockResolvedValueOnce({
-      path: '/repo/.agents/workspace.json',
-      written: false,
-      skipped: false,
-      drift: true,
-      preservedManual: true,
-      content: { staged: true },
-    });
+  it('propagates the generate exit code unchanged', async () => {
+    mocks.runGenerate.mockResolvedValueOnce(1);
 
-    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check', '--dry-run']);
+    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--check']);
 
     expect(exitCode).toBe(1);
-    const errorCalls = (errorSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
-    expect(errorCalls.flat().join(' ')).toContain('manual evidence is untouched');
-    expect(logSpy).toHaveBeenCalledWith(JSON.stringify({ staged: true }, null, 2));
-    errorSpy.mockRestore();
-    logSpy.mockRestore();
   });
 
-  it('surfaces the relocated invalid file when --force recovers a fresh generate', async () => {
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-    mocks.generateWorkspaceJson.mockResolvedValueOnce({
-      path: '/repo/.agents/workspace.json',
-      written: true,
-      skipped: false,
-      drift: true,
-      preservedManual: false,
-      invalidFileMoved: '/repo/.agents/workspace.json.invalid.2026-01-01T00-00-00-000Z',
-      content: {},
-    });
+  it('forwards --dry-run and --force through to the producer', async () => {
+    mocks.runGenerate.mockResolvedValueOnce(0);
 
-    const exitCode = await runCli(['node', 'agents-audit', 'generate', '/repo', '--force']);
+    await runCli(['node', 'agents-audit', 'generate', '/repo', '--dry-run', '--force']);
 
-    expect(exitCode).toBe(0);
-    const logCalls = (logSpy as unknown as { mock: { calls: unknown[][] } }).mock.calls;
-    const logs = logCalls.flat().join(' ');
-    expect(logs).toContain('Generated /repo/.agents/workspace.json');
-    expect(logs).toContain('/repo/.agents/workspace.json.invalid.2026-01-01T00-00-00-000Z');
-    logSpy.mockRestore();
+    const calls = (mocks.runGenerate as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    expect(calls[0]?.[1]).toMatchObject({ dryRun: true, force: true });
   });
 
   it('treats --dir as an invalid option', async () => {

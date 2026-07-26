@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { WorkspaceJsonV3 } from '@workspacejson/spec';
 import {
   AgentsMdParser,
@@ -16,12 +17,50 @@ import {
   sectionStaleness,
   conventionMismatch,
 } from '@workspacejson/rules';
-import type { AuditConfig, RuleContext } from '@workspacejson/rules';
-import { DEFAULT_AUDIT_CONFIG, detectCiProvider } from './internal/config.js';
-import { findAgentsMdPath, readTextOrEmpty } from './internal/fs.js';
+import type { RuleContext } from '@workspacejson/rules';
+import { DEFAULT_PRODUCER_CONFIG, detectCiProvider, type ProducerConfig } from './config.js';
+import { findAgentsMdPath, readTextOrEmpty } from './fs.js';
 
 const _require = createRequire(import.meta.url);
-const { version: pkgVersion } = _require('../package.json') as { version: string };
+
+// Resolve this package's own manifest by walking up from the current module
+// rather than by a fixed relative path.
+//
+// A fixed path is depth-dependent, and source depth does not match bundled
+// depth: this module lives at `src/producer/generate.ts` but tsup emits it into
+// `dist/`, so `../../package.json` is correct for the source tree and wrong for
+// the build output. That mismatch is invisible to this package's own tests
+// (which run against source) and only fails for a consumer importing `dist`.
+function readOwnManifest(): { name: string; version: string } {
+  let directory = dirname(fileURLToPath(import.meta.url));
+  for (let depth = 0; depth < 10; depth += 1) {
+    const candidate = resolve(directory, 'package.json');
+    if (existsSync(candidate)) {
+      return _require(candidate) as { name: string; version: string };
+    }
+    const parent = dirname(directory);
+    if (parent === directory) break;
+    directory = parent;
+  }
+  throw new Error('Unable to locate the producer package manifest from ' + import.meta.url);
+}
+
+const { name: pkgName, version: pkgVersion } = readOwnManifest();
+
+/**
+ * Identity written to `generated.by` — the provenance of *which producer ran*.
+ *
+ * It defaults to this package. `agents-audit` passes its own identity so that
+ * `agents-audit generate` keeps stamping artifacts exactly as it always has,
+ * which is what its compatibility guarantee requires (META-247). `by` is
+ * excluded from the material projection, so this never affects drift detection.
+ */
+export interface ProducerIdentity {
+  name: string;
+  version: string;
+}
+
+export const THIS_PRODUCER: ProducerIdentity = { name: pkgName, version: pkgVersion };
 
 export interface GenerateResult {
   path: string;
@@ -55,12 +94,17 @@ function isMateriallyCurrent(existing: WorkspaceJsonV3, next: WorkspaceJsonV3): 
   );
 }
 
-function invalidArtifactMessage(outputPath: string, errors: string[], check: boolean): string {
+// Refusal messages name the command the user actually ran. Before META-247
+// these hardcoded `agents-audit`, which was correct when that was the only
+// binary — in the neutral producer it would tell a `workspacejson` user to run
+// a different tool. The caller supplies its own name; `agents-audit` passes its
+// historical one so its messages stay byte-identical.
+function invalidArtifactMessage(outputPath: string, errors: string[], check: boolean, commandName: string): string {
   const detail = errors.length > 0 ? `\nValidation errors:\n${errors.map((error) => `  - ${error}`).join('\n')}` : '';
   if (check) {
-    return `agents-audit generate --check: ${outputPath} is invalid.\nGenerated sections are not current; manual evidence is untouched.${detail}`;
+    return `${commandName} generate --check: ${outputPath} is invalid.\nGenerated sections are not current; manual evidence is untouched.${detail}`;
   }
-  return `agents-audit generate: refusing to overwrite ${outputPath}\nThe existing file is invalid and may contain hand-authored manual evidence.${detail}\nTo recover while preserving the invalid file:\n  agents-audit generate . --force`;
+  return `${commandName} generate: refusing to overwrite ${outputPath}\nThe existing file is invalid and may contain hand-authored manual evidence.${detail}\nTo recover while preserving the invalid file:\n  ${commandName} generate . --force`;
 }
 
 async function moveInvalidArtifact(outputPath: string): Promise<string> {
@@ -83,11 +127,13 @@ export async function writeWorkspaceAtomically(outputPath: string, content: Work
 
 export async function generateWorkspaceJson(
   repoRoot: string,
-  config: Partial<AuditConfig> = {},
-  options: { dryRun?: boolean; check?: boolean; force?: boolean } = {},
+  config: Partial<ProducerConfig> = {},
+  options: { dryRun?: boolean; check?: boolean; force?: boolean; producer?: ProducerIdentity; commandName?: string } = {},
 ): Promise<GenerateResult> {
   const resolvedRoot = resolve(repoRoot);
-  const fullConfig: AuditConfig = { ...DEFAULT_AUDIT_CONFIG, ...config };
+  const fullConfig: ProducerConfig = { ...DEFAULT_PRODUCER_CONFIG, ...config };
+  const producer: ProducerIdentity = options.producer ?? THIS_PRODUCER;
+  const commandName = options.commandName ?? 'workspacejson';
 
   const scanner = new RepoScanner();
   const parser = new AgentsMdParser();
@@ -145,7 +191,7 @@ export async function generateWorkspaceJson(
     try {
       parsed = JSON.parse(await readFile(outputPath, 'utf8'));
     } catch {
-      const message = invalidArtifactMessage(outputPath, ['JSON could not be parsed'], options.check === true);
+      const message = invalidArtifactMessage(outputPath, ['JSON could not be parsed'], options.check === true, commandName);
       if (!options.force || options.dryRun || options.check) throw new GenerateRefusalError(message);
       invalidFileMoved = await moveInvalidArtifact(outputPath);
     }
@@ -153,7 +199,7 @@ export async function generateWorkspaceJson(
     if (parsed !== undefined) {
       const validation = new WorkspaceJsonValidator().validate(parsed);
       if (!validation.valid) {
-        const message = invalidArtifactMessage(outputPath, validation.errors, options.check === true);
+        const message = invalidArtifactMessage(outputPath, validation.errors, options.check === true, commandName);
         if (!options.force || options.dryRun || options.check) throw new GenerateRefusalError(message);
         invalidFileMoved = await moveInvalidArtifact(outputPath);
       } else {
@@ -166,7 +212,7 @@ export async function generateWorkspaceJson(
     generated: {
       specVersion: '0.3',
       generatedAt: now,
-      by: { name: 'agents-audit', version: pkgVersion },
+      by: { name: producer.name, version: producer.version },
       frameworkManifest: agentsMd.frameworkTokens.map((name) => ({ name, confidence: 0.5 })),
       fileIndex: {},
       topology: {

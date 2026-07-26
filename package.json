@@ -12,6 +12,7 @@
     "url": "https://github.com/workspacejson/cli/issues"
   },
   "dependencies": {
+    "@workspacejson/cli": "workspace:*",
     "agents-audit": "workspace:*"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
     "check:architecture": "node scripts/check-architecture.mjs",
-    "release:verify-packs": "pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
+    "release:verify-packs": "pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs && pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
     "release:verify-published": "node scripts/verify-published.mjs"
   },
   "devDependencies": {

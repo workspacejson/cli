@@ -43,11 +43,16 @@ jobs:
       - name: Verify package tarballs
         run: pnpm run release:verify-packs
 
-      # This repository owns and exports agents-audit only. @workspacejson/spec
-      # and @workspacejson/rules are consumed as released dependencies and are
-      # verified by workspacejson/standard, not here.
+      # This repository owns @workspacejson/cli and agents-audit.
+      # @workspacejson/spec and @workspacejson/rules are consumed as released
+      # dependencies and are verified by workspacejson/standard, not here.
       - name: Validate package exports
-        run: node -e "import('agents-audit')"
+        run: |
+          node -e "import('@workspacejson/cli')"
+          node -e "import('agents-audit')"
+
+      - name: Run the neutral producer on this repo
+        run: node packages/cli/dist/cli.js generate --check || true
 
       - name: Run agents-audit on this repo
-        run: node packages/agents-audit/dist/cli.js scan . --fail-on error
+        run: node packages/agents-audit-compat/dist/cli.js scan . --fail-on error

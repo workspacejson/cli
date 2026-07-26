@@ -62,6 +62,31 @@ const cases = [
       `declare module "@workspacejson/rules" {\n  export type Finding = unknown;\n}\n`),
   },
   {
+    name: "neutral-producer-purity: DataHub logic inside the neutral producer",
+    expect: "neutral-producer-purity",
+    mutate: (root) => write(join(root, "packages/cli/src/producer/datahub.ts"),
+      `export function joinDataHubUrn(urn: string): string {\n  return urn;\n}\n`),
+  },
+  {
+    name: "neutral-producer-purity: dbt logic inside the neutral producer",
+    expect: "neutral-producer-purity",
+    mutate: (root) => write(join(root, "packages/cli/src/producer/dbt.ts"),
+      `export const MANIFEST = "dbt_project.yml";\n`),
+  },
+  {
+    name: "neutral-producer-purity: vendor content inside the neutral producer",
+    expect: "neutral-producer-purity",
+    mutate: (root) => write(join(root, "packages/cli/src/producer/upsell.ts"),
+      `export const PROMO = "Vreko generates it automatically";\n`),
+  },
+  {
+    name: "local-dependency: workspace link to a package this repo does not define",
+    expect: "local-dependency",
+    mutate: (root) => patchJson(join(root, "packages/cli/package.json"), (m) => {
+      m.dependencies["@workspacejson/rules"] = "workspace:*";
+    }),
+  },
+  {
     name: "repository-boundary: host-integration code in the CLI repo",
     expect: "repository-boundary",
     mutate: (root) => write(join(root, "packages/mcp/index.ts"), `export const server = {};\n`),
@@ -75,28 +100,28 @@ const cases = [
   {
     name: "local-dependency: committed sibling-checkout path",
     expect: "local-dependency",
-    mutate: (root) => patchJson(join(root, "packages/agents-audit/package.json"), (m) => {
+    mutate: (root) => patchJson(join(root, "packages/agents-audit-compat/package.json"), (m) => {
       m.dependencies["@workspacejson/spec"] = "file:../../../standard/packages/spec";
     }),
   },
   {
     name: "local-dependency: workspace link in a published package",
     expect: "local-dependency",
-    mutate: (root) => patchJson(join(root, "packages/agents-audit/package.json"), (m) => {
+    mutate: (root) => patchJson(join(root, "packages/agents-audit-compat/package.json"), (m) => {
       m.dependencies["@workspacejson/rules"] = "workspace:*";
     }),
   },
   {
     name: "unpinned-standard-dependency: floating range on a standard package",
     expect: "unpinned-standard-dependency",
-    mutate: (root) => patchJson(join(root, "packages/agents-audit/package.json"), (m) => {
+    mutate: (root) => patchJson(join(root, "packages/agents-audit-compat/package.json"), (m) => {
       m.dependencies["@workspacejson/spec"] = "^0.4.4";
     }),
   },
   {
-    name: "private-package-publication: @workspacejson/cli loses private:true",
+    name: "private-package-publication: @workspacejson/datahub-adapter loses private:true",
     expect: "private-package-publication",
-    mutate: (root) => patchJson(join(root, "packages/cli/package.json"), (m) => {
+    mutate: (root) => patchJson(join(root, "packages/datahub-adapter/package.json"), (m) => {
       delete m.private;
     }),
   },
@@ -107,10 +132,10 @@ const cases = [
       `name: Rogue\non: workflow_dispatch\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm publish --workspace @workspacejson/spec\n`),
   },
   {
-    name: "private-package-publication: workflow publishing the private shim",
+    name: "private-package-publication: workflow publishing the private DataHub adapter",
     expect: "private-package-publication",
     mutate: (root) => write(join(root, ".github/workflows/rogue.yml"),
-      `name: Rogue\non: workflow_dispatch\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm publish --workspace @workspacejson/cli\n`),
+      `name: Rogue\non: workflow_dispatch\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm publish --workspace @workspacejson/datahub-adapter\n`),
   },
 ];
 

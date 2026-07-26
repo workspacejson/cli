@@ -1,6 +1,18 @@
 import type { AuditConfig } from '@workspacejson/rules';
 
-export const DEFAULT_AUDIT_CONFIG: AuditConfig = {
+/**
+ * Producer configuration.
+ *
+ * Structurally this is still `@workspacejson/rules`' `AuditConfig`, because the
+ * generator consumes that package's rule engine to compute `generated.hygiene`.
+ * That dependency is on a standard-owned package, not on the audit product, so
+ * it is the sanctioned direction — but the *name* is audit-shaped, which is a
+ * historical artifact. Aliasing it here keeps the neutral producer's own
+ * vocabulary neutral without forking a standard-owned type (META-236).
+ */
+export type ProducerConfig = AuditConfig;
+
+export const DEFAULT_PRODUCER_CONFIG: ProducerConfig = {
   stalenessThresholdDays: 60,
   highActivityCommitCount: 20,
   conventionMismatchPrecisionMode: true,

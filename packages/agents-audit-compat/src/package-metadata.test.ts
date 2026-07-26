@@ -17,7 +17,7 @@ function readPackageJson(relativePath: string): Record<string, unknown> {
 
 describe('package metadata', () => {
   it('keeps the CLI package mature and executable', () => {
-    const pkg = readPackageJson('packages/agents-audit/package.json');
+    const pkg = readPackageJson('packages/agents-audit-compat/package.json');
     expect(pkg.name).toBe('agents-audit');
     expect((pkg.bin as { [key: string]: string } | undefined)?.['agents-audit']).toBe('./dist/cli.js');
     expect((pkg.publishConfig as { access?: string } | undefined)?.access).toBe('public');
@@ -36,14 +36,14 @@ describe('package metadata', () => {
   });
 
   it('points package metadata at the new owning repository', () => {
-    const pkg = readPackageJson('packages/agents-audit/package.json');
+    const pkg = readPackageJson('packages/agents-audit-compat/package.json');
     const repository = pkg.repository as { url?: string } | undefined;
     expect(repository?.url).toBe('git+https://github.com/workspacejson/cli.git');
     expect((pkg.bugs as { url?: string } | undefined)?.url).toBe('https://github.com/workspacejson/cli/issues');
   });
 
   it('pins standard-owned dependencies to exact published versions', () => {
-    const pkg = readPackageJson('packages/agents-audit/package.json');
+    const pkg = readPackageJson('packages/agents-audit-compat/package.json');
     const dependencies = pkg.dependencies as Record<string, string>;
     for (const name of ['@workspacejson/spec', '@workspacejson/rules']) {
       const range = dependencies[name];
@@ -54,13 +54,13 @@ describe('package metadata', () => {
     }
   });
 
-  it('keeps the DataHub shim private and separate from the producer', () => {
-    const pkg = readPackageJson('packages/cli/package.json');
+  it('keeps the DataHub adapter private and separate from the producer', () => {
+    const pkg = readPackageJson('packages/datahub-adapter/package.json');
     // The two CLI packages must not converge during migration. META-236 owns
     // any future decision about this package's identity; until then it is a
     // private dbt/DataHub adapter and must never be published.
-    expect(pkg.name).toBe('@workspacejson/cli');
+    expect(pkg.name).toBe('@workspacejson/datahub-adapter');
     expect(pkg.private).toBe(true);
-    expect((pkg.bin as { [key: string]: string } | undefined)?.workspacejson).toBe('./dist/cli.js');
+    expect((pkg.bin as { [key: string]: string } | undefined)?.['workspacejson-datahub-adapter']).toBe('./dist/cli.js');
   });
 });

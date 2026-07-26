@@ -28,8 +28,8 @@
   --- assertions on perturbation side effects ---
   PASS  [old] manual.fragileFiles survived regeneration verbatim
   PASS  [new] manual.fragileFiles survived regeneration verbatim
-  PASS  [old] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T03-02-48-807Z)
-  PASS  [new] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T03-02-49-116Z)
+  PASS  [old] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-12-47-304Z)
+  PASS  [new] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T04-12-47-648Z)
   PASS  [old] --dry-run wrote nothing
   PASS  [old] --check wrote nothing
   PASS  [new] --dry-run wrote nothing
