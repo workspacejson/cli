@@ -41,12 +41,15 @@ node migration/parity-datahub-shim.mjs     # DataHub adapter parity
 
 They are self-contained. On first run the bash harnesses clone the frozen source
 at its recorded SHA, build it, build this repository, and pack both sides; the
-clone is cached under `.parity-cache/` (gitignored), so later runs take seconds.
-The Node harness reuses that same cache and tells you what to run if it is
-missing.
+clone is cached under `~/.cache/workspacejson/cli-parity/`, so later runs take
+seconds. The Node harness reuses that same cache and tells you what to run if it
+is missing. The cache deliberately lives outside the repository: the frozen
+source contains content the architecture guard rejects, so an in-tree cache
+would turn `pnpm check:architecture` red.
 
-Overridable via environment: `WORKSPACEJSON_OLD_CHECKOUT` to point at an
-existing clone, `WORKSPACEJSON_PARITY_OUT` for the working directory,
+Overridable via environment: `WORKSPACEJSON_PARITY_CACHE` for the cache root,
+`WORKSPACEJSON_OLD_CHECKOUT` to point at an existing clone,
+`WORKSPACEJSON_PARITY_OUT` for the working directory,
 `WORKSPACEJSON_SKIP_BUILD=1` to reuse existing builds.
 
 **Expected results today:** runtime `27/29` with two recorded intentional

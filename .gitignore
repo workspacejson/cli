@@ -23,5 +23,6 @@ agents-workspace-cannon-repo/
 audit-findings/
 shared-baseline-audit-2026-05-10.md
 
-# parity harness cache (cloned frozen source + packed candidates)
+# stale parity cache from before it moved to ~/.cache/workspacejson/cli-parity;
+# still ignored so a leftover clone never gets committed
 .parity-cache/

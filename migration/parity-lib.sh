@@ -8,10 +8,12 @@
 # hand. Every path is derived; nothing is hardcoded to a machine.
 #
 # Overridable:
+#   WORKSPACEJSON_PARITY_CACHE  cache root for the clone and packed candidates
+#                               (default: ~/.cache/workspacejson/cli-parity)
 #   WORKSPACEJSON_OLD_CHECKOUT  path to an existing clone of the frozen source
-#                               (default: cached clone under .parity-cache/)
+#                               (default: $WORKSPACEJSON_PARITY_CACHE/source-agents-audit)
 #   WORKSPACEJSON_PARITY_OUT    working directory for packed candidates
-#                               (default: .parity-cache/out)
+#                               (default: $WORKSPACEJSON_PARITY_CACHE/out)
 #   WORKSPACEJSON_SKIP_BUILD    set to 1 to reuse existing dist/ and tarballs
 
 set -uo pipefail
@@ -24,7 +26,12 @@ REPO_ROOT="$(cd "$PARITY_LIB_DIR/.." && pwd)"
 FROZEN_SOURCE_REPO="https://github.com/workspace-json/agents-audit.git"
 FROZEN_SOURCE_SHA="e47eb1b8556c4f361db9a78190a2f36b400756e8"
 
-PARITY_CACHE="${WORKSPACEJSON_PARITY_CACHE:-$REPO_ROOT/.parity-cache}"
+# The cache lives OUTSIDE the repository on purpose: the old side is a clone of
+# the frozen source, which contains the very content scripts/check-architecture.mjs
+# exists to reject (a copied schema, an ambient @workspacejson/spec declaration).
+# Caching it inside the working tree turns the architecture guard red on any
+# machine that has run a parity harness.
+PARITY_CACHE="${WORKSPACEJSON_PARITY_CACHE:-${XDG_CACHE_HOME:-$HOME/.cache}/workspacejson/cli-parity}"
 OLD_CHECKOUT="${WORKSPACEJSON_OLD_CHECKOUT:-$PARITY_CACHE/source-agents-audit}"
 OUT="${WORKSPACEJSON_PARITY_OUT:-$PARITY_CACHE/out}"
 
