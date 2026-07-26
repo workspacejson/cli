@@ -7,7 +7,8 @@ Describe what changed and why.
 - [ ] `pnpm -r typecheck`
 - [ ] `pnpm -r test`
 - [ ] `pnpm -r build`
-- [ ] `node packages/agents-audit/dist/cli.js scan . --fail-on error`
+- [ ] `node packages/agents-audit-compat/dist/cli.js scan . --fail-on error`
+- [ ] `bash migration/parity-agents-audit-runtime.sh` (required if anything `agents-audit` exposes changed)
 
 ## Notes
 
