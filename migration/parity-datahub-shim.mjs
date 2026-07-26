@@ -6,16 +6,20 @@
 // with different code, different dependencies and a different contract.
 
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, readFileSync, existsSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 // Paths are derived, never hardcoded. The old side is a clone of the frozen
 // pre-migration source; migration/parity-lib.sh resolves, pins and builds it,
-// and caches it under .parity-cache/ so repeat runs are cheap.
+// and caches it under ~/.cache/workspacejson/cli-parity so repeat runs are
+// cheap. The cache lives OUTSIDE the repository on purpose: the frozen source
+// contains content the architecture guard exists to reject, so caching it in
+// the working tree turns scripts/check-architecture.mjs red.
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const PARITY_CACHE = process.env.WORKSPACEJSON_PARITY_CACHE ?? join(REPO_ROOT, ".parity-cache");
+const XDG_CACHE = process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache");
+const PARITY_CACHE = process.env.WORKSPACEJSON_PARITY_CACHE ?? join(XDG_CACHE, "workspacejson", "cli-parity");
 const OLD_CHECKOUT = process.env.WORKSPACEJSON_OLD_CHECKOUT ?? join(PARITY_CACHE, "source-agents-audit");
 
 const SIDES = {
