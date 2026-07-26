@@ -16,8 +16,8 @@ release notes live with their packages:
   `packages/agents-audit-compat/`, a frozen compatibility bridge that keeps the
   `agents-audit` package name, binary, commands and all nine public exports and
   delegates generation to the neutral package. The migrated DataHub/dbt adapter
-  moved to `packages/datahub-adapter/` and is staged pending extraction to
-  `workspacejson/datahub-agent` (META-248) — it is not durable architecture
+  was staged at `packages/datahub-adapter/` and has since been **extracted to
+  `workspacejson/datahub-agent`** (META-248) — it was never durable architecture
   here. Compatibility was proven by the parity harnesses; the only behavioral
   difference is the ratified vendor-notice change, recorded in
   `migration/parity-expected-differences.txt`.

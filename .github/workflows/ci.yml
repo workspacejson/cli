@@ -99,5 +99,8 @@ jobs:
       - name: agents-audit packed-artifact parity
         run: migration/parity-agents-audit-pack.sh
 
-      - name: DataHub adapter parity
-        run: node migration/parity-datahub-shim.mjs
+      # The DataHub adapter parity step was removed under META-248. The adapter
+      # was extracted to workspacejson/datahub-agent, and OWNERSHIP.md records
+      # that its harness travels with it; it now runs there against the
+      # DataHub-owned candidate (35/35, plus per-file source identity against
+      # this repository's own frozen pre-migration source).

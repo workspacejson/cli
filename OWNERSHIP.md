@@ -10,7 +10,6 @@ script is what enforces it.
 | -- | -- | -- | -- |
 | `packages/cli/` | `@workspacejson/cli` | public, **not yet published** | the neutral workspace.json producer and its `workspacejson` binary |
 | `packages/agents-audit-compat/` | `agents-audit` | public, published `0.4.4` | frozen compatibility bridge for the historical `agents-audit` command and API |
-| `packages/datahub-adapter/` | `@workspacejson/datahub-adapter` | **private, never published** | **migration staging only** — see below |
 
 ## Owns
 
@@ -37,29 +36,52 @@ script is what enforces it.
   `workspacejson/datahub-agent`
 * Private product behavior of any kind
 
-## `packages/datahub-adapter/` is staging, not architecture
+## `packages/datahub-adapter/` was extracted — META-248, 2026-07-26
 
-This package is **not durable CLI architecture**. It is the DataHub/dbt adapter
-migrated intact from the `agents-audit` monorepo, parked here only because
-META-240 had to preserve it somewhere while its permanent owner was decided.
+The DataHub/dbt adapter is **gone from this repository**. It was never durable
+CLI architecture: it was migrated intact from the `agents-audit` monorepo and
+parked here only because META-240 had to preserve it somewhere while its
+permanent owner was decided.
 
 It is a **consumer** adapter — it reads an existing `.agents/workspace.json` and
 joins dbt models against `generated.fileIndex`. That is DataHub consumer logic,
-not neutral producer logic, and it belongs to `workspacejson/datahub-agent`.
+not neutral producer logic, and it belongs to `workspacejson/datahub-agent`,
+which now owns it as an internal module at `src/adapters/workspacejson/`.
 
-Until it is extracted:
+Its parity harness travelled with it, as this document required. At the
+DataHub-owned candidate it reports **35/35**, plus per-file source identity
+against this repository's own frozen pre-migration source
+(`workspace-json/agents-audit@e47eb1b8`): four of five files byte-identical,
+with one documented type-only deviation. Provenance is recorded in
+`docs/provenance.md` there. The `DataHub adapter parity` CI step was removed
+here because the artifact it measured is no longer here.
 
-* it stays `private: true` and is never published;
-* the neutral CLI **must not depend on it** — the dependency direction is
-  one-way and the guard enforces it;
-* it is not polished, documented or advertised as a CLI-owned package;
-* it does not appear in the durable CLI package map.
+The extraction is machine-enforced, not merely documented:
 
-Its 35/35 parity harness (`migration/parity-datahub-shim.mjs`) travels with it
-and must pass against the DataHub-owned candidate after extraction.
+* `repository-boundary` lists `packages/datahub-adapter` as owned by
+  `workspacejson/datahub-agent`, so re-adding the directory fails the check —
+  `neutral-producer-purity` alone would not catch it, since that rule only
+  scans `packages/cli/`;
+* redefining the `@workspacejson/datahub-adapter` package name in any manifest
+  fails, whether or not it is marked private;
+* a workflow referencing that package name for publication fails.
 
-**Do not confuse this adapter with a hypothetical `workspacejson signals
-datahub` producer surface.** They run in opposite directions: this adapter
+All three are red-tested in `scripts/check-architecture.test.mjs`.
+
+### One deviation found on extraction, still unfixed here
+
+The adapter typechecked in this repository only because
+`packages/datahub-adapter/tsconfig.json` included `types/ambient.d.ts`, which
+**shadows `node:fs`** with a hand-written `Dirent`. Against real
+`@types/node@22.19.17`, `ReturnType<typeof readdirSync>` selects the Buffer
+overload and `findDbtProjects` does not compile (4 errors).
+
+The shadowing pattern is the same class of defect META-244 already fixed once
+here for `@workspacejson/spec`. `types/ambient.d.ts` still shadows `node:fs`
+for the remaining packages and is worth auditing on the same grounds.
+
+**Do not confuse the extracted adapter with a hypothetical `workspacejson
+signals datahub` producer surface.** They run in opposite directions: this adapter
 consumes the artifact; a signals surface would produce DataHub-specific
 evidence. No such producer surface is admitted, and none may be added without an
 explicit ADR-002 Gate A ruling.
@@ -78,7 +100,8 @@ workspacejson/integrations      workspacejson/datahub-agent
 ```
 
 Within this repository: `agents-audit` depends on `@workspacejson/cli`. Never
-the reverse. `@workspacejson/datahub-adapter` depends on neither.
+the reverse. `workspacejson/datahub-agent` sits downstream of both and consumes
+released contracts only — nothing here depends on it.
 
 ## Clean-room boundary
 
@@ -100,7 +123,7 @@ Guard: `neutral-producer-purity`.
 | -- | -- | -- |
 | `agents-audit` | metadata says yes; **workflow disabled** | `workspace-json/agents-audit` until META-243 |
 | `@workspacejson/cli` | metadata says yes; **workflow disabled, never published** | none yet — META-243 |
-| `@workspacejson/datahub-adapter` | **No** — private, and leaving this repository | none |
+| `@workspacejson/datahub-adapter` | **No** — extracted under META-248; redefining it here is a guard failure | `workspacejson/datahub-agent` (internal module, unpublished) |
 | `@workspacejson/spec`, `@workspacejson/rules` | **Never** — not owned here | `workspacejson/standard` |
 
 This repository holds no publish-capable secret.

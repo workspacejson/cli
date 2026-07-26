@@ -10,7 +10,7 @@ released packages — do not vendor or edit them here.
 - Know which package you are changing:
   - `packages/cli/` — `@workspacejson/cli`, the neutral producer (`src/producer/`) and its commands (`src/commands/`)
   - `packages/agents-audit-compat/` — published `agents-audit`, a **frozen** compatibility bridge; do not add features to it
-  - `packages/datahub-adapter/` — private DataHub/dbt adapter, staged here pending extraction to `workspacejson/datahub-agent`; do not build on it
+  - DataHub, dbt or other vendor-specific consumer logic belongs in `workspacejson/datahub-agent`, not here. The adapter that was staged in `packages/datahub-adapter/` was extracted under META-248, and `scripts/check-architecture.mjs` rejects its return
 - Keep changes within the owning package when possible
 - Avoid changing package entrypoints unless the public surface changes
 

@@ -119,11 +119,21 @@ const cases = [
     }),
   },
   {
-    name: "private-package-publication: @workspacejson/datahub-adapter loses private:true",
-    expect: "private-package-publication",
-    mutate: (root) => patchJson(join(root, "packages/datahub-adapter/package.json"), (m) => {
-      delete m.private;
-    }),
+    // META-248: the adapter was extracted to workspacejson/datahub-agent. The
+    // old red test mutated its manifest, which no longer exists. What must stay
+    // red is its RETURN — re-creating the package here in any form.
+    name: "repository-boundary: the extracted DataHub adapter package is re-added",
+    expect: "repository-boundary",
+    mutate: (root) => write(join(root, "packages/datahub-adapter/package.json"),
+      `${JSON.stringify({ name: "@workspacejson/datahub-adapter", version: "0.0.1", private: true }, null, 2)}\n`),
+  },
+  {
+    // Private:true is not a defence once the package is gone — the boundary is.
+    // A "helpfully" public re-add must be just as red as a private one.
+    name: "repository-boundary: the extracted DataHub adapter returns as a public package",
+    expect: "repository-boundary",
+    mutate: (root) => write(join(root, "packages/datahub-adapter/package.json"),
+      `${JSON.stringify({ name: "@workspacejson/datahub-adapter", version: "0.0.1" }, null, 2)}\n`),
   },
   {
     name: "foreign-publish: release workflow publishing a standard-owned package",
@@ -132,8 +142,8 @@ const cases = [
       `name: Rogue\non: workflow_dispatch\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm publish --workspace @workspacejson/spec\n`),
   },
   {
-    name: "private-package-publication: workflow publishing the private DataHub adapter",
-    expect: "private-package-publication",
+    name: "repository-boundary: workflow publishing the extracted DataHub adapter",
+    expect: "repository-boundary",
     mutate: (root) => write(join(root, ".github/workflows/rogue.yml"),
       `name: Rogue\non: workflow_dispatch\njobs:\n  publish:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm publish --workspace @workspacejson/datahub-adapter\n`),
   },
