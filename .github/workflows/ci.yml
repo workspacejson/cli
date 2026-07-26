@@ -60,3 +60,41 @@ jobs:
 
       - name: Run agents-audit on this repo
         run: node packages/agents-audit-compat/dist/cli.js scan . --fail-on error
+
+  # Compatibility gate. `agents-audit` is a frozen bridge, so anything touching
+  # its command surface, exit codes, output or exports is measured against the
+  # frozen pre-migration source rather than only against our own tests.
+  #
+  # Separate job: it clones and builds a second repository, which the unit-test
+  # matrix should not pay for, and it does not need the Node matrix.
+  parity:
+    name: Compatibility parity vs frozen source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # The old side is pinned to an immutable commit, so the SHA is a perfect
+      # cache key — it can never go stale for the wrong reason.
+      - name: Restore frozen-source cache
+        uses: actions/cache@v4
+        with:
+          path: .parity-cache
+          key: parity-e47eb1b8556c4f361db9a78190a2f36b400756e8-${{ runner.os }}-node22
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - name: agents-audit runtime parity
+        run: migration/parity-agents-audit-runtime.sh
+
+      - name: agents-audit packed-artifact parity
+        run: migration/parity-agents-audit-pack.sh
+
+      - name: DataHub adapter parity
+        run: node migration/parity-datahub-shim.mjs
