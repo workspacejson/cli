@@ -1,0 +1,58 @@
+==============================================================
+ 1. PACKAGE IDENTITY AND PRIVACY
+==============================================================
+  PASS  name unchanged: @workspacejson/cli
+  PASS  version unchanged: 0.0.1
+  PASS  STILL PRIVATE (private:true) — must never be published
+  PASS  bin unchanged: workspacejson -> ./dist/cli.js
+  PASS  exports/main/types unchanged
+  PASS  declares NO generate command (it is not the producer)
+  PASS  does not depend on agents-audit or @workspacejson/rules
+
+==============================================================
+ 2. PATH NORMALIZATION AND KEY CONSTRUCTION (old vs new)
+==============================================================
+  PASS  canonical("./src/models/a.sql") => "src/models/a.sql"
+  PASS  canonical("src/models/a.sql/") => "src/models/a.sql"
+  PASS  canonical("src/models/a.sql") => "src/models/a.sql"
+  PASS  canonical("./a//b/") => "a//b"
+  PASS  computeProjectPrefix(/repo, /repo) => ""
+  PASS  computeProjectPrefix(/repo, /repo/analytics) => "analytics"
+  PASS  computeProjectPrefix(/repo, /repo/sub/warehouse) => "sub/warehouse"
+  PASS  computeProjectPrefix(/repo, /elsewhere) => null
+  PASS  normalizeModelPath("", "models/customers.sql") => "models/customers.sql"
+  PASS  normalizeModelPath("analytics", "models/customers.sql") => "analytics/models/customers.sql"
+  PASS  normalizeModelPath("sub/warehouse", "./models/x.sql") => "sub/warehouse/models/x.sql"
+
+==============================================================
+ 3. dbt PROJECT DISCOVERY AND MANIFEST EXTRACTION
+==============================================================
+  PASS  findDbtProjects discovers BOTH dbt projects (multi-project guard)
+  PASS  findDbtProjects ignores node_modules (would otherwise inflate the count)
+  PASS  findDbtProjects output is deterministic (sorted)
+  PASS  extractModels returns only resource_type=model with a path
+  PASS  extractModels tolerates an empty manifest
+
+==============================================================
+ 4. JOIN AGAINST fileIndex (the actual DataHub fix)
+==============================================================
+  PASS  nested dbt project joins 2/2 after prefix normalization
+  PASS  PERTURBED: without the project prefix the same join collapses to 0/2
+  PASS  PERTURBED: partial fileIndex yields a partial match (1/2), not all-or-nothing
+  PASS  join rows expose normalizedKey and matched for every model
+
+==============================================================
+ 5. CLI RUNTIME: fileIndex shapes and zero-join exit code
+==============================================================
+  PASS  [old] generated.fileIndex joins and exits 0
+  PASS  [new] generated.fileIndex joins and exits 0
+  PASS  [old] legacy top-level fileIndex fallback still supported
+  PASS  [new] legacy top-level fileIndex fallback still supported
+  PASS  [old] ZERO-JOIN exits non-zero (the silent failure HAC-75 surfaces)
+  PASS  [new] ZERO-JOIN exits non-zero (the silent failure HAC-75 surfaces)
+  PASS  [old] PERTURBED: dbt project outside git root refuses with exit 2
+  PASS  [new] PERTURBED: dbt project outside git root refuses with exit 2
+
+==============================================================
+ RESULT: 35 passed, 0 failed  (total 35)
+==============================================================

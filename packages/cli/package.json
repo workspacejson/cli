@@ -8,7 +8,7 @@
   "homepage": "https://www.workspacejson.dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/workspace-json/agents-audit.git",
+    "url": "git+https://github.com/workspacejson/cli.git",
     "directory": "packages/cli"
   },
   "publishConfig": {
@@ -40,11 +40,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@workspacejson/spec": "workspace:*"
+    "@workspacejson/spec": "0.4.4"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
+    "@types/node": "22.19.17",
     "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
     "vitest": "^1.6.0"
   }
 }

@@ -1,0 +1,28 @@
+{
+  "name": "workspacejson-cli-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "homepage": "https://workspacejson.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workspacejson/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/workspacejson/cli/issues"
+  },
+  "dependencies": {
+    "agents-audit": "workspace:*"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "release:verify-packs": "pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
+    "release:verify-published": "node scripts/verify-published.mjs"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.0"
+  }
+}

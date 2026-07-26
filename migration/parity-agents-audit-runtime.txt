@@ -1,0 +1,54 @@
+==============================================================
+ A. COMMAND SURFACE PARITY (identical fixtures, both sides)
+==============================================================
+  PASS  agents-audit --help   (exit 1, output identical)
+  PASS  agents-audit --version   (exit 1, output identical)
+  PASS  agents-audit scan .   (exit 0, output identical)
+  PASS  agents-audit scan . --json   (exit 0, output identical)
+  PASS  agents-audit generate --dry-run   (exit 0, output identical)
+  PASS  agents-audit generate --check   (exit 1, output identical)
+  PASS  agents-audit generate   (exit 0, output identical)
+  PASS  agents-audit generate --force   (exit 0, output identical)
+  PASS  unknown flag rejected   (exit 1, output identical)
+
+==============================================================
+ B. PERTURBED BEHAVIOR (break the precondition, expect failure)
+==============================================================
+  PASS  [old] invalid JSON refused without --force — exit 1, matched /refusing to overwrite|invalid/
+  PASS  [new] invalid JSON refused without --force — exit 1, matched /refusing to overwrite|invalid/
+  PASS  [old] invalid schema refused without --force — exit 1, matched /refusing to overwrite|invalid/
+  PASS  [new] invalid schema refused without --force — exit 1, matched /refusing to overwrite|invalid/
+  PASS  [old] invalid artifact fails --check — exit 1, matched /is invalid|manual evidence is untouched/
+  PASS  [new] invalid artifact fails --check — exit 1, matched /is invalid|manual evidence is untouched/
+  PASS  [old] --force recovers from invalid artifact — exit 0, matched //
+  PASS  [new] --force recovers from invalid artifact — exit 0, matched //
+  PASS  [old] manual evidence preserved across regeneration — exit 0, matched //
+  PASS  [new] manual evidence preserved across regeneration — exit 0, matched //
+
+  --- assertions on perturbation side effects ---
+  PASS  [old] manual.fragileFiles survived regeneration verbatim
+  PASS  [new] manual.fragileFiles survived regeneration verbatim
+  PASS  [old] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T03-02-48-807Z)
+  PASS  [new] --force moved invalid artifact aside (workspace.json.invalid.2026-07-26T03-02-49-116Z)
+  PASS  [old] --dry-run wrote nothing
+  PASS  [old] --check wrote nothing
+  PASS  [new] --dry-run wrote nothing
+  PASS  [new] --check wrote nothing
+
+==============================================================
+ C. GENERATED ARTIFACT EQUIVALENCE (old vs new bytes)
+==============================================================
+  PASS  generated artifacts identical (excluding volatile timestamps)
+  producer stamp (old): {'name': 'agents-audit', 'version': '0.4.4'}
+  producer stamp (new): {'name': 'agents-audit', 'version': '0.4.4'}
+
+==============================================================
+ D. PUBLIC IMPORT SURFACE
+==============================================================
+  old exports: DEFAULT_AUDIT_CONFIG,detectCiProvider,generateWorkspaceJson,renderFindingsTable,renderScoreCard,renderVrekoUpsell,runAudit,saveReport,startInteractiveNavigation
+  new exports: DEFAULT_AUDIT_CONFIG,detectCiProvider,generateWorkspaceJson,renderFindingsTable,renderScoreCard,renderVrekoUpsell,runAudit,saveReport,startInteractiveNavigation
+  PASS  public import surface identical
+
+==============================================================
+ RESULT: 29 passed, 0 failed  (total 29)
+==============================================================
