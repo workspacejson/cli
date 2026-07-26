@@ -1,10 +1,30 @@
 # Changelog
 
-<!--
-Unreleased entries live in `.changeset/*.md`, not here. `pnpm changeset version`
-writes them into this file and bumps package.json in the same commit, so the two
-cannot drift. Run `pnpm changeset status` to see what the next release contains.
--->
+> **`agents-audit` is frozen at `0.4.4`.** The published package is locked for
+> hackathon judging and this repository does not publish it. All forward
+> development moves to `@workspacejson/cli`, which continues this version line
+> at `0.5.0`.
+>
+> The entries under [Unreleased] exist in this working tree but will not ship
+> under the `agents-audit` name. Where they changed the shared producer they
+> reach users through `@workspacejson/cli`; where they changed this package's own
+> `scan` and presenter surface they remain unreleased.
+
+## [Unreleased — will not ship under this package name]
+
+### Patch Changes
+
+- **Changed:** `generate` now emits `specVersion: "0.4"` and populates
+  `generated.conventions` (META-203). The conventions emitter had been
+  disconnected since `a3fa85a` while the spec moved to v0.4. v0.4 is a strict
+  superset of v0.3, so existing readers are unaffected; readers wanting the new
+  field should check `generated.specVersion === "0.4"`. `coChange` and
+  `fragility` remain unemitted — optional in v0.4. Console output, exit codes,
+  manual-evidence preservation and refusal/force behavior are unchanged.
+- **Changed:** `scan` no longer prints a vendor notice when `.agents/workspace.json` is missing or stale. It now names the command that actually fixes the problem — `agents-audit generate` — and still reports the same validation errors. Ratified in META-236: vendor promotion never enters the neutral producer, and is removed or made opt-in in this compatibility package. Exit codes are unchanged and `scan --json` output is byte-identical, so nothing consuming machine-readable output is affected. Human-readable `scan` output does change; this is recorded as an intentional difference in `migration/parity-expected-differences.txt` and enforced by the CI parity gate.
+- **Added:** `renderMissingArtifactNotice`, the neutral replacement used by `scan`. `renderVrekoUpsell` remains exported and unchanged for API compatibility — it is simply no longer called by the CLI, so callers who want it can still invoke it. This export set is additive; no historical export was removed.
+- `generate --check --dry-run` now fires the drift gate (exit 1, "manual evidence is untouched") instead of the dry-run branch silently winning and exiting 0; the JSON projection is still printed under `--dry-run`. Deferred from 0.4.4 (META-157) because it changes exit-code semantics; landed here as its own reviewed change with regression tests watched red against the pre-change CLI.
+- `generate` now surfaces `invalidFileMoved` (result data that has existed since 0.4.3 but was never displayed): when a previous `.agents/workspace.json` was invalid and moved aside, the CLI prints where it was relocated to and that its manual evidence could not be recovered.
 
 ## [0.4.4] - 2026-07-23
 

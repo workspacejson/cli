@@ -89,14 +89,19 @@ workflow ever holds authority over both.
 | Package | Publisher | Tag |
 | -- | -- | -- |
 | `@workspacejson/cli` | this repository, [`publish-cli.yml`](./.github/workflows/publish-cli.yml) | `cli-v*.*.*` |
-| `agents-audit` | `workspace-json/agents-audit` until META-243 | `agents-audit-v*.*.*` once cut over |
+| `agents-audit` | **frozen at `0.4.4`** — not published from here | none |
+
+`@workspacejson/cli` continues `agents-audit`'s version line, starting at
+`0.5.0`. `agents-audit` is locked for hackathon judging and receives no further
+releases; it is excluded from changesets via `ignore` so a workspace-wide
+version run cannot bump it by accident.
 
 To release `@workspacejson/cli`:
 
 ```bash
 pnpm changeset version          # bumps packages/cli/package.json + CHANGELOG
 git commit -am "release: ..." && git push
-git tag cli-v0.1.0 && git push --tags
+git tag cli-v0.5.0 && git push --tags
 ```
 
 The tag is both the trigger and the source of truth for the version: it is
@@ -104,10 +109,11 @@ validated as clean semver and asserted equal to the manifest before anything
 reaches the registry, so a tag that disagrees with `package.json` fails the run
 rather than publishing a version nobody named.
 
-**`agents-audit` cannot be published from here yet.** `workspace-json/agents-audit`
-remains its sole publisher until the coordinated authority cutover in META-243,
-which requires, in order: parity complete, the old workflow disabled, the old
-token revoked, then a least-privilege token granted here.
+**`agents-audit` is not published from here, and is not scheduled to be.** It is
+frozen at `0.4.4`; `workspace-json/agents-audit` published that release and
+remains its registry owner. The unreleased entries in its changelog exist in
+this working tree but will not ship under that name — the shared producer
+changes among them reach users through `@workspacejson/cli` instead.
 
 ## Provenance
 

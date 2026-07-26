@@ -1,13 +1,26 @@
 # Changelog — `@workspacejson/cli`
 
-## [0.1.0] - Unreleased
+## [0.5.0] - Unreleased
 
-First published release. The version starts at `0.1.0` rather than continuing
-`agents-audit`'s numbering because this is not that package renamed: it is the
-producer `agents-audit` now depends on, both ship from this repository on
-independent tags, and this binary carries a deliberately smaller surface — no
-`scan`, and no config file (see Notes). Sharing a version line would promise a
-parity that does not exist.
+First release under the `workspacejson` name, and the continuation of
+`agents-audit`'s version line. That package is frozen at `0.4.4` — locked for
+hackathon judging — and all forward development happens here, so the numbering
+carries over rather than restarting.
+
+**Why `0.5.0` and not `0.4.5`.** Measured against `agents-audit@0.4.4`, this
+binary *removes* surface: there is no `scan` command, no config file (see
+Notes), and the binary itself is renamed from `agents-audit` to `workspacejson`.
+A patch bump would promise a drop-in successor, and the first thing a migrating
+user would hit is a missing command. Under 0.x, breaking changes go in the minor
+slot.
+
+Migrating from `agents-audit@0.4.4`:
+
+| Before | After |
+| -- | -- |
+| `npx agents-audit generate` | `npx workspacejson generate` |
+| `npx agents-audit scan` | no equivalent — the producer does not audit |
+| `.agentsauditrc` | not read (see Notes) |
 
 ### Changed
 

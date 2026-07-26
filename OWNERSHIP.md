@@ -9,7 +9,7 @@ script is what enforces it.
 | Directory | Package | Distribution | Role |
 | -- | -- | -- | -- |
 | `packages/cli/` | `@workspacejson/cli` | public, published from here on `cli-v*` tags | the neutral workspace.json producer and its `workspacejson` binary |
-| `packages/agents-audit-compat/` | `agents-audit` | public, published `0.4.4` | frozen compatibility bridge for the historical `agents-audit` command and API |
+| `packages/agents-audit-compat/` | `agents-audit` | public, **frozen at `0.4.4`** — no further releases | frozen compatibility bridge for the historical `agents-audit` command and API |
 
 ## Owns
 
@@ -121,16 +121,24 @@ Guard: `neutral-producer-purity`.
 
 | Package | Publishable from here | Current authority |
 | -- | -- | -- |
-| `agents-audit` | metadata says yes; **workflow disabled** | `workspace-json/agents-audit` until META-243 |
+| `agents-audit` | **No** — frozen at `0.4.4`, no workflow publishes it | `workspace-json/agents-audit` published `0.4.4` and remains its registry owner |
 | `@workspacejson/cli` | **Yes** — `.github/workflows/publish-cli.yml`, on `cli-v*.*.*` tags | this repository (META-236 settled the name; no prior authority existed) |
 | `@workspacejson/datahub-adapter` | **No** — extracted under META-248; redefining it here is a guard failure | `workspacejson/datahub-agent` (internal module, unpublished) |
 | `@workspacejson/spec`, `@workspacejson/rules` | **Never** — not owned here | `workspacejson/standard` |
 
 This repository holds one publish-capable secret, `NPM_TOKEN`, scoped to
-`@workspacejson/cli`. `agents-audit` remains published by
-`workspace-json/agents-audit` until META-243, so the two packages release on
-disjoint tag namespaces (`cli-v*` and, later, its own) and no single workflow
-holds authority over both.
+`@workspacejson/cli`.
+
+`agents-audit` is frozen at `0.4.4` and locked for hackathon judging; all forward
+development moves to `@workspacejson/cli`, which continues its version line from
+`0.5.0`. Two mechanisms keep the freeze from being merely a convention: no
+workflow in this repository publishes `agents-audit`, and `.changeset/config.json`
+lists it under `ignore`, so a workspace-wide `changeset version` cannot bump it.
+
+The published `agents-audit@0.4.4` declares no dependency on
+`@workspacejson/cli` — it is self-contained, so freezing it leaves nothing
+dangling on the registry. That dependency exists only in this working tree,
+which has never shipped.
 
 ## Migration source and provenance
 

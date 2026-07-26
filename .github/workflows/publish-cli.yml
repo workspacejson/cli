@@ -11,7 +11,10 @@ name: Publish @workspacejson/cli
 # Release flow:
 #   pnpm changeset version          # bumps packages/cli/package.json + CHANGELOG
 #   git commit -am "release: ..." && git push
-#   git tag cli-v0.1.0 && git push --tags
+#   git tag cli-v0.5.0 && git push --tags
+#
+# The version line continues `agents-audit`, which is frozen at 0.4.4, so this
+# package starts at 0.5.0 rather than 0.1.0.
 #
 # The tag is both the trigger and the source of truth for the version: it is
 # validated as clean semver and asserted equal to the manifest before anything
