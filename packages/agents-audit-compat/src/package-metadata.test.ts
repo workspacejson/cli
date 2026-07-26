@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -54,13 +54,11 @@ describe('package metadata', () => {
     }
   });
 
-  it('keeps the DataHub adapter private and separate from the producer', () => {
-    const pkg = readPackageJson('packages/datahub-adapter/package.json');
-    // The two CLI packages must not converge during migration. META-236 owns
-    // any future decision about this package's identity; until then it is a
-    // private dbt/DataHub adapter and must never be published.
-    expect(pkg.name).toBe('@workspacejson/datahub-adapter');
-    expect(pkg.private).toBe(true);
-    expect((pkg.bin as { [key: string]: string } | undefined)?.['workspacejson-datahub-adapter']).toBe('./dist/cli.js');
+  it('no longer defines the DataHub adapter, which was extracted', () => {
+    // META-248 moved the dbt/DataHub adapter to workspacejson/datahub-agent,
+    // which owns DataHub consumption. It was staged here only while its
+    // permanent owner was undecided. This asserts the extraction stayed done;
+    // scripts/check-architecture.mjs enforces the same boundary, red-tested.
+    expect(existsSync(resolve(repoRoot, 'packages/datahub-adapter'))).toBe(false);
   });
 });

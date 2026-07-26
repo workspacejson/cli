@@ -20,9 +20,10 @@ consumed here as released packages.
 | [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **No — not yet on npm** | the neutral producer and its `workspacejson` binary |
 | [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | **Yes — `0.4.4`** | frozen compatibility bridge; preserves the historical command and API |
 
-`packages/datahub-adapter/` also exists but is **not part of this repository's
-architecture** — it is a private DataHub/dbt adapter staged here pending
-extraction to `workspacejson/datahub-agent`, which owns DataHub consumption. See
+Those two packages are the whole repository. The private DataHub/dbt adapter
+that was staged here has been **extracted to `workspacejson/datahub-agent`**
+(META-248), which owns DataHub consumption; it was never durable architecture
+here. The boundary is machine-enforced and red-tested — see
 [`OWNERSHIP.md`](./OWNERSHIP.md).
 
 ## Generating the artifact

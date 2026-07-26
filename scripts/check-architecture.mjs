@@ -131,6 +131,11 @@ const FOREIGN_DIRECTORIES = [
   { path: "vsix", owner: "workspacejson/integrations" },
   { path: "packages/spec", owner: "workspacejson/standard" },
   { path: "packages/rules", owner: "workspacejson/standard" },
+  // Extracted under META-248. It was DataHub consumer logic staged here while
+  // its permanent owner was decided, never durable CLI architecture. Listing
+  // it keeps it from drifting back: `neutral-producer-purity` only scans
+  // packages/cli, so a re-added sibling package would otherwise pass.
+  { path: "packages/datahub-adapter", owner: "workspacejson/datahub-agent" },
   { path: "src/pages", owner: "workspacejson/site" },
   { path: "astro.config.mjs", owner: "workspacejson/site" },
 ];
@@ -223,8 +228,8 @@ for (const manifestPath of manifests) {
     }
   }
 
-  if (manifest.name === "@workspacejson/datahub-adapter" && manifest.private !== true) {
-    report("private-package-publication", manifestPath, "@workspacejson/datahub-adapter must remain private:true; it is staged here pending extraction to workspacejson/datahub-agent and must never be published from this repository");
+  if (manifest.name === "@workspacejson/datahub-adapter") {
+    report("repository-boundary", manifestPath, "@workspacejson/datahub-adapter was extracted to workspacejson/datahub-agent under META-248 and must not be redefined here");
   }
 
   if (STANDARD_OWNED.has(manifest.name)) {
@@ -249,7 +254,7 @@ if (existsSync(workflowsDirectory)) {
       }
     }
     if (content.includes("@workspacejson/datahub-adapter")) {
-      report("private-package-publication", file, "publishing workflow references the private @workspacejson/datahub-adapter");
+      report("repository-boundary", file, "publishing workflow references @workspacejson/datahub-adapter, which was extracted to workspacejson/datahub-agent under META-248 and is not publishable from here");
     }
   }
 }
