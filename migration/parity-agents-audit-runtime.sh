@@ -68,12 +68,18 @@ run_side () { # $1=side $2=case $3...=args
   if [ "$side" = "old" ]; then bin="$OLD_DIR/node_modules/.bin/agents-audit"; else bin="$NEW_DIR/node_modules/.bin/agents-audit"; fi
   local out exit
   out=$(cd "$dir" && "$bin" "$@" 2>&1); exit=$?
-  # Normalize volatile content: timestamps, uuids, absolute paths, durations, versions of node
+  # Normalize volatile content: anything that differs purely because the two
+  # sides cannot execute at the same instant — timestamps, uuids, absolute
+  # paths, durations. `temporalWeight` belongs here too: it is a time-decayed
+  # float in @workspacejson/rules, so a sub-millisecond gap between the old and
+  # new runs yields 1 vs 0.9999999998842592. That is engine nondeterminism, not
+  # a migration difference, and it made this check flake roughly 1 run in 7.
   out=$(printf '%s' "$out" \
     | sed -E 's/[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:.-]+Z?/<TIMESTAMP>/g' \
     | sed -E "s|$RUN/[A-Za-z0-9_-]+|<FIXTURE>|g" \
     | sed -E 's/[0-9]+(\.[0-9]+)?ms/<MS>/g' \
     | sed -E 's/"durationMs": [0-9]+/"durationMs": <MS>/g' \
+    | sed -E 's/"temporalWeight": [0-9]+(\.[0-9]+)?/"temporalWeight": <DECAY>/g' \
     | sed -E 's/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/<UUID>/g')
   printf '%s|%s' "$exit" "$out"
   printf '%s' "$out" > "$RUN/$case-$side.out"
@@ -255,5 +261,74 @@ fi
 echo
 echo "=============================================================="
 echo " RESULT: $PASS passed, $FAIL failed  (total $((PASS+FAIL)))"
-if [ "$FAIL" -gt 0 ]; then printf ' FAILED: %s\n' "${FAILED[@]}"; fi
+if [ "$FAIL" -gt 0 ]; then printf ' differs: %s\n' "${FAILED[@]}"; fi
 echo "=============================================================="
+
+# --- gate -------------------------------------------------------------------
+# Compare the set of differing checks against the ratified baseline. This is
+# what makes the harness a gate rather than a report: it fails when the set
+# CHANGES, in either direction. A harness that always exits 0 is not coverage.
+
+BASELINE="$PARITY_LIB_DIR/parity-expected-differences.txt"
+EXPECTED=()
+if [ -f "$BASELINE" ]; then
+  while IFS= read -r line || [ -n "$line" ]; do
+    line="${line%%#*}"
+    line="$(printf '%s' "$line" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+    [ -n "$line" ] && EXPECTED+=("$line")
+  done < "$BASELINE"
+else
+  echo "ERROR: missing baseline $BASELINE" >&2
+  exit 1
+fi
+
+parity_contains () { # $1=needle; rest=haystack
+  local needle="$1"; shift
+  local item
+  for item in "$@"; do [ "$item" = "$needle" ] && return 0; done
+  return 1
+}
+
+UNEXPECTED=(); STALE=()
+for actual in ${FAILED[@]+"${FAILED[@]}"}; do
+  parity_contains "$actual" ${EXPECTED[@]+"${EXPECTED[@]}"} || UNEXPECTED+=("$actual")
+done
+for want in ${EXPECTED[@]+"${EXPECTED[@]}"}; do
+  parity_contains "$want" ${FAILED[@]+"${FAILED[@]}"} || STALE+=("$want")
+done
+
+echo
+echo " GATE"
+echo " ----"
+echo "  expected differences: ${#EXPECTED[@]}  (migration/parity-expected-differences.txt)"
+echo "  observed differences: $FAIL"
+
+GATE=0
+
+if [ "${#UNEXPECTED[@]}" -gt 0 ]; then
+  GATE=1
+  echo
+  echo "  REGRESSION — these checks differ and are NOT in the baseline:"
+  printf '    - %s\n' "${UNEXPECTED[@]}"
+  echo
+  echo "  Either the change was unintended, or it is a deliberate decision that"
+  echo "  needs a human ruling and a baseline entry citing the issue."
+fi
+
+if [ "${#STALE[@]}" -gt 0 ]; then
+  GATE=1
+  echo
+  echo "  STALE BASELINE — these are listed as expected but now MATCH:"
+  printf '    - %s\n' "${STALE[@]}"
+  echo
+  echo "  A ratified difference disappeared. Either a decision was reverted, or"
+  echo "  the difference was resolved and the baseline entry should be removed."
+fi
+
+if [ "$GATE" -eq 0 ]; then
+  echo
+  echo "  PASS — observed differences exactly match the ratified baseline."
+fi
+echo "=============================================================="
+
+exit "$GATE"

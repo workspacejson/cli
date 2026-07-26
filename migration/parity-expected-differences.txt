@@ -1,0 +1,32 @@
+# Expected parity differences — the compatibility baseline.
+#
+# Each entry is a parity check that is KNOWN to differ between the frozen
+# pre-migration source and this repository, together with the ratified decision
+# that authorizes it. Anything not listed here must match.
+#
+# The gate is exact in BOTH directions:
+#
+#   a check fails that is not listed    -> REGRESSION. Something changed that
+#                                          was supposed to stay compatible.
+#   a listed check starts passing       -> STALE BASELINE. A ratified decision
+#                                          was reverted, or the difference was
+#                                          resolved and this file is now lying.
+#
+# Do not add a line here to make CI green. Adding a line is a claim that a
+# human decided the difference is correct, and it should cite the issue that
+# decided it.
+#
+# Format: one check label per line, matching the harness's FAILED label exactly.
+# Everything after # is a comment.
+
+# META-236 ratified that vendor promotion never enters the neutral package and
+# is removed or made opt-in in the compatibility package. `agents-audit scan`
+# now points at the real producer command instead of vreko.dev. Exit code is
+# unchanged and `scan --json` remains byte-identical, so machine-readable
+# consumers are unaffected.
+agents-audit scan .
+
+# Same ruling. `renderMissingArtifactNotice` was added alongside the retained
+# `renderVrekoUpsell`, so the export set grew. Purely additive — all nine
+# historical exports are still present. A removal here would be a real break.
+exports
