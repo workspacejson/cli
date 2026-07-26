@@ -1,10 +1,10 @@
 ==============================================================
  1. PACKAGE IDENTITY AND PRIVACY
 ==============================================================
-  PASS  name unchanged: @workspacejson/cli
+  PASS  renamed to an accurate identity, old name released for the neutral CLI
   PASS  version unchanged: 0.0.1
   PASS  STILL PRIVATE (private:true) — must never be published
-  PASS  bin unchanged: workspacejson -> ./dist/cli.js
+  PASS  bin surrendered `workspacejson` to the neutral CLI
   PASS  exports/main/types unchanged
   PASS  declares NO generate command (it is not the producer)
   PASS  does not depend on agents-audit or @workspacejson/rules

@@ -7,9 +7,10 @@ released packages — do not vendor or edit them here.
 ## Before You Start
 
 - Read `AGENTS.md` and `OWNERSHIP.md` at the repo root
-- Know which of the two CLI packages you are changing:
-  - `packages/agents-audit/` — published `agents-audit`, contains the real generator
-  - `packages/cli/` — private `@workspacejson/cli`, the DataHub/dbt join shim
+- Know which package you are changing:
+  - `packages/cli/` — `@workspacejson/cli`, the neutral producer (`src/producer/`) and its commands (`src/commands/`)
+  - `packages/agents-audit-compat/` — published `agents-audit`, a **frozen** compatibility bridge; do not add features to it
+  - `packages/datahub-adapter/` — private DataHub/dbt adapter, staged here pending extraction to `workspacejson/datahub-agent`; do not build on it
 - Keep changes within the owning package when possible
 - Avoid changing package entrypoints unless the public surface changes
 
@@ -17,11 +18,13 @@ released packages — do not vendor or edit them here.
 
 ```bash
 pnpm install
-pnpm typecheck
+pnpm build          # must precede typecheck on a clean checkout: agents-audit
+pnpm typecheck      # consumes @workspacejson/cli's emitted declarations
 pnpm test
-pnpm build
 pnpm run check:architecture
-node packages/agents-audit/dist/cli.js scan .
+node scripts/check-architecture.test.mjs
+node packages/agents-audit-compat/dist/cli.js scan .
+node packages/cli/dist/cli.js generate --check
 ```
 
 ## Change Expectations

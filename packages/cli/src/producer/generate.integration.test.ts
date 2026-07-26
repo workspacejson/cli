@@ -45,15 +45,32 @@ describe('generateWorkspaceJson — v0.3 conformance', () => {
     expect(result.content.generated.specVersion).toBe('0.3');
   });
 
-  it('sets generated.by with name and version', async () => {
+  it('sets generated.by to this producer by default', async () => {
     const repoRoot = tmpDir();
     await mkdir(repoRoot, { recursive: true });
 
     const result = await generateWorkspaceJson(repoRoot, {}, { dryRun: true });
 
-    expect(result.content.generated.by.name).toBe('agents-audit');
+    // Before META-247 this asserted 'agents-audit', because the producer lived
+    // inside that package. `generated.by` is provenance — it records which
+    // producer actually ran — so the neutral producer stamps itself.
+    expect(result.content.generated.by.name).toBe('@workspacejson/cli');
     expect(typeof result.content.generated.by.version).toBe('string');
     expect(result.content.generated.by.version.length).toBeGreaterThan(0);
+  });
+
+  it('lets a caller override generated.by, which is how agents-audit keeps its historical stamp', async () => {
+    const repoRoot = tmpDir();
+    await mkdir(repoRoot, { recursive: true });
+
+    const result = await generateWorkspaceJson(repoRoot, {}, {
+      dryRun: true,
+      producer: { name: 'agents-audit', version: '0.4.4' },
+    });
+
+    // This is the exact call `agents-audit generate` makes. Its artifacts must
+    // remain byte-identical to what it produced before the producer moved.
+    expect(result.content.generated.by).toEqual({ name: 'agents-audit', version: '0.4.4' });
   });
 
   it('sets generated.frameworkManifest as an array', async () => {

@@ -5,7 +5,7 @@ import type { WorkspaceJson } from '@workspacejson/spec';
 import { AgentsMdParser, RepoScanner, RuleEngine, WorkspaceJsonValidator, computeHygieneScore, conventionMismatch, frameworkDrift, missingFileReference, patternZeroMatch, sectionStaleness } from '@workspacejson/rules';
 import type { AuditConfig, AuditResult, ParsedAgentsMd, RepoState, RuleContext } from '@workspacejson/rules';
 import { DEFAULT_AUDIT_CONFIG, detectCiProvider } from './internal/config.js';
-import { findAgentsMdPath, readTextOrEmpty } from './internal/fs.js';
+import { findAgentsMdPath, readTextOrEmpty } from '@workspacejson/cli';
 
 function buildLegacyContext(
   agentsMd: ParsedAgentsMd,

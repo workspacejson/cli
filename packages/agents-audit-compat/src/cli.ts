@@ -8,8 +8,8 @@ import ora from 'ora';
 import pc from 'picocolors';
 import { runAudit } from './audit.js';
 import { getExitCode, isActionable, loadConfig } from './cli-helpers.js';
-import { generateWorkspaceJson } from './generate.js';
-import { renderFindingsTable, renderScoreCard, renderVrekoUpsell } from './presenter.js';
+import { runGenerate } from '@workspacejson/cli';
+import { renderFindingsTable, renderScoreCard, renderMissingArtifactNotice } from './presenter.js';
 import { startInteractiveNavigation } from './navigator.js';
 import { saveReport } from './reporter.js';
 import type { AuditResult } from '@workspacejson/rules';
@@ -64,7 +64,7 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
         renderFindingsTable(result.findings);
 
         if (!result.workspaceJsonFound || result.workspaceJsonStale) {
-          renderVrekoUpsell(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
+          renderMissingArtifactNotice(result.workspaceJsonFound, result.workspaceJsonStatus, result.workspaceJsonErrors);
         }
 
         if (options.save || config.save) {
@@ -96,46 +96,18 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
     .action(async (path: string, options: { dryRun?: boolean; check?: boolean; force?: boolean; config?: string }) => {
       const repoRoot = resolve(path);
       const { config, warning } = loadConfig(options.config, repoRoot);
-      const spinner = ora({ text: 'Scanning repository...', color: 'green' }).start();
 
-      try {
-        if (warning) {
-          console.error(`agents-audit config warning: ${warning}`);
-        }
-
-        const result = await generateWorkspaceJson(repoRoot, config, {
-          dryRun: options.dryRun === true,
-          check: options.check === true,
-          force: options.force === true,
-        });
-        spinner.stop();
-
-        if (options.check) {
-          if (result.drift) {
-            console.error(`Generated sections are stale at ${result.path}; manual evidence is untouched. Run: agents-audit generate ${path}`);
-            exitCode = 1;
-          } else {
-            console.log(`Generated sections are current at ${result.path}`);
-          }
-          if (options.dryRun) {
-            console.log(JSON.stringify(result.content, null, 2));
-          }
-        } else if (options.dryRun) {
-          console.log(JSON.stringify(result.content, null, 2));
-        } else if (result.skipped) {
-          console.log(`Generated sections already current at ${result.path}; manual evidence preserved`);
-        } else if (result.invalidFileMoved) {
-          console.log(`Generated ${result.path}`);
-          console.log(pc.yellow(`  Previous file was invalid and has been moved aside: ${result.invalidFileMoved}`));
-          console.log(pc.yellow('  Manual evidence from the previous file was not recovered (it could not be parsed/validated).'));
-        } else {
-          console.log(`Generated ${result.path}`);
-        }
-      } catch (error) {
-        spinner.stop();
-        console.error('agents-audit generate failed:', error instanceof Error ? error.message : error);
-        exitCode = 1;
-      }
+      // Delegated to @workspacejson/cli so `agents-audit generate` and
+      // `workspacejson generate` cannot drift apart. `producer` keeps this
+      // package's historical provenance stamp in `generated.by`, and
+      // `commandName` keeps every message and remediation hint byte-identical
+      // to what this command has always printed (META-247).
+      exitCode = await runGenerate(path, options, {
+        config,
+        configWarning: warning,
+        producer: { name: 'agents-audit', version },
+        commandName: 'agents-audit',
+      });
     });
 
   program

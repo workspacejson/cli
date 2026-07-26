@@ -1,72 +1,64 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+import { Command } from 'commander';
+import { runGenerate } from './commands/generate.js';
+import { DEFAULT_PRODUCER_CONFIG } from './producer/config.js';
 
-import { extractModels, findDbtProjects, type DbtManifest } from "./dbt.js";
-import { computeProjectPrefix, canonical } from "./normalize.js";
-import { joinModels, type FileIndex } from "./join.js";
+const require = createRequire(import.meta.url);
+const { version } = require('../package.json') as { version: string };
 
-interface Args {
-  gitRoot: string;
-  manifest: string;
-  workspaceJson: string;
-}
+export async function runCli(argv: string[] = process.argv): Promise<number> {
+  let exitCode = 0;
+  const program = new Command();
 
-function parseArgs(argv: string[]): Args {
-  const map = new Map<string, string>();
-  for (let i = 0; i < argv.length; i += 1) {
-    const a = argv[i];
-    if (a?.startsWith("--")) map.set(a.slice(2), argv[++i] ?? "");
-  }
-  const gitRoot = resolve(map.get("git-root") ?? process.cwd());
-  const manifest = resolve(map.get("manifest") ?? "target/manifest.json");
-  const workspaceJson = resolve(map.get("workspace-json") ?? ".agents/workspace.json");
-  return { gitRoot, manifest, workspaceJson };
-}
+  program
+    .name('workspacejson')
+    .description('Generate .agents/workspace.json — the workspace.json producer')
+    .version(version)
+    .exitOverride();
 
-function readJson<T>(path: string): T {
-  return JSON.parse(readFileSync(path, "utf8")) as T;
-}
+  program
+    .command('generate', { isDefault: true })
+    .description('Generate .agents/workspace.json from a repository scan')
+    .argument('[path]', 'Repository root to scan', '.')
+    .option('--dry-run', 'Print the workspace.json that would be written without writing it')
+    .option('--check', 'Exit non-zero when producer-owned sections are missing, invalid, or stale without writing')
+    .option('--force', 'Move an invalid existing artifact aside before writing a fresh generated artifact')
+    .action(async (path: string, options: { dryRun?: boolean; check?: boolean; force?: boolean }) => {
+      // Config-file support is deliberately absent for now. `agents-audit`
+      // reads `.agentsauditrc`, which is an audit-shaped name the neutral
+      // producer should not inherit by default. Naming a neutral config file is
+      // a public-surface decision and belongs with the OSS polish issue, not
+      // with this structural change (META-247).
+      exitCode = await runGenerate(path, options, {
+        config: DEFAULT_PRODUCER_CONFIG,
+        commandName: 'workspacejson',
+      });
+    });
 
-/**
- * Join dbt models (manifest.json) to workspace.json behavioral intelligence,
- * normalizing dbt's project-relative paths to repo-root-relative keys (VR-640).
- * Exits non-zero if any dbt project produces zero joined rows — the silent
- * zero-row failure HAC-75 was built to surface.
- */
-export function run(args: Args): number {
-  const manifest = readJson<DbtManifest>(args.manifest);
-  const models = extractModels(manifest);
-  const workspace = readJson<{ generated?: { fileIndex?: FileIndex }; fileIndex?: FileIndex }>(
-    args.workspaceJson,
-  );
-  const fileIndex: FileIndex = workspace.generated?.fileIndex ?? workspace.fileIndex ?? {};
+  program
+    .command('version')
+    .description('Print version information')
+    .action(() => {
+      console.log(`workspacejson v${version}`);
+      console.log('https://workspacejson.dev');
+    });
 
-  // The dbt project these models belong to is the manifest's grandparent dir
-  // (<proj>/target/manifest.json -> <proj>). `projects` is the full multi-project
-  // enumeration (VR-640 guard), reported so a repo with several dbt projects is
-  // visibly not being treated as one.
-  const projects = findDbtProjects(args.gitRoot);
-  const dbtProjectDir = dirname(dirname(args.manifest));
-  const prefix = computeProjectPrefix(args.gitRoot, dbtProjectDir);
-
-  if (prefix === null) {
-    console.error(`dbt project ${dbtProjectDir} is not inside git root ${args.gitRoot}`);
-    return 2;
+  try {
+    await program.parseAsync(argv);
+  } catch (error) {
+    exitCode = typeof error === 'object' && error && 'exitCode' in error ? Number((error as { exitCode?: number }).exitCode) || 1 : 1;
   }
 
-  const result = joinModels(models, prefix, fileIndex);
-  console.log(`git root:        ${args.gitRoot}`);
-  console.log(`dbt project:     ${canonical(dbtProjectDir)}  (prefix: "${prefix}")`);
-  console.log(`projects found:  ${projects.length}`);
-  console.log(`join:            ${result.matched}/${result.total} models matched fileIndex`);
-  for (const row of result.rows) {
-    console.log(`  [${row.matched ? "hit " : "MISS"}] ${row.originalFilePath} -> ${row.normalizedKey}`);
-  }
-  return result.total > 0 && result.matched === 0 ? 1 : 0;
+  return exitCode;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  process.exit(run(parseArgs(process.argv.slice(2))));
+// npm exposes package bins through node_modules/.bin symlinks. Resolve both
+// paths before comparing them so the executable runs whether invoked directly
+// or through npx/npm exec.
+if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
+  const exitCode = await runCli(process.argv);
+  process.exit(exitCode);
 }

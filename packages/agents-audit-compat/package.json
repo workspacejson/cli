@@ -1,7 +1,7 @@
 {
   "name": "agents-audit",
   "version": "0.4.4",
-  "description": "Audit tool for AGENTS.md hygiene - reads .agents/workspace.json for richer findings",
+  "description": "Compatibility package for the workspace.json producer and AGENTS.md audit. Generation is implemented by @workspacejson/cli; this package preserves the historical `agents-audit` command and API surface.",
   "license": "Apache-2.0",
   "author": "workspace-json contributors",
   "homepage": "https://www.workspacejson.dev/audit/",
@@ -64,6 +64,7 @@
     "prepublishOnly": "pnpm build && pnpm test && node ../../scripts/verify-package-tarball.mjs"
   },
   "dependencies": {
+    "@workspacejson/cli": "workspace:*",
     "@inquirer/core": "^9.0.0",
     "@workspacejson/rules": "0.4.4",
     "@workspacejson/spec": "0.4.4",

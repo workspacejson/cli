@@ -1,77 +1,70 @@
 # workspacejson/cli
 
-CLI distribution for the **workspace.json** standard: repository scanning,
-deterministic generation and reconciliation of `.agents/workspace.json`, and
-CLI-side adapters.
+CLI distribution for the **workspace.json** standard: repository scanning and
+deterministic generation of `.agents/workspace.json`.
 
 This repository owns the *producer implementation and its executables*. It does
-not own the specification. The normative schema, rules and contracts live in
-[`workspacejson/standard`](https://github.com/workspacejson/standard); this
-repository consumes them as released packages.
+not own the specification — the normative schema, rules and contracts live in
+[`workspacejson/standard`](https://github.com/workspacejson/standard) and are
+consumed here as released packages.
 
-## The generator command today
+> **Status: pre-release.** The architecture below landed in META-247 and is the
+> ratified target shape, but nothing here is published yet and the public
+> documentation is deliberately unfinished. The working command today is
+> `npx agents-audit generate`.
+
+## Packages
+
+| Directory | Package | Published? | Role |
+| -- | -- | -- | -- |
+| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **No — not yet on npm** | the neutral producer and its `workspacejson` binary |
+| [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | **Yes — `0.4.4`** | frozen compatibility bridge; preserves the historical command and API |
+
+`packages/datahub-adapter/` also exists but is **not part of this repository's
+architecture** — it is a private DataHub/dbt adapter staged here pending
+extraction to `workspacejson/datahub-agent`, which owns DataHub consumption. See
+[`OWNERSHIP.md`](./OWNERSHIP.md).
+
+## Generating the artifact
+
+Today, the command that works is the compatibility one:
 
 ```bash
 npx agents-audit generate
 ```
 
-That is the real, published, working command for producing
-`.agents/workspace.json`. It is implemented in
-[`packages/agents-audit/`](./packages/agents-audit/) and published to npm as
-[`agents-audit`](https://www.npmjs.com/package/agents-audit).
+Once `@workspacejson/cli` is published, the neutral equivalent is:
 
 ```bash
-agents-audit scan .              # audit AGENTS.md hygiene
-agents-audit generate            # write .agents/workspace.json
-agents-audit generate --dry-run  # print the projection, write nothing
-agents-audit generate --check    # non-writing drift gate for CI
-agents-audit generate --force    # recover from an invalid existing artifact
+workspacejson generate            # write .agents/workspace.json
+workspacejson generate --dry-run  # print the projection, write nothing
+workspacejson generate --check    # non-writing drift gate for CI
+workspacejson generate --force    # recover from an invalid existing artifact
 ```
 
-## This repository contains two different CLI packages
+Both routes run **the same implementation** — `agents-audit` delegates to
+`@workspacejson/cli`, so the two binaries cannot drift apart during the
+compatibility window.
 
-They are **not** the same tool, and one of them is not installable.
+`agents-audit` additionally keeps its audit commands (`scan`, `version`) and all
+nine of its historical public exports.
 
-| Directory | Package | Published? | What it actually does |
-| -- | -- | -- | -- |
-| [`packages/agents-audit/`](./packages/agents-audit/) | `agents-audit` | **Yes — public, `0.4.4`** | `AGENTS.md` audit **and the current workspace.json producer**. Binary: `agents-audit`. |
-| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **No — `private: true`, not on npm** | A DataHub/dbt adapter: normalizes dbt model paths to repository-root-relative keys and joins them against an existing `generated.fileIndex`. Binary declared as `workspacejson`, but the package is not distributed. |
+## Compatibility guarantee
 
-### `packages/cli` is not the generator
+`agents-audit` is a **frozen bridge**: its package name, binary, commands, exit
+codes, output and exported API are unchanged, and it gets no new features. The
+guarantee is enforced by executable parity harnesses in
+[`migration/`](./migration/), which run real packed candidates from before and
+after each change:
 
-The directory being named `cli` and the package being named
-`@workspacejson/cli` is misleading, and it has misled before. It contains no
-generation logic. It reads a `.agents/workspace.json` that something else
-already produced. If you are looking for the code that *writes* the artifact,
-it is `packages/agents-audit/src/generate.ts`.
+```bash
+migration/parity-agents-audit-runtime.sh   # 29/29 producer behavior
+migration/parity-datahub-shim.mjs          # 35/35 adapter behavior
+```
 
-### Do not advertise `@workspacejson/cli` as installable
-
-`npm install @workspacejson/cli` does not work and is expected not to work —
-the package is `private: true` and returns `E404` from the registry. Any
-documentation, extension text or integration guide that tells a user to install
-it is wrong.
-
-## The future neutral CLI identity is undecided
-
-Whether a neutral producer package appears, whether `agents-audit` becomes a
-compatibility bridge or stays a distinct audit product, and what happens to the
-private DataHub shim are **open questions**, tracked in
-[META-236](https://linear.app/marcelle-labs/issue/META-236). Nothing in this
-repository should be read as having settled them. Until META-236 is ratified,
-the answer to "what does a cold user run?" is `npx agents-audit generate`.
-
-## Ownership boundaries
-
-| Repository | Owns |
-| -- | -- |
-| [`workspacejson/standard`](https://github.com/workspacejson/standard) | specification, JSON Schema, rules, ADRs, conformance fixtures — **contract authority** |
-| **`workspacejson/cli`** (this repo) | producer/audit CLI implementation, repository scanning, generation, CLI distribution |
-| [`workspacejson/integrations`](https://github.com/workspacejson/integrations) | MCP, Codex, VS Code, host adapters |
-| [`workspacejson/site`](https://github.com/workspacejson/site) | `workspacejson.dev` presentation and documentation assembly |
-
-This repository contains **no** normative schema copy, **no** host-integration
-implementation, and **no** site implementation. See [`OWNERSHIP.md`](./OWNERSHIP.md).
+Removing the compatibility package is gated on downstream consumers — Buildomator,
+the VS Code extension, MCP installers and documentation — moving to the neutral
+command first.
 
 ## Development
 
@@ -80,26 +73,28 @@ pnpm install
 pnpm typecheck
 pnpm build
 pnpm test
-pnpm run check:architecture     # clean-room and repository-boundary guards
-pnpm run release:verify-packs   # packed-tarball verification for agents-audit
+pnpm run check:architecture                 # boundary and clean-room guards
+node scripts/check-architecture.test.mjs    # deliberate-violation red tests
+pnpm run release:verify-packs               # packed-tarball verification
 ```
 
 Requires Node.js >= 20.
 
 ## Publishing
 
-**Publishing from this repository is currently disabled.** The release workflow
-is non-authoritative and cannot publish: it holds no npm credential and exits
-before any publish step. `workspace-json/agents-audit` remains the sole publisher
-of `agents-audit` until the coordinated authority cutover in
-[META-243](https://linear.app/marcelle-labs/issue/META-243).
+**Publishing from this repository is disabled.** The release workflow has no
+enabled trigger, holds no npm credential and contains no publish step.
+`workspace-json/agents-audit` remains the sole publisher of `agents-audit` until
+the coordinated authority cutover in META-243.
+
+`@workspacejson/cli` has never been published. Do not document
+`npm install @workspacejson/cli` as if it works.
 
 ## Provenance
 
 Extracted with full history from
 `workspace-json/agents-audit@e47eb1b8556c4f361db9a78190a2f36b400756e8`.
-See [`migration/PROVENANCE.md`](./migration/PROVENANCE.md) for the extraction
-command, old→new commit mapping, included/excluded paths and rollback procedure.
+See [`migration/PROVENANCE.md`](./migration/PROVENANCE.md).
 
 ## License
 
