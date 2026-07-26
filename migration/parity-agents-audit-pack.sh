@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
 # agents-audit packed-artifact parity: OLD (frozen source) vs NEW (workspacejson/cli)
+#
+# Usage:  migration/parity-agents-audit-pack.sh
+#
+# Self-contained: see migration/parity-lib.sh for the overridable paths.
 set -uo pipefail
 
-SCRATCH="/private/tmp/claude-502/-Users-user1-dev-cli/ed967700-e9b4-4202-b983-6faf9cee9f6d/scratchpad"
-OLD="$SCRATCH/source-agents-audit/packages/agents-audit"
-NEW="$SCRATCH/cli-extract/packages/agents-audit-compat"
-OUT="$SCRATCH/parity"
-mkdir -p "$OUT/old" "$OUT/new"
+# shellcheck source=./parity-lib.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/parity-lib.sh"
 
-echo "### Packing OLD candidate (frozen source e47eb1b) ###"
-(cd "$OLD" && npm pack --ignore-scripts --pack-destination "$OUT/old" --json > "$OUT/old/pack.json" 2>"$OUT/old/pack.err")
-echo "### Packing NEW candidate (workspacejson/cli) ###"
-(cd "$NEW" && npm pack --ignore-scripts --pack-destination "$OUT/new" --json > "$OUT/new/pack.json" 2>"$OUT/new/pack.err")
+# Packs both sides (and resolves/builds the frozen source on first run).
+parity_prepare_agents_audit
 
+# Associative arrays need bash 4+; macOS still ships 3.2, so keep this portable.
 for side in old new; do
-  tgz="$OUT/$side/agents-audit-0.4.4.tgz"
+  if [ "$side" = "old" ]; then tgz="$OLD_AGENTS_AUDIT_TGZ"; else tgz="$NEW_AGENTS_AUDIT_TGZ"; fi
+  mkdir -p "$OUT/$side"
   tar -tzf "$tgz" | sed 's|^\./||' | sort > "$OUT/$side/files.txt"
   tar -xOzf "$tgz" package/package.json > "$OUT/$side/manifest.json"
   shasum -a 256 "$tgz" | cut -d' ' -f1 > "$OUT/$side/tarball.sha256"

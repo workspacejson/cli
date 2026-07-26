@@ -22,3 +22,6 @@ audit-output/
 agents-workspace-cannon-repo/
 audit-findings/
 shared-baseline-audit-2026-05-10.md
+
+# parity harness cache (cloned frozen source + packed candidates)
+.parity-cache/
