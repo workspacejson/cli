@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - name: Architecture and clean-room guards
+        run: pnpm run check:architecture
+
+      - name: Architecture guard red tests
+        run: node scripts/check-architecture.test.mjs
+
+      - name: Typecheck all packages
+        run: pnpm -r typecheck
+
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Run tests
+        run: pnpm -r test
+
+      - name: Verify package tarballs
+        run: pnpm run release:verify-packs
+
+      # This repository owns and exports agents-audit only. @workspacejson/spec
+      # and @workspacejson/rules are consumed as released dependencies and are
+      # verified by workspacejson/standard, not here.
+      - name: Validate package exports
+        run: node -e "import('agents-audit')"
+
+      - name: Run agents-audit on this repo
+        run: node packages/agents-audit/dist/cli.js scan . --fail-on error

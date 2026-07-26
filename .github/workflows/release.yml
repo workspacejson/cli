@@ -1,0 +1,62 @@
+name: Release (DISABLED — non-authoritative)
+
+# ---------------------------------------------------------------------------
+# PUBLISHING FROM THIS REPOSITORY IS DISABLED.
+#
+# `workspace-json/agents-audit` remains the sole publisher of `agents-audit`
+# until the coordinated authority cutover in META-243. This workflow exists so
+# that the release path is reviewable now and can be enabled deliberately later
+# — it is NOT a working publisher:
+#
+#   * it has no `on:` trigger that can fire (manual dispatch is commented out),
+#   * it holds no npm credential and requests no publish permission,
+#   * the publish step is absent, not merely conditional,
+#   * this repository has no NPM_TOKEN secret configured.
+#
+# Enabling it is META-243's job and requires, in order: standard/CLI parity
+# complete, old workflow disabled, old token revoked, then a least-privilege
+# token granted here for `agents-audit` only.
+#
+# `@workspacejson/cli` must NOT be added to this workflow. It is `private: true`
+# and its identity is undecided until META-236.
+# ---------------------------------------------------------------------------
+
+on:
+  # Intentionally left with no enabled trigger. Do not add `workflow_dispatch`
+  # or `push` here as a convenience — that is the authority transfer itself.
+  workflow_call:
+    inputs:
+      dry_run:
+        description: Verification only. This workflow cannot publish.
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify-only:
+    name: Verify release candidate (cannot publish)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm run check:architecture
+      - run: pnpm -r typecheck
+      - run: pnpm -r build
+      - run: pnpm -r test
+      - run: pnpm run release:verify-packs
+
+      - name: Confirm this workflow is non-authoritative
+        run: |
+          echo "Release candidate verified. Publishing is intentionally not performed here."
+          echo "Publish authority for agents-audit remains with workspace-json/agents-audit until META-243."
+          exit 0

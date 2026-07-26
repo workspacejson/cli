@@ -5,11 +5,18 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
+// Migration note (META-240): in the monorepo this script verified the whole
+// fixed group and derived the release version from packages/spec. This
+// repository publishes neither spec nor rules, so verifying them here would
+// assert authority it does not hold — and would pass even if this repository's
+// own release had failed. It verifies exactly what this repository publishes,
+// and takes its version from that package.
+//
+// @workspacejson/cli is deliberately absent: it is `private: true` and must not
+// appear on the registry. scripts/check-architecture.mjs is what asserts that.
 const version = process.env.WORKSPACEJSON_RELEASE_VERSION
-  ?? JSON.parse(readFileSync(new URL("../packages/spec/package.json", import.meta.url), "utf8")).version;
+  ?? JSON.parse(readFileSync(new URL("../packages/agents-audit/package.json", import.meta.url), "utf8")).version;
 const packages = [
-  { name: "@workspacejson/spec", check: ["npx", "--no-install", "workspacejson-spec", "--help"] },
-  { name: "@workspacejson/rules", check: ["node", "--input-type=module", "-e", "import('@workspacejson/rules')"] },
   { name: "agents-audit", check: ["npx", "--no-install", "agents-audit", "--help"] },
 ];
 

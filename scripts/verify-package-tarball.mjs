@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -39,7 +39,7 @@ try {
   // asset assertion checks the archive's contents, not a packer formatting detail.
   const files = new Set(tar("-tzf", tarballPath).trim().split("\n").filter(Boolean).map(normalizeArchivePath));
   assertNoWorkspaceProtocol(manifest, "package");
-  assertFixedGroupDependencies(manifest);
+  assertStandardDependenciesArePinned(manifest);
   assertRuntimeFiles(manifest, files);
   if (packageName === "agents-audit") assertAgentsAuditBinGenerates(tarballPath);
   console.log(`Verified ${basename(tarballPath)} with ${packer}: packed manifest and runtime files are release-safe.`);
@@ -67,12 +67,22 @@ function assertNoWorkspaceProtocol(value, path) {
   }
 }
 
-function assertFixedGroupDependencies(manifest) {
-  const fixedGroup = new Set(["@workspacejson/spec", "@workspacejson/rules", "agents-audit"]);
+// Migration note (META-240): the monorepo version of this check asserted that
+// spec/rules/agents-audit all carried one fixed-group version, because one
+// repository released all three. This repository releases only agents-audit and
+// consumes the standard packages from the registry, so the invariant that
+// actually protects us now is different: standard dependencies must resolve to
+// an exact published version. A range would let a consumer install this CLI
+// against contract bytes we never tested, and `workspace:`/`file:` would not
+// resolve for a consumer at all.
+function assertStandardDependenciesArePinned(manifest) {
+  const standardOwned = new Set(["@workspacejson/spec", "@workspacejson/rules"]);
+  const exactVersion = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z-.]+)?$/;
   for (const field of ["dependencies", "optionalDependencies", "peerDependencies"]) {
     for (const [name, version] of Object.entries(manifest[field] ?? {})) {
-      if (fixedGroup.has(name) && version !== expectedVersion) {
-        throw new Error(`${packageName} packed ${field}.${name}=${JSON.stringify(version)}; expected ${JSON.stringify(expectedVersion)} for the fixed release group.`);
+      if (!standardOwned.has(name)) continue;
+      if (!exactVersion.test(version)) {
+        throw new Error(`${packageName} packed ${field}.${name}=${JSON.stringify(version)}; standard-owned dependencies must be pinned to an exact published version, not a range or local link.`);
       }
     }
   }
@@ -100,14 +110,19 @@ function assertAgentsAuditBinGenerates(tarballPath) {
   const smokeDirectory = mkdtempSync(join(tmpdir(), "agents-audit-pack-"));
   try {
     writeFileSync(join(smokeDirectory, "package.json"), JSON.stringify({ private: true }));
-    // agents-audit's packed manifest depends on @workspacejson/rules and
-    // @workspacejson/spec at this same fixed-group version, which is not yet
-    // on the npm registry pre-publish. Pack and install those siblings from
-    // disk too, so the install resolves locally instead of hitting the registry.
-    const siblingTarballs = ["../rules", "../spec"].map((relative) =>
-      packSibling(join(packageDirectory, relative), smokeDirectory),
-    );
-    run("npm", ["install", "--ignore-scripts", "--no-package-lock", ...siblingTarballs, tarballPath], smokeDirectory);
+    // Migration note (META-240): the monorepo version of this smoke test packed
+    // `../rules` and `../spec` off disk, because those packages were siblings in
+    // the same repository and were not yet on the registry pre-publish. In this
+    // repository they are neither siblings nor unpublished — they are released
+    // packages owned by workspacejson/standard, and the whole point of the split
+    // is that we consume them the way a real consumer does.
+    //
+    // Default: let npm resolve them from the registry at the exact pinned
+    // version in the packed manifest. Pre-publication coordination (META-243)
+    // can point WORKSPACEJSON_STANDARD_TARBALLS at a directory of packed
+    // standard candidates to test against bytes that are not published yet.
+    const candidateTarballs = standardCandidateTarballs();
+    run("npm", ["install", "--ignore-scripts", "--no-package-lock", ...candidateTarballs, tarballPath], smokeDirectory);
     run("npx", ["--no-install", "agents-audit", "generate"], smokeDirectory);
 
     const artifact = join(smokeDirectory, ".agents", "workspace.json");
@@ -120,17 +135,20 @@ function assertAgentsAuditBinGenerates(tarballPath) {
   }
 }
 
-function packSibling(siblingDirectory, destinationDirectory) {
-  const siblingManifest = JSON.parse(readFileSync(join(siblingDirectory, "package.json"), "utf8"));
-  const siblingTarballName = `${siblingManifest.name.replace(/^@/, "").replaceAll("/", "-")}-${siblingManifest.version}.tgz`;
-  const packArgs = packer === "npm"
-    ? ["pack", "--ignore-scripts", "--pack-destination", destinationDirectory]
-    : ["pack", "--pack-destination", destinationDirectory];
-  const packed = spawnSync(packer, packArgs, { cwd: siblingDirectory, encoding: "utf8" });
-  process.stdout.write(packed.stdout);
-  process.stderr.write(packed.stderr);
-  if (packed.status !== 0) throw new Error(`${packer} pack failed for ${siblingDirectory}.`);
-  return join(destinationDirectory, siblingTarballName);
+function standardCandidateTarballs() {
+  const directory = process.env.WORKSPACEJSON_STANDARD_TARBALLS;
+  if (!directory) return [];
+  if (!existsSync(directory)) {
+    throw new Error(`WORKSPACEJSON_STANDARD_TARBALLS=${directory} does not exist.`);
+  }
+  const tarballs = readdirSync(directory)
+    .filter((file) => file.endsWith(".tgz"))
+    .map((file) => join(directory, file));
+  if (tarballs.length === 0) {
+    throw new Error(`WORKSPACEJSON_STANDARD_TARBALLS=${directory} contains no .tgz candidates.`);
+  }
+  console.log(`Using packed standard candidates from ${directory}: ${tarballs.map((t) => basename(t)).join(", ")}`);
+  return tarballs;
 }
 
 function run(command, args, cwd) {

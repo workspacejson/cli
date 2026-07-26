@@ -7,10 +7,10 @@
   "homepage": "https://www.workspacejson.dev/audit/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/workspace-json/agents-audit.git"
+    "url": "git+https://github.com/workspacejson/cli.git"
   },
   "bugs": {
-    "url": "https://github.com/workspace-json/agents-audit/issues"
+    "url": "https://github.com/workspacejson/cli/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -64,9 +64,9 @@
     "prepublishOnly": "pnpm build && pnpm test && node ../../scripts/verify-package-tarball.mjs"
   },
   "dependencies": {
-    "@workspacejson/rules": "workspace:*",
-    "@workspacejson/spec": "workspace:*",
     "@inquirer/core": "^9.0.0",
+    "@workspacejson/rules": "0.4.4",
+    "@workspacejson/spec": "0.4.4",
     "boxen": "^7.1.1",
     "cli-table3": "^0.6.5",
     "commander": "^12.1.0",
@@ -76,8 +76,9 @@
     "terminal-link": "^3.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
+    "@types/node": "22.19.17",
     "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
     "vitest": "^1.6.0"
   }
 }
