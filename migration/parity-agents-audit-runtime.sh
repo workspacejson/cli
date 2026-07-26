@@ -4,10 +4,19 @@
 #
 # Every load-bearing behavior is PERTURBED: we do not just assert exit 0, we
 # break the precondition and assert the expected failure/movement, on both sides.
+#
+# Usage:  migration/parity-agents-audit-runtime.sh
+#
+# Self-contained: resolves and builds the frozen pre-migration source, builds
+# this repository, packs both, then compares. See migration/parity-lib.sh for
+# the overridable paths.
 set -uo pipefail
 
-SCRATCH="/private/tmp/claude-502/-Users-user1-dev-cli/ed967700-e9b4-4202-b983-6faf9cee9f6d/scratchpad"
-OUT="$SCRATCH/parity"
+# shellcheck source=./parity-lib.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/parity-lib.sh"
+
+parity_prepare_agents_audit
+
 RUN="$OUT/runtime"; rm -rf "$RUN"; mkdir -p "$RUN"
 
 PASS=0; FAIL=0
@@ -27,8 +36,8 @@ install_side () { # $1=side $2=tarball $3...=extra sibling tarballs
   echo "$dir"
 }
 
-OLD_DIR=$(install_side old "$OUT/oldpnpm/agents-audit-0.4.4.tgz")
-NEW_DIR=$(install_side new "$OUT/newpnpm/agents-audit-0.4.4.tgz" "$OUT/newpnpm/workspacejson-cli-0.1.0.tgz")
+OLD_DIR=$(install_side old "$OLD_AGENTS_AUDIT_TGZ")
+NEW_DIR=$(install_side new "$NEW_AGENTS_AUDIT_TGZ" ${NEW_SIBLING_TGZS[@]+"${NEW_SIBLING_TGZS[@]}"})
 
 # Build one canonical fixture repo, then clone it per invocation so old and new
 # always see byte-identical input.

@@ -7,14 +7,41 @@
 
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
-const SCRATCH = "/private/tmp/claude-502/-Users-user1-dev-cli/ed967700-e9b4-4202-b983-6faf9cee9f6d/scratchpad";
+// Paths are derived, never hardcoded. The old side is a clone of the frozen
+// pre-migration source; migration/parity-lib.sh resolves, pins and builds it,
+// and caches it under .parity-cache/ so repeat runs are cheap.
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const PARITY_CACHE = process.env.WORKSPACEJSON_PARITY_CACHE ?? join(REPO_ROOT, ".parity-cache");
+const OLD_CHECKOUT = process.env.WORKSPACEJSON_OLD_CHECKOUT ?? join(PARITY_CACHE, "source-agents-audit");
+
 const SIDES = {
-  old: join(SCRATCH, "source-agents-audit/packages/cli"),
-  new: join(SCRATCH, "cli-extract/packages/datahub-adapter"),
+  old: join(OLD_CHECKOUT, "packages/cli"),
+  new: join(REPO_ROOT, "packages/datahub-adapter"),
 };
+
+for (const [side, dir] of Object.entries(SIDES)) {
+  if (!existsSync(join(dir, "package.json"))) {
+    console.error(`\nERROR: missing the ${side} side at ${dir}\n`);
+    console.error(side === "old"
+      ? "Run migration/parity-lib.sh's bootstrap first — the simplest way is:\n"
+        + "  bash -c 'source migration/parity-lib.sh && parity_resolve_old_checkout && parity_build_old'\n"
+        + "or point WORKSPACEJSON_OLD_CHECKOUT at an existing clone of the frozen source.\n"
+      : "The DataHub adapter has been extracted from this repository (META-248).\n"
+        + "Re-run this harness from workspacejson/datahub-agent against its candidate.\n");
+    process.exit(1);
+  }
+  if (!existsSync(join(dir, "dist/index.js"))) {
+    console.error(`\nERROR: ${side} side is not built (${join(dir, "dist/index.js")} missing).`);
+    console.error(side === "old"
+      ? "Build the frozen source: (cd " + OLD_CHECKOUT + " && pnpm install --no-frozen-lockfile && pnpm -r build)\n"
+      : "Build this repository: pnpm install && pnpm -r build\n");
+    process.exit(1);
+  }
+}
 
 let pass = 0, fail = 0;
 const failures = [];

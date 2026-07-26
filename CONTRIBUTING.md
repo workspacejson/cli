@@ -27,12 +27,40 @@ node packages/agents-audit-compat/dist/cli.js scan .
 node packages/cli/dist/cli.js generate --check
 ```
 
+## Parity harnesses — the compatibility gate
+
+`agents-audit` is a frozen compatibility bridge. Anything touching its command
+surface, exit codes, output or exports must be measured against the frozen
+pre-migration source, not just against the current tests.
+
+```bash
+migration/parity-agents-audit-runtime.sh   # command + perturbed behavior parity
+migration/parity-agents-audit-pack.sh      # packed-artifact and manifest parity
+node migration/parity-datahub-shim.mjs     # DataHub adapter parity
+```
+
+They are self-contained. On first run the bash harnesses clone the frozen source
+at its recorded SHA, build it, build this repository, and pack both sides; the
+clone is cached under `.parity-cache/` (gitignored), so later runs take seconds.
+The Node harness reuses that same cache and tells you what to run if it is
+missing.
+
+Overridable via environment: `WORKSPACEJSON_OLD_CHECKOUT` to point at an
+existing clone, `WORKSPACEJSON_PARITY_OUT` for the working directory,
+`WORKSPACEJSON_SKIP_BUILD=1` to reuse existing builds.
+
+**Expected results today:** runtime `27/29` with two recorded intentional
+differences from META-236's vendor-notice ruling, and the DataHub adapter
+`35/35`. A third difference means you changed something you should not have —
+or you owe it an explicit intentional-difference record.
+
 ## Change Expectations
 
 - Update package READMEs when public APIs change
 - Update `CHANGELOG.md` for repository-level changes and
-  `packages/agents-audit/CHANGELOG.md` for package release notes
-- Keep the CLI contract documented in `packages/agents-audit/README.md`
+  `packages/agents-audit-compat/CHANGELOG.md` for package release notes
+- Keep the CLI contract documented in `packages/cli/README.md`
+- Re-run the parity harnesses before changing anything `agents-audit` exposes
 - Add a changeset for anything user-facing in `agents-audit`
 
 ## Boundaries enforced in CI
