@@ -21,7 +21,7 @@ const cases = [
   {
     name: "clean-room: @marcelle-labs import",
     expect: "clean-room",
-    mutate: (root) => write(join(root, "packages/agents-audit/src/violation.ts"),
+    mutate: (root) => write(join(root, "packages/agents-audit-compat/src/violation.ts"),
       `import { thing } from '@marcelle-labs/private-core';\nexport const x = thing;\n`),
   },
   {
@@ -33,13 +33,13 @@ const cases = [
   {
     name: "clean-room: workspace.vreko.json assumption",
     expect: "clean-room",
-    mutate: (root) => write(join(root, "packages/agents-audit/src/violation.ts"),
+    mutate: (root) => write(join(root, "packages/agents-audit-compat/src/violation.ts"),
       `export const sidecar = '.agents/workspace.vreko.json';\n`),
   },
   {
     name: "copied-schema: normative schema copied into the CLI repo",
     expect: "copied-schema",
-    mutate: (root) => write(join(root, "packages/agents-audit/schema/v1.json"), JSON.stringify({
+    mutate: (root) => write(join(root, "packages/agents-audit-compat/schema/v1.json"), JSON.stringify({
       $schema: "https://json-schema.org/draft/2020-12/schema",
       $id: "https://workspacejson.dev/schema/v1.json",
       title: "workspace.json",

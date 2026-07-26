@@ -3,12 +3,33 @@
 This file records **repository-level** history for the CLI repository. Package
 release notes live with their packages:
 
-* [`packages/agents-audit/CHANGELOG.md`](./packages/agents-audit/CHANGELOG.md) — `agents-audit`
+* [`packages/cli/CHANGELOG.md`](./packages/cli/CHANGELOG.md) — `@workspacejson/cli`
+* [`packages/agents-audit-compat/CHANGELOG.md`](./packages/agents-audit-compat/CHANGELOG.md) — `agents-audit`
 
 ## [Unreleased]
 
 ### Changed
 
+- **Restructured to the ratified neutral architecture (META-236 → META-247).**
+  `packages/cli/` is now `@workspacejson/cli`, the neutral producer with binary
+  `workspacejson`. `packages/agents-audit/` became
+  `packages/agents-audit-compat/`, a frozen compatibility bridge that keeps the
+  `agents-audit` package name, binary, commands and all nine public exports and
+  delegates generation to the neutral package. The migrated DataHub/dbt adapter
+  moved to `packages/datahub-adapter/` and is staged pending extraction to
+  `workspacejson/datahub-agent` (META-248) — it is not durable architecture
+  here. Compatibility was proven by the parity harnesses; the only behavioral
+  difference is the ratified vendor-notice change, recorded in
+  `migration/parity-expected-differences.txt`.
+- **The CLI now compiles against real standard-owned types (META-244).** A
+  handwritten `declare module '@workspacejson/spec'` in `types/ambient.d.ts`
+  shadowed the published declarations and hid the entire v0.4 contract —
+  `WorkspaceJsonV4`, `validateV4`, `CoChangeEntry`, `FragilityEntry` — from this
+  repository's compiler. Removed, with a guard rejecting reintroduction.
+- **Parity harnesses are now executable gates, enforced in CI.** They previously
+  exited 0 regardless of result. They now fail when the set of differences
+  changes in either direction — a new difference, or a ratified one silently
+  disappearing.
 - Repository created by history-preserving extraction from
   `workspace-json/agents-audit@e47eb1b8556c4f361db9a78190a2f36b400756e8`
   (META-240). No package was renamed, no public command changed, and no package

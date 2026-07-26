@@ -15,7 +15,7 @@ import { spawnSync } from "node:child_process";
 // @workspacejson/cli is deliberately absent: it is `private: true` and must not
 // appear on the registry. scripts/check-architecture.mjs is what asserts that.
 const version = process.env.WORKSPACEJSON_RELEASE_VERSION
-  ?? JSON.parse(readFileSync(new URL("../packages/agents-audit/package.json", import.meta.url), "utf8")).version;
+  ?? JSON.parse(readFileSync(new URL("../packages/agents-audit-compat/package.json", import.meta.url), "utf8")).version;
 const packages = [
   { name: "agents-audit", check: ["npx", "--no-install", "agents-audit", "--help"] },
 ];
