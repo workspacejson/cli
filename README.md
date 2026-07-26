@@ -83,13 +83,31 @@ Requires Node.js >= 20.
 
 ## Publishing
 
-**Publishing from this repository is disabled.** The release workflow has no
-enabled trigger, holds no npm credential and contains no publish step.
-`workspace-json/agents-audit` remains the sole publisher of `agents-audit` until
-the coordinated authority cutover in META-243.
+The two packages release independently, on disjoint tag namespaces, so no single
+workflow ever holds authority over both.
 
-`@workspacejson/cli` has never been published. Do not document
-`npm install @workspacejson/cli` as if it works.
+| Package | Publisher | Tag |
+| -- | -- | -- |
+| `@workspacejson/cli` | this repository, [`publish-cli.yml`](./.github/workflows/publish-cli.yml) | `cli-v*.*.*` |
+| `agents-audit` | `workspace-json/agents-audit` until META-243 | `agents-audit-v*.*.*` once cut over |
+
+To release `@workspacejson/cli`:
+
+```bash
+pnpm changeset version          # bumps packages/cli/package.json + CHANGELOG
+git commit -am "release: ..." && git push
+git tag cli-v0.1.0 && git push --tags
+```
+
+The tag is both the trigger and the source of truth for the version: it is
+validated as clean semver and asserted equal to the manifest before anything
+reaches the registry, so a tag that disagrees with `package.json` fails the run
+rather than publishing a version nobody named.
+
+**`agents-audit` cannot be published from here yet.** `workspace-json/agents-audit`
+remains its sole publisher until the coordinated authority cutover in META-243,
+which requires, in order: parity complete, the old workflow disabled, the old
+token revoked, then a least-privilege token granted here.
 
 ## Provenance
 

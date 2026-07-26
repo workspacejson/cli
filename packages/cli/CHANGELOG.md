@@ -1,11 +1,13 @@
 # Changelog — `@workspacejson/cli`
 
-## [Unreleased]
+## [0.1.0] - Unreleased
 
-**This package has never been published.** It is not on npm, and must not be
-documented as installable until the coordinated publish-authority cutover
-(META-243). The working public command today is `npx agents-audit generate`,
-which runs this same producer implementation.
+First published release. The version starts at `0.1.0` rather than continuing
+`agents-audit`'s numbering because this is not that package renamed: it is the
+producer `agents-audit` now depends on, both ship from this repository on
+independent tags, and this binary carries a deliberately smaller surface — no
+`scan`, and no config file (see Notes). Sharing a version line would promise a
+parity that does not exist.
 
 ### Changed
 
