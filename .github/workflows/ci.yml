@@ -81,11 +81,14 @@ jobs:
           cache: pnpm
 
       # The old side is pinned to an immutable commit, so the SHA is a perfect
-      # cache key — it can never go stale for the wrong reason.
+      # cache key — it can never go stale for the wrong reason. The path must
+      # match parity-lib.sh's default: the cache deliberately lives OUTSIDE the
+      # working tree so the frozen-source clone never trips the architecture
+      # guard (see PR #5); caching the old in-repo path saved nothing.
       - name: Restore frozen-source cache
         uses: actions/cache@v4
         with:
-          path: .parity-cache
+          path: ~/.cache/workspacejson/cli-parity
           key: parity-e47eb1b8556c4f361db9a78190a2f36b400756e8-${{ runner.os }}-node22
 
       - run: pnpm install --no-frozen-lockfile
