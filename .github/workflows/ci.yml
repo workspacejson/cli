@@ -31,11 +31,15 @@ jobs:
       - name: Architecture guard red tests
         run: node scripts/check-architecture.test.mjs
 
-      - name: Typecheck all packages
-        run: pnpm -r typecheck
-
+      # Build precedes typecheck. `agents-audit` consumes @workspacejson/cli's
+      # emitted declarations, so on a clean checkout those must exist before tsc
+      # can resolve them. pnpm builds in topological order, so the neutral
+      # package is built first.
       - name: Build all packages
         run: pnpm -r build
+
+      - name: Typecheck all packages
+        run: pnpm -r typecheck
 
       - name: Run tests
         run: pnpm -r test
