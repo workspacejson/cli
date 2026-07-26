@@ -50,6 +50,47 @@ describe('buildFileIndex', () => {
   it('returns an empty index for a repository with no tracked files', () => {
     expect(buildFileIndex([])).toEqual({});
   });
+
+  it('excludes the producer\'s own artifact, so the index converges', () => {
+    // Regression, caught by the META-198 conformance suite. Run 1 emits N keys;
+    // run 2 emitted N+1 because `.agents/workspace.json` now existed on disk
+    // and the scanner reported it. The material projection therefore changed
+    // with no repository change, which breaks `generate --check` as a CI gate
+    // on every repository's first run after adoption.
+    const files = ['src/a.ts', '.agents/workspace.json'];
+    expect(Object.keys(buildFileIndex(files, ['.agents/workspace.json']))).toEqual(['src/a.ts']);
+
+    // Convergence is the property that actually matters: the index a repo
+    // produces before its artifact exists must equal the one produced after.
+    expect(JSON.stringify(buildFileIndex(['src/a.ts'], ['.agents/workspace.json'])))
+      .toBe(JSON.stringify(buildFileIndex(files, ['.agents/workspace.json'])));
+  });
+
+  it('excludes a producer-owned directory and everything beneath it', () => {
+    const files = [
+      'src/a.ts',
+      '.agents/audit-history/2026-01-01.json',
+      '.agents/audit-history/nested/2026-01-02.json',
+    ];
+    expect(Object.keys(buildFileIndex(files, ['.agents/audit-history']))).toEqual(['src/a.ts']);
+  });
+
+  it('does not exclude a repository file that merely shares a prefix', () => {
+    // `includes()` or a bare `startsWith` without the separator would drop this
+    // real file, silently removing evidence the consumer needs.
+    const files = ['.agents/audit-history-notes.md', '.agents/audit-history/run.json'];
+    expect(Object.keys(buildFileIndex(files, ['.agents/audit-history']))).toEqual([
+      '.agents/audit-history-notes.md',
+    ]);
+  });
+
+  it('indexes everything when no producer outputs are declared', () => {
+    // The parameter is optional, so existing callers keep their behavior.
+    expect(Object.keys(buildFileIndex(['src/a.ts', '.agents/workspace.json']))).toEqual([
+      '.agents/workspace.json',
+      'src/a.ts',
+    ]);
+  });
 });
 
 describe('buildFrameworkManifest', () => {
