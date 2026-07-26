@@ -91,6 +91,34 @@ for (const file of sourceFiles) {
 }
 
 // ---------------------------------------------------------------------------
+// 2b. No ambient re-declaration of a standard-owned package (META-244).
+//
+// Ambient module declarations win over node_modules typings, so a handwritten
+// `declare module '@workspacejson/spec'` silently shadows the real published
+// contract — this repository shipped exactly that until META-244, and it hid
+// the entire v0.4 surface from the compiler. workspacejson/standard owns those
+// types; consume them, never restate them.
+// ---------------------------------------------------------------------------
+const AMBIENT_FIRST_PARTY = /declare\s+module\s+['"]@workspacejson\/[^'"]+['"]/;
+
+// Comments are stripped first: this rule is about what the compiler sees, and
+// the note in types/ambient.d.ts explaining why the shadow was removed
+// necessarily quotes the very syntax it forbids.
+function stripComments(source) {
+  return source.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^[ \t]*\/\/.*$/gm, "");
+}
+
+for (const file of sourceFiles) {
+  if (SELF_REFERENTIAL.has(file)) continue;
+  if (!file.endsWith(".d.ts")) continue;
+  const match = stripComments(readFileSync(file, "utf8")).match(AMBIENT_FIRST_PARTY);
+  if (match) {
+    report("shadowed-standard-types", file,
+      `${match[0]} re-declares a standard-owned contract; consume the published declarations instead (META-244)`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // 3. No host-integration or site implementation in the CLI repository.
 // ---------------------------------------------------------------------------
 const FOREIGN_DIRECTORIES = [
