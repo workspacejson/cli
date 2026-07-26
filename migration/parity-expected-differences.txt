@@ -37,14 +37,38 @@ exports
 #
 # v0.4 is a strict superset of v0.3 (workspacejson/standard docs/versioning.md),
 # and the regenerated artifact validates against published @workspacejson/spec@0.4.4
-# via both validate() and validateV4(). Verified diffs are ONLY:
-#     "specVersion": "0.3" -> "0.4"
-#     + "conventions": [...]
+# via both validate() and validateV4().
+#
+# META-195 then populated the two fields the producer had been emitting empty or
+# unbacked. Verified diffs are now ONLY:
+#     "specVersion": "0.3" -> "0.4"                      (META-203)
+#     + "conventions": [...]                             (META-203)
+#     "fileIndex": {} -> the tracked file inventory      (META-195)
+#     "frameworkManifest": corroborated entries only     (META-195)
+#
+# On fileIndex: keys are repository-root-relative POSIX paths from `git ls-files`,
+# entries are empty. The per-file values the schema names are all behavioral and
+# only derivable from git history, which META-195's experimental boundary keeps
+# out of the stable contract pending the VR-526 ruling.
+#
+# On frameworkManifest: the old producer emitted every AGENTS.md framework token
+# at a hardcoded confidence 0.5 — below the >= 0.7 floor the schema documents for
+# this field, so a consumer filtering at the threshold read an empty manifest.
+# Entries are now those a declared manifest dependency corroborates by exact
+# case-insensitive name, at 0.9. The count can therefore DROP against the frozen
+# source: a token nothing backs is omitted rather than published at a confidence
+# that fails its own contract. Matching is exact because containment is not
+# detection — `vite` is a substring of `vitest`, so a repository installing only
+# vitest would have published `vite` at 0.9. This under-reports tokens whose
+# dependency is named differently (next.js -> next, tailwind -> tailwindcss),
+# because @workspacejson/rules keeps its token -> dependency map internal and
+# re-typing it here would fork standard-owned knowledge.
+#
 # The producer stamp, manual preservation, refusal/force behavior, exit codes and
 # every other command are unchanged.
 agents-audit generate --dry-run
 
-# Same change, observed on the written artifact rather than the printed
-# projection. `generate`, `generate --check` and `generate --force` console
-# output are all unchanged; only the artifact bytes differ.
+# Same changes (META-203 and META-195), observed on the written artifact rather
+# than the printed projection. `generate`, `generate --check` and `generate
+# --force` console output are all unchanged; only the artifact bytes differ.
 artifact-equivalence

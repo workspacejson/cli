@@ -19,6 +19,7 @@ import {
 } from '@workspacejson/rules';
 import type { RuleContext } from '@workspacejson/rules';
 import { DEFAULT_PRODUCER_CONFIG, detectCiProvider, type ProducerConfig } from './config.js';
+import { buildFileIndex, buildFrameworkManifest } from './evidence.js';
 import { findAgentsMdPath, readTextOrEmpty } from './fs.js';
 
 const _require = createRequire(import.meta.url);
@@ -213,7 +214,7 @@ export async function generateWorkspaceJson(
       specVersion: '0.4',
       generatedAt: now,
       by: { name: producer.name, version: producer.version },
-      frameworkManifest: agentsMd.frameworkTokens.map((name) => ({ name, confidence: 0.5 })),
+      frameworkManifest: buildFrameworkManifest(agentsMd.frameworkTokens, repo.manifests),
       // Restored from the expression a3fa85a deleted (META-203). Sorted by
       // source line because `conventions` sits INSIDE the material projection
       // and `stable()` preserves array order — unsorted output would make every
@@ -222,7 +223,7 @@ export async function generateWorkspaceJson(
         .slice()
         .sort((a, b) => a.lineNumber - b.lineNumber)
         .map((c) => ({ raw: c.raw, type: c.type, canonical: c.canonical })),
-      fileIndex: {},
+      fileIndex: buildFileIndex(repo.files),
       topology: {
         packageCount: repo.packages.length,
         type: repo.isMonorepo ? 'monorepo' : 'single-package',
