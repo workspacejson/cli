@@ -17,8 +17,11 @@ name: Release (DISABLED — non-authoritative)
 # complete, old workflow disabled, old token revoked, then a least-privilege
 # token granted here for `agents-audit` only.
 #
-# `@workspacejson/cli` must NOT be added to this workflow. It is `private: true`
-# and its identity is undecided until META-236.
+# `@workspacejson/cli` must NOT be added to this workflow. Its identity was
+# settled under META-236 and it is now published by `publish-cli.yml`, on its own
+# `cli-v*.*.*` tag namespace and its own least-privilege credential. Adding it
+# here would give one workflow authority over two packages with different
+# cutover states, which is the coupling the tag namespaces exist to prevent.
 # ---------------------------------------------------------------------------
 
 on:

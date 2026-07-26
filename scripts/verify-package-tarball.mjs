@@ -112,11 +112,13 @@ function normalizeArchivePath(file) {
   return file.replace(/^\.\//, "").replaceAll("\\", "/").replace(/\/{2,}/g, "/");
 }
 
-// Packs a workspace sibling this tarball depends on but which is not yet on the
-// registry, so the smoke install can resolve it. `agents-audit` depends on
-// @workspacejson/cli, which is deliberately unpublished until the authority
-// cutover (META-243) — without this the smoke test would fail on a package that
-// is simply not released yet, rather than on a real defect.
+// Packs a workspace sibling this tarball depends on, so the smoke install
+// resolves the sibling bytes in THIS working tree rather than whatever is on the
+// registry. `agents-audit` depends on @workspacejson/cli; originally this
+// existed because the CLI was unpublished, but it is load-bearing beyond that.
+// The two packages release on independent tags, so at any moment the registry
+// may hold a CLI older than the one `agents-audit` was built and tested against.
+// Resolving the sibling from disk is what makes this a test of the candidate.
 function packUnpublishedSiblings(manifest, destinationDirectory) {
   const packagesRoot = resolve(packageDirectory, "..");
   const tarballs = [];
