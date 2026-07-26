@@ -322,15 +322,18 @@ describe('generateWorkspaceJson — fileIndex and frameworkManifest (META-195)',
     expect(second.written).toBe(false);
   });
 
-  it('does not drift when only wall-clock time moves', async () => {
+  it('emits byte-identical fields on repeated generation of an unchanged repository', async () => {
     const root = await trackedRepo({ 'src/a.ts': 'export const a = 1;\n' });
 
     const first = await generateWorkspaceJson(root, {}, { dryRun: true });
     const later = await generateWorkspaceJson(root, {}, { dryRun: true });
 
-    // `RepoState.gitHistory` is a moving 30-day window and its no-git fallback
-    // is "every file". Neither field may derive from it, or an untouched
-    // repository reports drift as commits age out.
+    // This does NOT prove immunity to wall-clock movement — git runs in a
+    // subprocess, so no in-process clock fake reaches `git log --since=30 days
+    // ago`. That immunity is structural instead: neither builder is passed
+    // `RepoState.gitHistory`, which is the moving 30-day window whose no-git
+    // fallback is "every file". Their signatures take only `files` and
+    // `(tokens, manifests)`, so there is nothing time-varying to read.
     expect(JSON.stringify(first.content.generated.fileIndex))
       .toBe(JSON.stringify(later.content.generated.fileIndex));
     expect(JSON.stringify(first.content.generated.frameworkManifest))

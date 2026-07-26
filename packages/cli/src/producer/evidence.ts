@@ -58,27 +58,39 @@ export function buildFileIndex(files: string[]): Record<string, FileIndexEntry> 
  * `0.5` — below that floor, universally — which meant a consumer filtering at
  * the documented threshold read an empty manifest.
  *
- * Corroboration is case-insensitive substring containment against the union of
- * manifest dependencies, matching the fallback branch `frameworkDrift` already
- * uses so the emitter and the rule that audits it agree. It deliberately
- * under-reports: `@workspacejson/rules` keeps its token -> dependency variant
- * map internal (neither `FRAMEWORK_MANIFEST_MAP` nor `KNOWN_FRAMEWORKS` is
- * exported), and re-typing that table here would fork standard-owned knowledge
- * — the split-brain META-200 exists to prevent. Tokens whose dependency is
- * named differently (`next.js` -> `next`, `nestjs` -> `@nestjs/core`) are
- * therefore omitted rather than guessed. Omission is the safe failure: absent,
- * not wrong. Exporting the map from `workspacejson/standard` closes the gap.
+ * Corroboration is case-insensitive EXACT equality against the union of
+ * manifest dependencies. Substring containment was tried and is wrong at this
+ * confidence: `vite` is contained in `vitest`, so a repository that installs
+ * only `vitest` — an entirely ordinary setup — would publish `vite` at 0.9.
+ * Lexical overlap is not detection, and a false entry is far worse here than a
+ * missing one, because 0.9 tells a consumer to trust it.
+ *
+ * It deliberately under-reports. `@workspacejson/rules` keeps its token ->
+ * dependency variant map internal (neither `FRAMEWORK_MANIFEST_MAP` nor
+ * `KNOWN_FRAMEWORKS` is exported), and re-typing that table here would fork
+ * standard-owned knowledge — the split-brain META-200 exists to prevent. So a
+ * token whose dependency is published under a different name (`next.js` ->
+ * `next`, `nestjs` -> `@nestjs/core`, `drizzle` -> `drizzle-orm`, `tailwind` ->
+ * `tailwindcss`) is omitted rather than guessed. Omission is the safe failure:
+ * absent, not wrong. Exporting that map from `workspacejson/standard` is the
+ * real fix and is deliberately left to a follow-up, so this does not couple a
+ * producer change to a cross-repository contract change.
+ *
+ * Note this is NOT the same test `frameworkDrift` performs. That rule looks a
+ * token up in the variant map, skips it entirely when unmapped, and only then
+ * compares — so it never matches on a raw token the way this must.
  */
 export function buildFrameworkManifest(
   frameworkTokens: string[],
   manifests: RepoState['manifests'],
 ): FrameworkEntry[] {
-  const dependencies = manifests.flatMap((manifest) => manifest.dependencies).map((d) => d.toLowerCase());
+  const dependencies = new Set(
+    manifests.flatMap((manifest) => manifest.dependencies).map((d) => d.toLowerCase()),
+  );
+  // Normalize before deduping so `React` and `react` cannot both survive.
   const corroborated = [
     ...new Set(
-      frameworkTokens.filter((token) =>
-        dependencies.some((dependency) => dependency.includes(token.toLowerCase())),
-      ),
+      frameworkTokens.map((token) => token.toLowerCase()).filter((token) => dependencies.has(token)),
     ),
   ].sort();
   return corroborated.map((name) => ({ name, confidence: 0.9 }));

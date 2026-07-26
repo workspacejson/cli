@@ -28,9 +28,11 @@ describe('buildFileIndex', () => {
     expect(keys).toEqual(Object.keys(buildFileIndex([...scrambled].reverse())));
   });
 
-  it('is byte-stable across repeated builds of the same input', () => {
-    const files = ['src/b.ts', 'src/a.ts', 'README.md'];
-    expect(JSON.stringify(buildFileIndex(files))).toBe(JSON.stringify(buildFileIndex(files)));
+  it('is byte-stable regardless of the order the scanner reports files in', () => {
+    // Serialized bytes, not just key sets: `git ls-files` order is not a
+    // contract, and JSON.stringify writes insertion order.
+    const files = ['src/b.ts', 'README.md', 'src/a.ts'];
+    expect(JSON.stringify(buildFileIndex(files))).toBe(JSON.stringify(buildFileIndex([...files].reverse())));
   });
 
   it('claims nothing about a file it cannot observe', () => {
@@ -70,8 +72,31 @@ describe('buildFrameworkManifest', () => {
 
   it('corroborates case-insensitively and across every manifest', () => {
     expect(buildFrameworkManifest(['django', 'Flask'], manifests(['Django'], ['flask']))).toEqual([
-      { name: 'Flask', confidence: 0.9 },
       { name: 'django', confidence: 0.9 },
+      { name: 'flask', confidence: 0.9 },
+    ]);
+  });
+
+  it('does not accept a dependency that merely contains the token', () => {
+    // Substring containment is not detection. `vite` is contained in `vitest`,
+    // and a repository that installs only vitest is entirely ordinary — so
+    // substring matching published a framework the repository does not use, at
+    // the confidence that tells a consumer to trust it.
+    expect(buildFrameworkManifest(['vite'], manifests(['vitest']))).toEqual([]);
+    expect(buildFrameworkManifest(['rest'], manifests(['interest']))).toEqual([]);
+    expect(buildFrameworkManifest(['next.js'], manifests(['next']))).toEqual([]);
+  });
+
+  it('still corroborates the token when the dependency is exactly it', () => {
+    // The guard above must not be so strict that nothing survives it.
+    expect(buildFrameworkManifest(['vite'], manifests(['vite', 'vitest']))).toEqual([
+      { name: 'vite', confidence: 0.9 },
+    ]);
+  });
+
+  it('dedupes tokens that differ only by case', () => {
+    expect(buildFrameworkManifest(['React', 'react'], manifests(['react']))).toEqual([
+      { name: 'react', confidence: 0.9 },
     ]);
   });
 
@@ -84,8 +109,14 @@ describe('buildFrameworkManifest', () => {
     expect(entries).toEqual(buildFrameworkManifest(['vite', 'zod', 'react'], deps));
   });
 
-  it('dedupes overlapping tokens', () => {
-    const entries = buildFrameworkManifest(['tailwind', 'tailwind'], manifests(['tailwindcss']));
-    expect(entries).toEqual([{ name: 'tailwind', confidence: 0.9 }]);
+  it('omits a token whose dependency is published under a different name', () => {
+    // `tailwind` is a known token but the package is `tailwindcss`, so exact
+    // matching drops it. This is the accepted cost of not forking the variant
+    // map out of @workspacejson/rules: absent, not wrong. When AGENTS.md says
+    // "tailwindcss" the parser also yields that token, which does corroborate.
+    expect(buildFrameworkManifest(['tailwind'], manifests(['tailwindcss']))).toEqual([]);
+    expect(buildFrameworkManifest(['tailwind', 'tailwindcss'], manifests(['tailwindcss']))).toEqual([
+      { name: 'tailwindcss', confidence: 0.9 },
+    ]);
   });
 });
