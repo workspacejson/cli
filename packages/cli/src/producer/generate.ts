@@ -4,7 +4,7 @@ import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { WorkspaceJsonV3 } from '@workspacejson/spec';
+import type { WorkspaceJsonV4 } from '@workspacejson/spec';
 import {
   AgentsMdParser,
   RepoScanner,
@@ -69,7 +69,7 @@ export interface GenerateResult {
   drift: boolean;
   preservedManual: boolean;
   invalidFileMoved?: string;
-  content: WorkspaceJsonV3;
+  content: WorkspaceJsonV4;
 }
 
 export class GenerateRefusalError extends Error {}
@@ -85,7 +85,7 @@ function generatedProjection(generated: Record<string, unknown>): string {
   return stable(rest);
 }
 
-function isMateriallyCurrent(existing: WorkspaceJsonV3, next: WorkspaceJsonV3): boolean {
+function isMateriallyCurrent(existing: WorkspaceJsonV4, next: WorkspaceJsonV4): boolean {
   return (
     generatedProjection(existing.generated as Record<string, unknown>) ===
       generatedProjection(next.generated as Record<string, unknown>) &&
@@ -113,7 +113,7 @@ async function moveInvalidArtifact(outputPath: string): Promise<string> {
   return movedPath;
 }
 
-export async function writeWorkspaceAtomically(outputPath: string, content: WorkspaceJsonV3): Promise<void> {
+export async function writeWorkspaceAtomically(outputPath: string, content: WorkspaceJsonV4): Promise<void> {
   await mkdir(dirname(outputPath), { recursive: true });
   const temporary = resolve(dirname(outputPath), `.${randomUUID()}.workspace.json.tmp`);
   try {
@@ -184,7 +184,7 @@ export async function generateWorkspaceJson(
     : undefined;
 
   const outputPath = resolve(resolvedRoot, '.agents/workspace.json');
-  let existing: WorkspaceJsonV3 | undefined;
+  let existing: WorkspaceJsonV4 | undefined;
   let invalidFileMoved: string | undefined;
   if (existsSync(outputPath)) {
     let parsed: unknown;
@@ -203,17 +203,25 @@ export async function generateWorkspaceJson(
         if (!options.force || options.dryRun || options.check) throw new GenerateRefusalError(message);
         invalidFileMoved = await moveInvalidArtifact(outputPath);
       } else {
-        existing = parsed as WorkspaceJsonV3;
+        existing = parsed as WorkspaceJsonV4;
       }
     }
   }
-  const workspace: WorkspaceJsonV3 = {
+  const workspace: WorkspaceJsonV4 = {
     manual: existing?.manual ?? {},
     generated: {
-      specVersion: '0.3',
+      specVersion: '0.4',
       generatedAt: now,
       by: { name: producer.name, version: producer.version },
       frameworkManifest: agentsMd.frameworkTokens.map((name) => ({ name, confidence: 0.5 })),
+      // Restored from the expression a3fa85a deleted (META-203). Sorted by
+      // source line because `conventions` sits INSIDE the material projection
+      // and `stable()` preserves array order — unsorted output would make every
+      // run report drift and break `generate --check` as a CI gate.
+      conventions: agentsMd.conventions
+        .slice()
+        .sort((a, b) => a.lineNumber - b.lineNumber)
+        .map((c) => ({ raw: c.raw, type: c.type, canonical: c.canonical })),
       fileIndex: {},
       topology: {
         packageCount: repo.packages.length,

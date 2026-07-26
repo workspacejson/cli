@@ -164,3 +164,65 @@ describe('generateWorkspaceJson producer conformance', () => {
     expect((await readdir(directory)).filter((entry) => String(entry).endsWith('.workspace.json.tmp'))).toEqual([]);
   });
 });
+
+describe('generateWorkspaceJson — conventions emitter (META-203)', () => {
+  const clean: string[] = [];
+
+  function repo(): string {
+    const path = resolve(process.cwd(), `.tmp-conv-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    clean.push(path);
+    return path;
+  }
+
+  afterEach(async () => {
+    await Promise.all(clean.splice(0).map((path) => rm(path, { recursive: true, force: true })));
+  });
+
+  it('emits conventions detected from AGENTS.md, shaped {raw,type,canonical}', async () => {
+    const root = repo();
+    await mkdir(root, { recursive: true });
+    await writeFile(resolve(root, 'AGENTS.md'), [
+      '# Agents', '', '## Conventions', '',
+      '- Directories use kebab-case',
+      '- Components use PascalCase filenames', '',
+    ].join('\n'), 'utf8');
+
+    const result = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const conventions = result.content.generated.conventions as Array<Record<string, unknown>>;
+
+    expect(Array.isArray(conventions)).toBe(true);
+    expect(conventions.length).toBeGreaterThan(0);
+    for (const entry of conventions) {
+      expect(Object.keys(entry).sort()).toEqual(['canonical', 'raw', 'type']);
+    }
+  });
+
+  it('orders conventions deterministically, so the drift gate stays usable', async () => {
+    const root = repo();
+    await mkdir(root, { recursive: true });
+    await writeFile(resolve(root, 'AGENTS.md'), [
+      '# Agents', '', '## Conventions', '',
+      '- Directories use kebab-case',
+      '- Components use PascalCase filenames',
+      '- Test files use the *.test.ts suffix', '',
+    ].join('\n'), 'utf8');
+
+    // `conventions` is INSIDE the material projection and `stable()` preserves
+    // array order, so unstable ordering would make every run report drift.
+    const first = await generateWorkspaceJson(root, {}, { dryRun: true });
+    const second = await generateWorkspaceJson(root, {}, { dryRun: true });
+
+    expect(JSON.stringify(first.content.generated.conventions))
+      .toBe(JSON.stringify(second.content.generated.conventions));
+  });
+
+  it('does not emit coChange or fragility — optional in v0.4 and not implemented here', async () => {
+    const root = repo();
+    await mkdir(root, { recursive: true });
+
+    const result = await generateWorkspaceJson(root, {}, { dryRun: true });
+
+    expect(result.content.generated.coChange).toBeUndefined();
+    expect(result.content.generated.fragility).toBeUndefined();
+  });
+});

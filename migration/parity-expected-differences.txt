@@ -30,3 +30,21 @@ agents-audit scan .
 # `renderVrekoUpsell`, so the export set grew. Purely additive — all nine
 # historical exports are still present. A removal here would be a real break.
 exports
+
+# META-203 rewired the conventions emitter and moved the emitted profile from
+# v0.3 to v0.4. `a3fa85a` had deleted the `conventions:` expression and hardcoded
+# specVersion '0.3'; the spec moved to v0.4 and the producer was never rewired.
+#
+# v0.4 is a strict superset of v0.3 (workspacejson/standard docs/versioning.md),
+# and the regenerated artifact validates against published @workspacejson/spec@0.4.4
+# via both validate() and validateV4(). Verified diffs are ONLY:
+#     "specVersion": "0.3" -> "0.4"
+#     + "conventions": [...]
+# The producer stamp, manual preservation, refusal/force behavior, exit codes and
+# every other command are unchanged.
+agents-audit generate --dry-run
+
+# Same change, observed on the written artifact rather than the printed
+# projection. `generate`, `generate --check` and `generate --force` console
+# output are all unchanged; only the artifact bytes differ.
+artifact-equivalence

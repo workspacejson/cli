@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- **Changed:** `generate` now emits `specVersion: "0.4"` and populates
+  `generated.conventions` (META-203). The conventions emitter had been
+  disconnected since `a3fa85a` while the spec moved to v0.4. v0.4 is a strict
+  superset of v0.3, so existing readers are unaffected; readers wanting the new
+  field should check `generated.specVersion === "0.4"`. `coChange` and
+  `fragility` remain unemitted — optional in v0.4. Console output, exit codes,
+  manual-evidence preservation and refusal/force behavior are unchanged.
 - **Changed:** `scan` no longer prints a vendor notice when `.agents/workspace.json` is missing or stale. It now names the command that actually fixes the problem — `agents-audit generate` — and still reports the same validation errors. Ratified in META-236: vendor promotion never enters the neutral producer, and is removed or made opt-in in this compatibility package. Exit codes are unchanged and `scan --json` output is byte-identical, so nothing consuming machine-readable output is affected. Human-readable `scan` output does change; this is recorded as an intentional difference in `migration/parity-expected-differences.txt` and enforced by the CI parity gate.
 - **Added:** `renderMissingArtifactNotice`, the neutral replacement used by `scan`. `renderVrekoUpsell` remains exported and unchanged for API compatibility — it is simply no longer called by the CLI, so callers who want it can still invoke it. This export set is additive; no historical export was removed.
 - `generate --check --dry-run` now fires the drift gate (exit 1, "manual evidence is untouched") instead of the dry-run branch silently winning and exiting 0; the JSON projection is still printed under `--dry-run`. Deferred from 0.4.4 (META-157) because it changes exit-code semantics; landed here as its own reviewed change with regression tests watched red against the pre-change CLI.
