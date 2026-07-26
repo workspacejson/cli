@@ -7,6 +7,17 @@ documented as installable until the coordinated publish-authority cutover
 (META-243). The working public command today is `npx agents-audit generate`,
 which runs this same producer implementation.
 
+### Changed
+
+- **The emitted profile is now v0.4, and `generated.conventions` is populated
+  again (META-203).** `a3fa85a` removed the conventions expression and hardcoded
+  `specVersion: '0.3'` — correct for v0.3, but the spec moved to v0.4 and the
+  producer was never rewired. Conventions are detected by
+  `@workspacejson/rules` and emitted as `{ raw, type, canonical }`, ordered by
+  source line so the output is deterministic. v0.4 is a strict superset of v0.3,
+  so this is additive; `coChange` and `fragility` remain unemitted and are
+  optional in v0.4.
+
 ### Added
 
 - Initial package: the neutral workspace.json producer, binary `workspacejson`.
