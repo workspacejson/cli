@@ -223,7 +223,13 @@ export async function generateWorkspaceJson(
         .slice()
         .sort((a, b) => a.lineNumber - b.lineNumber)
         .map((c) => ({ raw: c.raw, type: c.type, canonical: c.canonical })),
-      fileIndex: buildFileIndex(repo.files),
+      // Producer-owned outputs are excluded: they are this tool's own writes,
+      // not repository evidence, and indexing them makes the artifact
+      // non-convergent. See buildFileIndex for the failure mode.
+      fileIndex: buildFileIndex(repo.files, [
+        relative(resolvedRoot, outputPath),
+        fullConfig.reportDir,
+      ]),
       topology: {
         packageCount: repo.packages.length,
         type: repo.isMonorepo ? 'monorepo' : 'single-package',

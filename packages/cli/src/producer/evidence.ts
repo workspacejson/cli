@@ -42,8 +42,30 @@ function toIndexKey(file: string): string {
  * META-248 joined by `hasOwnProperty(fileIndex, key)` and never read a value,
  * so an empty index made every such join silently return zero rows.
  */
-export function buildFileIndex(files: string[]): Record<string, FileIndexEntry> {
-  const keys = [...new Set(files.map(toIndexKey).filter(Boolean))].sort();
+export function buildFileIndex(
+  files: string[],
+  producerOutputs: readonly string[] = [],
+): Record<string, FileIndexEntry> {
+  // The producer's own output is not repository evidence, and indexing it makes
+  // the artifact non-convergent: run 1 emits 6 keys, run 2 emits 7 because
+  // `.agents/workspace.json` now exists on disk and the scanner sees it. The
+  // material projection therefore changes with no repository change, which
+  // makes `generate --check` fail on every repository's first CI run after
+  // adoption. It self-corrects from run 3 onward, so running `generate` twice
+  // locally hides it entirely — only generate-then-check exposes it, and that
+  // is exactly the CI path. Caught by the META-198 conformance suite.
+  // Entries match either exactly (a file, `.agents/workspace.json`) or as a
+  // directory prefix (`.agents/audit-history` excludes everything beneath it).
+  // A bare `includes()` would be wrong: `.agents/audit-history-notes.md` is a
+  // repository file that merely shares a prefix, and excluding it would drop
+  // real evidence.
+  const excluded = producerOutputs.map(toIndexKey).filter(Boolean);
+  const isProducerOutput = (key: string): boolean =>
+    excluded.some((output) => key === output || key.startsWith(`${output}/`));
+
+  const keys = [...new Set(files.map(toIndexKey).filter(Boolean))]
+    .filter((key) => !isProducerOutput(key))
+    .sort();
   const index: Record<string, FileIndexEntry> = {};
   for (const key of keys) index[key] = {};
   return index;
