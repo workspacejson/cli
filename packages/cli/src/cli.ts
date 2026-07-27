@@ -49,7 +49,17 @@ export async function runCli(argv: string[] = process.argv): Promise<number> {
   try {
     await program.parseAsync(argv);
   } catch (error) {
-    exitCode = typeof error === 'object' && error && 'exitCode' in error ? Number((error as { exitCode?: number }).exitCode) || 1 : 1;
+    // `.exitOverride()` makes commander throw instead of exiting, including on
+    // the success paths: `--help` and `--version` raise a CommanderError whose
+    // exitCode is 0. The previous `Number(...) || 1` collapsed that legitimate
+    // zero into 1, so `workspacejson --help` reported failure to every shell and
+    // CI job that checked it. Distinguish "no usable exitCode" from "exitCode is
+    // zero" instead of leaning on falsiness.
+    const reported =
+      typeof error === 'object' && error !== null && 'exitCode' in error
+        ? Number((error as { exitCode?: number }).exitCode)
+        : Number.NaN;
+    exitCode = Number.isInteger(reported) ? reported : 1;
   }
 
   return exitCode;
