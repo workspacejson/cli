@@ -17,14 +17,25 @@ import { spawnSync } from "node:child_process";
 // `cli-v*` release must not be reported green because a previously published
 // sibling still installs. With no argument it verifies every publishable
 // package, which is only meaningful when their versions genuinely agree.
+// The health check runs `version`, not `--help`. Both CLIs use commander's
+// `.exitOverride()`, which throws a CommanderError with exitCode 0 on the
+// `--help` success path; until the fix landing alongside this, that zero was
+// coerced to 1, so `--help` reported failure and this verifier could never pass
+// for either package. `version` is a normal action that returns 0, and it proves
+// more anyway — it executes the installed entry point and prints the version the
+// artifact actually carries, rather than text commander produces before any of
+// the package's own code runs.
+//
+// `agents-audit` is frozen at 0.4.4, so its `--help` keeps the old exit code
+// permanently. That alone makes `version` the only check that can work for both.
 const RELEASABLE = {
   "@workspacejson/cli": {
     manifest: "../packages/cli/package.json",
-    check: ["npx", "--no-install", "workspacejson", "--help"],
+    check: ["npx", "--no-install", "workspacejson", "version"],
   },
   "agents-audit": {
     manifest: "../packages/agents-audit-compat/package.json",
-    check: ["npx", "--no-install", "agents-audit", "--help"],
+    check: ["npx", "--no-install", "agents-audit", "version"],
   },
 };
 
@@ -57,8 +68,18 @@ if (requested.length !== 1 && process.env.WORKSPACEJSON_RELEASE_VERSION) {
 // immediate post-publish check has no way to tell "not actually published"
 // apart from "not visible here yet" and fails the Release workflow either
 // way — training everyone to ignore red, which is worse than no gate at all.
-const REGISTRY_PROPAGATION_RETRIES = 6;
-const REGISTRY_PROPAGATION_BASE_DELAY_MS = 5000;
+//
+// Measured on the 0.5.0 release (2026-07-27): the version endpoint answered
+// almost immediately, but the aggregated packument — which is what `npm install`
+// resolves against — took ~4m30s to appear. The previous window summed to 75s,
+// so it reported a red failure for a release that had in fact published
+// correctly, provenance and all. A first-ever publish is the slow case: there is
+// no existing packument to update, so budget for minutes, not seconds.
+//
+// Linear backoff with a ceiling: 10+20+30+40+50+60+60+60+60 ≈ 6m30s total.
+const REGISTRY_PROPAGATION_RETRIES = 10;
+const REGISTRY_PROPAGATION_BASE_DELAY_MS = 10_000;
+const REGISTRY_PROPAGATION_MAX_DELAY_MS = 60_000;
 const isRegistryPropagationLag = (stderr) => /\bE(TARGET|404)\b|No matching version found/.test(stderr ?? "");
 
 for (const pkg of packages) {
@@ -90,7 +111,7 @@ async function installWithRetry(pkg, directory) {
       process.stderr.write(result.stderr);
       process.exit(result.status ?? 1);
     }
-    const delayMs = REGISTRY_PROPAGATION_BASE_DELAY_MS * attempt;
+    const delayMs = Math.min(REGISTRY_PROPAGATION_BASE_DELAY_MS * attempt, REGISTRY_PROPAGATION_MAX_DELAY_MS);
     console.log(`${pkg.name}@${pkg.version} not yet visible on the registry (attempt ${attempt}/${REGISTRY_PROPAGATION_RETRIES}) — retrying in ${delayMs}ms`);
     await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
