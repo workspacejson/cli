@@ -1,5 +1,23 @@
 # Changelog — `@workspacejson/cli`
 
+## 0.5.2
+
+### Patch Changes
+
+- **Fixed:** the package README told readers the package was not published.
+
+  `README.md` is listed in `files`, so it ships in the tarball and renders on the
+  npm package page. It still carried the pre-release notice — "Not yet published.
+  This package is not on npm… Do not document `npm install @workspacejson/cli` as
+  if it works" — which meant the page for a published package advised against
+  installing it and pointed at `agents-audit` instead.
+
+  Replaced with real install instructions, a note that releases carry npm
+  provenance, and a migration table for anyone arriving from `agents-audit`: the
+  binary is renamed, there is no `scan`, and `.agentsauditrc` is not read.
+
+  Documentation only; no code change.
+
 ## 0.5.1
 
 ### Patch Changes

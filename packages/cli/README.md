@@ -4,10 +4,26 @@ The **workspace.json producer**. Scans a repository and generates
 `.agents/workspace.json` deterministically, preserving human-authored `manual`
 evidence across regenerations.
 
-> **Not yet published.** This package is not on npm. Until the coordinated
-> publish-authority cutover, the working public command is
-> `npx agents-audit generate`, which runs this same producer implementation.
-> Do not document `npm install @workspacejson/cli` as if it works.
+## Install
+
+```bash
+npm install -g @workspacejson/cli   # or: npx @workspacejson/cli generate
+```
+
+Requires Node.js >= 20. Published from
+[`workspacejson/cli`](https://github.com/workspacejson/cli) with
+[npm provenance](https://docs.npmjs.com/generating-provenance-statements), so
+every release is traceable to the workflow run and commit that built it.
+
+> **Migrating from `agents-audit`?** That package is frozen at `0.4.4` and this
+> one continues its version line from `0.5.0`. The producer is the same
+> implementation, but the surface is deliberately smaller:
+>
+> | `agents-audit` | `@workspacejson/cli` |
+> | -- | -- |
+> | `agents-audit generate` | `workspacejson generate` |
+> | `agents-audit scan` | no equivalent — this is the producer, not the audit |
+> | `.agentsauditrc` | not read; a neutral config file is still to be named |
 
 ## Commands
 
