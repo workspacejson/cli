@@ -1,0 +1,153 @@
+name: META-197 Buildomator evidence receipt
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/meta-197-buildomator-receipt.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout neutral producer
+        uses: actions/checkout@v4
+        with:
+          ref: e210ad22a447eb01c6b943ee80d0d6e83e48f529
+          path: producer
+
+      - name: Checkout pinned Buildomator
+        uses: actions/checkout@v4
+        with:
+          repository: buildomator/buildomator
+          ref: c2659066caa0b434451177a7eb2c31f873ee6f25
+          path: buildomator
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: producer/pnpm-lock.yaml
+
+      - name: Build producer
+        working-directory: producer
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm -r build
+
+      - name: Capture baseline and perturbation receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PRODUCER_SHA="$(git -C producer rev-parse HEAD)"
+          BUILD_SHA="$(git -C buildomator rev-parse HEAD)"
+          TRACKED_BASELINE="$(git -C buildomator ls-files | wc -l | tr -d ' ')"
+
+          rm -f buildomator/.agents/workspace.json
+          node producer/packages/cli/dist/cli.js generate buildomator
+          cp buildomator/.agents/workspace.json baseline.workspace.json
+
+          BASELINE_FILE_INDEX_COUNT="$(node -e "const x=require('./baseline.workspace.json'); console.log(Object.keys(x.generated?.fileIndex ?? {}).length)")"
+          BASELINE_NUMERIC_FRAGILITY_COUNT="$(node -e "const x=require('./baseline.workspace.json'); console.log(Object.values(x.generated?.fileIndex ?? {}).filter(v => v && typeof v.fragility === 'number').length)")"
+          BASELINE_THRESHOLD_COUNT="$(node -e "const x=require('./baseline.workspace.json'); console.log(Object.values(x.generated?.fileIndex ?? {}).filter(v => v && typeof v.fragility === 'number' && v.fragility >= 0.7).length)")"
+          BASELINE_SHA256="$(sha256sum baseline.workspace.json | awk '{print $1}')"
+          BASELINE_READER_OUTPUT="$(node - <<'NODE'
+          const fs = require('fs');
+          const reader = require('./buildomator/bin/lib/workspace-json.cjs');
+          const artifact = JSON.parse(fs.readFileSync('./baseline.workspace.json', 'utf8'));
+          process.stdout.write(reader.buildContextString(artifact, { maxFiles: 5 }));
+          NODE
+          )"
+
+          git -C buildomator config user.email "meta-197@example.invalid"
+          git -C buildomator config user.name "META-197 Evidence"
+          printf 'export const meta197Perturbation = true;\n' > buildomator/meta-197-perturbation.ts
+          git -C buildomator add meta-197-perturbation.ts
+          git -C buildomator commit -m "test: META-197 file inventory perturbation"
+          TRACKED_PERTURBED="$(git -C buildomator ls-files | wc -l | tr -d ' ')"
+
+          node producer/packages/cli/dist/cli.js generate buildomator
+          cp buildomator/.agents/workspace.json perturbed.workspace.json
+
+          PERTURBED_FILE_INDEX_COUNT="$(node -e "const x=require('./perturbed.workspace.json'); console.log(Object.keys(x.generated?.fileIndex ?? {}).length)")"
+          PERTURBED_NUMERIC_FRAGILITY_COUNT="$(node -e "const x=require('./perturbed.workspace.json'); console.log(Object.values(x.generated?.fileIndex ?? {}).filter(v => v && typeof v.fragility === 'number').length)")"
+          PERTURBED_THRESHOLD_COUNT="$(node -e "const x=require('./perturbed.workspace.json'); console.log(Object.values(x.generated?.fileIndex ?? {}).filter(v => v && typeof v.fragility === 'number' && v.fragility >= 0.7).length)")"
+          PERTURBED_SHA256="$(sha256sum perturbed.workspace.json | awk '{print $1}')"
+          PERTURBED_READER_OUTPUT="$(node - <<'NODE'
+          const fs = require('fs');
+          const reader = require('./buildomator/bin/lib/workspace-json.cjs');
+          const artifact = JSON.parse(fs.readFileSync('./perturbed.workspace.json', 'utf8'));
+          process.stdout.write(reader.buildContextString(artifact, { maxFiles: 5 }));
+          NODE
+          )"
+
+          node - <<'NODE'
+          const fs = require('fs');
+          const baseline = JSON.parse(fs.readFileSync('baseline.workspace.json', 'utf8'));
+          const perturbed = JSON.parse(fs.readFileSync('perturbed.workspace.json', 'utf8'));
+          const baselineKeys = Object.keys(baseline.generated?.fileIndex ?? {});
+          const perturbedKeys = Object.keys(perturbed.generated?.fileIndex ?? {});
+          const added = perturbedKeys.filter((key) => !baselineKeys.includes(key));
+          fs.writeFileSync('movement.json', JSON.stringify({ baselineKeys: baselineKeys.length, perturbedKeys: perturbedKeys.length, added }, null, 2) + '\n');
+          NODE
+
+          cat > receipt.txt <<EOF
+          META-197 Buildomator evidence receipt
+          captured_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          producer_repo=workspacejson/cli
+          producer_commit=$PRODUCER_SHA
+          producer_command=node producer/packages/cli/dist/cli.js generate buildomator
+          buildomator_repo=buildomator/buildomator
+          buildomator_commit=$BUILD_SHA
+          buildomator_history_depth=$(git -C buildomator rev-list --count "$BUILD_SHA")
+          reader=buildomator/bin/lib/workspace-json.cjs
+          reader_fragility_threshold=0.7
+          reader_default_max_files=5
+
+          baseline_tracked_file_count=$TRACKED_BASELINE
+          baseline_file_index_count=$BASELINE_FILE_INDEX_COUNT
+          baseline_numeric_fragility_observations=$BASELINE_NUMERIC_FRAGILITY_COUNT
+          baseline_fragility_min=N/A
+          baseline_fragility_median=N/A
+          baseline_fragility_max=N/A
+          baseline_count_at_or_above_0.7=$BASELINE_THRESHOLD_COUNT
+          baseline_artifact_sha256=$BASELINE_SHA256
+          baseline_buildContextString_length=${#BASELINE_READER_OUTPUT}
+          baseline_buildContextString=$BASELINE_READER_OUTPUT
+
+          perturbation=add_and_commit_meta-197-perturbation.ts
+          perturbed_tracked_file_count=$TRACKED_PERTURBED
+          perturbed_file_index_count=$PERTURBED_FILE_INDEX_COUNT
+          perturbed_numeric_fragility_observations=$PERTURBED_NUMERIC_FRAGILITY_COUNT
+          perturbed_fragility_min=N/A
+          perturbed_fragility_median=N/A
+          perturbed_fragility_max=N/A
+          perturbed_count_at_or_above_0.7=$PERTURBED_THRESHOLD_COUNT
+          perturbed_artifact_sha256=$PERTURBED_SHA256
+          perturbed_buildContextString_length=${#PERTURBED_READER_OUTPUT}
+          perturbed_buildContextString=$PERTURBED_READER_OUTPUT
+          EOF
+
+          cat receipt.txt
+          cat movement.json
+
+          test "$PERTURBED_FILE_INDEX_COUNT" -eq "$((BASELINE_FILE_INDEX_COUNT + 1))"
+          test "$PERTURBED_THRESHOLD_COUNT" -eq 0
+          test -z "$BASELINE_READER_OUTPUT"
+          test -z "$PERTURBED_READER_OUTPUT"
+
+      - name: Upload evidence packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: meta-197-buildomator-receipt
+          if-no-files-found: error
+          path: |
+            receipt.txt
+            movement.json
+            baseline.workspace.json
+            perturbed.workspace.json
