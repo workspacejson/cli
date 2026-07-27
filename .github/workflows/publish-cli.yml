@@ -99,9 +99,25 @@ jobs:
       - name: Verify the release tarball
         run: pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs
 
+      # Both variables carry the same secret, because two different config
+      # layers each want their own name and the wrong one alone is silently
+      # useless:
+      #
+      #   NODE_AUTH_TOKEN — the userconfig `setup-node` writes to $RUNNER_TEMP.
+      #   NPM_TOKEN       — the repository's own `.npmrc`, which reads
+      #                     `//registry.npmjs.org/:_authToken=${NPM_TOKEN}`.
+      #
+      # npm's project config outranks the userconfig, so the repo `.npmrc` wins
+      # for any command run from the repository root. With NPM_TOKEN unset it
+      # does not fall back to the userconfig token — it sends the *literal*
+      # string `Bearer ${NPM_TOKEN}`, which the registry rejects as 401. That is
+      # exactly how the 0.5.0 release failed, and it reads as a bad credential
+      # rather than a misconfigured workflow, which is what made it worth a
+      # comment this long.
       - name: Confirm the publish credential reached the runner
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: node scripts/verify-npm-publish-access.mjs
 
       # npm rather than pnpm, for two reasons: pnpm 9 exposes no --provenance
@@ -119,6 +135,7 @@ jobs:
         working-directory: packages/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public
 
       # A publish that npm accepts can still be unusable — wrong files, broken
