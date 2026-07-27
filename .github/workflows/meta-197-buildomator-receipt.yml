@@ -24,8 +24,11 @@ jobs:
           repository: buildomator/buildomator
           ref: c2659066caa0b434451177a7eb2c31f873ee6f25
           path: buildomator
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
 
       - uses: actions/setup-node@v4
         with:
