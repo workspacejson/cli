@@ -8,16 +8,18 @@ not own the specification — the normative schema, rules and contracts live in
 [`workspacejson/standard`](https://github.com/workspacejson/standard) and are
 consumed here as released packages.
 
-> **Status: pre-release.** The architecture below landed in META-247 and is the
-> ratified target shape, but nothing here is published yet and the public
-> documentation is deliberately unfinished. The working command today is
-> `npx agents-audit generate`.
+> **Status.** The architecture below landed in META-247 and is the ratified
+> target shape. Both packages are published; the versions in the table are the
+> manifest versions in this repository, checked by `pnpm run check:published-status`.
+> Package semver is independent of the specification profile — `@workspacejson/cli`
+> at `0.5.x` produces specification **v0.4** artifacts and is not evidence that
+> schema v0.5 shipped.
 
 ## Packages
 
 | Directory | Package | Published? | Role |
 | -- | -- | -- | -- |
-| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **No — not yet on npm** | the neutral producer and its `workspacejson` binary |
+| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **Yes — `0.5.2`** | the neutral producer and its `workspacejson` binary |
 | [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | **Yes — `0.4.4`** | frozen compatibility bridge; preserves the historical command and API |
 
 Those two packages are the whole repository. The private DataHub/dbt adapter
@@ -28,24 +30,27 @@ here. The boundary is machine-enforced and red-tested — see
 
 ## Generating the artifact
 
-Today, the command that works is the compatibility one:
+The neutral producer is the current route:
 
 ```bash
-npx agents-audit generate
-```
+npx @workspacejson/cli generate .
 
-Once `@workspacejson/cli` is published, the neutral equivalent is:
-
-```bash
 workspacejson generate            # write .agents/workspace.json
 workspacejson generate --dry-run  # print the projection, write nothing
 workspacejson generate --check    # non-writing drift gate for CI
 workspacejson generate --force    # recover from an invalid existing artifact
 ```
 
+The historical command still works and is kept working:
+
+```bash
+npx agents-audit generate
+```
+
 Both routes run **the same implementation** — `agents-audit` delegates to
 `@workspacejson/cli`, so the two binaries cannot drift apart during the
-compatibility window.
+compatibility window. New setups should use the neutral producer; `agents-audit`
+exists for setups already pinned to it.
 
 `agents-audit` additionally keeps its audit commands (`scan`, `version`) and all
 nine of its historical public exports.
