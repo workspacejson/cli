@@ -3,8 +3,8 @@
   "version": "0.4.4",
   "description": "Compatibility package for the workspace.json producer and AGENTS.md audit. Generation is implemented by @workspacejson/cli; this package preserves the historical `agents-audit` command and API surface.",
   "license": "Apache-2.0",
-  "author": "workspace-json contributors",
-  "homepage": "https://www.workspacejson.dev/audit/",
+  "author": "workspace.json contributors",
+  "homepage": "https://workspacejson.dev/audit/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/workspacejson/cli.git"
