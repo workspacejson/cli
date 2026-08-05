@@ -9,18 +9,27 @@ not own the specification — the normative schema, rules and contracts live in
 consumed here as released packages.
 
 > **Status.** The architecture below landed in META-247 and is the ratified
-> target shape. Both packages are published; the versions in the table are the
-> manifest versions in this repository, checked by `pnpm run check:published-status`.
-> Package semver is independent of the specification profile — `@workspacejson/cli`
+> target shape.
+>
+> **Registry snapshot, verified 2026-08-04:** both packages are published —
+> `@workspacejson/cli@0.5.2` and `agents-audit@0.4.4`.
+>
+> The versions shown in the table below are the versions declared by this
+> repository's package manifests. `pnpm run check:package-docs` keeps those
+> manifest-backed claims synchronized; it does **not** verify the registry, and a
+> manifest cannot establish what is on npm. Registry distribution is verified
+> separately under META-293.
+>
+> Package semver is independent of the specification profile: `@workspacejson/cli`
 > at `0.5.x` produces specification **v0.4** artifacts and is not evidence that
 > schema v0.5 shipped.
 
 ## Packages
 
-| Directory | Package | Published? | Role |
+| Directory | Package | Version | Role |
 | -- | -- | -- | -- |
-| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | **Yes — `0.5.2`** | the neutral producer and its `workspacejson` binary |
-| [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | **Yes — `0.4.4`** | frozen compatibility bridge; preserves the historical command and API |
+| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | `0.5.2` | the neutral producer and its `workspacejson` binary |
+| [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | `0.4.4` | frozen compatibility bridge; preserves the historical command and API |
 
 Those two packages are the whole repository. The private DataHub/dbt adapter
 that was staged here has been **extracted to `workspacejson/datahub-agent`**

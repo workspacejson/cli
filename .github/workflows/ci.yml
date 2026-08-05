@@ -31,11 +31,11 @@ jobs:
       - name: Architecture guard red tests
         run: node scripts/check-architecture.test.mjs
 
-      - name: Published-status and version truth
-        run: pnpm run check:published-status
+      - name: Package documentation truth
+        run: pnpm run check:package-docs
 
-      - name: Published-status guard red tests
-        run: node scripts/check-published-status.test.mjs
+      - name: Package documentation guard red tests
+        run: node scripts/check-package-docs.test.mjs
 
       # Build precedes typecheck. `agents-audit` consumes @workspacejson/cli's
       # emitted declarations, so on a clean checkout those must exist before tsc

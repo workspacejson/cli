@@ -20,8 +20,8 @@
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
     "check:architecture": "node scripts/check-architecture.mjs",
-    "check:published-status": "node scripts/check-published-status.mjs",
-    "check:published-status:test": "node scripts/check-published-status.test.mjs",
+    "check:package-docs": "node scripts/check-package-docs.mjs",
+    "check:package-docs:test": "node scripts/check-package-docs.test.mjs",
     "release:verify-packs": "pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs && pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
     "release:verify-published": "node scripts/verify-published.mjs"
   },

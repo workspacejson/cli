@@ -1,37 +1,43 @@
 #!/usr/bin/env node
 
-// Red tests for scripts/check-published-status.mjs (META-296).
+// Red tests for scripts/check-package-docs.mjs (META-296).
 //
 // A guard that has only ever been observed exiting 0 is not evidence. Each case
 // below copies the repository into a scratch directory, introduces exactly one
 // deliberate contradiction, and asserts the guard REJECTS it on the expected
-// check. The final case asserts the unmodified repository passes, so a guard
+// check. A baseline case asserts the unmodified repository passes, so a guard
 // that fails everything cannot masquerade as working.
 //
-// The first case is the exact defect META-296 was filed for: the root README
-// saying "not yet on npm" while the manifest carries a real version.
+// The `legitimate` block matters as much as the red block. This gate's arbiter
+// is the package manifests — name, version, private state — and NOT the npm
+// registry. An earlier revision rejected "not yet on npm" for any non-private
+// package, which conflated "publication is permitted" with "publication
+// happened" and would have failed a correct repository that simply had not
+// published yet. Those cases now assert that such prose stays legal.
 
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { join, resolve, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const guard = join(repoRoot, "scripts", "check-published-status.mjs");
 
 const read = (p) => readFileSync(p, "utf8");
 const write = (p, s) => writeFileSync(p, s);
 
 const cases = [
   {
-    name: "publish-status-contradiction: table says a publishable package is not on npm",
-    expect: "publish-status-contradiction",
+    // The original META-296 defect. It is caught as a MISSING VERSION CLAIM —
+    // the table must document the manifest version — not as an inferred
+    // statement about npm, which this gate has no standing to make.
+    name: "version-claim-missing: the original defect, a row with no version",
+    expect: "version-claim-missing",
     mutate: (root) => {
       const p = join(root, "README.md");
       write(p, read(p).replace(
-        /\| `@workspacejson\/cli` \| \*\*Yes — `[\d.]+`\*\* \|/,
-        "| `@workspacejson/cli` | **No — not yet on npm** |",
+        /(\| `@workspacejson\/cli` \| )`[\d.]+`( \|)/,
+        "$1**No — not yet on npm**$2",
       ));
     },
   },
@@ -40,10 +46,7 @@ const cases = [
     expect: "version-drift",
     mutate: (root) => {
       const p = join(root, "README.md");
-      write(p, read(p).replace(
-        /(\| `@workspacejson\/cli` \| \*\*Yes — `)[\d.]+(`\*\* \|)/,
-        "$19.9.9$2",
-      ));
+      write(p, read(p).replace(/(\| `@workspacejson\/cli` \| `)[\d.]+(` \|)/, "$19.9.9$2"));
     },
   },
   {
@@ -57,40 +60,29 @@ const cases = [
     },
   },
   {
-    name: "prose-contradiction: 'nothing here is published yet' returns to the README",
-    expect: "prose-contradiction",
-    mutate: (root) => {
-      const p = join(root, "README.md");
-      write(p, read(p).replace(/> \*\*Status\.\*\*/, "> **Status: pre-release.** Nothing here is published yet.\n>\n> **Status.**"));
-    },
-  },
-  {
-    name: "prose-contradiction: package README claims the neutral producer is not published",
-    expect: "prose-contradiction",
-    mutate: (root) => {
-      const p = join(root, "packages/cli/README.md");
-      write(p, `${read(p)}\n\nNote: this package is not published.\n`);
-    },
-  },
-  {
-    name: "prose-contradiction: 'Once X is published' presumes it is not",
-    expect: "prose-contradiction",
-    mutate: (root) => {
-      const p = join(root, "README.md");
-      write(p, `${read(p)}\n\nOnce \`@workspacejson/cli\` is published, the neutral equivalent is available.\n`);
-    },
-  },
-  {
     name: "packages-table-coverage: a package is dropped from the table",
     expect: "packages-table-coverage",
     mutate: (root) => {
       const p = join(root, "README.md");
-      write(p, read(p).split("\n").filter((l) => !l.includes("`agents-audit`") || !l.trim().startsWith("|")).join("\n"));
+      write(p, read(p).split("\n")
+        .filter((l) => !(l.trim().startsWith("|") && l.includes("`agents-audit`")))
+        .join("\n"));
     },
   },
   {
-    name: "private-published-claim: a private package is documented as published",
-    expect: "private-published-claim",
+    name: "unknown-package-row: the table documents a package that does not exist",
+    expect: "unknown-package-row",
+    mutate: (root) => {
+      const p = join(root, "README.md");
+      write(p, read(p).replace(
+        /(\| `agents-audit` \| `[\d.]+` \| [^|]*\|)/,
+        "$1\n| [`packages/ghost/`](./packages/ghost/) | `@workspacejson/ghost` | `1.0.0` | does not exist |",
+      ));
+    },
+  },
+  {
+    name: "private-distribution-claim: a private package reads as publicly distributed",
+    expect: "private-distribution-claim",
     mutate: (root) => {
       const p = join(root, "packages/cli/package.json");
       const manifest = JSON.parse(read(p));
@@ -98,17 +90,59 @@ const cases = [
       write(p, `${JSON.stringify(manifest, null, 2)}\n`);
     },
   },
+  {
+    name: "package-readme-name: a package README heading names the wrong package",
+    expect: "package-readme-name",
+    mutate: (root) => {
+      const p = join(root, "packages/cli/README.md");
+      write(p, read(p).replace(/^# .*$/m, "# @workspacejson/something-else"));
+    },
+  },
+];
+
+// Cases that MUST stay legal.
+const legitimate = [
+  {
+    // The core boundary. A manifest cannot establish what is on npm, so a
+    // statement that a package is not published is not a contradiction of it.
+    name: "registry prose: 'not yet on npm' is not contradicted by a manifest",
+    mutate: (root) => {
+      const p = join(root, "README.md");
+      write(p, `${read(p)}\n\nA future package in this repository is not yet on npm.\n`);
+    },
+  },
+  {
+    name: "registry prose: 'nothing here is published yet' is a registry claim, not a manifest claim",
+    mutate: (root) => {
+      const p = join(root, "README.md");
+      write(p, `${read(p)}\n\nAt the time of writing nothing here is published yet.\n`);
+    },
+  },
+  {
+    name: "authority prose: 'is not published from here' distinguishes authority from status",
+    mutate: (root) => {
+      const p = join(root, "README.md");
+      write(p, `${read(p)}\n\n\`agents-audit\` is not published from here; \`workspace-json/agents-audit\` remains its registry owner.\n`);
+    },
+  },
+  {
+    name: "frozen-bridge prose: 'gets no new features' is not a version claim",
+    mutate: (root) => {
+      const p = join(root, "packages/agents-audit-compat/README.md");
+      write(p, `${read(p)}\n\nThis package is frozen and gets no new features.\n`);
+    },
+  },
 ];
 
 function runGuard(root) {
-  return spawnSync(process.execPath, [join(root, "scripts", "check-published-status.mjs")], {
+  return spawnSync(process.execPath, [join(root, "scripts", "check-package-docs.mjs")], {
     cwd: root,
     encoding: "utf8",
   });
 }
 
 function scratchCopy() {
-  const directory = mkdtempSync(join(tmpdir(), "wjson-published-status-"));
+  const directory = mkdtempSync(join(tmpdir(), "wjson-package-docs-"));
   const root = join(directory, "repo");
   cpSync(repoRoot, root, {
     recursive: true,
@@ -141,33 +175,6 @@ for (const testCase of cases) {
     rmSync(directory, { recursive: true, force: true });
   }
 }
-
-// Cases that MUST stay legal. A gate that cannot tell publication *status* from
-// publication *authority* would force the repository to delete true statements
-// about who owns a release — which is the opposite of what META-296 asks for.
-const legitimate = [
-  {
-    name: "authority prose: 'is not published from here' is a true authority claim",
-    mutate: (root) => {
-      const p = join(root, "README.md");
-      write(p, `${read(p)}\n\n\`agents-audit\` is not published from here; \`workspace-json/agents-audit\` remains its registry owner.\n`);
-    },
-  },
-  {
-    name: "authority prose: 'is not published by this repository'",
-    mutate: (root) => {
-      const p = join(root, "README.md");
-      write(p, `${read(p)}\n\n\`@workspacejson/spec\` is not published by this repository.\n`);
-    },
-  },
-  {
-    name: "frozen-bridge prose: 'gets no new features' is not a status claim",
-    mutate: (root) => {
-      const p = join(root, "packages/agents-audit-compat/README.md");
-      write(p, `${read(p)}\n\nThis package is frozen and gets no new features.\n`);
-    },
-  },
-];
 
 for (const testCase of legitimate) {
   const { directory, root } = scratchCopy();
@@ -205,5 +212,5 @@ for (const testCase of legitimate) {
   }
 }
 
-console.log(`\nPublished-status guard red tests: ${passed} passed, ${failed} failed.`);
+console.log(`\nPackage documentation guard red tests: ${passed} passed, ${failed} failed.`);
 if (failed > 0) process.exit(1);
