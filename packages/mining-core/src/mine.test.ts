@@ -5,6 +5,7 @@ import { mine } from './mine.js';
 import { serializeObservationSet } from './serialize.js';
 import {
   commit,
+  makeCorruptedRepo,
   makeCoupledRepo,
   makeEmptyRepo,
   makeNonRepo,
@@ -55,14 +56,26 @@ describe('REQ-005 — four completeness states, never collapsed', () => {
     expect(pair?.cooccurrenceCount).toBe(3);
   });
 
-  it('state 4: malformed git output is EVIDENCE_UNAVAILABLE, not an empty result', async () => {
-    // Drive the failure through the real path rather than asserting on a
-    // constructor: a repository whose basis resolves but whose object store is
-    // unreadable produces state 4. Simulated by pointing at a repo and then
-    // corrupting the requested revision.
-    const root = fixture(makeCoupledRepo);
-    const result = await mine(root, { basisRevision: 'refs/heads/does-not-exist' });
-    // An unresolvable revision is an absent history, not a broken one.
+  it('state 4: a history that cannot be walked is EVIDENCE_UNAVAILABLE, not an empty result', async () => {
+    // Driven through the real failure path, not asserted on a constructor.
+    // HEAD resolves; the walk to the root commit hits a deleted object.
+    const root = makeCorruptedRepo();
+    if (root === undefined) return; // objects were packed; nothing was corrupted
+    created.push(root);
+
+    const result = await mine(root);
+    expect(result.completeness.state).toBe(CompletenessState.EVIDENCE_UNAVAILABLE);
+    expect(result.completeness.reason).toBe(CompletenessReason.GIT_FAILED);
+    // The damage it must not do: report this as a clean, examined repository.
+    expect(result.completeness.state).not.toBe(
+      CompletenessState.MINED_NO_QUALIFYING_RELATIONSHIP,
+    );
+  });
+
+  it('an unresolvable revision is an absent history, not a broken one', async () => {
+    const result = await mine(fixture(makeCoupledRepo), {
+      basisRevision: 'refs/heads/does-not-exist',
+    });
     expect(result.completeness.state).toBe(CompletenessState.NOT_MINED);
     expect(result.completeness.reason).toBe(CompletenessReason.NO_COMMITS);
   });

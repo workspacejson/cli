@@ -11,7 +11,7 @@
  * property of the miner rather than of the clock.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
@@ -131,6 +131,25 @@ export function makeShallowCloneOfCoupled(): { source: string; shallow: string }
   removeDir(shallow);
   git(process.cwd(), ['clone', '--quiet', '--depth', '1', `file://${source}`, shallow]);
   return { source, shallow };
+}
+
+/**
+ * State 4: a repository whose HEAD resolves but whose history cannot be walked.
+ *
+ * Built by deleting the root commit's loose object. `rev-parse HEAD^{commit}`
+ * still succeeds because HEAD's own object is intact, so this is genuinely
+ * "evidence reachable but unavailable" and not "no history" — which is the
+ * distinction REQ-005's state 4 exists to carry. Returns `undefined` when the
+ * objects turn out to be packed, so the caller skips rather than asserting
+ * against a repository that was never corrupted.
+ */
+export function makeCorruptedRepo(): string | undefined {
+  const root = makeCoupledRepo();
+  const rootCommit = git(root, ['rev-list', '--max-parents=0', 'HEAD']).trim();
+  const loose = join(root, '.git', 'objects', rootCommit.slice(0, 2), rootCommit.slice(2));
+  if (!existsSync(loose)) return undefined;
+  rmSync(loose);
+  return root;
 }
 
 /** A path that is not a git repository at all. */
