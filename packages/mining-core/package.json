@@ -1,0 +1,47 @@
+{
+  "name": "@workspacejson/mining-core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "L0 commit-graph mining core — first-parent event extraction, canonical path identity, and completeness semantics. Consumed by the producer, the META-289 harness, and the report.",
+  "license": "Apache-2.0",
+  "author": "workspace.json contributors",
+  "homepage": "https://workspacejson.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workspacejson/cli.git",
+    "directory": "packages/mining-core"
+  },
+  "bugs": {
+    "url": "https://github.com/workspacejson/cli/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.17",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
