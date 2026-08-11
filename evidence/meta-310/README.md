@@ -41,14 +41,27 @@ unchanged.
 
 ## Reproducing
 
-1. Check out the two pinned revisions and build from **clean detached worktrees**,
+The manifest's `file:./tarballs/...` paths are relative to **the directory the
+manifest is installed from**, which is the fresh runner directory — not this
+directory in the repository. Everything the runner needs therefore has to end up
+inside `$RUN`. Steps are ordered so that following them literally works.
+
+1. Create the fresh runner directory. It must contain no reused `node_modules`
+   and no carried-over lockfile:
+
+   ```sh
+   RUN=/some/empty/dir
+   mkdir -p "$RUN/tarballs"
+   ```
+
+2. Check out the two pinned revisions and build from **clean detached worktrees**,
    not working trees:
 
    - `workspacejson/cli` @ `031c3504a0977b8d90ac518c82a39a2f4ec741a9`
    - `workspacejson/standard` @ `f95c42f89c8fe39995c10918bea880729cf17bbd`
 
-2. `npm pack` these four into a `tarballs/` directory beside this manifest, and
-   verify the digests against the evidence receipt:
+3. `npm pack` the four packages **into `$RUN/tarballs/`**
+   (`npm pack --pack-destination "$RUN/tarballs"`), then verify their digests:
 
    | Tarball | `sha256` |
    | -- | -- |
@@ -57,11 +70,21 @@ unchanged.
    | `workspacejson-cli-0.5.2.tgz` | `aa0ab7526a8f8fc6316f8b809d2ee5cdd04c80c5483a29d39e8dfbcc2e15ad18` |
    | `workspacejson-mining-core-0.0.0.tgz` | `4f2a632d874dc862fc6425c81324378598c6183215aa80fe88465c3e0847577e` |
 
-3. Copy this manifest to `package.json` in a **fresh** directory — no reused
-   `node_modules`, no carried-over lockfile. `@workspacejson/cli` declares `spec`
-   and `rules` by *version*, and the candidate and published packages carry
-   identical version numbers, so nothing but `file:` resolution distinguishes
-   them. Then `npm install` and audit it:
+   These digests are the real pin. The tarball *contents* are what the run
+   depended on; the directory holding them is not.
+
+4. Copy **both** files from this directory into `$RUN`, the manifest under the
+   name `package.json`, then install:
+
+   ```sh
+   cp runner-package.json "$RUN/package.json"
+   cp meta310-mine.mjs    "$RUN/"
+   cd "$RUN" && npm install
+   ```
+
+   `@workspacejson/cli` declares `spec` and `rules` by *version*, and the
+   candidate and published packages carry identical version numbers, so nothing
+   but `file:` resolution distinguishes them. Audit the result:
 
    ```
    registry URLs for @workspacejson/* in the lockfile   must be 0
@@ -69,10 +92,10 @@ unchanged.
    copies of @workspacejson/spec in the tree            must be 1
    ```
 
-4. Clone each target **full, not shallow**, check out the pinned revision from
-   the evidence receipt, and run:
+5. Clone each target **full, not shallow**, check out the pinned revision from
+   the evidence receipt, and run from `$RUN`:
 
-   ```
+   ```sh
    node meta310-mine.mjs <label> <repoRoot> <outDir>
    ```
 
