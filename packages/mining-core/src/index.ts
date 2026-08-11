@@ -80,3 +80,10 @@ export {
   serializeScoredSet,
   serializeSelection,
 } from './serialize.js';
+export {
+  type ProjectedCoChangeEntry,
+  type ProjectedHistory,
+  type ProjectionResult,
+  ProjectionRefusal,
+  project,
+} from './project.js';

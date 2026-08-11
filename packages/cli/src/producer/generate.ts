@@ -21,6 +21,30 @@ import type { RuleContext } from '@workspacejson/rules';
 import { DEFAULT_PRODUCER_CONFIG, detectCiProvider, type ProducerConfig } from './config.js';
 import { buildFileIndex, buildFrameworkManifest } from './evidence.js';
 import { findAgentsMdPath, readTextOrEmpty } from './fs.js';
+import { carryForwardHistory, type PreservedHistory } from './history-carry-forward.js';
+import { mineHistoryBlock } from './history-mine.js';
+
+/**
+ * A history block from either route: freshly mined, or carried forward.
+ *
+ * Declared locally because the two sources carry different TYPES for the same
+ * runtime shape, and the mismatch is a fact about the dependency rather than
+ * about this code. `@workspacejson/spec@0.4.4` is the published package, and
+ * its `CoChangeEntry` predates ADR-003 A-009: it still requires `rate` and
+ * knows nothing of `support`. So an observation-form entry — exactly what this
+ * producer now emits — is not assignable to the published type, and cannot be
+ * until the amended spec is published.
+ *
+ * The runtime contract is unaffected and is NOT relaxed anywhere: the artifact
+ * still goes through `WorkspaceJsonValidator` unmodified, and the candidate
+ * conformance suite runs it against the amended schema. This declaration
+ * narrows a compile-time gap in a stale type; it does not widen what the
+ * producer will accept or emit. It is deleted when the amended spec publishes.
+ */
+interface HistoryBlock {
+  basisRevision: string;
+  coChange: readonly unknown[];
+}
 
 const _require = createRequire(import.meta.url);
 
@@ -129,7 +153,22 @@ export async function writeWorkspaceAtomically(outputPath: string, content: Work
 export async function generateWorkspaceJson(
   repoRoot: string,
   config: Partial<ProducerConfig> = {},
-  options: { dryRun?: boolean; check?: boolean; force?: boolean; producer?: ProducerIdentity; commandName?: string } = {},
+  options: {
+    dryRun?: boolean;
+    check?: boolean;
+    force?: boolean;
+    producer?: ProducerIdentity;
+    commandName?: string;
+    /**
+     * Read the commit graph and rewrite `generated.coChange`.
+     *
+     * Off by default, and that default is the contract rather than a
+     * convenience: mining a bounded window costs seconds to tens of seconds,
+     * and a producer that recomputed history on every ordinary run would make
+     * the artifact churn on every commit. See history-carry-forward.ts.
+     */
+    mineHistory?: boolean;
+  } = {},
 ): Promise<GenerateResult> {
   const resolvedRoot = resolve(repoRoot);
   const fullConfig: ProducerConfig = { ...DEFAULT_PRODUCER_CONFIG, ...config };
@@ -208,6 +247,20 @@ export async function generateWorkspaceJson(
       }
     }
   }
+  // Commit-history evidence enters the artifact by exactly one of two routes,
+  // and never both. Mining is EXPLICIT: `mineHistory` is off unless a caller
+  // asked for it, so an ordinary run reads the working tree and nothing else.
+  //
+  // The order matters. A refused mining pass falls back to carry-forward rather
+  // than to nothing: a shallow clone or a git failure must not destroy evidence
+  // an earlier successful pass recorded. What it must never do is silently
+  // present the old block as a fresh result — it cannot, because the block
+  // carries its own `basisRevision` and that pin is what a reader compares.
+  const minedHistory = options.mineHistory === true ? await mineHistoryBlock(resolvedRoot) : undefined;
+  const preservedHistory = carryForwardHistory(existing);
+  const history: HistoryBlock | undefined =
+    minedHistory ?? (preservedHistory.preserved ? preservedHistory.history : undefined);
+
   const workspace: WorkspaceJsonV4 = {
     manual: existing?.manual ?? {},
     generated: {
@@ -251,6 +304,24 @@ export async function generateWorkspaceJson(
         scannedAt:
           (existing?.generated.hygiene as { scannedAt?: string } | undefined)?.scannedAt ?? now,
       },
+      // Commit-history evidence is PRESERVED, never rebuilt, by ordinary
+      // generation — see history-carry-forward.ts for why this one part of the
+      // producer-owned section is carried rather than regenerated.
+      //
+      // The values are spliced in as the objects parsed from the prior
+      // artifact, so the bytes are unchanged. Nothing here reads the commit
+      // graph: no mining, no pin advance, no re-attribution of old counts to a
+      // newer revision. If nothing conforming was preserved, both keys stay
+      // absent — ordinary generation never invents a history block, and an
+      // absent block correctly reads as "not analyzed".
+      ...(history === undefined
+        ? {}
+        : {
+            basisRevision: history.basisRevision,
+            // See HistoryBlock: the published 0.4.4 type cannot describe an
+            // observation-form entry. The value is validated at runtime.
+            coChange: history.coChange as NonNullable<WorkspaceJsonV4['generated']['coChange']>,
+          }),
     },
     agents: {},
     health: {
