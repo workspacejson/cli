@@ -1,0 +1,16 @@
+{
+  "name": "meta310-runner",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "dependencies": {
+    "@workspacejson/cli": "file:./tarballs/workspacejson-cli-0.5.2.tgz",
+    "@workspacejson/rules": "file:./tarballs/workspacejson-rules-0.4.4.tgz",
+    "@workspacejson/spec": "file:./tarballs/workspacejson-spec-0.4.4.tgz",
+    "@workspacejson/mining-core": "file:./tarballs/workspacejson-mining-core-0.0.0.tgz"
+  },
+  "overrides": {
+    "@workspacejson/spec": "file:./tarballs/workspacejson-spec-0.4.4.tgz",
+    "@workspacejson/rules": "file:./tarballs/workspacejson-rules-0.4.4.tgz"
+  }
+}
