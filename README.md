@@ -30,8 +30,16 @@ consumed here as released packages.
 | -- | -- | -- | -- |
 | [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | `0.5.2` | the neutral producer and its `workspacejson` binary |
 | [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | `0.4.4` | frozen compatibility bridge; preserves the historical command and API |
+| [`packages/mining-core/`](./packages/mining-core/) | `@workspacejson/mining-core` | `0.0.0`, private | L0 commit-graph mining core — extraction, path identity, completeness semantics (META-297 Phases 1–2) |
 
-Those two packages are the whole repository. The private DataHub/dbt adapter
+`mining-core` is private and unpublished. It reads git and returns an in-memory
+observation set; it does not write the artifact. Projecting into
+`generated.coChange` is a separate, later step that is blocked on a schema
+admission — the published `coChange` item requires `rate` and forbids additional
+properties, so the counts-only shape the churn ruling calls for is rejected by
+the schema rather than merely different from it.
+
+The published packages are the first two. The private DataHub/dbt adapter
 that was staged here has been **extracted to `workspacejson/datahub-agent`**
 (META-248), which owns DataHub consumption; it was never durable architecture
 here. The boundary is machine-enforced and red-tested — see

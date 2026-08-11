@@ -4,7 +4,7 @@ export {
   GenerateRefusalError,
   THIS_PRODUCER,
 } from './producer/generate.js';
-export type { GenerateResult, ProducerIdentity } from './producer/generate.js';
+export type { GenerateResult, HistoryRefreshOutcome, ProducerIdentity } from './producer/generate.js';
 export { DEFAULT_PRODUCER_CONFIG, detectCiProvider } from './producer/config.js';
 export type { ProducerConfig } from './producer/config.js';
 export { findAgentsMdPath, readTextOrEmpty } from './producer/fs.js';

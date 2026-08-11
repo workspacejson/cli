@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "noEmit": false,
+    "types": ["node"]
+  },
+  "//": "Deliberately does NOT include ../../types/ambient.d.ts. That file hand-declares node:fs, node:child_process and vitest, and ambient module declarations win over node_modules typings — OWNERSHIP.md records the resulting Dirent/readdirSync breakage as an unfixed defect of the same class META-244 already fixed once for @workspacejson/spec. This package compiles against the real @types/node@22.19.17 and vitest declarations instead, so its git and filesystem surface is typed by the packages that own it rather than by a local restatement.",
+  "include": [
+    "src/**/*.ts"
+  ]
+}
