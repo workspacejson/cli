@@ -1,0 +1,16 @@
+{
+  "name": "meta310-runner",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "dependencies": {
+    "@workspacejson/cli": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-cli-0.5.2.tgz",
+    "@workspacejson/rules": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-rules-0.4.4.tgz",
+    "@workspacejson/spec": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-spec-0.4.4.tgz",
+    "@workspacejson/mining-core": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-mining-core-0.0.0.tgz"
+  },
+  "overrides": {
+    "@workspacejson/spec": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-spec-0.4.4.tgz",
+    "@workspacejson/rules": "file:/private/tmp/claude-502/-Users-user1-dev-workspacejson-projects-standard/91d9ed1b-3746-41c4-a5ad-d64b924c9a12/scratchpad/meta310/tarballs/workspacejson-rules-0.4.4.tgz"
+  }
+}
