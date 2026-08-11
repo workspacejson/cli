@@ -8,11 +8,15 @@
  * an independent producer gets compared against.
  *
  * Scope boundary, enforced by what is absent: no weighting, no decay, no
- * support threshold, no lift, no ranking, no cap. Those are REQ-007 and
- * REQ-009, and Phase 3 has not started. What is here is extraction (REQ-001),
- * a computed empty tree (REQ-002), one normalizer (REQ-003), deterministic
- * output (REQ-004), four completeness states (REQ-005), and a shallow-clone
- * guard (REQ-006).
+ * support threshold, no lift, no ranking, no cap. Those are the *scoring* and
+ * *selection* behaviors and they live in `score.ts` and `select.ts`. What is
+ * here is extraction (REQ-001), a computed empty tree (REQ-002), one
+ * normalizer (REQ-003), deterministic output (REQ-004), four completeness
+ * states (REQ-005), and a shallow-clone guard (REQ-006).
+ *
+ * Those six numbers are the only requirement identifiers in this package that
+ * are written down anywhere. Behaviors added after them are named, not
+ * numbered — an invented identifier reads as a citation and cites nothing.
  */
 import {
   type Completeness,
@@ -136,10 +140,10 @@ function withoutEvidence(
 /**
  * Count co-occurrences over the extracted events.
  *
- * N files in one event yield N(N-1)/2 pairs. Phase 3 owns the cap (REQ-009);
- * this counts everything the window produced, because a cap applied before the
- * count is decided would silently determine the ranking it is supposed to
- * follow.
+ * N files in one event yield N(N-1)/2 pairs. The cap belongs to the selection
+ * rule in `select.ts`; this counts everything the window produced, because a
+ * cap applied before the count is decided would silently determine the ranking
+ * it is supposed to follow.
  */
 function countPairs(
   events: readonly CommitEvent[],
@@ -168,8 +172,8 @@ function countPairs(
   }
 
   // Total order, and deliberately not a ranking: sorted by path so the output
-  // is stable for REQ-004. Ordering by count would be a ranking rule, and
-  // REQ-009 has not been decided.
+  // is stable for REQ-004. Ordering by count here would pre-empt the selection
+  // rule, which is `select.ts`'s job and applies its own ordering downstream.
   pairs.sort((a, b) => {
     if (a.files[0] !== b.files[0]) return a.files[0] < b.files[0] ? -1 : 1;
     if (a.files[1] !== b.files[1]) return a.files[1] < b.files[1] ? -1 : 1;
