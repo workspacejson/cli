@@ -248,6 +248,8 @@ describe('ordinary generation and commit-history evidence', () => {
 });
 
 // ─── Opt-in mining, against a real repository with real history ─────────────
+let minedRoot;
+
 describe('explicit mining writes a conforming block', () => {
   let root;
 
@@ -277,11 +279,13 @@ describe('explicit mining writes a conforming block', () => {
       git(['add', '-A'], root);
       git(['commit', '-q', '-m', `solo change ${i}`], root);
     }
+    minedRoot = root;
   };
 
-  after(async () => {
-    if (root) await rm(root, { recursive: true, force: true });
-  });
+  // NOTE: `root` is intentionally NOT removed here. The refresh-outcome suite
+  // below reuses it as `minedRoot` — it is the only fixture in this file with a
+  // real commit graph, and rebuilding one per suite would triple the runtime.
+  // It is cleaned up at the end of the file instead.
 
   it('mines, projects, and produces a schema-valid artifact', async () => {
     await build();
@@ -394,4 +398,65 @@ describe('explicit mining writes a conforming block', () => {
     );
     assert.ok(reminedPair, 'explicit mining failed to observe the new pairing');
   });
+});
+
+// ─── Refresh outcome signalling (Greptile P1 on PR #20) ─────────────────────
+describe('an explicitly requested refresh reports what it actually did', () => {
+  let root;
+
+  const artifactPath = () => resolve(root, '.agents/workspace.json');
+
+  const setup = async () => {
+    root = await mkdtemp(join(tmpdir(), 'wsj-refresh-'));
+    await writeFile(join(root, 'AGENTS.md'), '# Fixture\n', 'utf8');
+    await writeFile(join(root, 'package.json'), JSON.stringify({ name: 'fixture', version: '1.0.0' }), 'utf8');
+    await mkdir(join(root, 'src'), { recursive: true });
+    await writeFile(join(root, 'src/auth.ts'), 'export const auth = 1;\n', 'utf8');
+    await mkdir(join(root, '.agents'), { recursive: true });
+    await writeFile(artifactPath(), JSON.stringify(priorArtifact(), null, 2) + '\n', 'utf8');
+  };
+  const teardown = async () => { await rm(root, { recursive: true, force: true }); };
+
+  it('REFUSED REFRESH SAYS SO while keeping the block it fell back to', async () => {
+    // The P1 exactly: this repository has no commit graph, so an explicit
+    // refresh cannot complete. Falling back to the recorded block is correct —
+    // destroying evidence over a shallow clone would be worse. What must not
+    // happen is the caller receiving a successful-looking result carrying the
+    // PREVIOUS revision's counts with no way to tell.
+    await setup();
+    try {
+      const result = await generateWorkspaceJson(root, {}, { mineHistory: true });
+
+      assert.equal(result.historyRefresh?.requested, true);
+      assert.equal(result.historyRefresh?.mined, false, 'a refusal was reported as a completed refresh');
+      assert.equal(result.historyRefresh?.preserved, true);
+      assert.ok(result.historyRefresh?.refusal, 'no reason was given for the refusal');
+
+      // …and the evidence survived.
+      assert.equal(result.content.generated.basisRevision, BASIS);
+      assert.equal(result.content.generated.coChange.length, 2);
+    } finally {
+      await teardown();
+    }
+  });
+
+  it('a COMPLETED refresh is distinguishable from a refused one', async () => {
+    // Same call, a repository that can actually be mined. If these two produced
+    // the same `historyRefresh`, the field would be decorative.
+    const mined = await generateWorkspaceJson(minedRoot, {}, { mineHistory: true });
+    assert.equal(mined.historyRefresh?.mined, true);
+    assert.equal(mined.historyRefresh?.preserved, false);
+    assert.equal('refusal' in (mined.historyRefresh ?? {}), false, 'a successful refresh carried a refusal');
+  });
+
+  it('an ordinary run reports NO refresh outcome at all', async () => {
+    // Absence means "none requested". Reporting `mined: false` here would claim
+    // a refresh was attempted and failed, which is a different and untrue thing.
+    const ordinary = await generateWorkspaceJson(minedRoot);
+    assert.equal(ordinary.historyRefresh, undefined);
+  });
+});
+
+after(async () => {
+  if (minedRoot) await rm(minedRoot, { recursive: true, force: true });
 });

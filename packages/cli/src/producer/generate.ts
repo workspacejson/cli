@@ -87,6 +87,33 @@ export interface ProducerIdentity {
 
 export const THIS_PRODUCER: ProducerIdentity = { name: pkgName, version: pkgVersion };
 
+/**
+ * What an explicitly requested history refresh actually did.
+ *
+ * Present only when the caller passed `mineHistory: true`, so its absence means
+ * no refresh was requested rather than a refresh that failed.
+ *
+ * The distinction this exists to make: a refused refresh still produces a
+ * successful generation carrying the PREVIOUS revision's counts, because
+ * destroying evidence over a shallow clone or a transient Git failure would be
+ * worse than keeping it. That is the right behavior and it is also
+ * indistinguishable, from the artifact alone, from a refresh that completed.
+ * A caller that asked for fresh observations must be able to tell.
+ */
+export interface HistoryRefreshOutcome {
+  /** Always true — the field is absent unless a refresh was requested. */
+  requested: true;
+  /** True when the commit graph was read and a new block produced. */
+  mined: boolean;
+  /** True when mining refused and a prior block was carried instead. */
+  preserved: boolean;
+  /**
+   * Why mining produced nothing. Present if and only if `mined` is false —
+   * e.g. a shallow clone, absent history, or a Git invocation failure.
+   */
+  refusal?: string;
+}
+
 export interface GenerateResult {
   path: string;
   written: boolean;
@@ -94,6 +121,12 @@ export interface GenerateResult {
   drift: boolean;
   preservedManual: boolean;
   invalidFileMoved?: string;
+  /**
+   * Present only when `mineHistory: true` was requested. Says whether the
+   * refresh completed, and why not when it did not — so a refused refresh
+   * cannot read as a successful one.
+   */
+  historyRefresh?: HistoryRefreshOutcome;
   content: WorkspaceJsonV4;
 }
 
@@ -253,13 +286,36 @@ export async function generateWorkspaceJson(
   //
   // The order matters. A refused mining pass falls back to carry-forward rather
   // than to nothing: a shallow clone or a git failure must not destroy evidence
-  // an earlier successful pass recorded. What it must never do is silently
-  // present the old block as a fresh result — it cannot, because the block
-  // carries its own `basisRevision` and that pin is what a reader compares.
-  const minedHistory = options.mineHistory === true ? await mineHistoryBlock(resolvedRoot) : undefined;
+  // an earlier successful pass recorded.
+  //
+  // But falling back QUIETLY is its own defect, and a worse one. A caller that
+  // asked for a refresh and received a successful-looking result carrying the
+  // previous revision's counts cannot tell that from a refresh that completed —
+  // the artifact looks the same either way, and `basisRevision` only helps a
+  // reader who already suspects something. So the outcome is reported on the
+  // result: `historyRefresh` says whether the refresh actually happened, and
+  // carries the refusal reason when it did not.
+  //
+  // The reason itself was already being computed and thrown away — the
+  // diagnostics object exists for exactly this and was not passed.
+  const refreshDiagnostics: { refusal?: string } = {};
+  const minedHistory =
+    options.mineHistory === true ? await mineHistoryBlock(resolvedRoot, refreshDiagnostics) : undefined;
   const preservedHistory = carryForwardHistory(existing);
   const history: HistoryBlock | undefined =
     minedHistory ?? (preservedHistory.preserved ? preservedHistory.history : undefined);
+
+  const historyRefresh: HistoryRefreshOutcome | undefined =
+    options.mineHistory === true
+      ? {
+          requested: true,
+          mined: minedHistory !== undefined,
+          preserved: minedHistory === undefined && preservedHistory.preserved,
+          ...(minedHistory === undefined
+            ? { refusal: refreshDiagnostics.refusal ?? 'mining produced no history block' }
+            : {}),
+        }
+      : undefined;
 
   const workspace: WorkspaceJsonV4 = {
     manual: existing?.manual ?? {},
@@ -347,6 +403,7 @@ export async function generateWorkspaceJson(
     drift: !unchanged,
     preservedManual: existing !== undefined,
     ...(invalidFileMoved === undefined ? {} : { invalidFileMoved }),
+    ...(historyRefresh === undefined ? {} : { historyRefresh }),
     content: workspace,
   };
 }
