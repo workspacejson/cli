@@ -43,6 +43,19 @@ walk(repoRoot, (file) => {
 // This file legitimately names every forbidden pattern, as does the ownership
 // documentation that explains the rules. Excluding them by path keeps the guard
 // from flagging its own vocabulary while still scanning all real source.
+//
+// The review policy under .greptile/ joined this set for the same reason and
+// not for a weaker one: the clean-room rule has to NAME the forbidden scopes to
+// be enforceable, so the two files that state it necessarily trip the guard
+// that enforces it. Paraphrasing the names out of the policy would have turned
+// a green build into the goal and left the reviewer without the strings it
+// matches on — adjusting the measurement to fit the behavior, which the policy
+// itself prohibits.
+//
+// Membership is by exact path, never by directory prefix, so a new file under
+// .greptile/ is still scanned. That is asserted by a red case in
+// check-architecture.test.mjs rather than left to this comment: "two files are
+// exempt" and "the directory is exempt" look identical from a passing run.
 const SELF_REFERENTIAL = new Set([
   join(repoRoot, "scripts", "check-architecture.mjs"),
   join(repoRoot, "scripts", "check-architecture.test.mjs"),
@@ -52,6 +65,8 @@ const SELF_REFERENTIAL = new Set([
   join(repoRoot, "CHANGELOG.md"),
   join(repoRoot, "AGENTS.md"),
   join(repoRoot, "migration", "PROVENANCE.md"),
+  join(repoRoot, ".greptile", "config.json"),
+  join(repoRoot, ".greptile", "rules.md"),
 ]);
 
 // ---------------------------------------------------------------------------
