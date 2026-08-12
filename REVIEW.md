@@ -12,7 +12,7 @@ merges.
 | -- | -- | -- |
 | `test (20)`, `test (22)` | GitHub Actions | yes |
 | `Compatibility parity vs frozen source` | GitHub Actions | yes |
-| `Greptile Review` | Greptile | see [Status](#status-of-the-greptile-gate) |
+| `Greptile Review` | Greptile | **no**, by measured decision — see [Status](#status-of-the-greptile-gate) |
 | `Sourcery review` | Sourcery | **no**, by decision — see below |
 | `Socket Security` | Socket | no |
 
@@ -82,21 +82,74 @@ a `Sourcery review` check run exists on recent heads. Promoting it to a hard gat
 requires its own calibration evidence, on the same terms Greptile was held to.
 Until that exists, it remains defense-in-depth.
 
+The META-321 canary produced evidence on this point rather than leaving it
+assumed: on the head carrying all three deliberate producer defects,
+`Sourcery review` concluded **success**. That reinforces the existing
+calibration instead of overturning it, so its non-required status stands.
+
 ## Status of the Greptile gate
 
-`Greptile Review` is **not yet a required branch-protection status** for `main`.
+**Calibrated 2026-08-12 (META-321, canary PR #23). `Greptile Review` is not a
+required branch-protection status, and that is a decision on evidence rather
+than a deferral.**
 
-The rollout is deliberately staged: a repo-owned policy lands first, a
-disposable canary PR then proves the policy behaves correctly against real
-CLI failure classes, and only then is the required-check decision made.
+The rules work. The check status does not carry the result.
 
-A rule that misses its own positive control is not eligible to become a hard
-gate. Making a check required before proving it can fail for the defect it names
-would install a gate that reports conformance it never measured — which is the
-same defect `.greptile/rules.md` exists to catch in the producer.
+### The rules caught every positive control
 
-Calibration and the resulting decision are tracked on META-321, and this section
-is updated with the measured outcome rather than with an intention.
+Three deliberate producer defects were pushed on a disposable canary, each
+mapped to one rule so attribution was unambiguous:
+
+| Defect | Rule cited by the reviewer | Caught |
+| -- | -- | -- |
+| A refused history refresh made invisible to the caller | `history-refresh-refusal-observable` | yes, P1 |
+| Mining default inverted so ordinary generation reads the commit graph | `ordinary-generation-never-mines` | yes, P1 |
+| `compareUtf8` replaced with bare `<=` in canonical ordering | `canonical-utf8-endpoint-order` | yes, P1 |
+
+3/3, each citing `Rule Used: … (source: .greptile)`, which also proves the
+branch-local repo-owned configuration is read rather than a default profile.
+`pnpm typecheck` was clean on all three — none of these is visible to the
+compiler, which is the whole reason the semantic layer exists.
+
+### Why the check is still not required
+
+The check **conclusion is not a function of whether actionable findings exist**,
+measured in both directions:
+
+* **Cannot-ever-fail.** On PR #22 the reviewer posted a P1 at 13:30:16 and the
+  `Greptile Review` check concluded **success** at 13:30:18. A required check
+  that goes green with an open P1 adds no guarantee.
+* **Cannot-ever-pass.** On the canary's revert head, whose diff netted to empty
+  against `main`, **no `Greptile Review` check run was posted at all**. A
+  required context that never appears can never be satisfied, and the PR would
+  be permanently unmergeable.
+
+Requiring it would install a status that neither reliably blocks a bad head nor
+reliably clears a good one. That is exactly the vacuous-check shape
+`.greptile/rules.md` prohibits, so it is not installed here either.
+
+### What actually enforces review
+
+**Required conversation resolution**, which is already enabled and was measured
+directly. On PR #22 with the status rollup at `SUCCESS` and the branch
+`MERGEABLE`, the pull request sat at `mergeStateStatus: BLOCKED` on a single
+unresolved thread, and moved to `CLEAN` the moment that thread was resolved —
+head SHA and check rollup unchanged, so resolution was the only variable.
+
+So the enforceable gate is: required CI on the current head, plus every
+actionable finding reconciled on its own thread. The Greptile check remains
+valuable as the thing that *produces* those findings; it is not the thing that
+counts them.
+
+### Current required contexts on `main`
+
+`test (20)`, `test (22)`, `Compatibility parity vs frozen source`, with
+`strict: true` and `required_conversation_resolution: true`. Unchanged by this
+calibration.
+
+Revisit if Greptile's check conclusion becomes a documented function of finding
+severity. Until then, treat a green Greptile check as "review ran", never as
+"review passed".
 
 ## For agents and automated contributors
 
