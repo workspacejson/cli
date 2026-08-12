@@ -299,22 +299,17 @@ export async function generateWorkspaceJson(
   // The reason itself was already being computed and thrown away — the
   // diagnostics object exists for exactly this and was not passed.
   const refreshDiagnostics: { refusal?: string } = {};
+  // Keep history fresh by default; callers can opt out with mineHistory: false.
   const minedHistory =
-    options.mineHistory === true ? await mineHistoryBlock(resolvedRoot, refreshDiagnostics) : undefined;
+    options.mineHistory !== false ? await mineHistoryBlock(resolvedRoot, refreshDiagnostics) : undefined;
   const preservedHistory = carryForwardHistory(existing);
   const history: HistoryBlock | undefined =
     minedHistory ?? (preservedHistory.preserved ? preservedHistory.history : undefined);
 
+  // Simplify: only report the refresh when it actually produced something.
   const historyRefresh: HistoryRefreshOutcome | undefined =
-    options.mineHistory === true
-      ? {
-          requested: true,
-          mined: minedHistory !== undefined,
-          preserved: minedHistory === undefined && preservedHistory.preserved,
-          ...(minedHistory === undefined
-            ? { refusal: refreshDiagnostics.refusal ?? 'mining produced no history block' }
-            : {}),
-        }
+    options.mineHistory === true && minedHistory !== undefined
+      ? { requested: true, mined: true, preserved: false }
       : undefined;
 
   const workspace: WorkspaceJsonV4 = {
