@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "OWNERSHIP.md",
+      "description": "The authority boundary for this repository: what the CLI owns (neutral producer, command routing, the frozen agents-audit compatibility surface, CLI distribution), what it consumes (released @workspacejson/spec and @workspacejson/rules at exact versions), and what it must never define (normative schema, host integrations, vendor consumer logic, private product behavior). Also records the clean-room boundary, the publish authority table, and the META-248 datahub-adapter extraction. Machine-checked by scripts/check-architecture.mjs."
+    },
+    {
+      "path": "REVIEW.md",
+      "description": "The repo-owned review and merge policy. Defines what the Greptile Review check does and does not mean, why check completion is not semantic approval, how actionable findings are reconciled individually, the current-head rule, and the calibrated role split between Greptile and Sourcery."
+    },
+    {
+      "path": "packages/cli/src/producer/generate.ts",
+      "description": "The producer entry point. Assembles the artifact, decides between mined and carried-forward history by exactly one of two routes and never both, reports the history-refresh outcome so a refused refresh cannot read as a completed one, refuses to overwrite an invalid artifact, and writes atomically. The material projection excludes generatedAt and by so drift detection does not fire on every run."
+    },
+    {
+      "path": "packages/cli/src/producer/history-carry-forward.ts",
+      "description": "Why generated.coChange and generated.basisRevision are preserved rather than rebuilt by ordinary generation, and the three failure modes it is written against: dropping mined evidence, advancing the pin without recounting, and recomputing on every run. Validates rather than trusts the prior block, and passes parsed values through untouched so the byte-for-byte guarantee is real."
+    },
+    {
+      "path": "packages/cli/src/producer/history-mine.ts",
+      "description": "The only code path that reads the commit graph, and it runs only when a caller explicitly asks. A refusal returns undefined, which is not the same as an empty result: a shallow clone, absent history, or a Git failure produce nothing here and the reason is surfaced on the diagnostics rather than discarded."
+    },
+    {
+      "path": "packages/mining-core/src/project.ts",
+      "description": "The L1 projection boundary — the only place a selection becomes artifact-shaped. Establishes canonical UTF-8 endpoint order here rather than upstream, stores no derived value, omits the classification flag by design, and refuses rather than degrades when completeness is not a mined state."
+    },
+    {
+      "path": "packages/mining-core/src/select.ts",
+      "description": "The selection rule and the UTF-8 byte comparator. Documents why bare string comparison (UTF-16 code units) and localeCompare are both wrong for artifact-bound ordering, and why the ranking keys on integer counts so no float decides an order."
+    },
+    {
+      "path": "packages/mining-core/src/serialize.ts",
+      "description": "Deterministic serialization and the float prohibition. Two runs at the same basisRevision produce byte-identical output; non-finite and non-integer numbers throw rather than round or drop. Records the exact scope of the determinism claim, including the known generated.hygiene exception it does not inherit."
+    },
+    {
+      "path": "packages/mining-core/src/paths.ts",
+      "description": "The single path-normalization function for L0 and the record of which META-278 path-identity questions are ratified versus assumed. Assumptions are carried in the output so a reader sees a guess as a guess rather than as settled behavior."
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "description": "Build and test commands, the parity harnesses that measure the frozen agents-audit bridge against its pre-migration source, and the expected parity results. A third runtime difference means something changed that should not have, or owes an explicit intentional-difference record."
+    }
+  ]
+}
