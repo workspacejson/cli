@@ -298,6 +298,8 @@ export async function generateWorkspaceJson(
   //
   // The reason itself was already being computed and thrown away — the
   // diagnostics object exists for exactly this and was not passed.
+  // The diagnostics object is passed rather than defaulted: the refusal reason
+  // is computed inside the mining pass and would otherwise be discarded there.
   const refreshDiagnostics: { refusal?: string } = {};
   const minedHistory =
     options.mineHistory === true ? await mineHistoryBlock(resolvedRoot, refreshDiagnostics) : undefined;

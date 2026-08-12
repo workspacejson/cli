@@ -85,6 +85,8 @@ export type ProjectionResult =
  * spelling a producer is permitted to write, which is what makes two
  * independent producers byte-comparable.
  */
+// `compareUtf8`, never bare `<`: the two disagree above the BMP and the emitted
+// bytes are what a second producer is compared against.
 function canonicalPair(files: readonly [string, string]): [string, string] {
   return compareUtf8(files[0], files[1]) <= 0 ? [files[0], files[1]] : [files[1], files[0]];
 }
