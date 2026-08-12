@@ -37,7 +37,7 @@
  * avoid, one level up from `NOT_MINED / SHALLOW_CLONE`.
  */
 import { CompletenessState } from './completeness.js';
-import type { SelectedPair, SelectionResult } from './select.js';
+import { type SelectedPair, type SelectionResult, compareUtf8 } from './select.js';
 
 /**
  * A co-change entry exactly as it appears in `generated.coChange`.
@@ -86,7 +86,7 @@ export type ProjectionResult =
  * independent producers byte-comparable.
  */
 function canonicalPair(files: readonly [string, string]): [string, string] {
-  return files[0] <= files[1] ? [files[0], files[1]] : [files[1], files[0]];
+  return compareUtf8(files[0], files[1]) <= 0 ? [files[0], files[1]] : [files[1], files[0]];
 }
 
 function projectPair(pair: SelectedPair): ProjectedCoChangeEntry {
