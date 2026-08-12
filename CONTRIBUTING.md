@@ -77,6 +77,19 @@ or you owe it an explicit intentional-difference record.
 - `@workspacejson/cli` losing `private: true`
 - any workflow attempting to publish `@workspacejson/spec` or `@workspacejson/rules`
 
+## Review
+
+[`REVIEW.md`](./REVIEW.md) is the review and merge contract: which checks are
+required, why a completed review check is not the same as approval, and why
+findings are reconciled one thread at a time.
+
+The semantic rules the automated reviewer applies are repo-owned and live in
+[`.greptile/rules.md`](./.greptile/rules.md). They are written from producer
+failure classes this repository has actually hit — a refused history refresh
+reported as a successful one, a basis pin advanced without recounting, an empty
+evidence block emitted for a repository that could not be analyzed. Read them
+before touching `packages/cli/src/producer/**` or `packages/mining-core/src/**`.
+
 ## Reporting Issues
 
 File bugs at [GitHub Issues](https://github.com/workspacejson/cli/issues).

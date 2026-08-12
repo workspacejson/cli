@@ -1,0 +1,139 @@
+{
+  "strictness": 1,
+  "triggerOnUpdates": true,
+  "triggerOnDrafts": true,
+  "statusCheck": true,
+  "ignorePatterns": "node_modules/**\ndist/**\ncoverage/**\n.git/**\npnpm-lock.yaml",
+  "summarySection": {
+    "included": true,
+    "collapsible": true,
+    "defaultOpen": false
+  },
+  "issuesTableSection": {
+    "included": true,
+    "collapsible": false
+  },
+  "confidenceScoreSection": {
+    "included": true,
+    "collapsible": true,
+    "defaultOpen": false
+  },
+  "instructions": "This repository is the neutral workspace.json PRODUCER, not the standard. It owns deterministic generation, repository scanning, manual-evidence preservation, atomic writes, drift detection, the explicit opt-in commit-history pass (L0/L1 mining), and the frozen `agents-audit` compatibility bridge. It CONSUMES `@workspacejson/spec` and `@workspacejson/rules` from `workspacejson/standard` at exact published versions and never redefines them. The dominant defect class here is a producer that emits a plausible-looking artifact for evidence it did not gather: a refused history refresh reported as a successful one, an empty coChange block written for a repository that could not be analyzed, a basisRevision advanced without recounting, or a preserved block silently rebuilt. Absence, refusal, shallow clone, and Git failure are all reportable outcomes and none of them is zero, empty, or green. Review changes for whether the artifact would state a result nobody measured. See .greptile/rules.md for the full prose and OWNERSHIP.md for the authority boundary.",
+  "rules": [
+    {
+      "id": "evidence-load-bearing",
+      "rule": "Evidence claims must be load-bearing. A verification check that cannot fail proves nothing. If a test, guard, parity harness, or assertion is added or changed, it must be capable of failing for the defect it names. A harness that reports a pass count it did not compute, or that counts a skipped case as a passing one, is documentation rather than verification.",
+      "severity": "high"
+    },
+    {
+      "id": "absence-not-success",
+      "rule": "Absence, refusal, skipped, unsupported, or unavailable is never success, false, safe, empty, zero, or green. This is the primary producer failure class in this repository: a shallow clone, an absent commit graph, or a failed Git invocation must produce a reported refusal, never a result. Converting a refusal into an empty collection, a zero count, or a silently omitted field states a measurement nobody took.",
+      "severity": "high"
+    },
+    {
+      "id": "metrics-perturb",
+      "rule": "Metrics and receipts must perturb when their referent changes. A count, score, hash, or parity number that does not move when its input moves is decorative. If a metric or receipt is added or updated, verify it responds to a change in the underlying value it claims to measure.",
+      "severity": "high"
+    },
+    {
+      "id": "bidirectional-checks",
+      "rule": "Every verification check must be considered in both directions: cannot-ever-pass and cannot-ever-fail. A guard that rejects everything and a working guard look identical from a green build. When a check, guard, or conformance step is added or modified, state what it would look like if it were broken in each direction.",
+      "severity": "high"
+    },
+    {
+      "id": "clean-room-boundary",
+      "rule": "No `@marcelle-labs/*` scope, private Vreko source, `workspace.vreko.json`, or other cross-organizational implementation dependency may appear in any file, including config, comments, tests, and documentation. Additionally `packages/cli/` must contain no vendor- or host-specific content at all — no DataHub, dbt, Vreko, MCP, Codex, or editor-integration logic, by filename or by content. The neutral producer stays neutral.",
+      "severity": "high"
+    },
+    {
+      "id": "history-refresh-refusal-observable",
+      "rule": "An explicitly requested history refresh must remain observable to the caller. When a caller passes `mineHistory: true` and mining refuses, the producer falls back to the previously preserved block — which is correct — but the result must still report that the refresh did not happen and why. Removing, narrowing, or conditionally omitting `historyRefresh` / `refusal`, or reporting `mined: true` on a fallback path, reintroduces the P1 found on PR #20: a successful-looking generation carrying the previous revision's counts that the caller cannot distinguish from a completed refresh.",
+      "scope": ["packages/cli/src/producer/**", "packages/cli/src/commands/**"],
+      "severity": "high"
+    },
+    {
+      "id": "ordinary-generation-never-mines",
+      "rule": "Ordinary generation must not read the commit graph. History mining is explicit and opt-in: `mineHistory` defaults to off and that default is the contract, not a convenience. Any change that makes mining run by default, that inverts the flag's sense, or that adds a second commit-graph read path outside the mining pass, makes every ordinary run pay the mining cost and makes the artifact churn on every commit — the exact `generate --check` failure the raw-count amendment removed.",
+      "scope": ["packages/cli/src/producer/**", "packages/cli/src/commands/**", "packages/mining-core/src/**"],
+      "severity": "high"
+    },
+    {
+      "id": "basis-pin-never-advances-without-recount",
+      "rule": "`generated.basisRevision` must not advance without recomputation. Carrying preserved observations forward while moving the pin to current HEAD re-attributes old counts to a commit they were never counted at; the numbers stay plausible and become false. `generatedAt` is not evidence about the history block and must never be used as its freshness signal. Only a completed mining pass may write a new basisRevision, and it must write the revision it actually counted at.",
+      "scope": ["packages/cli/src/producer/**", "packages/mining-core/src/**"],
+      "severity": "high"
+    },
+    {
+      "id": "incomplete-history-emits-nothing",
+      "rule": "Shallow, absent, or unavailable history must never produce an apparently complete evidence block. A pinned empty `coChange` array is a positive finding — the analysis ran at this revision and found no qualifying pairs — so emitting one for a repository that could not be analyzed asserts a result that was never measured. A projection whose completeness is not a mined state must yield nothing at all, not an empty array, and the refusal must name which state it refused on.",
+      "scope": ["packages/mining-core/src/**", "packages/cli/src/producer/**"],
+      "severity": "high"
+    },
+    {
+      "id": "canonical-utf8-endpoint-order",
+      "rule": "Observation pairs emitted by the producer use canonical UTF-8 byte order for their endpoints, established at the projection boundary. Bare `<` / `>` string comparison is UTF-16 code unit order and disagrees with UTF-8 above the BMP; `localeCompare` varies with host locale. Neither may be substituted for the UTF-8 comparator on any artifact-bound ordering, and endpoint reversal must not change the emitted bytes. Ordering claims require a test that fails when the ordering is violated, not prose.",
+      "scope": ["packages/mining-core/src/**", "packages/cli/src/producer/**"],
+      "severity": "high"
+    },
+    {
+      "id": "preserved-history-survives-unchanged",
+      "rule": "Preserved commit-history evidence must survive unrelated ordinary generation byte-for-byte. `generated.coChange` and `generated.basisRevision` are the one part of the producer-owned section that ordinary generation preserves rather than rebuilds, because they derive from an input ordinary generation does not read. Passing the parsed values through untouched is what makes the guarantee real; rebuilding entries field by field re-orders keys and changes bytes even when the values match. Dropping the block on regeneration is indistinguishable, in the resulting artifact, from a repository that was never mined.",
+      "scope": ["packages/cli/src/producer/**"],
+      "severity": "high"
+    },
+    {
+      "id": "validator-not-bypassed",
+      "rule": "`WorkspaceJsonValidator` from `@workspacejson/rules` may not be bypassed, replaced with a vendored or hand-rolled schema, stubbed in a non-test path, or weakened to accommodate candidate development. If a published type lags the amended schema, narrow the compile-time gap at a single declared boundary and say so — the runtime artifact still goes through the real validator unmodified. A local interface that describes a shape the validator has not accepted is a compile-time accommodation, never a relaxation of what the producer may emit.",
+      "scope": ["packages/cli/src/**", "packages/agents-audit-compat/src/**"],
+      "severity": "high"
+    },
+    {
+      "id": "exact-standard-dependency-boundary",
+      "rule": "`@workspacejson/spec` and `@workspacejson/rules` are consumed at exact published versions. No committed `file:`, `link:`, `portal:`, `workspace:`, pnpm `overrides`/`resolutions`, or sibling-checkout path may substitute for the registry package, and no range specifier (`^`, `~`, `*`, `latest`) may replace an exact pin. A sibling override makes the build depend on an unpublished working tree, so CI green proves nothing about what a consumer installing from the registry receives.",
+      "scope": ["package.json", "packages/*/package.json", "pnpm-workspace.yaml", ".npmrc"],
+      "severity": "high"
+    },
+    {
+      "id": "candidate-substitution-detected",
+      "rule": "Candidate-contract verification must detect registry substitution and stale install/cache substitution. A verifier that installs a package by name and checks that it works can pass against the previously published version, a cached tarball, or a registry-resolved package that is not the candidate under test. Verification must bind to the specific artifact — integrity/version/resolved-source — and must fail when what it received is not what it was asked to verify. Reusing a cache without proving the cache holds the candidate is the same defect wearing a different hat.",
+      "scope": ["scripts/**", "migration/**", ".github/workflows/**"],
+      "severity": "high"
+    },
+    {
+      "id": "frozen-compat-bridge",
+      "rule": "`agents-audit` is frozen at 0.4.4 and is a compatibility bridge, not a development surface. No feature may be added to it, no workflow may publish it, and it must stay under `ignore` in the Changesets config so a workspace-wide version bump cannot move it. Anything touching its command surface, exit codes, output, or exports must be measured against the frozen pre-migration source via the parity harnesses, and a new parity difference requires an explicit recorded intentional-difference entry rather than an updated expectation.",
+      "scope": ["packages/agents-audit-compat/**", "migration/**", ".changeset/config.json", ".github/workflows/**"],
+      "severity": "high"
+    },
+    {
+      "id": "producer-emits-no-derived-or-prescriptive-fields",
+      "rule": "The emitted artifact stays descriptive and count-based. The producer must not write derived probability fields (rate, confidence, lift, ranking) into observation-form output — observations are raw integer counts and a reader derives ratios — and must not introduce enforcement, approval-gate, or merge-blocking fields into any emitted section. A continuous derived value moves on every commit and makes `generate --check` fire forever; a prescriptive field makes the producer mandate what consumers must do with the artifact, which is not this repository's authority.",
+      "scope": ["packages/cli/src/producer/**", "packages/mining-core/src/**"],
+      "severity": "high"
+    },
+    {
+      "id": "reader-tolerance-does-not-relax-producer",
+      "rule": "Reader tolerance does not relax producer obligations. That a reader, a published type, or the validator accepts a missing or malformed field does not license the producer to emit it that way. Do not widen what the producer writes because a consumer happens to tolerate it, and do not treat a permissive published type as permission to emit a shape the schema does not describe.",
+      "scope": ["packages/cli/src/**", "packages/agents-audit-compat/src/**"],
+      "severity": "high"
+    },
+    {
+      "id": "artifact-bytes-deterministic",
+      "rule": "Artifact-bound output must be a function of the repository state alone — no wall clock, no host locale, no environment, no absolute host paths, no float where an integer is required. Two runs at the same basis must produce byte-identical bytes. `localeCompare` is prohibited in any serialization or ordering path that reaches the artifact because it varies with host locale. A non-finite or non-integer number in artifact-bound output must throw rather than round or drop: rounding invents precision the measurement does not have, and dropping removes a field a reader was told to expect.",
+      "scope": ["packages/mining-core/src/**", "packages/cli/src/producer/**"],
+      "severity": "high"
+    },
+    {
+      "id": "artifact-independently-useful",
+      "rule": "The committed artifact must remain daemon-free and independently useful with nothing running. No emitted field, example, or documentation may make the artifact's meaning depend on a live service, daemon, running process, or network call. A consumer who clones a repository and reads `.agents/workspace.json` must be able to understand what it says without starting anything.",
+      "scope": ["packages/cli/src/producer/**", "README.md", "packages/cli/README.md"],
+      "severity": "medium"
+    },
+    {
+      "id": "no-local-schema-redefinition",
+      "rule": "This repository does not define the specification. The normative schema, validation semantics, field lifecycle, and the stable read paths belong to `workspacejson/standard` and are consumed here as released packages. A local copy, fork, patch, or ambient-type shadow of a standard-owned contract is a boundary violation even when it typechecks — the shadowed `node:fs` ambient declaration already produced one such defect. Widening producer behavior to match a locally edited contract is not a fix.",
+      "scope": ["packages/cli/src/**", "packages/mining-core/src/**", "types/**", "packages/*/tsconfig.json"],
+      "severity": "high"
+    }
+  ]
+}

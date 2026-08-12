@@ -37,6 +37,19 @@ const cases = [
       `export const sidecar = '.agents/workspace.vreko.json';\n`),
   },
   {
+    // The review policy names the forbidden scopes because the rule is
+    // unenforceable without them, so .greptile/config.json and
+    // .greptile/rules.md are in SELF_REFERENTIAL. This asserts the exemption is
+    // by exact path and did not become a directory-wide hole: any OTHER file
+    // under .greptile/ is still scanned. Without this case, "two files are
+    // exempt" and "the directory is exempt" are indistinguishable from a green
+    // run — the cannot-ever-fail direction of the same check.
+    name: "clean-room: .greptile exemption is per-file, not directory-wide",
+    expect: "clean-room",
+    mutate: (root) => write(join(root, ".greptile/notes.md"),
+      `Scratch notes that reference @marcelle-labs/private-core.\n`),
+  },
+  {
     name: "copied-schema: normative schema copied into the CLI repo",
     expect: "copied-schema",
     mutate: (root) => write(join(root, "packages/agents-audit-compat/schema/v1.json"), JSON.stringify({
