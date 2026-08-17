@@ -61,6 +61,7 @@ jobs:
             base: cli-v0.5.1
             head: cli-v0.5.2
             version: "0.5.2"
+            paths: ""
           # The range the next real release will actually scan, and the only one
           # in this repository with enough identifier-shaped text to expose a
           # false positive.
@@ -68,6 +69,18 @@ jobs:
             base: cli-v0.5.2
             head: main
             version: "0.5.2"
+            paths: ""
+          # The same range, filtered. Run as a pair with the one above so the
+          # path-filter decision rests on the difference between two measured
+          # attributions rather than on an argument about what the filter would
+          # do. Only 1 of the 5 commits in this range touches `packages/cli`;
+          # the rest are `mining-core`, which is private and is not a dependency
+          # of the published CLI, so nothing it changes reaches the artifact.
+          - label: Unreleased range, path-filtered
+            base: cli-v0.5.2
+            head: main
+            version: "0.5.2"
+            paths: "packages/cli/**"
     steps:
       # Full history and tags. The scan walks a commit range; a shallow clone
       # would silently reduce it rather than fail.
@@ -111,9 +124,11 @@ jobs:
           git checkout --detach "origin/$HEAD_REF" 2>/dev/null || git checkout --detach "$HEAD_REF"
           git --no-pager log -1 --format='HEAD is now %h %s'
 
-      # No path filter, deliberately. The release pilot's boundary is that path
-      # filters are introduced only once observed attribution noise demonstrates
-      # a need — so this run has to be capable of showing that noise.
+      # The unfiltered variants carry no `--include-paths` at all: the release
+      # pilot's boundary is that path filters are introduced only once observed
+      # noise demonstrates a need, so an unfiltered run has to be capable of
+      # showing that noise. The filtered variant exists only to be compared
+      # against its unfiltered twin.
       - name: Dry-run the release sync
         id: dryrun
         continue-on-error: true
@@ -121,14 +136,22 @@ jobs:
           LINEAR_ACCESS_KEY: ${{ secrets.LINEAR_ACCESS_KEY }}
           BASE_REF: ${{ matrix.range.base }}
           VERSION: ${{ matrix.range.version }}
+          PATHS: ${{ matrix.range.paths }}
         run: |
           set +e
+          if [ -n "$PATHS" ]; then
+            set -- --include-paths "$PATHS"
+            echo "path filter: $PATHS"
+          else
+            set --
+            echo "path filter: none"
+          fi
           linear-release sync \
             --dry-run \
             --base-ref "$BASE_REF" \
             --release-version "$VERSION" \
             --timeout 120 \
-            --json \
+            --json "$@" \
             > "$RUNNER_TEMP/dryrun.json" 2> "$RUNNER_TEMP/dryrun.log"
           echo "rc=$?" >> "$GITHUB_OUTPUT"
           echo "--- stdout ---"; cat "$RUNNER_TEMP/dryrun.json"
