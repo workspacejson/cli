@@ -1,0 +1,163 @@
+name: Linear release attribution dry run
+
+# ---------------------------------------------------------------------------
+# READ-ONLY. This workflow cannot change anything in Linear or on npm.
+#
+# It exists to answer one question before live release sync is enabled: when the
+# Linear release tool scans a commit range, does it attribute the RIGHT issues?
+# A dry run alone cannot answer that — it reports what it found, with nothing to
+# compare against. So each range is counted twice: once by the tool, and once by
+# `scripts/linear-release-attribution.mjs`, which shares none of the tool's
+# extraction rules. The receipt is the disagreement between the two.
+#
+# Why this matters here specifically: this repository's commit bodies are dense
+# with tokens shaped exactly like issue identifiers but belonging to other
+# schemes entirely — ADR records, requirement numbers, and ordinary prose such
+# as UTF-8, UTF-16 and SHA-1. A body-scanning extractor would attach all of them.
+# Whether the tool does that is measured here rather than assumed.
+#
+# Guarantees:
+#   * `--dry-run` on every invocation, so no Linear object is created or moved;
+#   * no npm credential is requested and no publish step exists;
+#   * `permissions: contents: read`, so the token cannot write to this repository.
+#
+# The pipeline access key is still required — the tool authenticates in order to
+# read the pipeline's latest release. It is the pipeline-scoped key, not a
+# personal API key.
+#
+# Delete this workflow once live sync is enabled and trusted. It is evidence
+# tooling for the release pilot, not a permanent part of the release path.
+# ---------------------------------------------------------------------------
+
+on:
+  workflow_dispatch:
+  push:
+    # Scoped to the evidence branch so the receipt can be produced before this
+    # merges. `workflow_dispatch` only reaches workflows already on the default
+    # branch, which this one is not yet. Remove this trigger when it lands.
+    branches:
+      - evidence/meta-354-attribution-dry-run
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linear-attribution-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  attribution:
+    name: ${{ matrix.range.label }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        range:
+          # The fixture the release pilot names. Both inter-tag ranges in this
+          # repository are two commits carrying no identifier at all, so this
+          # proves the scanner runs and invents nothing — it cannot show that
+          # attribution succeeds, because there is nothing here to attribute.
+          - label: Specified fixture (0.5.1 to 0.5.2)
+            base: cli-v0.5.1
+            head: cli-v0.5.2
+            version: "0.5.2"
+          # The range the next real release will actually scan, and the only one
+          # in this repository with enough identifier-shaped text to expose a
+          # false positive.
+          - label: Unreleased range (0.5.2 to main)
+            base: cli-v0.5.2
+            head: main
+            version: "0.5.2"
+    steps:
+      # Full history and tags. The scan walks a commit range; a shallow clone
+      # would silently reduce it rather than fail.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Taken out of the working tree before the checkout moves, so the receipt
+      # is always produced by THIS revision's script rather than by whatever
+      # happened to exist at the historical ref being measured.
+      - name: Stage the receipt script
+        run: cp scripts/linear-release-attribution.mjs "$RUNNER_TEMP/attribution.mjs"
+
+      # Pinned by tag and digest, matching publish-cli.yml. Read-only here, but
+      # pinning is not a property of the job — it is a property of trusting the
+      # binary at all.
+      - name: Install the Linear release CLI
+        env:
+          LINEAR_RELEASE_VERSION: v0.15.0
+          LINEAR_RELEASE_SHA256: 06eddce3f0d306fcdfed634105a57b02695b5c4fb40c42eb56d13feced729c99
+        run: |
+          mkdir -p "$RUNNER_TEMP/bin"
+          curl -fsSL --retry 3 \
+            "https://github.com/linear/linear-release/releases/download/${LINEAR_RELEASE_VERSION}/linear-release-linux-x64" \
+            -o "$RUNNER_TEMP/bin/linear-release"
+          echo "${LINEAR_RELEASE_SHA256}  $RUNNER_TEMP/bin/linear-release" | sha256sum --check --strict
+          chmod +x "$RUNNER_TEMP/bin/linear-release"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+
+      # The tool scans `--base-ref..HEAD`, so HEAD has to BE the head of the
+      # range. Detaching is the only way to measure a historical range with the
+      # same command the release will later run.
+      - name: Move HEAD to the range head
+        env:
+          HEAD_REF: ${{ matrix.range.head }}
+        run: |
+          git checkout --detach "origin/$HEAD_REF" 2>/dev/null || git checkout --detach "$HEAD_REF"
+          git --no-pager log -1 --format='HEAD is now %h %s'
+
+      # No path filter, deliberately. The release pilot's boundary is that path
+      # filters are introduced only once observed attribution noise demonstrates
+      # a need — so this run has to be capable of showing that noise.
+      - name: Dry-run the release sync
+        id: dryrun
+        continue-on-error: true
+        env:
+          LINEAR_ACCESS_KEY: ${{ secrets.LINEAR_ACCESS_KEY }}
+          BASE_REF: ${{ matrix.range.base }}
+          VERSION: ${{ matrix.range.version }}
+        run: |
+          set +e
+          linear-release sync \
+            --dry-run \
+            --base-ref "$BASE_REF" \
+            --release-version "$VERSION" \
+            --timeout 120 \
+            --json \
+            > "$RUNNER_TEMP/dryrun.json" 2> "$RUNNER_TEMP/dryrun.log"
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          echo "--- stdout ---"; cat "$RUNNER_TEMP/dryrun.json"
+          echo "--- stderr ---"; cat "$RUNNER_TEMP/dryrun.log"
+
+      - name: Build the attribution receipt
+        env:
+          BASE_REF: ${{ matrix.range.base }}
+          HEAD_REF: ${{ matrix.range.head }}
+          LABEL: ${{ matrix.range.label }}
+        run: |
+          node "$RUNNER_TEMP/attribution.mjs" \
+            --base "$BASE_REF" \
+            --head HEAD \
+            --label "$LABEL" \
+            --team-keys META,VR,HAC,GTM,MAR,COV,QOS,INFRA \
+            --tool-json "$RUNNER_TEMP/dryrun.json" \
+            --tool-log "$RUNNER_TEMP/dryrun.log" \
+            | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # Reported after the receipt, so a tool failure still leaves the commit
+      # counts and the independent baseline behind to read. "Not run" must never
+      # be mistaken for "found nothing".
+      - name: Report the dry run's exit status
+        env:
+          RC: ${{ steps.dryrun.outputs.rc }}
+        run: |
+          if [ "$RC" != "0" ]; then
+            echo "::error::the dry run exited $RC — the receipt above reports the independent baseline only"
+            exit 1
+          fi
+          echo "dry run exited 0"
