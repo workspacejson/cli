@@ -76,27 +76,44 @@ const walkStrings = (node, out = []) => {
   return out;
 };
 
+// BOTH streams are read and unioned, never one as a fallback for the other.
+// On a dry run the JSON payload is `{"release":null}` — there is no release to
+// describe yet — while the findings are announced on the structured stderr log.
+// An earlier version treated the parsed-but-empty JSON as the answer and
+// reported zero discoveries against a run that had in fact found four, which is
+// the exact failure mode this receipt exists to catch. A source that yields
+// nothing is recorded as having yielded nothing, not silently trusted.
+const sources = [];
 let toolIds = null;
-let toolNote = "";
-if (toolJsonPath && existsSync(toolJsonPath)) {
-  const raw = readFileSync(toolJsonPath, "utf8").trim();
+
+const readIds = (path, name) => {
+  if (!path) return;
+  if (!existsSync(path)) {
+    sources.push(`${name}: not present`);
+    return;
+  }
+  const raw = readFileSync(path, "utf8").trim();
   if (!raw) {
-    toolNote = "the dry run produced an empty JSON file";
-  } else {
+    sources.push(`${name}: empty`);
+    return;
+  }
+  let text = raw;
+  if (name === "json") {
     try {
-      toolIds = collect(walkStrings(JSON.parse(raw)).join("\n"));
+      text = walkStrings(JSON.parse(raw)).join("\n");
     } catch (err) {
-      toolNote = `the dry run's JSON did not parse (${err.message}); falling back to its text output`;
+      sources.push(`${name}: did not parse (${err.message}), read as plain text`);
     }
   }
-} else {
-  toolNote = "no dry-run JSON was supplied";
-}
+  const found = collect(text);
+  toolIds = toolIds === null ? new Set(found) : new Set([...toolIds, ...found]);
+  sources.push(`${name}: ${found.size} identifier(s)`);
+};
 
-if (toolIds === null && toolLogPath && existsSync(toolLogPath)) {
-  toolIds = collect(readFileSync(toolLogPath, "utf8"));
-  toolNote += toolNote ? "; identifiers taken from the text output instead" : "";
-}
+readIds(toolJsonPath, "json");
+readIds(toolLogPath, "log");
+
+const toolNote = sources.length ? sources.join("; ") : "no dry-run output was supplied";
 
 const sorted = (s) => [...s].sort();
 const fmt = (s) => (s.size ? sorted(s).map((v) => `\`${v}\``).join(", ") : "_none_");
