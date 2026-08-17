@@ -62,6 +62,7 @@ jobs:
             head: cli-v0.5.2
             version: "0.5.2"
             paths: ""
+            pattern: ""
           # The range the next real release will actually scan, and the only one
           # in this repository with enough identifier-shaped text to expose a
           # false positive.
@@ -70,6 +71,7 @@ jobs:
             head: main
             version: "0.5.2"
             paths: ""
+            pattern: ""
           # The same range, filtered. Run as a pair with the one above so the
           # path-filter decision rests on the difference between two measured
           # attributions rather than on an argument about what the filter would
@@ -81,6 +83,27 @@ jobs:
             head: main
             version: "0.5.2"
             paths: "packages/cli/**"
+            pattern: ""
+          # The decisive variant. The unfiltered run attached three identifiers
+          # that appear only in commit BODIES as references to prior work, and
+          # dropped one that appears in two commit SUBJECTS. `--issue-pattern` is
+          # documented as extracting from subjects, so supplying one explicitly
+          # tests both failures at once:
+          #
+          #   result [META-297, META-321]  -> extraction narrowed to subjects;
+          #                                   both directions fixed, sync can go on
+          #   result unchanged (same four) -> the flag filters token SHAPE only,
+          #                                   scope is unchanged, and the omission
+          #                                   has some other cause
+          #
+          # The pattern is restricted to real team keys, so it also cannot admit
+          # the ADR, REQ, SHA-1 and UTF-8 tokens the bodies are full of.
+          - label: Unreleased range, explicit issue pattern
+            base: cli-v0.5.2
+            head: main
+            version: "0.5.2"
+            paths: ""
+            pattern: "(META|VR|HAC|GTM|MAR|COV|QOS|INFRA)-[0-9]+"
     steps:
       # Full history and tags. The scan walks a commit range; a shallow clone
       # would silently reduce it rather than fail.
@@ -137,14 +160,21 @@ jobs:
           BASE_REF: ${{ matrix.range.base }}
           VERSION: ${{ matrix.range.version }}
           PATHS: ${{ matrix.range.paths }}
+          PATTERN: ${{ matrix.range.pattern }}
         run: |
           set +e
+          set --
           if [ -n "$PATHS" ]; then
-            set -- --include-paths "$PATHS"
+            set -- "$@" --include-paths "$PATHS"
             echo "path filter: $PATHS"
           else
-            set --
             echo "path filter: none"
+          fi
+          if [ -n "$PATTERN" ]; then
+            set -- "$@" --issue-pattern "$PATTERN"
+            echo "issue pattern: $PATTERN"
+          else
+            echo "issue pattern: default"
           fi
           linear-release sync \
             --dry-run \
