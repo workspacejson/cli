@@ -13,9 +13,9 @@ consumed here as released packages.
 >
 > **Registry snapshot, verified 2026-08-19:** the published versions are
 > `@workspacejson/cli@0.5.2` and `agents-audit@0.4.4`. The manifest table below
-> declares `0.6.1`. `0.6.0` was tagged but never published — its publish run
-> stopped at the tarball gate on a packaging defect (see the CLI changelog) —
-> so the registry skips from `0.5.2` to `0.6.1`.
+> declares `0.6.2`. `0.6.0` and `0.6.1` were both tagged but never published —
+> each publish run stopped at a different gate before reaching the registry (see
+> the CLI changelog) — so the registry skips from `0.5.2` to `0.6.2`.
 >
 > The versions shown in the table below are the versions declared by this
 > repository's package manifests. `pnpm run check:package-docs` keeps those
@@ -33,7 +33,7 @@ consumed here as released packages.
 
 | Directory | Package | Version | Role |
 | -- | -- | -- | -- |
-| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | `0.6.1` | the neutral producer and its `workspacejson` binary |
+| [`packages/cli/`](./packages/cli/) | `@workspacejson/cli` | `0.6.2` | the neutral producer and its `workspacejson` binary |
 | [`packages/agents-audit-compat/`](./packages/agents-audit-compat/) | `agents-audit` | `0.4.4` | frozen compatibility bridge; preserves the historical command and API |
 | [`packages/mining-core/`](./packages/mining-core/) | `@workspacejson/mining-core` | `0.0.0`, private | L0 commit-graph mining core — extraction, path identity, completeness semantics (META-297 Phases 1–2) |
 

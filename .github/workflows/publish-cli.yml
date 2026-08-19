@@ -21,8 +21,22 @@ name: Publish @workspacejson/cli
 # reaches the registry. A tag that disagrees with the manifest fails the run
 # instead of publishing a version nobody named.
 #
-# Required repository secret:
+# Required ENVIRONMENT secret, on the `npm-publish` environment:
 #   NPM_TOKEN  npm automation token with publish rights on @workspacejson/cli
+#
+# Environment, not repository. This distinction is load-bearing and it is what
+# failed the 0.6.1 release: GitHub exposes an environment secret only to a job
+# that explicitly declares `environment:`. The job did not, so
+# `${{ secrets.NPM_TOKEN }}` resolved to the empty string and the credential
+# guard below reported a missing token on a repository whose token was
+# correctly configured all along. The secret was never the problem; the job was
+# simply never in the scope where it exists.
+#
+# Scoping it to an environment rather than the repository is deliberate: it is
+# the same reviewer-gateable boundary the standard's `standard-v*` releases
+# publish behind. Moving NPM_TOKEN to a repository secret would "fix" this by
+# widening the blast radius of every workflow in the repository, which is the
+# opposite of what the environment is for.
 # ---------------------------------------------------------------------------
 
 on:
@@ -40,6 +54,12 @@ concurrency:
 
 jobs:
   publish:
+    # `name` is cosmetic — it labels the job in the Actions UI. `environment` is
+    # the line that actually admits the job to the scope where NPM_TOKEN exists.
+    # They are named alike on purpose, so a reader of a failed run sees the same
+    # word in the job label and the environment it needs.
+    name: npm-publish
+    environment: npm-publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
