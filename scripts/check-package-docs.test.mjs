@@ -55,7 +55,11 @@ const cases = [
     mutate: (root) => {
       const p = join(root, "packages/cli/package.json");
       const manifest = JSON.parse(read(p));
-      manifest.version = "0.6.0";
+      // Deliberately choose a value that cannot equal the repository's current
+      // release version. This red test previously hard-coded 0.6.0; once 0.6.0
+      // became the real manifest version, the mutation became a no-op and the
+      // test falsely accused the guard of accepting a contradiction.
+      manifest.version = "9.9.9";
       write(p, `${JSON.stringify(manifest, null, 2)}\n`);
     },
   },
