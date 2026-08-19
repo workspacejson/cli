@@ -352,14 +352,35 @@ export async function generateWorkspaceJson(
             }
           : { agentFiles: { workspaceJson: '.agents/workspace.json' } }),
       },
-      hygiene: {
-        score: score.value,
-        grade: score.grade,
-        failCount: score.breakdown.failCount,
-        warnCount: score.breakdown.warnCount,
-        scannedAt:
-          (existing?.generated.hygiene as { scannedAt?: string } | undefined)?.scannedAt ?? now,
-      },
+      // `computeHygieneScore` returns null when the scan observed nothing —
+      // no findings, and no file-count denominator to say anything was
+      // examined (ADR-003 A-002, `@workspacejson/rules@0.5.0`). Under 0.4.4
+      // that same input returned `{ value: 100, grade: 'A' }`, so a scan that
+      // looked at nothing certified this repository as flawless and that value
+      // reached the published artifact.
+      //
+      // The block is therefore OMITTED rather than filled with a substitute.
+      // `generated.hygiene` is not in the schema's `generated.required` set, so
+      // absence is valid; and absence is the only truthful option, because
+      // every available placeholder — a zeroed block, or the old 100/A — is a
+      // measurement claim we did not make. Absent, not wrong.
+      //
+      // This is the one artifact-visible consequence of the 0.4.4 -> 0.5.0
+      // authority migration. It changes bytes only for a repository that
+      // produced zero findings; wherever any evidence exists the arithmetic is
+      // unchanged, which is what the parity fixtures assert.
+      ...(score === null
+        ? {}
+        : {
+            hygiene: {
+              score: score.value,
+              grade: score.grade,
+              failCount: score.breakdown.failCount,
+              warnCount: score.breakdown.warnCount,
+              scannedAt:
+                (existing?.generated.hygiene as { scannedAt?: string } | undefined)?.scannedAt ?? now,
+            },
+          }),
       // Commit-history evidence is PRESERVED, never rebuilt, by ordinary
       // generation — see history-carry-forward.ts for why this one part of the
       // producer-owned section is carried rather than regenerated.
@@ -390,7 +411,11 @@ export async function generateWorkspaceJson(
   const unchanged = existing !== undefined && isMateriallyCurrent(existing, workspace);
   if (unchanged) {
     workspace.generated.generatedAt = existing!.generated.generatedAt;
-  } else {
+  } else if (workspace.generated.hygiene !== undefined) {
+    // Guarded because the block is absent when the scan observed nothing; see
+    // the omission note above. Stamping `scannedAt` onto a block that does not
+    // exist would resurrect it as a bare timestamp, which reads as "scanned,
+    // perfectly clean" — precisely the false claim the omission removes.
     (workspace.generated.hygiene as { scannedAt: string }).scannedAt = now;
   }
   if (!options.dryRun && !options.check && !unchanged) {

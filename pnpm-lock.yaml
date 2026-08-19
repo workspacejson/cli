@@ -71,11 +71,11 @@ importers:
   packages/cli:
     dependencies:
       '@workspacejson/rules':
-        specifier: 0.4.4
-        version: 0.4.4
+        specifier: 0.5.0
+        version: 0.5.0
       '@workspacejson/spec':
-        specifier: 0.4.4
-        version: 0.4.4
+        specifier: 0.5.0
+        version: 0.5.0
       commander:
         specifier: ^12.1.0
         version: 12.1.0
@@ -718,8 +718,17 @@ packages:
     resolution: {integrity: sha512-ZTCAC7LJ+gX5+RuYzzPmgSGLw8Q9k2EmytccaV2CB0QglIDOmBsDh+7nYhTQVB4FchRrWoAG1k5Yq48Wh7kh1g==}
     engines: {node: '>=20.0.0'}
 
+  '@workspacejson/rules@0.5.0':
+    resolution: {integrity: sha512-UlJUnDdc1In4oAMCNMFbFnCAVUGSb1HR0MeP3Pa6Db3uHrH/OvXPyQCqGXLDe9ii3D+6Ua/OHAJMeocKv2bL1Q==}
+    engines: {node: '>=20.0.0'}
+
   '@workspacejson/spec@0.4.4':
     resolution: {integrity: sha512-7lA2PDkhaKFEetrantRWecKrgGh6ev1HLHLhG8Wr7S4GvYm1xwTnOq+lqFg8pZCgnEOV2H2jADw1jQyHwuHTew==}
+    engines: {node: '>=20.0.0'}
+    hasBin: true
+
+  '@workspacejson/spec@0.5.0':
+    resolution: {integrity: sha512-KpsUxvLXFHHHKY6F58tWBnqsx5REJjK99Kum1+ATU4b8oUGlStfVkWyphNQ+nFZU3hy/ckNLZTxs4mpOeWGQLA==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -2300,7 +2309,22 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+  '@workspacejson/rules@0.5.0':
+    dependencies:
+      '@workspacejson/spec': 0.5.0
+      ajv: 8.20.0
+      fast-glob: 3.3.3
+      remark: 15.0.1
+      remark-parse: 11.0.0
+      simple-git: 3.36.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@workspacejson/spec@0.4.4':
+    dependencies:
+      ajv: 8.20.0
+
+  '@workspacejson/spec@0.5.0':
     dependencies:
       ajv: 8.20.0
 

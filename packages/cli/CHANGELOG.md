@@ -1,5 +1,59 @@
 # Changelog — `@workspacejson/cli`
 
+## 0.6.0
+
+### Minor Changes
+
+- Move the producer's standard authority to the canonical `workspacejson/standard`
+  release: `@workspacejson/spec` and `@workspacejson/rules` `0.4.4` -> `0.5.0`.
+
+  This is an authority-migration release. No capability, mining, ranking,
+  provenance or command-surface changes ship with it.
+
+  **Why the packages moved, not just the versions.** `0.4.4` of both packages was
+  published from `workspace-json/agents-audit`; `0.5.0` is published from
+  `workspacejson/standard`. The dependency edge, not only the version range, now
+  points at the canonical publisher.
+
+  **Why this is a minor rather than a patch.** Nothing in this package's own API
+  changed. But `dist/index.d.ts` carries `WorkspaceJsonV4` in an exported
+  signature (`GenerateResult.content`, `writeWorkspaceAtomically`), so `spec`'s
+  `0.5.0` source-level break propagates to anyone consuming those types.
+  `CoChangeEntry` is now a union whose members declare the other form's field as
+  `?: never`, so reading `entry.rate` off it without narrowing stops compiling:
+
+  ```ts
+  const r: number = result.content.generated.coChange[0].rate; // was fine, now a type error
+  ```
+
+  `@workspacejson/spec` and `@workspacejson/rules` classified that propagation as a
+  minor for exactly this reason, and this package inherits it rather than hiding
+  it behind a patch.
+
+  **Artifact output is unchanged.** Every `.agents/workspace.json` this producer
+  emits is byte-identical to the one the previously pinned build emits, modulo the
+  `generatedAt` and `hygiene.scannedAt` timestamps. That was verified by running
+  the pinned build and this one over the same inputs and diffing the normalized
+  artifacts; the frozen-source parity harness for the `agents-audit` bridge also
+  reports its ratified baseline of four expected differences, unchanged.
+
+  **`agents-audit` deliberately stays on `0.4.4`.** The compatibility bridge is
+  frozen and locked for judging (OWNERSHIP.md), is not published from this
+  repository, and its published artifact declares no dependency on this package.
+  Moving its pins would put a frozen, parity-gated surface at risk for no benefit,
+  so the two packages now resolve different versions of the standard on purpose.
+
+  **One guarded behavior change, currently unreachable.** `computeHygieneScore`
+  returns `HygieneScore | null` as of `rules@0.5.0`, returning `null` when a scan
+  observed nothing. Where that happens the producer now omits `generated.hygiene`
+  entirely — the field is not in the schema's `generated.required` set, and
+  absence is the only truthful option, since every placeholder value is a
+  measurement claim that was not made. This path is not reachable through the
+  current producer: its rule set emits at least one finding for every input tried,
+  including an empty repository, so `computeHygieneScore` never receives the empty
+  array that produces `null`. The handling is in place because the type demands
+  it, not because output changed.
+
 ## 0.5.2
 
 ### Patch Changes
