@@ -9,8 +9,34 @@ const packageDirectory = process.cwd();
 const sourceManifest = JSON.parse(readFileSync(join(packageDirectory, "package.json"), "utf8"));
 const packageName = sourceManifest.name;
 const expectedVersion = sourceManifest.version;
-const packer = process.env.WORKSPACEJSON_PACKER
-  ?? (process.env.npm_execpath?.includes("pnpm") ? "pnpm" : "npm");
+// npm unconditionally, because `publish-cli.yml` publishes with `npm publish`.
+// This default used to be inferred from `npm_execpath`, which made the gate's
+// verdict depend on HOW it was invoked rather than on what ships: `pnpm run
+// release:verify-packs` sets that variable and packed with pnpm, while CI's
+// `pnpm --filter ... exec ...` did not and packed with npm. The same commit
+// therefore verified green locally and red in CI, and the green one was
+// measuring bytes nobody publishes. Release verification must measure the
+// packer that actually produces the published artifact.
+//
+// WORKSPACEJSON_PACKER=pnpm remains available, and has exactly two legitimate
+// uses. Neither is "the release default".
+//
+//   1. Diagnostic. The red tests use it to prove pnpm's `workspace:` rewriting
+//      cannot disguise an invalid reference — see verify-package-tarball.test.mjs.
+//
+//   2. Packages this repository does not publish. `agents-audit` is frozen and
+//      no workflow here publishes it (OWNERSHIP.md), and it depends on its
+//      sibling `@workspacejson/cli` by `workspace:*`. Verifying it with npm
+//      would assert an npm-publishability property it does not claim and that
+//      nothing here acts on. It is verified with pnpm instead, which is how CI
+//      has always packed it. The packer-independent private-package check below
+//      still applies to it in full; only the syntactic `workspace:` check, which
+//      is specifically about npm publishability, is satisfied by the rewrite.
+//
+//      If META-243 ever makes this repository the publisher of `agents-audit`,
+//      that sibling reference becomes a real release defect and this override
+//      must go with the same reasoning that removed the CLI's.
+const packer = process.env.WORKSPACEJSON_PACKER ?? "npm";
 
 if (!["pnpm", "npm"].includes(packer)) {
   throw new Error(`Unsupported packer ${JSON.stringify(packer)}; use pnpm or npm.`);
@@ -42,6 +68,10 @@ try {
   // listings do not guarantee directory entries. Normalize once so every runtime
   // asset assertion checks the archive's contents, not a packer formatting detail.
   const files = new Set(tar("-tzf", tarballPath).trim().split("\n").filter(Boolean).map(normalizeArchivePath));
+  // Private-package check FIRST: it is the packer-independent invariant, so a
+  // private reference reports as what it actually is rather than as whichever
+  // spelling this packer happened to produce.
+  assertNoPrivateWorkspacePackages(manifest);
   assertNoWorkspaceProtocol(manifest, "package");
   assertStandardDependenciesArePinned(manifest);
   assertRuntimeFiles(manifest, files);
@@ -70,6 +100,60 @@ function assertNoWorkspaceProtocol(value, path) {
   }
   if (value && typeof value === "object") {
     for (const [key, item] of Object.entries(value)) assertNoWorkspaceProtocol(item, `${path}.${key}`);
+  }
+}
+
+// META-297 release-integrity boundary.
+//
+// `assertNoWorkspaceProtocol` above is SYNTACTIC and packer-dependent: it looks
+// for the literal `workspace:` prefix. That is not the invariant that protects a
+// consumer, as this repository learned by failing a release on it.
+//
+// `@workspacejson/mining-core` is private and unpublished, and the CLI declared
+// it as a `workspace:*` devDependency. Packed with npm the string survives
+// verbatim and the syntactic check catches it. Packed with pnpm the SAME broken
+// reference is rewritten to `"0.0.0"` — a plausible-looking version for a
+// package that exists nowhere — and the syntactic check waves it through.
+// Switching packers would have published a manifest referencing a package no
+// consumer can resolve, with a green gate.
+//
+// So the invariant is not "no `workspace:` string". It is:
+//
+//   a public package's packed manifest must not reference a private workspace
+//   package at all, under any spelling.
+//
+// That is packer-independent and states the actual release boundary: what is
+// private to this repository must not appear in what we hand to the registry.
+// Matching is by NAME, discovered from the workspace, so it cannot be evaded by
+// a version rewrite and needs no maintenance when a private package is added.
+function privateWorkspacePackageNames() {
+  const packagesRoot = resolve(packageDirectory, "..");
+  const names = new Set();
+  for (const entry of readdirSync(packagesRoot)) {
+    const manifestPath = join(packagesRoot, entry, "package.json");
+    if (!existsSync(manifestPath)) continue;
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    if (manifest.private === true && typeof manifest.name === "string") names.add(manifest.name);
+  }
+  return names;
+}
+
+function assertNoPrivateWorkspacePackages(manifest) {
+  // A private package is not handed to the registry, so it has no release
+  // boundary to protect and may legitimately reference its private siblings.
+  if (sourceManifest.private === true) return;
+  const privateNames = privateWorkspacePackageNames();
+  if (privateNames.size === 0) return;
+  for (const field of ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies"]) {
+    for (const [name, version] of Object.entries(manifest[field] ?? {})) {
+      if (!privateNames.has(name)) continue;
+      throw new Error(
+        `${packageName} packed ${field}.${name}=${JSON.stringify(version)}, but ${name} is a PRIVATE workspace package and is not published. `
+        + `A public package's packed manifest must not reference a private workspace package under any spelling — `
+        + `${packer === "pnpm" ? "this manifest was packed by pnpm, which rewrites the workspace: protocol to a concrete version — a version string is therefore not evidence the package is published" : "npm preserves the workspace: protocol verbatim, so a private reference survives packing unchanged"}. `
+        + `If the code is bundled at build time, declare the package in the private root workspace instead of in this manifest.`,
+      );
+    }
   }
 }
 
