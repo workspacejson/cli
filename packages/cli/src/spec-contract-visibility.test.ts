@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { validate, validateV4, version } from '@workspacejson/spec';
-import type { CoChangeEntry, FragilityEntry, WorkspaceJsonV4 } from '@workspacejson/spec';
+import { validate, validateStoredKey, validateV4, version } from '@workspacejson/spec';
+import type { CoChangeEntry, FragilityEntry, StoredKeyResult, WorkspaceJsonV4 } from '@workspacejson/spec';
 
 /**
  * META-244 regression guard: the CLI compiles against the REAL published
@@ -19,9 +19,30 @@ import type { CoChangeEntry, FragilityEntry, WorkspaceJsonV4 } from '@workspacej
  */
 describe('@workspacejson/spec contract visibility', () => {
   it('exposes the published version as a value, not a local guess', () => {
-    // The removed stub declared `version: string`. The real package declares the
-    // literal "0.4.4" — so this also pins which contract we compiled against.
-    expect(version).toBe('0.4.4');
+    // Pins which contract we compiled against. This assertion alone no longer
+    // distinguishes the real package from the removed stub: the stub declared
+    // `version: string`, and as of 0.5.0 so does the real package, because the
+    // literal was replaced by a value read at build time. The discriminator
+    // moved to the stored-key surface below — see that test for why.
+    expect(version).toBe('0.5.0');
+  });
+
+  it('exposes the stored-key surface, which no stub ever declared', () => {
+    // This is the load-bearing half of the META-244 guard after 0.5.0.
+    //
+    // The guard works by importing symbols that exist ONLY in the real
+    // published package, so reintroducing a handwritten
+    // `declare module '@workspacejson/spec'` fails at COMPILE time (TS2305 /
+    // TS2724) rather than silently shadowing the real typings. `version` used
+    // to carry that weight via its literal type; 0.5.0 widened it to `string`,
+    // which is exactly what the stub declared, so it can no longer tell them
+    // apart.
+    //
+    // `validateStoredKey` and `StoredKeyResult` are new in 0.5.0 and were never
+    // present in the stub, so they restore the compile-time property the
+    // literal used to provide.
+    const accepted: StoredKeyResult = validateStoredKey('src/a.ts');
+    expect(accepted.valid).toBe(true);
   });
 
   it('exposes validateV4, which the removed ambient stub did not declare', () => {
