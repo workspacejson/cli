@@ -50,8 +50,22 @@ jobs:
       - name: Run tests
         run: pnpm -r test
 
-      - name: Verify package tarballs
+      # npm is the packer that publishes, so it is the one release verification
+      # measures. This step used to inherit its packer from `npm_execpath`,
+      # which made the verdict depend on the invocation rather than on what
+      # ships — see verify-package-tarball.test.mjs.
+      - name: Verify package tarballs (npm — the release path)
         run: pnpm run release:verify-packs
+
+      # pnpm rewrites `workspace:` to a concrete version at pack time, so it can
+      # turn an invalid private reference into a plausible-looking one. We do
+      # not publish with pnpm; this runs so that rewriting is proven incapable
+      # of disguising a defect the npm path would catch.
+      - name: Verify package tarballs (pnpm — diagnostic, must also be clean)
+        run: pnpm run release:verify-packs:pnpm
+
+      - name: Package tarball guard red tests
+        run: pnpm run release:verify-packs:test
 
       # This repository owns @workspacejson/cli and agents-audit.
       # @workspacejson/spec and @workspacejson/rules are consumed as released

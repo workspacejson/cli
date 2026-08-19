@@ -22,10 +22,13 @@
     "check:architecture": "node scripts/check-architecture.mjs",
     "check:package-docs": "node scripts/check-package-docs.mjs",
     "check:package-docs:test": "node scripts/check-package-docs.test.mjs",
-    "release:verify-packs": "pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs && pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
+    "release:verify-packs": "pnpm --filter @workspacejson/cli exec node ../../scripts/verify-package-tarball.mjs && WORKSPACEJSON_PACKER=pnpm pnpm --filter agents-audit exec node ../../scripts/verify-package-tarball.mjs",
+    "release:verify-packs:test": "node scripts/verify-package-tarball.test.mjs",
+    "release:verify-packs:pnpm": "WORKSPACEJSON_PACKER=pnpm pnpm run release:verify-packs",
     "release:verify-published": "node scripts/verify-published.mjs"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0"
+    "@changesets/cli": "^2.31.0",
+    "@workspacejson/mining-core": "workspace:*"
   }
 }

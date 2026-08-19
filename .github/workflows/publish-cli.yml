@@ -122,11 +122,23 @@ jobs:
 
       # npm rather than pnpm, for two reasons: pnpm 9 exposes no --provenance
       # flag, and `pnpm publish` refuses to run on a detached tag checkout
-      # unless git checks are disabled wholesale. That substitution is only
-      # safe because @workspacejson/cli declares no `workspace:` dependencies,
-      # so there is nothing for pnpm to rewrite at pack time — and the step
-      # above asserts that invariant against the packed manifest, so this stays
-      # true by gate rather than by assumption.
+      # unless git checks are disabled wholesale.
+      #
+      # This substitution was previously justified by "@workspacejson/cli
+      # declares no `workspace:` dependencies, so there is nothing for pnpm to
+      # rewrite". That claim became FALSE under META-297, which added the
+      # private `@workspacejson/mining-core` as a devDependency, and it stayed
+      # false until the 0.6.0 publish failed on it at the gate above. The claim
+      # was also the wrong shape: it described a string, and pnpm's rewrite
+      # turns that string into a version that reads as legitimate.
+      #
+      # The invariant the gate now asserts is stronger and packer-independent:
+      #
+      #   the npm-produced manifest is inspected directly, and may contain no
+      #   reference to a private workspace package under ANY spelling.
+      #
+      # That is what makes publishing with npm safe here — not an assumption
+      # about which dependencies happen to be declared today.
       #
       # `prepublishOnly` runs again here. That repetition is deliberate: it
       # keeps the gate attached to the package, so a local or future manual

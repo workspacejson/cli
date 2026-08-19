@@ -1,5 +1,62 @@
 # Changelog — `@workspacejson/cli`
 
+## 0.6.1
+
+### Patch Changes
+
+- Repair the release boundary so a private workspace package cannot reach the
+  published manifest. **`0.6.0` was tagged but never published**; this is the same
+  release with the packaging defect that stopped it corrected.
+
+  No mining, retrieval, provenance or artifact semantics change. The `0.5.0`
+  standard authority migration that `0.6.0` carried is unchanged and ships here.
+
+  **What stopped `0.6.0`.** `publish-cli.yml` failed at the tarball gate, two
+  steps before `npm publish`, with:
+
+  ```
+  package.devDependencies.@workspacejson/mining-core leaks "workspace:*" into the packed manifest.
+  ```
+
+  `@workspacejson/mining-core` is private and unpublished. The CLI declared it as
+  a `workspace:*` devDependency under META-297, which broke the invariant
+  `publish-cli.yml` relied on to publish with npm. The last release predates that
+  commit, so this was the first publish attempt since the invariant became false.
+  **It was not caused by the standard authority migration**, which only touched
+  `dependencies` and `version`.
+
+  **Why the gate had not caught it earlier.** The verifier chose its packer from
+  `npm_execpath`, so `pnpm run release:verify-packs` packed with pnpm while CI
+  packed with npm — the same commit verifying green locally and red in CI, with
+  the green run measuring bytes nobody publishes. The packer is now `npm`
+  unconditionally, because that is what `npm publish` ships. `WORKSPACEJSON_PACKER=pnpm`
+  remains as an explicit diagnostic mode.
+
+  **The invariant was also the wrong shape.** It tested for the literal
+  `workspace:` string, which is syntactic and packer-dependent:
+
+  ```
+  npm  pack → "@workspacejson/mining-core": "workspace:*"   ← caught
+  pnpm pack → "@workspacejson/mining-core": "0.0.0"         ← waved through
+  ```
+
+  `0.0.0` is a dangling reference to a package that exists nowhere, wearing a
+  version that reads as legitimate. Switching packers would have published it with
+  a green gate. The invariant is now identity-based and packer-independent:
+
+  > a public package's packed manifest must not reference a private workspace
+  > package at all, under any spelling.
+
+  Private packages are discovered by name from the workspace, so the rule needs no
+  maintenance when one is added and cannot be evaded by a version rewrite.
+
+  **The build relationship is unchanged.** `mining-core` is still compiled into
+  `dist/` by tsup; only its declaration moved to the private root workspace, where
+  repository build infrastructure belongs. Because that removed the dependency
+  edge pnpm used to order `pnpm -r build`, the CLI's own build script now builds
+  its bundle input first — the guarantee travels with the package that needs it,
+  rather than depending on how the build was invoked.
+
 ## 0.6.0
 
 ### Minor Changes

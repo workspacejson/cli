@@ -1,6 +1,6 @@
 {
   "name": "@workspacejson/cli",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "The workspace.json producer — scans a repository and generates .agents/workspace.json deterministically, preserving human-authored manual evidence.",
   "license": "Apache-2.0",
   "author": "workspace.json contributors",
@@ -51,7 +51,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsup src/cli.ts src/index.ts --format esm --dts && node scripts/add-shebang.js",
+    "build": "pnpm --filter @workspacejson/mining-core build && tsup src/cli.ts src/index.ts --format esm --dts && node scripts/add-shebang.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -66,7 +66,6 @@
   },
   "devDependencies": {
     "@types/node": "22.19.17",
-    "@workspacejson/mining-core": "workspace:*",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vitest": "^1.6.0"
