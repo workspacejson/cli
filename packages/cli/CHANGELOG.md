@@ -1,5 +1,51 @@
 # Changelog — `@workspacejson/cli`
 
+## 0.6.2
+
+### Patch Changes
+
+- Enter the `npm-publish` environment in the publish job, so the scoped
+  `NPM_TOKEN` is actually in scope. **`0.6.1` was tagged but never published**;
+  this is the same release with that workflow defect corrected.
+
+  No package, mining, retrieval, provenance or artifact behavior changes. The
+  `0.5.0` standard authority migration and the `0.6.1` packaging-boundary repair
+  both ship here unchanged.
+
+  **What stopped `0.6.1`.** The publish run cleared every gate — guards, build,
+  typecheck, tests, and the tarball verification that stopped `0.6.0` — then
+  failed on the credential check with both variables empty:
+
+  ```
+  NODE_AUTH_TOKEN:
+  NPM_TOKEN:
+  ```
+
+  `NPM_TOKEN` is stored as an **environment** secret on the `npm-publish`
+  environment, and this repository holds no repository-level `NPM_TOKEN` at all.
+  GitHub exposes an environment secret only to a job that explicitly declares
+  `environment:`. The `publish` job never did, so `${{ secrets.NPM_TOKEN }}`
+  resolved to the empty string and the guard reported a missing credential on a
+  repository whose credential was correctly configured the whole time.
+
+  `publish` is the job id; `npm-publish` is the environment. Nothing in the run
+  output made that distinction visible, which is most of why it read as a token
+  problem.
+
+  **The fix is one line of behavior.** The job now declares
+  `environment: npm-publish`, and takes `name: npm-publish` so the Actions UI
+  labels it with the same word as the scope it needs. The workflow header, which
+  said "Required repository secret", now names the environment secret it actually
+  requires and records why the token is scoped that way — an environment is the
+  reviewer-gateable boundary the standard's own releases publish behind, so
+  widening the token to the repository would have been the wrong repair.
+
+  **Why the tag moved rather than the run being re-run.** A re-run replays the
+  workflow as it existed at the tagged commit, and `cli-v0.6.1` points at a commit
+  whose workflow has no `environment:` line. Re-running it would fail identically.
+  The failed tag is left in place: `0.6.0` and `0.6.1` each record a real defect
+  that a gate caught before anything reached the registry.
+
 ## 0.6.1
 
 ### Patch Changes
