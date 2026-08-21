@@ -1,0 +1,413 @@
+{
+  "issue": "META-289",
+  "scanBound": 600,
+  "evalN": 200,
+  "thresholds": {
+    "MIN_FP": 1500,
+    "MIN_SOURCE": 100,
+    "MIN_TEST": 30
+  },
+  "strata": {
+    "Go": {
+      "attempts": [
+        {
+          "full_name": "nsqio/nsq",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "85cf10c09c6c3c86160d6f0eb156f62d0efc1648",
+          "pinDate": "2026-08-11T14:19:49-04:00",
+          "firstParentCommits": 1169,
+          "failed": "V3",
+          "rank": 1,
+          "orderKey": "0019896748aac1373a3b3a2c07b28abb3b29524fe258785c342a1163dd4d920e"
+        },
+        {
+          "full_name": "1Panel-dev/KubePi",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "e183085da6e5b74dd17a44a3a6812cbe6dacc652",
+          "pinDate": "2026-08-18T14:10:07+08:00",
+          "firstParentCommits": 921,
+          "failed": "V3",
+          "rank": 2,
+          "orderKey": "002d830769333d44349af7355d45c10ce8c9a756c9523553f5d5f26ba386185a"
+        },
+        {
+          "full_name": "SeldonIO/seldon-core",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "402619eb9064b2ced678539fa3c0a1a0bd8f723a",
+          "pinDate": "2026-01-19T12:13:35Z",
+          "firstParentCommits": 1218,
+          "failed": "V3",
+          "rank": 3,
+          "orderKey": "008da84174e6f5f843756d035909f8ae9b859e24adb70221199c0597ab422822"
+        },
+        {
+          "full_name": "aquasecurity/tfsec",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "b692c20b68c0121346b7b34e81d6b1867ca8e1a8",
+          "pinDate": "2025-05-01T22:21:54-06:00",
+          "firstParentCommits": 1102,
+          "failed": "V3",
+          "rank": 4,
+          "orderKey": "018a7c258082125cdc12cacc14501c89ee2217e93797d7f91b07f4c7680cacc9"
+        },
+        {
+          "full_name": "openfaas/faas",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": false
+          },
+          "pin": "8d803bf9e2655aec6a60fd0e25b392839f96af95",
+          "pinDate": "2026-07-02T10:08:04+01:00",
+          "firstParentCommits": 2110,
+          "sourceFilesAtPin": 40,
+          "testFilesAtPin": 20,
+          "failed": "V4",
+          "rank": 5,
+          "orderKey": "01cb06f5700c11011e589763b78fcc9f972ee9c53279d6d686232365a538f442"
+        },
+        {
+          "full_name": "postgres-ai/database-lab-engine",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "97f8bb7cc9e9b6956646670e00134623f96c484b",
+          "pinDate": "2026-08-07T18:29:35Z",
+          "firstParentCommits": 923,
+          "failed": "V3",
+          "rank": 6,
+          "orderKey": "01fefb9c921ee59589d09adafcf79f713bbe03a862a63e08c0e2d4fbbaff7eb0"
+        },
+        {
+          "full_name": "Azure/aztfexport",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "3ab2e483298447d16adcf6055f7a99b71061f65a",
+          "pinDate": "2026-08-19T17:17:28+10:00",
+          "firstParentCommits": 372,
+          "failed": "V3",
+          "rank": 7,
+          "orderKey": "02563da2077fb570da273cb57d4b77df8a635c0261a022355e791c3b40c54aa0"
+        },
+        {
+          "full_name": "apache/dubbo-admin",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "1e56a0a7c2e8bd7921b7d03159a9f80645486270",
+          "pinDate": "2026-08-20T09:09:37+08:00",
+          "firstParentCommits": 563,
+          "failed": "V3",
+          "rank": 8,
+          "orderKey": "02690c0175fe4208aa80f6d1596df6c2d8103fb2847a1c30d4dddb7f702102b3"
+        },
+        {
+          "full_name": "flyteorg/flyte",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true
+          },
+          "pin": "6fadb90d65af26f4db908ec1c5f5af546a3e4299",
+          "pinDate": "2026-08-21T16:44:32Z",
+          "firstParentCommits": 2410,
+          "sourceFilesAtPin": 463,
+          "testFilesAtPin": 275,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/flyteorg__flyte",
+          "passed": true,
+          "rank": 9,
+          "orderKey": "026b1e9e7338df6ebcf64c11145c4e80876ecfef6e98eba1789176c0518e2cb0"
+        }
+      ],
+      "selected": {
+        "full_name": "flyteorg/flyte",
+        "rank": 9,
+        "pin": "6fadb90d65af26f4db908ec1c5f5af546a3e4299",
+        "pinDate": "2026-08-21T16:44:32Z",
+        "firstParentCommits": 2410,
+        "sourceFilesAtPin": 463,
+        "testFilesAtPin": 275,
+        "scanned": 600,
+        "sourceChangingInScan": 200,
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/flyteorg__flyte"
+      }
+    },
+    "Java": {
+      "attempts": [
+        {
+          "full_name": "Skykai521/StickerCamera",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "9b5ad4ad968fa6e89165f42c66c9dcd5b1a6104e",
+          "pinDate": "2026-06-18T19:59:06+08:00",
+          "firstParentCommits": 56,
+          "failed": "V3",
+          "rank": 1,
+          "orderKey": "00211da62b16bd739f4355697266d7f46a9862c7563d151de7e5ff0eeebebf99"
+        },
+        {
+          "full_name": "Etar-Group/Etar-Calendar",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": false
+          },
+          "pin": "60b20da5eeb4418d55133f05affbbe75621aa9c9",
+          "pinDate": "2026-08-01T13:34:01+02:00",
+          "firstParentCommits": 3291,
+          "sourceFilesAtPin": 134,
+          "testFilesAtPin": 14,
+          "failed": "V5",
+          "rank": 2,
+          "orderKey": "00a16e9786548d54faa20b382b457128b55272f8c7493c26f66f599f079a1f18"
+        },
+        {
+          "full_name": "fizzgate/fizz-gateway-node",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "acc7454c0d35a70a9d6ecfe225198720b47142ca",
+          "pinDate": "2026-07-02T10:01:03+08:00",
+          "firstParentCommits": 483,
+          "failed": "V3",
+          "rank": 3,
+          "orderKey": "00a30c72b44897e9ab1ae098108d397ddd6a091b863faf65898337c6be2f3e93"
+        },
+        {
+          "full_name": "docker-java/docker-java",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "002b6eb7aa2b892be729c7c2a5e95f782924db38",
+          "pinDate": "2026-06-22T08:53:12-06:00",
+          "firstParentCommits": 1308,
+          "failed": "V3",
+          "rank": 4,
+          "orderKey": "00ab9b74131a7317482dd7b672c55e8cd7edef64837c3ad2e528dea5b924b161"
+        },
+        {
+          "full_name": "redsolution/xabber-android",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "e6a435084f1afa7eb2080f8bc0ce378bbf5e5660",
+          "pinDate": "2019-11-01T20:27:17+05:00",
+          "firstParentCommits": 1091,
+          "failed": "V3",
+          "rank": 5,
+          "orderKey": "0156b43f6699585b531aac00e65f56e2eefdc63ab87d5606b3ec6b819b28870d"
+        },
+        {
+          "full_name": "LuckPerms/LuckPerms",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true
+          },
+          "pin": "9b4fe67791e899778162f18df7c8a4df0fa58c77",
+          "pinDate": "2026-08-15T20:39:06+01:00",
+          "firstParentCommits": 2266,
+          "sourceFilesAtPin": 969,
+          "testFilesAtPin": 84,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/LuckPerms__LuckPerms",
+          "passed": true,
+          "rank": 6,
+          "orderKey": "01b486e4c9c470e5949f2aaf0c64344cc39a2b793571ba2cf43f40668f731d0d"
+        }
+      ],
+      "selected": {
+        "full_name": "LuckPerms/LuckPerms",
+        "rank": 6,
+        "pin": "9b4fe67791e899778162f18df7c8a4df0fa58c77",
+        "pinDate": "2026-08-15T20:39:06+01:00",
+        "firstParentCommits": 2266,
+        "sourceFilesAtPin": 969,
+        "testFilesAtPin": 84,
+        "scanned": 600,
+        "sourceChangingInScan": 200,
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/LuckPerms__LuckPerms"
+      }
+    },
+    "Python": {
+      "attempts": [
+        {
+          "full_name": "akfamily/akshare",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "0e7db00cb98ac6709e2b553efb5a79629aca7a72",
+          "pinDate": "2026-08-21T13:16:05+08:00",
+          "firstParentCommits": 466,
+          "failed": "V3",
+          "rank": 1,
+          "orderKey": "002d7b666bc6bbb25b375e59ab57c9b89475a79b01370162fcf26db10f38d8ff"
+        },
+        {
+          "full_name": "amidaware/tacticalrmm",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": false
+          },
+          "pin": "1e2f5629bc637e342b7e3482f94014174c49068a",
+          "pinDate": "2026-08-11T19:52:31Z",
+          "firstParentCommits": 3063,
+          "sourceFilesAtPin": 619,
+          "testFilesAtPin": 29,
+          "failed": "V5",
+          "rank": 2,
+          "orderKey": "006e7399b63ecb72fbcdc0bea27039d52d18f0d436031336f211505dc011b74a"
+        },
+        {
+          "full_name": "lightly-ai/lightly",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "e8d317fc5a87f4387a85a35e689869039ec249ee",
+          "pinDate": "2026-08-21T20:49:33Z",
+          "firstParentCommits": 1086,
+          "failed": "V3",
+          "rank": 3,
+          "orderKey": "009ede7def04ae6ddf3577196b083edf760282f209ef5f89fe38d2b7daf44357"
+        },
+        {
+          "full_name": "layumi/Person_reID_baseline_pytorch",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "82ff40fb11b7353400dc8670dcec620d97285096",
+          "pinDate": "2026-07-18T17:34:37+10:00",
+          "firstParentCommits": 209,
+          "failed": "V3",
+          "rank": 4,
+          "orderKey": "00b05b8c97c764f2e6dc6ba0fe1d2b2322c9eb407d95d4a4c4e29a13ec638c8a"
+        },
+        {
+          "full_name": "kornia/kornia",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true
+          },
+          "pin": "b4f5a78a13891c7ac4c1cd9695941380273e981d",
+          "pinDate": "2026-08-18T17:25:23+02:00",
+          "firstParentCommits": 2411,
+          "sourceFilesAtPin": 521,
+          "testFilesAtPin": 279,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/kornia__kornia",
+          "passed": true,
+          "rank": 5,
+          "orderKey": "00fc13d0bad4434d6041871c53d057e8c7bbc43e7c469c34bd9413c59753d65f"
+        }
+      ],
+      "selected": {
+        "full_name": "kornia/kornia",
+        "rank": 5,
+        "pin": "b4f5a78a13891c7ac4c1cd9695941380273e981d",
+        "pinDate": "2026-08-18T17:25:23+02:00",
+        "firstParentCommits": 2411,
+        "sourceFilesAtPin": 521,
+        "testFilesAtPin": 279,
+        "scanned": 600,
+        "sourceChangingInScan": 200,
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/kornia__kornia"
+      }
+    },
+    "TypeScript": {
+      "attempts": [
+        {
+          "full_name": "remult/remult",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true
+          },
+          "pin": "85bb4884ed9428248258e3b8de477c860b9bc60f",
+          "pinDate": "2026-08-18T10:55:38+03:00",
+          "firstParentCommits": 2913,
+          "sourceFilesAtPin": 725,
+          "testFilesAtPin": 142,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/remult__remult",
+          "passed": true,
+          "rank": 1,
+          "orderKey": "003dfe20ce37e9bd835e394bef27e85505044926f3709f9b62ff295f4605e8a9"
+        }
+      ],
+      "selected": {
+        "full_name": "remult/remult",
+        "rank": 1,
+        "pin": "85bb4884ed9428248258e3b8de477c860b9bc60f",
+        "pinDate": "2026-08-18T10:55:38+03:00",
+        "firstParentCommits": 2913,
+        "sourceFilesAtPin": 725,
+        "testFilesAtPin": 142,
+        "scanned": 600,
+        "sourceChangingInScan": 200,
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/afc01859-bde1-4585-b82e-1ce041732a47/scratchpad/m289/remult__remult"
+      }
+    }
+  }
+}
