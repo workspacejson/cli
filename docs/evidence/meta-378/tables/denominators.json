@@ -1,0 +1,1058 @@
+{
+  "issue": "META-378",
+  "phase": "A",
+  "minN": 10,
+  "outcomeIsolated": true,
+  "bases": {
+    "hydrogen-pin": {
+      "repo": "nteract/hydrogen",
+      "language": "TypeScript",
+      "basisKind": "pin",
+      "isPin": true,
+      "contributesRecurrence": false,
+      "qualifying": 384,
+      "emitted": 50,
+      "omitted": 334,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 2,
+          "omittedN": 31,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 8,
+          "omittedN": 35,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 40,
+          "omittedN": 268,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 1,
+          "omittedN": 13,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 8,
+          "omittedN": 63,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 6,
+          "omittedN": 39,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 35,
+          "omittedN": 219,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 3,
+        "COMPARABLE": 1
+      }
+    },
+    "hydrogen-b100": {
+      "repo": "nteract/hydrogen",
+      "language": "TypeScript",
+      "basisKind": "b100",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 352,
+      "emitted": 50,
+      "omitted": 302,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 21,
+          "omittedN": 72,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 3,
+          "omittedN": 65,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 26,
+          "omittedN": 165,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 2,
+          "omittedN": 6,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 9,
+          "omittedN": 33,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 37,
+          "omittedN": 243,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 2,
+          "omittedN": 20,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 2
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 3,
+        "COMPARABLE": 1
+      }
+    },
+    "hydrogen-b250": {
+      "repo": "nteract/hydrogen",
+      "language": "TypeScript",
+      "basisKind": "b250",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 352,
+      "emitted": 50,
+      "omitted": 302,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 20,
+          "omittedN": 78,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 1,
+          "omittedN": 63,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 29,
+          "omittedN": 161,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 0,
+          "omittedN": 3,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 37,
+          "omittedN": 237,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 9,
+          "omittedN": 44,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 4,
+          "omittedN": 18,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 2
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      }
+    },
+    "rustos-pin": {
+      "repo": "thepowersgang/rust_os",
+      "language": "Rust",
+      "basisKind": "pin",
+      "isPin": true,
+      "contributesRecurrence": false,
+      "qualifying": 269,
+      "emitted": 50,
+      "omitted": 219,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 50,
+          "omittedN": 211,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 0,
+          "omittedN": 5,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 0,
+          "omittedN": 3,
+          "class": "OMITTED_ONLY"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 2,
+          "omittedN": 7,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 10,
+          "omittedN": 24,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 21,
+          "omittedN": 99,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 17,
+          "omittedN": 89,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 2,
+        "SPARSE": 0,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 3
+      }
+    },
+    "rustos-b100": {
+      "repo": "thepowersgang/rust_os",
+      "language": "Rust",
+      "basisKind": "b100",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 290,
+      "emitted": 50,
+      "omitted": 240,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 50,
+          "omittedN": 231,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 0,
+          "omittedN": 6,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 0,
+          "omittedN": 3,
+          "class": "OMITTED_ONLY"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 5,
+          "omittedN": 47,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 23,
+          "omittedN": 54,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 8,
+          "omittedN": 43,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 14,
+          "omittedN": 96,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 2,
+        "SPARSE": 0,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 2
+      }
+    },
+    "rustos-b250": {
+      "repo": "thepowersgang/rust_os",
+      "language": "Rust",
+      "basisKind": "b250",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 322,
+      "emitted": 50,
+      "omitted": 272,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 48,
+          "omittedN": 268,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 2,
+          "omittedN": 2,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 0,
+          "omittedN": 2,
+          "class": "OMITTED_ONLY"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 8,
+          "omittedN": 23,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 3,
+          "omittedN": 30,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 32,
+          "omittedN": 161,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 7,
+          "omittedN": 58,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 1,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 3,
+        "COMPARABLE": 1
+      }
+    },
+    "coretyped-pin": {
+      "repo": "clojure/core.typed",
+      "language": "Clojure",
+      "basisKind": "pin",
+      "isPin": true,
+      "contributesRecurrence": false,
+      "qualifying": 575,
+      "emitted": 50,
+      "omitted": 525,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 44,
+          "omittedN": 31,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 3,
+          "omittedN": 40,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 3,
+          "omittedN": 454,
+          "class": "SPARSE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 44,
+          "omittedN": 30,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 0,
+          "omittedN": 103,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 5,
+          "omittedN": 72,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 1,
+          "omittedN": 320,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      }
+    },
+    "coretyped-b100": {
+      "repo": "clojure/core.typed",
+      "language": "Clojure",
+      "basisKind": "b100",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 518,
+      "emitted": 50,
+      "omitted": 468,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 1,
+          "omittedN": 51,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 6,
+          "omittedN": 22,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 43,
+          "omittedN": 395,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 0,
+          "omittedN": 27,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 0,
+          "omittedN": 28,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 44,
+          "omittedN": 312,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 6,
+          "omittedN": 101,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 2,
+        "SPARSE": 1,
+        "COMPARABLE": 1
+      }
+    },
+    "coretyped-b250": {
+      "repo": "clojure/core.typed",
+      "language": "Clojure",
+      "basisKind": "b250",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 516,
+      "emitted": 50,
+      "omitted": 466,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 39,
+          "omittedN": 340,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 9,
+          "omittedN": 97,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 2,
+          "omittedN": 29,
+          "class": "SPARSE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 6,
+          "omittedN": 42,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 39,
+          "omittedN": 295,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 5,
+          "omittedN": 126,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 0,
+          "omittedN": 3,
+          "class": "OMITTED_ONLY"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      }
+    },
+    "fabric-pin": {
+      "repo": "hyperledger/fabric",
+      "language": "Go",
+      "basisKind": "pin",
+      "isPin": true,
+      "contributesRecurrence": false,
+      "qualifying": 512,
+      "emitted": 50,
+      "omitted": 462,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 50,
+          "omittedN": 459,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 0,
+          "omittedN": 3,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 0,
+          "omittedN": 0,
+          "class": "EMPTY"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 22,
+          "omittedN": 8,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 5,
+          "omittedN": 58,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 23,
+          "omittedN": 369,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 0,
+          "omittedN": 27,
+          "class": "OMITTED_ONLY"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 1,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 0,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      }
+    },
+    "fabric-b100": {
+      "repo": "hyperledger/fabric",
+      "language": "Go",
+      "basisKind": "b100",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 494,
+      "emitted": 50,
+      "omitted": 444,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 50,
+          "omittedN": 444,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 0,
+          "omittedN": 0,
+          "class": "EMPTY"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 0,
+          "omittedN": 0,
+          "class": "EMPTY"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 12,
+          "omittedN": 17,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 12,
+          "omittedN": 26,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 25,
+          "omittedN": 376,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 1,
+          "omittedN": 25,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 2,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 0,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 3
+      }
+    },
+    "fabric-b250": {
+      "repo": "hyperledger/fabric",
+      "language": "Go",
+      "basisKind": "b250",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 179,
+      "emitted": 50,
+      "omitted": 129,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 41,
+          "omittedN": 91,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 0,
+          "omittedN": 15,
+          "class": "OMITTED_ONLY"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 9,
+          "omittedN": 23,
+          "class": "SPARSE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 35,
+          "omittedN": 34,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 2,
+          "omittedN": 23,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 3,
+          "omittedN": 25,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 10,
+          "omittedN": 47,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 1,
+        "SPARSE": 1,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 2
+      }
+    },
+    "scikitimage-pin": {
+      "repo": "scikit-image/scikit-image",
+      "language": "Python",
+      "basisKind": "pin",
+      "isPin": true,
+      "contributesRecurrence": false,
+      "qualifying": 218,
+      "emitted": 50,
+      "omitted": 168,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 29,
+          "omittedN": 80,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 6,
+          "omittedN": 64,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 15,
+          "omittedN": 24,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 3,
+          "omittedN": 7,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 20,
+          "omittedN": 59,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 11,
+          "omittedN": 55,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 16,
+          "omittedN": 47,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 2
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 3
+      }
+    },
+    "scikitimage-b100": {
+      "repo": "scikit-image/scikit-image",
+      "language": "Python",
+      "basisKind": "b100",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 203,
+      "emitted": 50,
+      "omitted": 153,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 23,
+          "omittedN": 48,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 5,
+          "omittedN": 66,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 22,
+          "omittedN": 39,
+          "class": "COMPARABLE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 5,
+          "omittedN": 8,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 14,
+          "omittedN": 43,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 30,
+          "omittedN": 85,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 1,
+          "omittedN": 17,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 1,
+        "COMPARABLE": 2
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 2
+      }
+    },
+    "scikitimage-b250": {
+      "repo": "scikit-image/scikit-image",
+      "language": "Python",
+      "basisKind": "b250",
+      "isPin": false,
+      "contributesRecurrence": true,
+      "qualifying": 325,
+      "emitted": 50,
+      "omitted": 275,
+      "D4": [
+        {
+          "stratum": "BOTH_CURRENT",
+          "emittedN": 23,
+          "omittedN": 244,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "ONE_ABSENT",
+          "emittedN": 7,
+          "omittedN": 25,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "BOTH_ABSENT",
+          "emittedN": 20,
+          "omittedN": 6,
+          "class": "SPARSE"
+        }
+      ],
+      "D5": [
+        {
+          "stratum": "0-24",
+          "emittedN": 33,
+          "omittedN": 78,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "25-99",
+          "emittedN": 13,
+          "omittedN": 21,
+          "class": "COMPARABLE"
+        },
+        {
+          "stratum": "100-249",
+          "emittedN": 2,
+          "omittedN": 151,
+          "class": "SPARSE"
+        },
+        {
+          "stratum": "250-499",
+          "emittedN": 2,
+          "omittedN": 25,
+          "class": "SPARSE"
+        }
+      ],
+      "D4summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 1
+      },
+      "D5summary": {
+        "EMPTY": 0,
+        "EMITTED_ONLY": 0,
+        "OMITTED_ONLY": 0,
+        "SPARSE": 2,
+        "COMPARABLE": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "basis": "233a0b37265ff278bc96ece91f8c2bbfcaeeb280",
+  "qualifying": 568,
+  "checks": [
+    {
+      "id": "K1:qualifying-count",
+      "ok": true,
+      "detail": "568 vs 568"
+    },
+    {
+      "id": "K2:emitted-count",
+      "ok": true,
+      "detail": "50 vs 50"
+    },
+    {
+      "id": "K3:ranking-identical",
+      "ok": true,
+      "detail": "0 positions differ"
+    },
+    {
+      "id": "K4:support-occurrences-identical",
+      "ok": true,
+      "detail": "0 pairs differ"
+    },
+    {
+      "id": "K5:endpoint-existence-identical",
+      "ok": true,
+      "detail": "0 pairs differ"
+    },
+    {
+      "id": "K6:age-delta-identical",
+      "ok": true,
+      "detail": "0 pairs differ"
+    }
+  ],
+  "passed": 6,
+  "total": 6
+}

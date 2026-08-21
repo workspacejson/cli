@@ -1,0 +1,300 @@
+{
+  "issue": "META-378",
+  "seed": "META-378/OQ-14/replication/v1",
+  "universeSnapshotUtc": "2026-08-21T21:56:09.976Z",
+  "minFirstParentCount": 751,
+  "strata": {
+    "TypeScript": {
+      "attempts": [
+        {
+          "full_name": "brunnolou/react-morph",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/brunnolou__react-morph",
+          "V1": true,
+          "V2": true,
+          "V3": false,
+          "pin": "804f54d55500ec3d6690227f800ff2e5d5913a65",
+          "firstParentCount": 71,
+          "error": "V3 firstParentCount=71 < 751",
+          "rank": 1,
+          "orderKey": "00058dd0bda19ca192c574b536622f38d40391c38ad4f7dda510201585b51ac3",
+          "default_branch": "master",
+          "status": "INELIGIBLE_ON_VERIFICATION"
+        },
+        {
+          "full_name": "homebridge/HAP-NodeJS",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/homebridge__HAP-NodeJS",
+          "V1": true,
+          "V2": true,
+          "V3": false,
+          "pin": "cca918b25d5d36a86655dda05422f03ba8ab322d",
+          "firstParentCount": 706,
+          "error": "V3 firstParentCount=706 < 751",
+          "rank": 2,
+          "orderKey": "00c29d086854d0c2bcd7aca6062a5af58f9cb57391dfa3c64f927b4fe511c0dd",
+          "default_branch": "latest",
+          "status": "INELIGIBLE_ON_VERIFICATION"
+        },
+        {
+          "full_name": "ixartz/Next-js-Boilerplate",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/ixartz__Next-js-Boilerplate",
+          "V1": true,
+          "V2": true,
+          "V3": false,
+          "pin": "51dfd23b21ac4ef8da56f8cc9a2f4b78f5df0deb",
+          "firstParentCount": 681,
+          "error": "V3 firstParentCount=681 < 751",
+          "rank": 3,
+          "orderKey": "01b274b4579ebf07034f05777e2460b91170d6a85528ebf02cad7e06cbb5313e",
+          "default_branch": "main",
+          "status": "INELIGIBLE_ON_VERIFICATION"
+        },
+        {
+          "full_name": "nteract/hydrogen",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/nteract__hydrogen",
+          "V1": true,
+          "V2": true,
+          "V3": true,
+          "pin": "9f353f10331218558fe401da65b32210c54e71b0",
+          "firstParentCount": 1324,
+          "bases": {
+            "pin": "9f353f10331218558fe401da65b32210c54e71b0",
+            "b100": "81c58fc9185f5d246d6e5f4598834b5722deedaf",
+            "b250": "a9d8c15da94515aa11c8f1f67a1f09fb76230451"
+          },
+          "basisDates": {
+            "pin": "2026-07-18T22:45:37-07:00",
+            "b100": "2020-02-12T06:45:14+09:00",
+            "b250": "2019-01-08T12:29:09-05:00"
+          },
+          "rank": 4,
+          "orderKey": "01d678e6ffd0b25136e26c05db794f9e8b884b55ad540c604b19f7e9c6837505",
+          "default_branch": "master",
+          "status": "SELECTED"
+        }
+      ],
+      "selected": {
+        "full_name": "nteract/hydrogen",
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/nteract__hydrogen",
+        "V1": true,
+        "V2": true,
+        "V3": true,
+        "pin": "9f353f10331218558fe401da65b32210c54e71b0",
+        "firstParentCount": 1324,
+        "bases": {
+          "pin": "9f353f10331218558fe401da65b32210c54e71b0",
+          "b100": "81c58fc9185f5d246d6e5f4598834b5722deedaf",
+          "b250": "a9d8c15da94515aa11c8f1f67a1f09fb76230451"
+        },
+        "basisDates": {
+          "pin": "2026-07-18T22:45:37-07:00",
+          "b100": "2020-02-12T06:45:14+09:00",
+          "b250": "2019-01-08T12:29:09-05:00"
+        },
+        "rank": 4,
+        "orderKey": "01d678e6ffd0b25136e26c05db794f9e8b884b55ad540c604b19f7e9c6837505",
+        "default_branch": "master",
+        "status": "SELECTED"
+      }
+    },
+    "Rust": {
+      "attempts": [
+        {
+          "full_name": "thepowersgang/rust_os",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/thepowersgang__rust_os",
+          "V1": true,
+          "V2": true,
+          "V3": true,
+          "pin": "f1d2f7731a3cca5f0623969e8f32fe37f9ed6bbb",
+          "firstParentCount": 1907,
+          "bases": {
+            "pin": "f1d2f7731a3cca5f0623969e8f32fe37f9ed6bbb",
+            "b100": "36aea6b8c27f011f32f81947240dc56f8ed8d85a",
+            "b250": "ff8135977bbb8bba2d5007bd2a22f561714f9726"
+          },
+          "basisDates": {
+            "pin": "2026-04-21T22:23:25+08:00",
+            "b100": "2025-05-11T09:38:00+08:00",
+            "b250": "2024-04-03T09:59:48+08:00"
+          },
+          "rank": 1,
+          "orderKey": "000c43785bf6c48f19b151a8fcb054bd1c4d03766f49a864e40699be4b6f9ffb",
+          "default_branch": "master",
+          "status": "SELECTED"
+        }
+      ],
+      "selected": {
+        "full_name": "thepowersgang/rust_os",
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/thepowersgang__rust_os",
+        "V1": true,
+        "V2": true,
+        "V3": true,
+        "pin": "f1d2f7731a3cca5f0623969e8f32fe37f9ed6bbb",
+        "firstParentCount": 1907,
+        "bases": {
+          "pin": "f1d2f7731a3cca5f0623969e8f32fe37f9ed6bbb",
+          "b100": "36aea6b8c27f011f32f81947240dc56f8ed8d85a",
+          "b250": "ff8135977bbb8bba2d5007bd2a22f561714f9726"
+        },
+        "basisDates": {
+          "pin": "2026-04-21T22:23:25+08:00",
+          "b100": "2025-05-11T09:38:00+08:00",
+          "b250": "2024-04-03T09:59:48+08:00"
+        },
+        "rank": 1,
+        "orderKey": "000c43785bf6c48f19b151a8fcb054bd1c4d03766f49a864e40699be4b6f9ffb",
+        "default_branch": "master",
+        "status": "SELECTED"
+      }
+    },
+    "Clojure": {
+      "attempts": [
+        {
+          "full_name": "clojure/core.typed",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/clojure__core.typed",
+          "V1": true,
+          "V2": true,
+          "V3": true,
+          "pin": "e0e7ae73507201c7ca74adde592a59112cf0ca96",
+          "firstParentCount": 2615,
+          "bases": {
+            "pin": "e0e7ae73507201c7ca74adde592a59112cf0ca96",
+            "b100": "0df8ae7788e3d973521f7cc20cb13001c18eb860",
+            "b250": "ccd62310eb25a3bbf584ac6bf42bf99a5ed1f858"
+          },
+          "basisDates": {
+            "pin": "2026-01-05T19:44:21-06:00",
+            "b100": "2020-01-23T07:40:27-05:00",
+            "b250": "2018-11-04T20:12:19-05:00"
+          },
+          "rank": 1,
+          "orderKey": "047c2f087f07a147e6d401b921956a8ee9e6b53d0aeeb084a533250b1d8dbf32",
+          "default_branch": "master",
+          "status": "SELECTED"
+        }
+      ],
+      "selected": {
+        "full_name": "clojure/core.typed",
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/clojure__core.typed",
+        "V1": true,
+        "V2": true,
+        "V3": true,
+        "pin": "e0e7ae73507201c7ca74adde592a59112cf0ca96",
+        "firstParentCount": 2615,
+        "bases": {
+          "pin": "e0e7ae73507201c7ca74adde592a59112cf0ca96",
+          "b100": "0df8ae7788e3d973521f7cc20cb13001c18eb860",
+          "b250": "ccd62310eb25a3bbf584ac6bf42bf99a5ed1f858"
+        },
+        "basisDates": {
+          "pin": "2026-01-05T19:44:21-06:00",
+          "b100": "2020-01-23T07:40:27-05:00",
+          "b250": "2018-11-04T20:12:19-05:00"
+        },
+        "rank": 1,
+        "orderKey": "047c2f087f07a147e6d401b921956a8ee9e6b53d0aeeb084a533250b1d8dbf32",
+        "default_branch": "master",
+        "status": "SELECTED"
+      }
+    },
+    "Go": {
+      "attempts": [
+        {
+          "full_name": "hyperledger/fabric",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/hyperledger__fabric",
+          "V1": true,
+          "V2": true,
+          "V3": true,
+          "pin": "0c423ac47fd87fc3d4084eb06d6589bc518ed1ff",
+          "firstParentCount": 9284,
+          "bases": {
+            "pin": "0c423ac47fd87fc3d4084eb06d6589bc518ed1ff",
+            "b100": "4755dafa1023fbfcc7a0d11bba951b00c12f05bb",
+            "b250": "97853f3063b96f0662a69f4f68eb68be36e133ec"
+          },
+          "basisDates": {
+            "pin": "2026-08-05T15:23:23+03:00",
+            "b100": "2025-11-16T22:56:05+01:00",
+            "b250": "2025-01-08T12:24:00+02:00"
+          },
+          "rank": 1,
+          "orderKey": "004c0abd108bcf16bac136e5529252e16dbe848a45025bec323fa17d5196b311",
+          "default_branch": "main",
+          "status": "SELECTED"
+        }
+      ],
+      "selected": {
+        "full_name": "hyperledger/fabric",
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/hyperledger__fabric",
+        "V1": true,
+        "V2": true,
+        "V3": true,
+        "pin": "0c423ac47fd87fc3d4084eb06d6589bc518ed1ff",
+        "firstParentCount": 9284,
+        "bases": {
+          "pin": "0c423ac47fd87fc3d4084eb06d6589bc518ed1ff",
+          "b100": "4755dafa1023fbfcc7a0d11bba951b00c12f05bb",
+          "b250": "97853f3063b96f0662a69f4f68eb68be36e133ec"
+        },
+        "basisDates": {
+          "pin": "2026-08-05T15:23:23+03:00",
+          "b100": "2025-11-16T22:56:05+01:00",
+          "b250": "2025-01-08T12:24:00+02:00"
+        },
+        "rank": 1,
+        "orderKey": "004c0abd108bcf16bac136e5529252e16dbe848a45025bec323fa17d5196b311",
+        "default_branch": "main",
+        "status": "SELECTED"
+      }
+    },
+    "Python": {
+      "attempts": [
+        {
+          "full_name": "scikit-image/scikit-image",
+          "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/scikit-image__scikit-image",
+          "V1": true,
+          "V2": true,
+          "V3": true,
+          "pin": "745baa05fc5d39c5e9679ee1ab8f19b432403ab0",
+          "firstParentCount": 3812,
+          "bases": {
+            "pin": "745baa05fc5d39c5e9679ee1ab8f19b432403ab0",
+            "b100": "bfded8096f82f41726577612954169280a7f1652",
+            "b250": "ef21164f9649759675bcfa3e1e1d8bf44ba2f807"
+          },
+          "basisDates": {
+            "pin": "2026-08-17T06:07:08-05:00",
+            "b100": "2026-01-13T17:29:21+01:00",
+            "b250": "2025-02-03T17:01:31-08:00"
+          },
+          "rank": 1,
+          "orderKey": "001a4a1fc7856ebb15ce5fbcb57aa5735c968a69464437f1e0a019eaf7c62a43",
+          "default_branch": "main",
+          "status": "SELECTED"
+        }
+      ],
+      "selected": {
+        "full_name": "scikit-image/scikit-image",
+        "dir": "/private/tmp/claude-502/-Users-user1-dev-cli/8008e20c-d21a-471c-9aed-b8b21e1f8ad7/scratchpad/m378work/scikit-image__scikit-image",
+        "V1": true,
+        "V2": true,
+        "V3": true,
+        "pin": "745baa05fc5d39c5e9679ee1ab8f19b432403ab0",
+        "firstParentCount": 3812,
+        "bases": {
+          "pin": "745baa05fc5d39c5e9679ee1ab8f19b432403ab0",
+          "b100": "bfded8096f82f41726577612954169280a7f1652",
+          "b250": "ef21164f9649759675bcfa3e1e1d8bf44ba2f807"
+        },
+        "basisDates": {
+          "pin": "2026-08-17T06:07:08-05:00",
+          "b100": "2026-01-13T17:29:21+01:00",
+          "b250": "2025-02-03T17:01:31-08:00"
+        },
+        "rank": 1,
+        "orderKey": "001a4a1fc7856ebb15ce5fbcb57aa5735c968a69464437f1e0a019eaf7c62a43",
+        "default_branch": "main",
+        "status": "SELECTED"
+      }
+    }
+  }
+}
