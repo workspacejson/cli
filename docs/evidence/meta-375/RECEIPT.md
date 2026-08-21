@@ -115,6 +115,18 @@ basis resolution).
 4. **Basis worktrees.** Mining ran against detached worktrees of full clones
    at each frozen basis SHA rather than separate clones; C5 verifies the mined
    basis identity against `bases.json` for every run.
+5. **Post-freeze wording correction in `PREREGISTRATION.md` §3.** The
+   sentence describing the syncpack −100 control originally read "is
+   byte-identical to META-374's T0′". A Git commit is identified by SHA,
+   not by byte-equality of two commits, so the wording was corrected to
+   "resolves to the exact same commit SHA as META-374's T0′". This is a
+   wording defect fix only: the referenced basis SHA
+   `233a0b37265ff278bc96ece91f8c2bbfcaeeb280`, the control's role, and the
+   reproduced history-block digest are unchanged, and no measurement rule,
+   denominator, classifier, threshold, or output is affected. No other
+   retrospective methodology change was made. All §19 checks and red tests
+   were re-run after the correction and remain 54/54 PASS and 45/45
+   CAUGHT.
 
 ## Stopping rule
 

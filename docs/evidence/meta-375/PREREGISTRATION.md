@@ -54,9 +54,9 @@ against full clones, before any mining:
 | polylith | −100 | `801e7afa6af14fcd86d4bccfa2c2f58fb199fb13` | 2024-06-22 |
 | polylith | −250 | `23c976ba040ab904414e2dea02aac11ad98af155` | 2022-05-05 |
 
-syncpack −100 is byte-identical to META-374's T0′; its produced artifact must
-reproduce META-374's history block `5b2c63e879015673…` and is used as a
-control.
+syncpack −100 resolves to the exact same commit SHA as META-374's T0′; its
+produced artifact must reproduce META-374's history block
+`5b2c63e879015673…` and is used as a control.
 
 ## 4. Miner identity (frozen referent)
 
