@@ -1,0 +1,188 @@
+{
+  "label": "polylith-b250",
+  "repoRoot": "polylith-b250",
+  "pinnedRevision": "23c976ba040ab904414e2dea02aac11ad98af155",
+  "shallow": false,
+  "firstParentCountAtPin": 144,
+  "producerElapsedMs": 7611,
+  "historyRefresh": {
+    "requested": true,
+    "mined": true,
+    "preserved": false
+  },
+  "artifact": {
+    "path": ".agents/workspace.json",
+    "bytes": 58915,
+    "sha256": "3291d410c3b1c3d73d89327e979e5ee25f0cbb2c7f9bf6ba5179826e3f5c68bb",
+    "specVersion": "0.4",
+    "basisRevision": "23c976ba040ab904414e2dea02aac11ad98af155",
+    "coChangePresent": true,
+    "entryCount": 50,
+    "historyBlockSha256": "866e9c16a7a6f967ff687919cc112537cd3939e0d47df7c606d640d9dd6e91a5",
+    "shapeAudit": {
+      "distinctKeysets": [
+        "files,occurrences,support"
+      ],
+      "anyStoredRate": false,
+      "anyGeneratedFlag": false,
+      "allPairsUtf8Ordered": true,
+      "supportLteOccurrences": true,
+      "minSupportEmitted": 5,
+      "maxSupportEmitted": 16
+    },
+    "topEntries": [
+      {
+        "files": [
+          "components/creator/src/polylith/clj/core/creator/workspace.clj",
+          "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+        ],
+        "support": 16,
+        "occurrences": 19
+      },
+      {
+        "files": [
+          "components/help/src/polylith/clj/core/help/summary.clj",
+          "readme.md"
+        ],
+        "support": 12,
+        "occurrences": 63
+      },
+      {
+        "files": [
+          "components/command/src/polylith/clj/core/command/core.clj",
+          "readme.md"
+        ],
+        "support": 12,
+        "occurrences": 68
+      },
+      {
+        "files": [
+          "components/version/src/polylith/clj/core/version/interface.clj",
+          "doc/commands.md"
+        ],
+        "support": 11,
+        "occurrences": 32
+      },
+      {
+        "files": [
+          "components/user-input/src/polylith/clj/core/user_input/core.clj",
+          "readme.md"
+        ],
+        "support": 11,
+        "occurrences": 65
+      },
+      {
+        "files": [
+          "doc/commands.md",
+          "readme.md"
+        ],
+        "support": 11,
+        "occurrences": 67
+      },
+      {
+        "files": [
+          "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+          "readme.md"
+        ],
+        "support": 11,
+        "occurrences": 69
+      },
+      {
+        "files": [
+          "components/command/src/polylith/clj/core/command/core.clj",
+          "components/user-input/src/polylith/clj/core/user_input/core.clj"
+        ],
+        "support": 10,
+        "occurrences": 22
+      },
+      {
+        "files": [
+          "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+          "readme.md"
+        ],
+        "support": 10,
+        "occurrences": 67
+      },
+      {
+        "files": [
+          "components/creator/src/polylith/clj/core/creator/workspace.clj",
+          "readme.md"
+        ],
+        "support": 10,
+        "occurrences": 69
+      }
+    ]
+  },
+  "validation": {
+    "valid": true,
+    "errorCount": 0,
+    "errors": []
+  },
+  "receipts": {
+    "completeness": {
+      "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+      "reason": "MINED",
+      "detail": "mined 144 first-parent transition(s) from 23c976ba040ab904414e2dea02aac11ad98af155; 270577 pair(s) at or above 1 co-occurrence(s)"
+    },
+    "basisWindow": {
+      "basisRevision": "HEAD",
+      "basisCommit": "23c976ba040ab904414e2dea02aac11ad98af155",
+      "windowTransitions": 500,
+      "availableTransitions": 144,
+      "extractedTransitions": 144,
+      "windowTruncated": false
+    },
+    "scoringBasis": {
+      "weightingVersion": "META-289 v2.2.1",
+      "sizeWeightNumerator": 10,
+      "positionDecayHalfLife": 250,
+      "maxScoredFileCount": 50,
+      "basisRevision": "23c976ba040ab904414e2dea02aac11ad98af155",
+      "windowOldestCommit": "0aaeb588b004d48a6f34f35be52d204d568af9ec",
+      "windowNewestCommit": "23c976ba040ab904414e2dea02aac11ad98af155",
+      "decayOriginPosition": 143
+    },
+    "exclusions": {
+      "maxFileCount": 50,
+      "scoredEventCount": 134,
+      "excludedEventCount": 10,
+      "excludedCommits": [
+        "9b3cc9e48947b016d546ae70259c3473e790e0e6",
+        "19995f5f83bad54ea48b46312afb60efe753f525",
+        "78b2c77c56d1b41109d68b451069affac935200e",
+        "e3b148a22ad77af3e3b35d504016e1dd5ca386c9",
+        "34804e54538fad540b69498996c1b6a6adecf67c",
+        "d8b55eb42154df962b940503c5f7a5870d283b5f",
+        "febea3d8a9b30a60397594dda3cb0f25154b8d8d",
+        "31c1fe4e71fa250544b7b549ff9734a074c809a4",
+        "36b75565032dea88ee20cdc0bc5af18f6f4d4cf4",
+        "abd20bb656e2cdd712732d80e1238316d3ea1b7f"
+      ],
+      "excludedCommitsTotal": 10
+    },
+    "selection": {
+      "minSupport": 3,
+      "pairsBeforeCap": 327,
+      "pairsEmitted": 50,
+      "cap": 50,
+      "rankingRule": "support DESC, then occurrences ASC, then files[0] ASC by UTF-8 bytes, then files[1] ASC by UTF-8 bytes",
+      "capBound": true
+    },
+    "pairsEmitted": 50
+  },
+  "crossCheck": {
+    "producerEntries": 50,
+    "receiptEntries": 50,
+    "identical": true
+  },
+  "determinism": {
+    "secondRunHistoryBlockSha256": "866e9c16a7a6f967ff687919cc112537cd3939e0d47df7c606d640d9dd6e91a5",
+    "historyBlockStable": true,
+    "wholeFileIdentical": true,
+    "secondRunRefresh": {
+      "requested": true,
+      "mined": true,
+      "preserved": false
+    }
+  }
+}

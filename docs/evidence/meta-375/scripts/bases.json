@@ -1,0 +1,36 @@
+{
+  "frozen": "2026-08-21, in the preregistration freeze commit",
+  "resolutionRule": "git rev-list --first-parent <pin> | sed -n '101p' / '251p' in full non-shallow clones",
+  "repos": {
+    "formatjs": {
+      "github": "formatjs/formatjs",
+      "pin": "27c29bf9a40a50dac232a159b8790dbd14732c57",
+      "targets": ["packages/cli-lib/extract.ts"],
+      "bases": {
+        "formatjs-pin": "27c29bf9a40a50dac232a159b8790dbd14732c57",
+        "formatjs-b100": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+        "formatjs-b250": "50031ffe85c20ac46491c0afd0a43704893daac0"
+      }
+    },
+    "syncpack": {
+      "github": "JamieMason/syncpack",
+      "pin": "958d30689ac24b60623258630242330bd6d0264b",
+      "targets": ["src/commands/lint.rs", "src/instance.rs", "src/context.rs"],
+      "bases": {
+        "syncpack-pin": "958d30689ac24b60623258630242330bd6d0264b",
+        "syncpack-b100": "233a0b37265ff278bc96ece91f8c2bbfcaeeb280",
+        "syncpack-b250": "e59665142b309955cdf5a6a83e522f9e92457c36"
+      }
+    },
+    "polylith": {
+      "github": "polyfy/polylith",
+      "pin": "68dab9868274c8044817983c2424fbdbd616a456",
+      "targets": ["components/command/src/polylith/clj/core/command/core.clj"],
+      "bases": {
+        "polylith-pin": "68dab9868274c8044817983c2424fbdbd616a456",
+        "polylith-b100": "801e7afa6af14fcd86d4bccfa2c2f58fb199fb13",
+        "polylith-b250": "23c976ba040ab904414e2dea02aac11ad98af155"
+      }
+    }
+  }
+}
