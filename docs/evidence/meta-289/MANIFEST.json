@@ -1,0 +1,606 @@
+{
+  "issue": "META-289",
+  "fiberyQuestion": "OQ-15",
+  "question": "For an authentic later transaction that changes one or more source files, does source-test co-update history available strictly before that transaction improve identification/ranking of the test files actually touched in that later transaction, beyond deterministic current-tree baselines and test popularity/base rates?",
+  "observedOutcome": "test files touched in the later transaction",
+  "kind": "observational substrate evidence",
+  "disposition": "MIXED_BY_REPOSITORY_OR_TESTING_CULTURE",
+  "freeze": {
+    "preregistrationCommit": "8f3f762dbc6ae7006f2317fb6137e6e2a754a92a",
+    "phaseACommit": "7bd2f17c1b715875d0dc8dbace5d2002f46a29dd"
+  },
+  "predecessors": {
+    "meta378Receipt": "f3c7a0741acd14620a4fe8535c65d1908087fa30",
+    "meta378Disposition": "NEITHER_PATTERN_REPLICATES (context only, not an input)",
+    "meta376": "Canceled — verified, not reopened, not executed",
+    "inheritedMachineryOnly": [
+      "universe materialization",
+      "seeded sha256 ordering",
+      "offline eligibility re-verification",
+      "verification-only backfill"
+    ],
+    "inheritedOutcomes": "none"
+  },
+  "selection": {
+    "seed": "META-289/OQ-15/source-test-coupdate/v1",
+    "orderingRule": "ascending sha256(SEED + \":\" + full_name), lowercase hex, lexical",
+    "universeSnapshotUtc": "2026-08-21T23:04:08.202Z",
+    "cohortSize": 4,
+    "antiLeakExcluded": [
+      "formatjs/formatjs",
+      "JamieMason/syncpack",
+      "polyfy/polylith",
+      "nteract/hydrogen",
+      "thepowersgang/rust_os",
+      "clojure/core.typed",
+      "hyperledger/fabric",
+      "scikit-image/scikit-image"
+    ],
+    "cohort": {
+      "Go": {
+        "repository": "flyteorg/flyte",
+        "rankTaken": 9,
+        "pin": "6fadb90d65af26f4db908ec1c5f5af546a3e4299",
+        "firstParentCommits": 2410,
+        "sourceFilesAtPin": 463,
+        "testFilesAtPin": 275,
+        "verificationFailuresBeforeIt": 8
+      },
+      "Java": {
+        "repository": "LuckPerms/LuckPerms",
+        "rankTaken": 6,
+        "pin": "9b4fe67791e899778162f18df7c8a4df0fa58c77",
+        "firstParentCommits": 2266,
+        "sourceFilesAtPin": 969,
+        "testFilesAtPin": 84,
+        "verificationFailuresBeforeIt": 5
+      },
+      "Python": {
+        "repository": "kornia/kornia",
+        "rankTaken": 5,
+        "pin": "b4f5a78a13891c7ac4c1cd9695941380273e981d",
+        "firstParentCommits": 2411,
+        "sourceFilesAtPin": 521,
+        "testFilesAtPin": 279,
+        "verificationFailuresBeforeIt": 4
+      },
+      "TypeScript": {
+        "repository": "remult/remult",
+        "rankTaken": 1,
+        "pin": "85bb4884ed9428248258e3b8de477c860b9bc60f",
+        "firstParentCommits": 2913,
+        "sourceFilesAtPin": 725,
+        "testFilesAtPin": 142,
+        "verificationFailuresBeforeIt": 0
+      }
+    }
+  },
+  "design": {
+    "queryUnit": "one eligible source-changing first-parent transaction",
+    "queriesPerRepository": 200,
+    "totalQueries": 800,
+    "ks": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "primaryK": 10,
+    "primaryMetric": "macro-averaged recall@10 over POSITIVE queries, per repository",
+    "materialityThreshold": 0.05,
+    "nonInflationFactor": 1.25,
+    "historyWindow": "expanding, no depth cap, no decay",
+    "aggregationPrimary": "SUM over S(T)",
+    "aggregationSecondary": "MAX over S(T) (reported, does not change any verdict)"
+  },
+  "results": {
+    "flyteorg/flyte": {
+      "stratum": "Go",
+      "queries": 200,
+      "positive": 137,
+      "newTestOnly": 19,
+      "zeroTestTouch": 44,
+      "zeroTestTouchRate": {
+        "num": 44,
+        "den": 200,
+        "rate": 0.22
+      },
+      "recall10": {
+        "H": {
+          "macro": 0.7150851581508517,
+          "num": 151,
+          "den": 245
+        },
+        "B0": {
+          "macro": 0.1834549878345499,
+          "num": 39,
+          "den": 245
+        },
+        "B1": {
+          "macro": 0.862043795620438,
+          "num": 190,
+          "den": 245
+        }
+      },
+      "macroRecall10": {
+        "H": 0.7150851581508517,
+        "B0": 0.1834549878345499,
+        "B1": 0.862043795620438
+      },
+      "delta0": 0.5316301703163018,
+      "delta1": -0.14695863746958626,
+      "POS": 0,
+      "coverageH": 0.8905109489051095,
+      "abstentionH": 0.10948905109489049,
+      "fraction10": {
+        "H": 0.02181210085841744,
+        "B0": 0.032675946347746114,
+        "B1": 0.03150567940796862
+      },
+      "paired": {
+        "B0": {
+          "win": 86,
+          "loss": 1,
+          "tie": 50,
+          "den": 137
+        },
+        "B1": {
+          "win": 11,
+          "loss": 35,
+          "tie": 91,
+          "den": 137
+        }
+      }
+    },
+    "LuckPerms/LuckPerms": {
+      "stratum": "Java",
+      "queries": 200,
+      "positive": 29,
+      "newTestOnly": 11,
+      "zeroTestTouch": 160,
+      "zeroTestTouchRate": {
+        "num": 160,
+        "den": 200,
+        "rate": 0.8
+      },
+      "recall10": {
+        "H": {
+          "macro": 0.4258620689655172,
+          "num": 22,
+          "den": 64
+        },
+        "B0": {
+          "macro": 0.410919540229885,
+          "num": 23,
+          "den": 64
+        },
+        "B1": {
+          "macro": 0.33793103448275863,
+          "num": 24,
+          "den": 64
+        }
+      },
+      "macroRecall10": {
+        "H": 0.4258620689655172,
+        "B0": 0.410919540229885,
+        "B1": 0.33793103448275863
+      },
+      "delta0": 0.014942528735632177,
+      "delta1": 0.08793103448275857,
+      "POS": 0,
+      "coverageH": 0.8275862068965517,
+      "abstentionH": 0.1724137931034483,
+      "fraction10": {
+        "H": 0.10789646437123543,
+        "B0": 0.22984833951722908,
+        "B1": 0.22984833951722908
+      },
+      "paired": {
+        "B0": {
+          "win": 7,
+          "loss": 6,
+          "tie": 16,
+          "den": 29
+        },
+        "B1": {
+          "win": 8,
+          "loss": 7,
+          "tie": 14,
+          "den": 29
+        }
+      }
+    },
+    "kornia/kornia": {
+      "stratum": "Python",
+      "queries": 200,
+      "positive": 84,
+      "newTestOnly": 17,
+      "zeroTestTouch": 99,
+      "zeroTestTouchRate": {
+        "num": 99,
+        "den": 200,
+        "rate": 0.495
+      },
+      "recall10": {
+        "H": {
+          "macro": 0.46519328885400313,
+          "num": 57,
+          "den": 195
+        },
+        "B0": {
+          "macro": 0.18956888845281702,
+          "num": 30,
+          "den": 195
+        },
+        "B1": {
+          "macro": 0.5605608429269143,
+          "num": 68,
+          "den": 195
+        }
+      },
+      "macroRecall10": {
+        "H": 0.46519328885400313,
+        "B0": 0.18956888845281702,
+        "B1": 0.5605608429269143
+      },
+      "delta0": 0.2756244004011861,
+      "delta1": -0.0953675540729112,
+      "POS": 0,
+      "coverageH": 0.8571428571428571,
+      "abstentionH": 0.1428571428571429,
+      "fraction10": {
+        "H": 0.02138093410014274,
+        "B0": 0.03845312807222238,
+        "B1": 0.01762951883140771
+      },
+      "paired": {
+        "B0": {
+          "win": 35,
+          "loss": 9,
+          "tie": 40,
+          "den": 84
+        },
+        "B1": {
+          "win": 17,
+          "loss": 24,
+          "tie": 43,
+          "den": 84
+        }
+      }
+    },
+    "remult/remult": {
+      "stratum": "TypeScript",
+      "queries": 200,
+      "positive": 68,
+      "newTestOnly": 6,
+      "zeroTestTouch": 126,
+      "zeroTestTouchRate": {
+        "num": 126,
+        "den": 200,
+        "rate": 0.63
+      },
+      "recall10": {
+        "H": {
+          "macro": 0.6816176470588236,
+          "num": 65,
+          "den": 108
+        },
+        "B0": {
+          "macro": 0.37965686274509797,
+          "num": 38,
+          "den": 108
+        },
+        "B1": {
+          "macro": 0.4134803921568627,
+          "num": 34,
+          "den": 108
+        }
+      },
+      "macroRecall10": {
+        "H": 0.6816176470588236,
+        "B0": 0.37965686274509797,
+        "B1": 0.4134803921568627
+      },
+      "delta0": 0.3019607843137256,
+      "delta1": 0.26813725490196083,
+      "POS": 1,
+      "coverageH": 0.9852941176470589,
+      "abstentionH": 0.014705882352941124,
+      "fraction10": {
+        "H": 0.058592970863625214,
+        "B0": 0.075357307188384,
+        "B1": 0.075357307188384
+      },
+      "paired": {
+        "B0": {
+          "win": 25,
+          "loss": 2,
+          "tie": 41,
+          "den": 68
+        },
+        "B1": {
+          "win": 27,
+          "loss": 3,
+          "tie": 38,
+          "den": 68
+        }
+      }
+    }
+  },
+  "gate": {
+    "sumPOS": 1,
+    "totalPositiveQueries": 318,
+    "reposWithLowHCoverage": 0,
+    "ladder": [
+      {
+        "rung": "D1",
+        "disposition": "INSUFFICIENT_SOURCE_TEST_SIGNAL",
+        "fired": false,
+        "detail": "reposWithHCoverage<0.50 = 0 (>=2?) OR totalPositive = 318 (<100?)"
+      },
+      {
+        "rung": "D2",
+        "disposition": "HISTORY_ADDS_INCREMENTAL_COUPDATE_SIGNAL",
+        "fired": false,
+        "detail": "sumPOS = 1 (>=3?) AND no repo with delta1 <= -0.05 (one exists)"
+      },
+      {
+        "rung": "D3",
+        "disposition": "MIXED_BY_REPOSITORY_OR_TESTING_CULTURE",
+        "fired": true,
+        "detail": "1 <= sumPOS(1) <= 2"
+      },
+      {
+        "rung": "D4",
+        "disposition": "HISTORY_REPLICATES_BASE_RATE_ONLY",
+        "fired": false,
+        "detail": "sumPOS = 0 AND repos with delta0 < 0.05 = 1 (>=3?)"
+      },
+      {
+        "rung": "D5",
+        "disposition": "CURRENT_TREE_MATCHES_OR_BEATS_HISTORY",
+        "fired": false,
+        "detail": "terminal otherwise"
+      }
+    ]
+  },
+  "validation": {
+    "invariants": [
+      {
+        "id": "I1",
+        "status": "PASS"
+      },
+      {
+        "id": "I2",
+        "status": "PASS"
+      },
+      {
+        "id": "I3",
+        "status": "PASS"
+      },
+      {
+        "id": "I7",
+        "status": "PASS"
+      },
+      {
+        "id": "I5",
+        "status": "PASS"
+      },
+      {
+        "id": "I6",
+        "status": "PASS"
+      },
+      {
+        "id": "I4",
+        "status": "PASS"
+      },
+      {
+        "id": "I8",
+        "status": "PASS"
+      },
+      {
+        "id": "I9",
+        "status": "PASS"
+      },
+      {
+        "id": "I10",
+        "status": "PASS"
+      },
+      {
+        "id": "I11",
+        "status": "PASS"
+      }
+    ],
+    "redTests": [
+      {
+        "id": "RT1",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT4",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT5",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT3",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT6",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT2",
+        "status": "CAUGHT"
+      },
+      {
+        "id": "RT7",
+        "status": "CAUGHT"
+      }
+    ],
+    "failures": 0
+  },
+  "prohibitionsObserved": {
+    "agentExperiment": "not run",
+    "testsForCommand": "not implemented",
+    "workspaceJsonSemantics": "unchanged",
+    "producerBehavior": "unchanged",
+    "coChangeRankingAndCap": "unchanged",
+    "schemaOrCliChange": "none",
+    "regressionRecallConstruct": "withdrawn and not used"
+  },
+  "rerun": "bash docs/evidence/meta-289/rerun.sh <workDir>",
+  "files": {
+    "B0-POPULARITY.md": {
+      "sha256": "792283d0300471c23f703f8fedd7d712f907303fee5644bdc38c2c7c755e47ff",
+      "bytes": 2710
+    },
+    "B1-CURRENT-TREE.md": {
+      "sha256": "b054c154b392192da5fe1f0e0a3cd572126216908be1bc85fec2eb3ed099e612",
+      "bytes": 3620
+    },
+    "CLASSIFIERS.md": {
+      "sha256": "ab549c52530c226fa6660d1cde40e1dfb374044d13d3f5014700c5261821fe9e",
+      "bytes": 3393
+    },
+    "COMPARISON.md": {
+      "sha256": "cb696473cd1a5cf77276987407f0b02da97d7b9e75513ae8eb8d1c1280c59a81",
+      "bytes": 5129
+    },
+    "DENOMINATOR-AUDIT.md": {
+      "sha256": "cb6663dfcfa30540cb10bd38a17e6e470678de365fca458076cf435f0a51479d",
+      "bytes": 5033
+    },
+    "FIBERY-RECONCILIATION-DRAFT.md": {
+      "sha256": "52480684e8df88173516666d4afff89169aedde35dd2cca48a4d2199be3d12b6",
+      "bytes": 7198
+    },
+    "H-HISTORICAL.md": {
+      "sha256": "2637b7835c3c4e687b82bfbe214fe65421450b4dbdfe7b63a696958feb5edf8e",
+      "bytes": 3428
+    },
+    "NEGATIVE-ABSTENTION-RESULTS.md": {
+      "sha256": "35d3755477e5639313f4e12dfe262a7080a1f1b910fc9caf2e53888cd81afda1",
+      "bytes": 5053
+    },
+    "PREREGISTRATION.md": {
+      "sha256": "2561bb62fdada4e3715315835b0e0d8d872d152f665ae5d8954d71041b56855b",
+      "bytes": 31178
+    },
+    "PRIOR-ART-METHODS.md": {
+      "sha256": "4b5d1c398960aef45ff7a49477b3d55855b4dc2b445ffbb7870402c142859f6a",
+      "bytes": 11764
+    },
+    "RECEIPT.md": {
+      "sha256": "07d5a8b9de24db55f4fa148e06c510ba0178128869e137788b97646131abcf7b",
+      "bytes": 7817
+    },
+    "REPORT.md": {
+      "sha256": "35c331d595b71820cccb73992c0fa7027c4750df6efc8973626461e826e2a999",
+      "bytes": 11230
+    },
+    "SELECTION-RECEIPT.md": {
+      "sha256": "3bca9c84861e14bdcf4f2c36bdd17a2573320a60ff3ae8d48c06fa165195e0b5",
+      "bytes": 4882
+    },
+    "TEMPORAL-ISOLATION.md": {
+      "sha256": "76f47ed90900ca5c449971a04ebcf3396fcad25e51aae7a5c07f0e2a8e1bfe22",
+      "bytes": 5638
+    },
+    "UNIVERSE-RECEIPT.md": {
+      "sha256": "583113a979203cf60ae78a1f4d69f0a87a1123fad68e240ef197a9b62b19ca90",
+      "bytes": 2442
+    },
+    "raw/checks.json": {
+      "sha256": "045f4b54a1a1203508c1624793eef3fc4cb2e5ac6de75c5505ea79af97caec3c",
+      "bytes": 4983
+    },
+    "raw/cohort.json": {
+      "sha256": "aed759cd36aba0de7ea55bbba1d754ffe5ae8b88754e638b63dbca7d215d4eb9",
+      "bytes": 13600
+    },
+    "raw/outcomes.json": {
+      "sha256": "57fda7c06b3cff158876af8a79bc43b817bb2306e750ca4d9303c2ff361b759b",
+      "bytes": 800821
+    },
+    "raw/pre-outcome.json": {
+      "sha256": "82e17524e267f55d99e3c13097458fafc0220a46f1b049ac8660da6f00676347",
+      "bytes": 1110591
+    },
+    "raw/ranked-order.json": {
+      "sha256": "3ca59bb2e07d4748ebc678ea283b033b2de27b35194352097cedbf854349e6c7",
+      "bytes": 1421201
+    },
+    "raw/results.json": {
+      "sha256": "70cc7b877d3f60c389438bd3b15f47cf6f1277dbb9b0e2698b29b13aa842e00f",
+      "bytes": 33940
+    },
+    "raw/universe.json": {
+      "sha256": "a4bd25d48b965ecec12abf6f7d95c3be4336623a7312e7e6b93cbc1a9a90e53e",
+      "bytes": 2000870
+    },
+    "rerun.sh": {
+      "sha256": "3e480d14611fbbace13be0e2777d5006c0a4b5eb3719daf0051c57c137be39e6",
+      "bytes": 1503
+    },
+    "scripts/checks.mjs": {
+      "sha256": "830f0cde881d1529e89a4b6a548f45e977eb029a4a1f96161702de1a3933444a",
+      "bytes": 17960
+    },
+    "scripts/classify.mjs": {
+      "sha256": "a325427c1e60da9be2217ff55b47122a5b75d33fde61bfa9603aeee0acd8f822",
+      "bytes": 5334
+    },
+    "scripts/gitmine.mjs": {
+      "sha256": "dbfbd1c7ab49ed259551876f6d44e6cfe17540b8c828619f54c434c09c6c9d75",
+      "bytes": 2647
+    },
+    "scripts/manifest.mjs": {
+      "sha256": "6d904a17a871a33646a1e604c58805dfd27e1bacd9e63ef96a9c1c9191ff5011",
+      "bytes": 5032
+    },
+    "scripts/phase-a.mjs": {
+      "sha256": "1145e4e83d04f185e02cbf173258e1873f5deeea6d1b706d955e0b2beb64ba3c",
+      "bytes": 6926
+    },
+    "scripts/phase-b.mjs": {
+      "sha256": "9f576c80131e11be3d869eb79435d2a5b9d5ad851829f25107389a86490d389a",
+      "bytes": 9539
+    },
+    "scripts/render-phase-a.mjs": {
+      "sha256": "7160513668b07d0481257e8a4ef33f49174a1aa7c518fe2a518e2efb1f5239c2",
+      "bytes": 13377
+    },
+    "scripts/render-report.mjs": {
+      "sha256": "48aa17a97087ea178b11fc3993d02af457c12f065cf322abfd5af5e9da66c17a",
+      "bytes": 18318
+    },
+    "scripts/render-results.mjs": {
+      "sha256": "85a37423f49494514ecc2aad5a5506e8a0c47f73cec65ea25342ed95a22c66a5",
+      "bytes": 27497
+    },
+    "scripts/select-cohort.mjs": {
+      "sha256": "5b5674fc7cada55980e5e8b62a39e4f94964509b720e856b062690022bbfe0de",
+      "bytes": 3387
+    },
+    "scripts/universe.mjs": {
+      "sha256": "d0afd07ff0e5d1424bc6aa63621b97dbb25dbbf3861f5ba5b787c1ae7d7a28ac",
+      "bytes": 2381
+    },
+    "scripts/verify-cohort.mjs": {
+      "sha256": "d12f59a9ddbedd8e56df63253ec9482ad32746a7b85d8a3fbc1c9790054948ef",
+      "bytes": 5257
+    },
+    "tables/gate.csv": {
+      "sha256": "9b0c6c8b08abf1a5d2fa57b29351f99db118880b0ed518436f12f104378a7c1b",
+      "bytes": 496
+    },
+    "tables/metrics.csv": {
+      "sha256": "c717a177f5ada8cde62c4683500636284ade227bb727858752ea213e88b3d27b",
+      "bytes": 6989
+    }
+  }
+}

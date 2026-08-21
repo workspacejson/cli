@@ -1,0 +1,5 @@
+repository,stratum,recall10_H,recall10_B0,recall10_B1,delta0,delta1,frac10_H,frac10_B0,frac10_B1,non_inflated,POS,coverage_H
+flyteorg/flyte,Go,0.7151,0.1835,0.8620,0.5316,-0.1470,0.0218,0.0327,0.0315,true,0,0.8905
+LuckPerms/LuckPerms,Java,0.4259,0.4109,0.3379,0.0149,0.0879,0.1079,0.2298,0.2298,true,0,0.8276
+kornia/kornia,Python,0.4652,0.1896,0.5606,0.2756,-0.0954,0.0214,0.0385,0.0176,true,0,0.8571
+remult/remult,TypeScript,0.6816,0.3797,0.4135,0.3020,0.2681,0.0586,0.0754,0.0754,true,1,0.9853

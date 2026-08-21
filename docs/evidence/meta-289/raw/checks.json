@@ -1,0 +1,117 @@
+{
+  "issue": "META-289",
+  "ranUtc": "2026-08-21T23:22:07.992Z",
+  "invariants": [
+    {
+      "id": "I1",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "orderKeys recomputed from seed alone; order sorted; selected == frozen rank — Go:rank9=flyteorg/flyte Java:rank6=LuckPerms/LuckPerms Python:rank5=kornia/kornia TypeScript:rank1=remult/remult"
+    },
+    {
+      "id": "I2",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "800 queries: T0 == git rev-parse T^1, and T0 is a strict ancestor of T"
+    },
+    {
+      "id": "I3",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "historyTxnCount equals the count of eligible transactions with index strictly < index(T), for all 800 queries — T contributes zero to itself (flyteorg/flyte:H0/B00/B10/hist0 LuckPerms/LuckPerms:H0/B00/B10/hist0 kornia/kornia:H0/B00/B10/hist0 remult/remult:H0/B00/B10/hist0)"
+    },
+    {
+      "id": "I7",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "H reproduced exactly by an independent explicit-ancestry-filter implementation for all 800 queries"
+    },
+    {
+      "id": "I5",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "B0 reproduced exactly by an implementation that never references sourcePaths — source-independent for all 800 queries"
+    },
+    {
+      "id": "I6",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "B1 reproduced exactly by an implementation that never references the history maps — history-independent for all 800 queries"
+    },
+    {
+      "id": "I4",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "key allowlist holds for 800 records; no TEST path in any sourcePaths; pre-outcome commit 7bd2f17c1b71 tree contains 0 outcome artifacts (expected 0)"
+    },
+    {
+      "id": "I8",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "1342 ranked candidates all classify TEST; 2718 query paths all classify SOURCE and none classifies TEST (roles exclusive)"
+    },
+    {
+      "id": "I9",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "800 suites re-derived from git ls-tree -r T0 match the frozen suiteSha256 and suiteSize exactly — only T0-extant tests are in the denominator"
+    },
+    {
+      "id": "I10",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "every reported rate carries num/den recomputed from raw/outcomes.json; class counts partition the 200 queries — flyteorg/flyte:137+19+44=200 LuckPerms/LuckPerms:29+11+160=200 kornia/kornia:84+17+99=200 remult/remult:68+6+126=200"
+    },
+    {
+      "id": "I11",
+      "kind": "invariant",
+      "status": "PASS",
+      "detail": "no repository skipped without a recorded V-failure; selected is the first passing entry in the frozen order — Go:9 attempts, 8 recorded V-failures Java:6 attempts, 5 recorded V-failures Python:5 attempts, 4 recorded V-failures TypeScript:1 attempts, 0 recorded V-failures"
+    }
+  ],
+  "redTests": [
+    {
+      "id": "RT1",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "folding T's own transaction in BEFORE its snapshot changed rankedH on 26/200 queries in LuckPerms/LuckPerms (before: frozen lists; after: leaked lists). Perturbation is NOT inert."
+    },
+    {
+      "id": "RT4",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "making B0 add +1 where the candidate co-occurred with S(T) changed rankedB0 on 110/200 queries — the source-independence checker measures a real quantity."
+    },
+    {
+      "id": "RT5",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "adding historical support to structuralScore changed rankedB1 on 110/200 queries — the history-independence checker measures a real quantity."
+    },
+    {
+      "id": "RT3",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "inverting the T-GO test rule changed Suite(T0) in flyteorg/flyte from 683 to 1587 tests, and S(T) on query 0 from 4 paths [\"common_operator.go\",\"mpi.go\",\"pytorch.go\",\"tensorflow.go\"] to 4 paths [\"common_operator_test.go\",\"mpi_test.go\",\"pytorch_test.go\",\"tensorflow_test.go\"]. Role labels are load-bearing."
+    },
+    {
+      "id": "RT6",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "injecting one non-extant (pre-T0-deleted) path into every Suite(T0) in flyteorg/flyte moved mean fraction@10 for H from 0.021812 to 0.021735. The denominator is load-bearing."
+    },
+    {
+      "id": "RT2",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "splicing G(q) to the head of L_H in flyteorg/flyte raised macro recall@10 from 0.715085 to 1.000000. An outcome leak into ranking is detectable."
+    },
+    {
+      "id": "RT7",
+      "kind": "red",
+      "status": "CAUGHT",
+      "detail": "flipping the outcome set of query 0 (T=893b704d8bee) in flyteorg/flyte moved macro recall@10 from 0.715085 to 0.707786. The outcome is load-bearing."
+    }
+  ],
+  "failures": 0
+}
