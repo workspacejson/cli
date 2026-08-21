@@ -1,0 +1,2881 @@
+{
+  "outcome": "overlapUsable",
+  "perBasis": {
+    "syncpack-b100": {
+      "emittedN": 50,
+      "omittedN": 518,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.46548262548262537,
+          "cells": [
+            {
+              "stratum": "test↔test",
+              "emittedN": 1,
+              "omittedN": 174,
+              "emittedX": 1,
+              "omittedX": 5,
+              "emittedShare": 0.02,
+              "omittedShare": 0.3359073359073359,
+              "shareGap": -0.3159073359073359
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 10,
+              "omittedN": 2,
+              "emittedX": 1,
+              "omittedX": 0,
+              "emittedShare": 0.2,
+              "omittedShare": 0.003861003861003861,
+              "shareGap": 0.19613899613899616
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 23,
+              "omittedN": 184,
+              "emittedX": 9,
+              "omittedX": 60,
+              "emittedShare": 0.46,
+              "omittedShare": 0.3552123552123552,
+              "shareGap": 0.1047876447876448
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 5,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.1,
+              "omittedShare": 0.0019305019305019305,
+              "shareGap": 0.09806949806949808
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 1,
+              "omittedN": 50,
+              "emittedX": 0,
+              "omittedX": 4,
+              "emittedShare": 0.02,
+              "omittedShare": 0.09652509652509653,
+              "shareGap": -0.07652509652509652
+            },
+            {
+              "stratum": "tooling-ci↔tooling-ci",
+              "emittedN": 3,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0.06,
+              "omittedShare": 0.007722007722007722,
+              "shareGap": 0.05227799227799228
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.015444015444015444,
+              "shareGap": -0.015444015444015444
+            },
+            {
+              "stratum": "manifest-lock↔tooling-ci",
+              "emittedN": 1,
+              "omittedN": 3,
+              "emittedX": 1,
+              "omittedX": 2,
+              "emittedShare": 0.02,
+              "omittedShare": 0.005791505791505791,
+              "shareGap": 0.01420849420849421
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 0,
+              "omittedN": 6,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.011583011583011582,
+              "shareGap": -0.011583011583011582
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 6,
+              "omittedN": 68,
+              "emittedX": 4,
+              "omittedX": 13,
+              "emittedShare": 0.12,
+              "omittedShare": 0.13127413127413126,
+              "shareGap": -0.011274131274131266
+            },
+            {
+              "stratum": "source↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.007722007722007722,
+              "shareGap": -0.007722007722007722
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.007722007722007722,
+              "shareGap": -0.007722007722007722
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.005791505791505791,
+              "shareGap": -0.005791505791505791
+            },
+            {
+              "stratum": "UNKNOWN↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.003861003861003861,
+              "shareGap": -0.003861003861003861
+            },
+            {
+              "stratum": "UNKNOWN↔docs",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.003861003861003861,
+              "shareGap": -0.003861003861003861
+            },
+            {
+              "stratum": "docs↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0019305019305019305,
+              "shareGap": -0.0019305019305019305
+            },
+            {
+              "stratum": "UNKNOWN↔UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0019305019305019305,
+              "shareGap": -0.0019305019305019305
+            },
+            {
+              "stratum": "docs↔source",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0019305019305019305,
+              "shareGap": -0.0019305019305019305
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.3345945945945946,
+          "cells": [
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 13,
+              "omittedN": 308,
+              "emittedX": 1,
+              "omittedX": 2,
+              "emittedShare": 0.26,
+              "omittedShare": 0.5945945945945946,
+              "shareGap": -0.3345945945945946
+            },
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 16,
+              "omittedN": 79,
+              "emittedX": 4,
+              "omittedX": 10,
+              "emittedShare": 0.32,
+              "omittedShare": 0.1525096525096525,
+              "shareGap": 0.1674903474903475
+            },
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 21,
+              "omittedN": 131,
+              "emittedX": 11,
+              "omittedX": 82,
+              "emittedShare": 0.42,
+              "omittedShare": 0.2528957528957529,
+              "shareGap": 0.1671042471042471
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.4177606177606178,
+          "cells": [
+            {
+              "stratum": "250-499",
+              "emittedN": 10,
+              "omittedN": 320,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0.2,
+              "omittedShare": 0.6177606177606177,
+              "shareGap": -0.41776061776061774
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 28,
+              "omittedN": 120,
+              "emittedX": 16,
+              "omittedX": 78,
+              "emittedShare": 0.56,
+              "omittedShare": 0.23166023166023167,
+              "shareGap": 0.3283397683397684
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 7,
+              "omittedN": 30,
+              "emittedX": 0,
+              "omittedX": 10,
+              "emittedShare": 0.14,
+              "omittedShare": 0.05791505791505792,
+              "shareGap": 0.0820849420849421
+            },
+            {
+              "stratum": "100-249",
+              "emittedN": 5,
+              "omittedN": 48,
+              "emittedX": 0,
+              "omittedX": 5,
+              "emittedShare": 0.1,
+              "omittedShare": 0.09266409266409266,
+              "shareGap": 0.007335907335907346
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.628030888030888,
+          "cells": [
+            {
+              "stratum": "1/5",
+              "emittedN": 3,
+              "omittedN": 229,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0.06,
+              "omittedShare": 0.4420849420849421,
+              "shareGap": -0.3820849420849421
+            },
+            {
+              "stratum": "4/5",
+              "emittedN": 18,
+              "omittedN": 4,
+              "emittedX": 7,
+              "omittedX": 2,
+              "emittedShare": 0.36,
+              "omittedShare": 0.007722007722007722,
+              "shareGap": 0.3522779922779923
+            },
+            {
+              "stratum": "2/5",
+              "emittedN": 10,
+              "omittedN": 231,
+              "emittedX": 2,
+              "omittedX": 61,
+              "emittedShare": 0.2,
+              "omittedShare": 0.44594594594594594,
+              "shareGap": -0.24594594594594593
+            },
+            {
+              "stratum": "3/5",
+              "emittedN": 16,
+              "omittedN": 54,
+              "emittedX": 7,
+              "omittedX": 28,
+              "emittedShare": 0.32,
+              "omittedShare": 0.10424710424710425,
+              "shareGap": 0.21575289575289575
+            },
+            {
+              "stratum": "5/5",
+              "emittedN": 3,
+              "omittedN": 0,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.06,
+              "omittedShare": 0,
+              "shareGap": 0.06
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 13,
+              "omittedN": 308,
+              "emittedX": 1,
+              "omittedX": 2,
+              "emittedShare": 0.26,
+              "omittedShare": 0.5945945945945946,
+              "shareGap": -0.3345945945945946
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 33,
+              "omittedN": 207,
+              "emittedX": 14,
+              "omittedX": 90,
+              "emittedShare": 0.66,
+              "omittedShare": 0.3996138996138996,
+              "shareGap": 0.26038610038610044
+            },
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 45,
+              "omittedN": 332,
+              "emittedX": 16,
+              "omittedX": 88,
+              "emittedShare": 0.9,
+              "omittedShare": 0.640926640926641,
+              "shareGap": 0.25907335907335904
+            },
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 5,
+              "omittedN": 186,
+              "emittedX": 0,
+              "omittedX": 6,
+              "emittedShare": 0.1,
+              "omittedShare": 0.3590733590733591,
+              "shareGap": -0.25907335907335904
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 36,
+              "omittedN": 269,
+              "emittedX": 11,
+              "omittedX": 62,
+              "emittedShare": 0.72,
+              "omittedShare": 0.5193050193050193,
+              "shareGap": 0.2006949806949807
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 14,
+              "omittedN": 249,
+              "emittedX": 5,
+              "omittedX": 32,
+              "emittedShare": 0.28,
+              "omittedShare": 0.4806949806949807,
+              "shareGap": -0.20069498069498065
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 19,
+              "omittedN": 108,
+              "emittedX": 11,
+              "omittedX": 75,
+              "emittedShare": 0.38,
+              "omittedShare": 0.2084942084942085,
+              "shareGap": 0.1715057915057915
+            },
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 29,
+              "omittedN": 387,
+              "emittedX": 5,
+              "omittedX": 12,
+              "emittedShare": 0.58,
+              "omittedShare": 0.747104247104247,
+              "shareGap": -0.1671042471042471
+            },
+            {
+              "stratum": "has E1",
+              "emittedN": 7,
+              "omittedN": 1,
+              "emittedX": 1,
+              "omittedX": 0,
+              "emittedShare": 0.14,
+              "omittedShare": 0.0019305019305019305,
+              "shareGap": 0.1380694980694981
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 43,
+              "omittedN": 517,
+              "emittedX": 15,
+              "omittedX": 94,
+              "emittedShare": 0.86,
+              "omittedShare": 0.9980694980694981,
+              "shareGap": -0.1380694980694981
+            },
+            {
+              "stratum": "has E2",
+              "emittedN": 6,
+              "omittedN": 22,
+              "emittedX": 1,
+              "omittedX": 1,
+              "emittedShare": 0.12,
+              "omittedShare": 0.04247104247104247,
+              "shareGap": 0.07752895752895753
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 44,
+              "omittedN": 496,
+              "emittedX": 15,
+              "omittedX": 93,
+              "emittedShare": 0.88,
+              "omittedShare": 0.9575289575289575,
+              "shareGap": -0.0775289575289575
+            },
+            {
+              "stratum": "has E5",
+              "emittedN": 4,
+              "omittedN": 3,
+              "emittedX": 1,
+              "omittedX": 2,
+              "emittedShare": 0.08,
+              "omittedShare": 0.005791505791505791,
+              "shareGap": 0.07420849420849421
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 2,
+              "omittedN": 23,
+              "emittedX": 0,
+              "omittedX": 7,
+              "emittedShare": 0.04,
+              "omittedShare": 0.0444015444015444,
+              "shareGap": -0.004401544401544402
+            }
+          ]
+        }
+      }
+    },
+    "syncpack-b250": {
+      "emittedN": 50,
+      "omittedN": 734,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.5104087193460491,
+          "cells": [
+            {
+              "stratum": "test↔test",
+              "emittedN": 1,
+              "omittedN": 189,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.02,
+              "omittedShare": 0.2574931880108992,
+              "shareGap": -0.23749318801089922
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 10,
+              "omittedN": 0,
+              "emittedX": 3,
+              "omittedX": 0,
+              "emittedShare": 0.2,
+              "omittedShare": 0,
+              "shareGap": 0.2
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 0,
+              "omittedN": 137,
+              "emittedX": 0,
+              "omittedX": 5,
+              "emittedShare": 0,
+              "omittedShare": 0.18664850136239783,
+              "shareGap": -0.18664850136239783
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 31,
+              "omittedN": 328,
+              "emittedX": 5,
+              "omittedX": 45,
+              "emittedShare": 0.62,
+              "omittedShare": 0.44686648501362397,
+              "shareGap": 0.17313351498637602
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 5,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.1,
+              "omittedShare": 0.0013623978201634877,
+              "shareGap": 0.09863760217983651
+            },
+            {
+              "stratum": "tooling-ci↔tooling-ci",
+              "emittedN": 2,
+              "omittedN": 1,
+              "emittedX": 1,
+              "omittedX": 0,
+              "emittedShare": 0.04,
+              "omittedShare": 0.0013623978201634877,
+              "shareGap": 0.038637602179836514
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 1,
+              "omittedN": 36,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.02,
+              "omittedShare": 0.04904632152588556,
+              "shareGap": -0.02904632152588556
+            },
+            {
+              "stratum": "docs↔source",
+              "emittedN": 0,
+              "omittedN": 17,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.02316076294277929,
+              "shareGap": -0.02316076294277929
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 0,
+              "omittedN": 6,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.008174386920980926,
+              "shareGap": -0.008174386920980926
+            },
+            {
+              "stratum": "manifest-lock↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.005449591280653951,
+              "shareGap": -0.005449591280653951
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.005449591280653951,
+              "shareGap": -0.005449591280653951
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.004087193460490463,
+              "shareGap": -0.004087193460490463
+            },
+            {
+              "stratum": "source↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.004087193460490463,
+              "shareGap": -0.004087193460490463
+            },
+            {
+              "stratum": "docs↔test",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0027247956403269754,
+              "shareGap": -0.0027247956403269754
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.0027247956403269754,
+              "shareGap": -0.0027247956403269754
+            },
+            {
+              "stratum": "docs↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.0013623978201634877,
+              "shareGap": -0.0013623978201634877
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.29918256130790194,
+          "cells": [
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 20,
+              "omittedN": 74,
+              "emittedX": 9,
+              "omittedX": 56,
+              "emittedShare": 0.4,
+              "omittedShare": 0.1008174386920981,
+              "shareGap": 0.29918256130790194
+            },
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 26,
+              "omittedN": 599,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.52,
+              "omittedShare": 0.8160762942779292,
+              "shareGap": -0.29607629427792914
+            },
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 4,
+              "omittedN": 61,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.08,
+              "omittedShare": 0.08310626702997276,
+              "shareGap": -0.0031062670299727563
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.5470299727520436,
+          "cells": [
+            {
+              "stratum": "250-499",
+              "emittedN": 9,
+              "omittedN": 505,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.18,
+              "omittedShare": 0.6880108991825613,
+              "shareGap": -0.5080108991825614
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 20,
+              "omittedN": 17,
+              "emittedX": 9,
+              "omittedX": 13,
+              "emittedShare": 0.4,
+              "omittedShare": 0.02316076294277929,
+              "shareGap": 0.3768392370572207
+            },
+            {
+              "stratum": "100-249",
+              "emittedN": 19,
+              "omittedN": 154,
+              "emittedX": 0,
+              "omittedX": 9,
+              "emittedShare": 0.38,
+              "omittedShare": 0.2098092643051771,
+              "shareGap": 0.1701907356948229
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 2,
+              "omittedN": 58,
+              "emittedX": 0,
+              "omittedX": 34,
+              "emittedShare": 0.04,
+              "omittedShare": 0.07901907356948229,
+              "shareGap": -0.03901907356948229
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.3836512261580382,
+          "cells": [
+            {
+              "stratum": "1/5",
+              "emittedN": 1,
+              "omittedN": 296,
+              "emittedX": 0,
+              "omittedX": 16,
+              "emittedShare": 0.02,
+              "omittedShare": 0.4032697547683924,
+              "shareGap": -0.38326975476839237
+            },
+            {
+              "stratum": "3/5",
+              "emittedN": 17,
+              "omittedN": 9,
+              "emittedX": 1,
+              "omittedX": 0,
+              "emittedShare": 0.34,
+              "omittedShare": 0.01226158038147139,
+              "shareGap": 0.3277384196185286
+            },
+            {
+              "stratum": "4/5",
+              "emittedN": 2,
+              "omittedN": 3,
+              "emittedX": 1,
+              "omittedX": 2,
+              "emittedShare": 0.04,
+              "omittedShare": 0.004087193460490463,
+              "shareGap": 0.03591280653950954
+            },
+            {
+              "stratum": "5/5",
+              "emittedN": 1,
+              "omittedN": 0,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.02,
+              "omittedShare": 0,
+              "shareGap": 0.02
+            },
+            {
+              "stratum": "2/5",
+              "emittedN": 29,
+              "omittedN": 426,
+              "emittedX": 7,
+              "omittedX": 38,
+              "emittedShare": 0.58,
+              "omittedShare": 0.5803814713896458,
+              "shareGap": -0.0003814713896458377
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 37,
+              "omittedN": 297,
+              "emittedX": 9,
+              "omittedX": 53,
+              "emittedShare": 0.74,
+              "omittedShare": 0.40463215258855584,
+              "shareGap": 0.33536784741144415
+            },
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 13,
+              "omittedN": 437,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0.26,
+              "omittedShare": 0.5953678474114441,
+              "shareGap": -0.3353678474114441
+            },
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 30,
+              "omittedN": 660,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.6,
+              "omittedShare": 0.8991825613079019,
+              "shareGap": -0.2991825613079019
+            },
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 26,
+              "omittedN": 599,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.52,
+              "omittedShare": 0.8160762942779292,
+              "shareGap": -0.29607629427792914
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 36,
+              "omittedN": 692,
+              "emittedX": 8,
+              "omittedX": 55,
+              "emittedShare": 0.72,
+              "omittedShare": 0.9427792915531336,
+              "shareGap": -0.22277929155313358
+            },
+            {
+              "stratum": "has E2",
+              "emittedN": 14,
+              "omittedN": 42,
+              "emittedX": 1,
+              "omittedX": 1,
+              "emittedShare": 0.28,
+              "omittedShare": 0.05722070844686648,
+              "shareGap": 0.22277929155313353
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 14,
+              "omittedN": 59,
+              "emittedX": 9,
+              "omittedX": 46,
+              "emittedShare": 0.28,
+              "omittedShare": 0.08038147138964577,
+              "shareGap": 0.19961852861035426
+            },
+            {
+              "stratum": "has E5",
+              "emittedN": 8,
+              "omittedN": 1,
+              "emittedX": 1,
+              "omittedX": 1,
+              "emittedShare": 0.16,
+              "omittedShare": 0.0013623978201634877,
+              "shareGap": 0.15863760217983652
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 43,
+              "omittedN": 734,
+              "emittedX": 6,
+              "omittedX": 56,
+              "emittedShare": 0.86,
+              "omittedShare": 1,
+              "shareGap": -0.14
+            },
+            {
+              "stratum": "has E1",
+              "emittedN": 7,
+              "omittedN": 0,
+              "emittedX": 3,
+              "omittedX": 0,
+              "emittedShare": 0.14,
+              "omittedShare": 0,
+              "shareGap": 0.14
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 16,
+              "omittedN": 134,
+              "emittedX": 8,
+              "omittedX": 55,
+              "emittedShare": 0.32,
+              "omittedShare": 0.18256130790190736,
+              "shareGap": 0.13743869209809265
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 24,
+              "omittedN": 254,
+              "emittedX": 8,
+              "omittedX": 44,
+              "emittedShare": 0.48,
+              "omittedShare": 0.3460490463215259,
+              "shareGap": 0.1339509536784741
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 26,
+              "omittedN": 480,
+              "emittedX": 1,
+              "omittedX": 12,
+              "emittedShare": 0.52,
+              "omittedShare": 0.6539509536784741,
+              "shareGap": -0.1339509536784741
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 6,
+              "omittedN": 15,
+              "emittedX": 0,
+              "omittedX": 10,
+              "emittedShare": 0.12,
+              "omittedShare": 0.020435967302452316,
+              "shareGap": 0.09956403269754768
+            }
+          ]
+        }
+      }
+    },
+    "formatjs-b100": {
+      "emittedN": 50,
+      "omittedN": 1192,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.46644295302013433,
+          "cells": [
+            {
+              "stratum": "tooling-ci↔tooling-ci",
+              "emittedN": 38,
+              "omittedN": 471,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.76,
+              "omittedShare": 0.3951342281879195,
+              "shareGap": 0.3648657718120805
+            },
+            {
+              "stratum": "docs↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 144,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.12080536912751678,
+              "shareGap": -0.12080536912751678
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 8,
+              "omittedN": 76,
+              "emittedX": 4,
+              "omittedX": 2,
+              "emittedShare": 0.16,
+              "omittedShare": 0.06375838926174497,
+              "shareGap": 0.09624161073825503
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 87,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.07298657718120806,
+              "shareGap": -0.07298657718120806
+            },
+            {
+              "stratum": "UNKNOWN↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 82,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.06879194630872483,
+              "shareGap": -0.06879194630872483
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 0,
+              "omittedN": 77,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.06459731543624161,
+              "shareGap": -0.06459731543624161
+            },
+            {
+              "stratum": "source↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 72,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.06040268456375839,
+              "shareGap": -0.06040268456375839
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 0,
+              "omittedN": 18,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.015100671140939598,
+              "shareGap": -0.015100671140939598
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 0,
+              "omittedN": 12,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.010067114093959731,
+              "shareGap": -0.010067114093959731
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 0,
+              "omittedN": 10,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.008389261744966443,
+              "shareGap": -0.008389261744966443
+            },
+            {
+              "stratum": "docs↔source",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.006711409395973154,
+              "shareGap": -0.006711409395973154
+            },
+            {
+              "stratum": "generated↔source",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.006711409395973154,
+              "shareGap": -0.006711409395973154
+            },
+            {
+              "stratum": "manifest-lock↔tooling-ci",
+              "emittedN": 4,
+              "omittedN": 89,
+              "emittedX": 2,
+              "omittedX": 1,
+              "emittedShare": 0.08,
+              "omittedShare": 0.07466442953020135,
+              "shareGap": 0.005335570469798656
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0041946308724832215,
+              "shareGap": -0.0041946308724832215
+            },
+            {
+              "stratum": "test↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0041946308724832215,
+              "shareGap": -0.0041946308724832215
+            },
+            {
+              "stratum": "generated↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0041946308724832215,
+              "shareGap": -0.0041946308724832215
+            },
+            {
+              "stratum": "generated↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.003355704697986577,
+              "shareGap": -0.003355704697986577
+            },
+            {
+              "stratum": "UNKNOWN↔docs",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.003355704697986577,
+              "shareGap": -0.003355704697986577
+            },
+            {
+              "stratum": "UNKNOWN↔UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0025167785234899327,
+              "shareGap": -0.0025167785234899327
+            },
+            {
+              "stratum": "generated↔test",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0025167785234899327,
+              "shareGap": -0.0025167785234899327
+            },
+            {
+              "stratum": "generated↔generated",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0016778523489932886,
+              "shareGap": -0.0016778523489932886
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0016778523489932886,
+              "shareGap": -0.0016778523489932886
+            },
+            {
+              "stratum": "test↔test",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0008389261744966443,
+              "shareGap": -0.0008389261744966443
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0008389261744966443,
+              "shareGap": -0.0008389261744966443
+            },
+            {
+              "stratum": "UNKNOWN↔generated",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0008389261744966443,
+              "shareGap": -0.0008389261744966443
+            },
+            {
+              "stratum": "UNKNOWN↔test",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0008389261744966443,
+              "shareGap": -0.0008389261744966443
+            },
+            {
+              "stratum": "docs↔test",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0008389261744966443,
+              "shareGap": -0.0008389261744966443
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.1098993288590604,
+          "cells": [
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 50,
+              "omittedN": 1061,
+              "emittedX": 6,
+              "omittedX": 9,
+              "emittedShare": 1,
+              "omittedShare": 0.8901006711409396,
+              "shareGap": 0.1098993288590604
+            },
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 0,
+              "omittedN": 88,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0738255033557047,
+              "shareGap": -0.0738255033557047
+            },
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 0,
+              "omittedN": 43,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.03607382550335571,
+              "shareGap": -0.03607382550335571
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.3076510067114094,
+          "cells": [
+            {
+              "stratum": "250-499",
+              "emittedN": 16,
+              "omittedN": 642,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.32,
+              "omittedShare": 0.5385906040268457,
+              "shareGap": -0.21859060402684566
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 23,
+              "omittedN": 344,
+              "emittedX": 2,
+              "omittedX": 7,
+              "emittedShare": 0.46,
+              "omittedShare": 0.28859060402684567,
+              "shareGap": 0.17140939597315435
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 10,
+              "omittedN": 76,
+              "emittedX": 4,
+              "omittedX": 0,
+              "emittedShare": 0.2,
+              "omittedShare": 0.06375838926174497,
+              "shareGap": 0.13624161073825503
+            },
+            {
+              "stratum": "100-249",
+              "emittedN": 1,
+              "omittedN": 130,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0.02,
+              "omittedShare": 0.10906040268456375,
+              "shareGap": -0.08906040268456375
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.5580536912751677,
+          "cells": [
+            {
+              "stratum": "2/5",
+              "emittedN": 1,
+              "omittedN": 507,
+              "emittedX": 0,
+              "omittedX": 8,
+              "emittedShare": 0.02,
+              "omittedShare": 0.42533557046979864,
+              "shareGap": -0.4053355704697986
+            },
+            {
+              "stratum": "5/5",
+              "emittedN": 18,
+              "omittedN": 0,
+              "emittedX": 4,
+              "omittedX": 0,
+              "emittedShare": 0.36,
+              "omittedShare": 0,
+              "shareGap": 0.36
+            },
+            {
+              "stratum": "4/5",
+              "emittedN": 12,
+              "omittedN": 50,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.24,
+              "omittedShare": 0.04194630872483222,
+              "shareGap": 0.19805369127516778
+            },
+            {
+              "stratum": "1/5",
+              "emittedN": 0,
+              "omittedN": 179,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.15016778523489932,
+              "shareGap": -0.15016778523489932
+            },
+            {
+              "stratum": "3/5",
+              "emittedN": 19,
+              "omittedN": 456,
+              "emittedX": 2,
+              "omittedX": 1,
+              "emittedShare": 0.38,
+              "omittedShare": 0.3825503355704698,
+              "shareGap": -0.002550335570469797
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "has E2",
+              "emittedN": 39,
+              "omittedN": 572,
+              "emittedX": 1,
+              "omittedX": 1,
+              "emittedShare": 0.78,
+              "omittedShare": 0.4798657718120805,
+              "shareGap": 0.3001342281879195
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 11,
+              "omittedN": 620,
+              "emittedX": 5,
+              "omittedX": 8,
+              "emittedShare": 0.22,
+              "omittedShare": 0.5201342281879194,
+              "shareGap": -0.30013422818791946
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 28,
+              "omittedN": 442,
+              "emittedX": 1,
+              "omittedX": 4,
+              "emittedShare": 0.56,
+              "omittedShare": 0.37080536912751677,
+              "shareGap": 0.18919463087248328
+            },
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 131,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.1098993288590604,
+              "shareGap": -0.1098993288590604
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 42,
+              "omittedN": 1099,
+              "emittedX": 2,
+              "omittedX": 8,
+              "emittedShare": 0.84,
+              "omittedShare": 0.9219798657718121,
+              "shareGap": -0.08197986577181215
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 8,
+              "omittedN": 93,
+              "emittedX": 4,
+              "omittedX": 1,
+              "emittedShare": 0.16,
+              "omittedShare": 0.07802013422818792,
+              "shareGap": 0.08197986577181209
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 22,
+              "omittedN": 619,
+              "emittedX": 5,
+              "omittedX": 5,
+              "emittedShare": 0.44,
+              "omittedShare": 0.5192953020134228,
+              "shareGap": -0.07929530201342277
+            },
+            {
+              "stratum": "has E1",
+              "emittedN": 5,
+              "omittedN": 26,
+              "emittedX": 3,
+              "omittedX": 0,
+              "emittedShare": 0.1,
+              "omittedShare": 0.02181208053691275,
+              "shareGap": 0.07818791946308726
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 45,
+              "omittedN": 1166,
+              "emittedX": 3,
+              "omittedX": 9,
+              "emittedShare": 0.9,
+              "omittedShare": 0.9781879194630873,
+              "shareGap": -0.07818791946308723
+            },
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 1,
+              "omittedN": 84,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0.02,
+              "omittedShare": 0.07046979865771812,
+              "shareGap": -0.05046979865771811
+            },
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 49,
+              "omittedN": 1108,
+              "emittedX": 6,
+              "omittedX": 6,
+              "emittedShare": 0.98,
+              "omittedShare": 0.9295302013422819,
+              "shareGap": 0.05046979865771806
+            },
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 43,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.03607382550335571,
+              "shareGap": -0.03607382550335571
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 29,
+              "omittedN": 663,
+              "emittedX": 4,
+              "omittedX": 8,
+              "emittedShare": 0.58,
+              "omittedShare": 0.5562080536912751,
+              "shareGap": 0.023791946308724832
+            },
+            {
+              "stratum": "has E5",
+              "emittedN": 21,
+              "omittedN": 486,
+              "emittedX": 2,
+              "omittedX": 1,
+              "emittedShare": 0.42,
+              "omittedShare": 0.4077181208053691,
+              "shareGap": 0.012281879194630863
+            }
+          ]
+        }
+      }
+    },
+    "formatjs-b250": {
+      "emittedN": 50,
+      "omittedN": 1726,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.40730011587485526,
+          "cells": [
+            {
+              "stratum": "tooling-ci↔tooling-ci",
+              "emittedN": 46,
+              "omittedN": 903,
+              "emittedX": 0,
+              "omittedX": 14,
+              "emittedShare": 0.92,
+              "omittedShare": 0.5231749710312862,
+              "shareGap": 0.39682502896871386
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 160,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.09269988412514485,
+              "shareGap": -0.09269988412514485
+            },
+            {
+              "stratum": "UNKNOWN↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 131,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.07589803012746234,
+              "shareGap": -0.07589803012746234
+            },
+            {
+              "stratum": "manifest-lock↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 97,
+              "emittedX": 0,
+              "omittedX": 12,
+              "emittedShare": 0,
+              "omittedShare": 0.05619930475086906,
+              "shareGap": -0.05619930475086906
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 0,
+              "omittedN": 83,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.04808806488991889,
+              "shareGap": -0.04808806488991889
+            },
+            {
+              "stratum": "source↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 74,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.04287369640787949,
+              "shareGap": -0.04287369640787949
+            },
+            {
+              "stratum": "docs↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 71,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.041135573580533026,
+              "shareGap": -0.041135573580533026
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 4,
+              "omittedN": 120,
+              "emittedX": 4,
+              "omittedX": 7,
+              "emittedShare": 0.08,
+              "omittedShare": 0.06952491309385864,
+              "shareGap": 0.010475086906141365
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 0,
+              "omittedN": 18,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.010428736964078795,
+              "shareGap": -0.010428736964078795
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 14,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.008111239860950173,
+              "shareGap": -0.008111239860950173
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 0,
+              "omittedN": 13,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.007531865585168019,
+              "shareGap": -0.007531865585168019
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0,
+              "omittedShare": 0.004634994206257242,
+              "shareGap": -0.004634994206257242
+            },
+            {
+              "stratum": "docs↔source",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.004634994206257242,
+              "shareGap": -0.004634994206257242
+            },
+            {
+              "stratum": "generated↔source",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.0028968713789107765,
+              "shareGap": -0.0028968713789107765
+            },
+            {
+              "stratum": "UNKNOWN↔UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.002317497103128621,
+              "shareGap": -0.002317497103128621
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.002317497103128621,
+              "shareGap": -0.002317497103128621
+            },
+            {
+              "stratum": "test↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.002317497103128621,
+              "shareGap": -0.002317497103128621
+            },
+            {
+              "stratum": "UNKNOWN↔docs",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0017381228273464658,
+              "shareGap": -0.0017381228273464658
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 0,
+              "omittedN": 2,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0011587485515643105,
+              "shareGap": -0.0011587485515643105
+            },
+            {
+              "stratum": "generated↔generated",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.0005793742757821553,
+              "shareGap": -0.0005793742757821553
+            },
+            {
+              "stratum": "generated↔test",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0005793742757821553,
+              "shareGap": -0.0005793742757821553
+            },
+            {
+              "stratum": "generated↔tooling-ci",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0005793742757821553,
+              "shareGap": -0.0005793742757821553
+            },
+            {
+              "stratum": "docs↔test",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.0005793742757821553,
+              "shareGap": -0.0005793742757821553
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.20567786790266512,
+          "cells": [
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 50,
+              "omittedN": 1371,
+              "emittedX": 4,
+              "omittedX": 55,
+              "emittedShare": 1,
+              "omittedShare": 0.7943221320973349,
+              "shareGap": 0.20567786790266507
+            },
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 0,
+              "omittedN": 242,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.14020857473928158,
+              "shareGap": -0.14020857473928158
+            },
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 0,
+              "omittedN": 113,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.06546929316338354,
+              "shareGap": -0.06546929316338354
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.45244495944380075,
+          "cells": [
+            {
+              "stratum": "100-249",
+              "emittedN": 46,
+              "omittedN": 807,
+              "emittedX": 0,
+              "omittedX": 23,
+              "emittedShare": 0.92,
+              "omittedShare": 0.4675550405561993,
+              "shareGap": 0.45244495944380075
+            },
+            {
+              "stratum": "250-499",
+              "emittedN": 0,
+              "omittedN": 530,
+              "emittedX": 0,
+              "omittedX": 13,
+              "emittedShare": 0,
+              "omittedShare": 0.3070683661645423,
+              "shareGap": -0.3070683661645423
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 4,
+              "omittedN": 300,
+              "emittedX": 4,
+              "omittedX": 9,
+              "emittedShare": 0.08,
+              "omittedShare": 0.17381228273464658,
+              "shareGap": -0.09381228273464658
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 0,
+              "omittedN": 89,
+              "emittedX": 0,
+              "omittedX": 10,
+              "emittedShare": 0,
+              "omittedShare": 0.051564310544611816,
+              "shareGap": -0.051564310544611816
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.7479721900347626,
+          "cells": [
+            {
+              "stratum": "4/5",
+              "emittedN": 46,
+              "omittedN": 423,
+              "emittedX": 0,
+              "omittedX": 7,
+              "emittedShare": 0.92,
+              "omittedShare": 0.2450753186558517,
+              "shareGap": 0.6749246813441483
+            },
+            {
+              "stratum": "2/5",
+              "emittedN": 0,
+              "omittedN": 583,
+              "emittedX": 0,
+              "omittedX": 23,
+              "emittedShare": 0,
+              "omittedShare": 0.33777520278099654,
+              "shareGap": -0.33777520278099654
+            },
+            {
+              "stratum": "3/5",
+              "emittedN": 0,
+              "omittedN": 562,
+              "emittedX": 0,
+              "omittedX": 8,
+              "emittedShare": 0,
+              "omittedShare": 0.32560834298957125,
+              "shareGap": -0.32560834298957125
+            },
+            {
+              "stratum": "1/5",
+              "emittedN": 0,
+              "omittedN": 146,
+              "emittedX": 0,
+              "omittedX": 16,
+              "emittedShare": 0,
+              "omittedShare": 0.08458864426419467,
+              "shareGap": -0.08458864426419467
+            },
+            {
+              "stratum": "5/5",
+              "emittedN": 4,
+              "omittedN": 12,
+              "emittedX": 4,
+              "omittedX": 1,
+              "emittedShare": 0.08,
+              "omittedShare": 0.006952491309385863,
+              "shareGap": 0.07304750869061413
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "has E5",
+              "emittedN": 32,
+              "omittedN": 508,
+              "emittedX": 1,
+              "omittedX": 19,
+              "emittedShare": 0.64,
+              "omittedShare": 0.2943221320973349,
+              "shareGap": 0.34567786790266514
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 3,
+              "omittedN": 670,
+              "emittedX": 3,
+              "omittedX": 39,
+              "emittedShare": 0.06,
+              "omittedShare": 0.388180764774044,
+              "shareGap": -0.328180764774044
+            },
+            {
+              "stratum": "has E2",
+              "emittedN": 47,
+              "omittedN": 1056,
+              "emittedX": 1,
+              "omittedX": 16,
+              "emittedShare": 0.94,
+              "omittedShare": 0.6118192352259559,
+              "shareGap": 0.328180764774044
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 31,
+              "omittedN": 566,
+              "emittedX": 1,
+              "omittedX": 14,
+              "emittedShare": 0.62,
+              "omittedShare": 0.32792584009269987,
+              "shareGap": 0.2920741599073001
+            },
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 355,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.20567786790266512,
+              "shareGap": -0.20567786790266512
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 18,
+              "omittedN": 976,
+              "emittedX": 3,
+              "omittedX": 36,
+              "emittedShare": 0.36,
+              "omittedShare": 0.5654692931633836,
+              "shareGap": -0.20546929316338358
+            },
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 242,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.14020857473928158,
+              "shareGap": -0.14020857473928158
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 19,
+              "omittedN": 805,
+              "emittedX": 3,
+              "omittedX": 41,
+              "emittedShare": 0.38,
+              "omittedShare": 0.466396292004635,
+              "shareGap": -0.086396292004635
+            },
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 0,
+              "omittedN": 100,
+              "emittedX": 0,
+              "omittedX": 4,
+              "emittedShare": 0,
+              "omittedShare": 0.05793742757821553,
+              "shareGap": -0.05793742757821553
+            },
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 50,
+              "omittedN": 1626,
+              "emittedX": 4,
+              "omittedX": 51,
+              "emittedShare": 1,
+              "omittedShare": 0.9420625724217845,
+              "shareGap": 0.05793742757821552
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 47,
+              "omittedN": 1714,
+              "emittedX": 1,
+              "omittedX": 53,
+              "emittedShare": 0.94,
+              "omittedShare": 0.9930475086906141,
+              "shareGap": -0.05304750869061414
+            },
+            {
+              "stratum": "has E1",
+              "emittedN": 3,
+              "omittedN": 12,
+              "emittedX": 3,
+              "omittedX": 2,
+              "emittedShare": 0.06,
+              "omittedShare": 0.006952491309385863,
+              "shareGap": 0.053047508690614135
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 3,
+              "omittedN": 107,
+              "emittedX": 3,
+              "omittedX": 16,
+              "emittedShare": 0.06,
+              "omittedShare": 0.06199304750869061,
+              "shareGap": -0.001993047508690615
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 47,
+              "omittedN": 1619,
+              "emittedX": 1,
+              "omittedX": 39,
+              "emittedShare": 0.94,
+              "omittedShare": 0.9380069524913094,
+              "shareGap": 0.0019930475086905597
+            }
+          ]
+        }
+      }
+    },
+    "polylith-b100": {
+      "emittedN": 50,
+      "omittedN": 1356,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.39061946902654865,
+          "cells": [
+            {
+              "stratum": "docs↔source",
+              "emittedN": 15,
+              "omittedN": 165,
+              "emittedX": 6,
+              "omittedX": 31,
+              "emittedShare": 0.3,
+              "omittedShare": 0.12168141592920353,
+              "shareGap": 0.17831858407079645
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 4,
+              "omittedN": 232,
+              "emittedX": 1,
+              "omittedX": 18,
+              "emittedShare": 0.08,
+              "omittedShare": 0.1710914454277286,
+              "shareGap": -0.09109144542772861
+            },
+            {
+              "stratum": "test↔test",
+              "emittedN": 0,
+              "omittedN": 114,
+              "emittedX": 0,
+              "omittedX": 6,
+              "emittedShare": 0,
+              "omittedShare": 0.084070796460177,
+              "shareGap": -0.084070796460177
+            },
+            {
+              "stratum": "UNKNOWN↔UNKNOWN",
+              "emittedN": 4,
+              "omittedN": 15,
+              "emittedX": 3,
+              "omittedX": 0,
+              "emittedShare": 0.08,
+              "omittedShare": 0.011061946902654867,
+              "shareGap": 0.06893805309734513
+            },
+            {
+              "stratum": "UNKNOWN↔docs",
+              "emittedN": 6,
+              "omittedN": 73,
+              "emittedX": 0,
+              "omittedX": 24,
+              "emittedShare": 0.12,
+              "omittedShare": 0.05383480825958702,
+              "shareGap": 0.06616519174041297
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 8,
+              "omittedN": 133,
+              "emittedX": 5,
+              "omittedX": 26,
+              "emittedShare": 0.16,
+              "omittedShare": 0.09808259587020648,
+              "shareGap": 0.06191740412979352
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 3,
+              "omittedN": 148,
+              "emittedX": 1,
+              "omittedX": 7,
+              "emittedShare": 0.06,
+              "omittedShare": 0.10914454277286136,
+              "shareGap": -0.04914454277286136
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 1,
+              "omittedN": 91,
+              "emittedX": 0,
+              "omittedX": 6,
+              "emittedShare": 0.02,
+              "omittedShare": 0.06710914454277286,
+              "shareGap": -0.04710914454277286
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 54,
+              "emittedX": 0,
+              "omittedX": 4,
+              "emittedShare": 0,
+              "omittedShare": 0.03982300884955752,
+              "shareGap": -0.03982300884955752
+            },
+            {
+              "stratum": "UNKNOWN↔test",
+              "emittedN": 0,
+              "omittedN": 30,
+              "emittedX": 0,
+              "omittedX": 6,
+              "emittedShare": 0,
+              "omittedShare": 0.022123893805309734,
+              "shareGap": -0.022123893805309734
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 1,
+              "omittedN": 57,
+              "emittedX": 0,
+              "omittedX": 7,
+              "emittedShare": 0.02,
+              "omittedShare": 0.0420353982300885,
+              "shareGap": -0.022035398230088498
+            },
+            {
+              "stratum": "docs↔test",
+              "emittedN": 2,
+              "omittedN": 80,
+              "emittedX": 1,
+              "omittedX": 6,
+              "emittedShare": 0.04,
+              "omittedShare": 0.058997050147492625,
+              "shareGap": -0.018997050147492624
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 20,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.014749262536873156,
+              "shareGap": -0.014749262536873156
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 3,
+              "omittedN": 70,
+              "emittedX": 2,
+              "omittedX": 5,
+              "emittedShare": 0.06,
+              "omittedShare": 0.051622418879056046,
+              "shareGap": 0.008377581120943951
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 3,
+              "omittedN": 72,
+              "emittedX": 3,
+              "omittedX": 6,
+              "emittedShare": 0.06,
+              "omittedShare": 0.05309734513274336,
+              "shareGap": 0.006902654867256636
+            },
+            {
+              "stratum": "UNKNOWN↔generated",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.0007374631268436578,
+              "shareGap": -0.0007374631268436578
+            },
+            {
+              "stratum": "generated↔source",
+              "emittedN": 0,
+              "omittedN": 1,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0,
+              "omittedShare": 0.0007374631268436578,
+              "shareGap": -0.0007374631268436578
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.047315634218289014,
+          "cells": [
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 18,
+              "omittedN": 424,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0.36,
+              "omittedShare": 0.31268436578171094,
+              "shareGap": 0.04731563421828905
+            },
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 4,
+              "omittedN": 155,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.08,
+              "omittedShare": 0.11430678466076696,
+              "shareGap": -0.03430678466076696
+            },
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 28,
+              "omittedN": 777,
+              "emittedX": 22,
+              "omittedX": 153,
+              "emittedShare": 0.56,
+              "omittedShare": 0.5730088495575221,
+              "shareGap": -0.013008849557522018
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.18530973451327434,
+          "cells": [
+            {
+              "stratum": "100-249",
+              "emittedN": 18,
+              "omittedN": 324,
+              "emittedX": 0,
+              "omittedX": 19,
+              "emittedShare": 0.36,
+              "omittedShare": 0.23893805309734514,
+              "shareGap": 0.12106194690265484
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 5,
+              "omittedN": 288,
+              "emittedX": 0,
+              "omittedX": 46,
+              "emittedShare": 0.1,
+              "omittedShare": 0.21238938053097345,
+              "shareGap": -0.11238938053097344
+            },
+            {
+              "stratum": "250-499",
+              "emittedN": 1,
+              "omittedN": 126,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.02,
+              "omittedShare": 0.09292035398230089,
+              "shareGap": -0.07292035398230089
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 26,
+              "omittedN": 618,
+              "emittedX": 22,
+              "omittedX": 89,
+              "emittedShare": 0.52,
+              "omittedShare": 0.4557522123893805,
+              "shareGap": 0.0642477876106195
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.17256637168141598,
+          "cells": [
+            {
+              "stratum": "1/5",
+              "emittedN": 25,
+              "omittedN": 912,
+              "emittedX": 12,
+              "omittedX": 103,
+              "emittedShare": 0.5,
+              "omittedShare": 0.672566371681416,
+              "shareGap": -0.17256637168141598
+            },
+            {
+              "stratum": "3/5",
+              "emittedN": 8,
+              "omittedN": 69,
+              "emittedX": 2,
+              "omittedX": 5,
+              "emittedShare": 0.16,
+              "omittedShare": 0.05088495575221239,
+              "shareGap": 0.10911504424778762
+            },
+            {
+              "stratum": "2/5",
+              "emittedN": 17,
+              "omittedN": 375,
+              "emittedX": 8,
+              "omittedX": 46,
+              "emittedShare": 0.34,
+              "omittedShare": 0.27654867256637167,
+              "shareGap": 0.06345132743362836
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 23,
+              "omittedN": 528,
+              "emittedX": 2,
+              "omittedX": 27,
+              "emittedShare": 0.46,
+              "omittedShare": 0.3893805309734513,
+              "shareGap": 0.0706194690265487
+            },
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 27,
+              "omittedN": 828,
+              "emittedX": 20,
+              "omittedX": 127,
+              "emittedShare": 0.54,
+              "omittedShare": 0.6106194690265486,
+              "shareGap": -0.07061946902654859
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 2,
+              "omittedN": 127,
+              "emittedX": 1,
+              "omittedX": 20,
+              "emittedShare": 0.04,
+              "omittedShare": 0.09365781710914454,
+              "shareGap": -0.053657817109144544
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 48,
+              "omittedN": 1229,
+              "emittedX": 21,
+              "omittedX": 134,
+              "emittedShare": 0.96,
+              "omittedShare": 0.9063421828908554,
+              "shareGap": 0.05365781710914452
+            },
+            {
+              "stratum": "has E5",
+              "emittedN": 3,
+              "omittedN": 29,
+              "emittedX": 3,
+              "omittedX": 18,
+              "emittedShare": 0.06,
+              "omittedShare": 0.021386430678466076,
+              "shareGap": 0.038613569321533925
+            },
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 4,
+              "omittedN": 155,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.08,
+              "omittedShare": 0.11430678466076696,
+              "shareGap": -0.03430678466076696
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 2,
+              "omittedN": 83,
+              "emittedX": 2,
+              "omittedX": 31,
+              "emittedShare": 0.04,
+              "omittedShare": 0.0612094395280236,
+              "shareGap": -0.0212094395280236
+            },
+            {
+              "stratum": "has E2",
+              "emittedN": 7,
+              "omittedN": 164,
+              "emittedX": 3,
+              "omittedX": 12,
+              "emittedShare": 0.14,
+              "omittedShare": 0.12094395280235988,
+              "shareGap": 0.019056047197640133
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 43,
+              "omittedN": 1192,
+              "emittedX": 19,
+              "omittedX": 142,
+              "emittedShare": 0.86,
+              "omittedShare": 0.8790560471976401,
+              "shareGap": -0.01905604719764009
+            },
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 22,
+              "omittedN": 579,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0.44,
+              "omittedShare": 0.4269911504424779,
+              "shareGap": 0.013008849557522129
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 26,
+              "omittedN": 694,
+              "emittedX": 20,
+              "omittedX": 122,
+              "emittedShare": 0.52,
+              "omittedShare": 0.5117994100294986,
+              "shareGap": 0.008200589970501437
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 43,
+              "omittedN": 1172,
+              "emittedX": 19,
+              "omittedX": 136,
+              "emittedShare": 0.86,
+              "omittedShare": 0.8643067846607669,
+              "shareGap": -0.004306784660766949
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 50,
+              "omittedN": 1356,
+              "emittedX": 22,
+              "omittedX": 154,
+              "emittedShare": 1,
+              "omittedShare": 1,
+              "shareGap": 0
+            }
+          ]
+        }
+      }
+    },
+    "polylith-b250": {
+      "emittedN": 50,
+      "omittedN": 277,
+      "dimensions": {
+        "D3": {
+          "name": "endpoint-role pair",
+          "multiLabel": false,
+          "tvd": 0.20339350180505414,
+          "cells": [
+            {
+              "stratum": "docs↔source",
+              "emittedN": 11,
+              "omittedN": 32,
+              "emittedX": 1,
+              "omittedX": 8,
+              "emittedShare": 0.22,
+              "omittedShare": 0.11552346570397112,
+              "shareGap": 0.10447653429602888
+            },
+            {
+              "stratum": "UNKNOWN↔UNKNOWN",
+              "emittedN": 4,
+              "omittedN": 8,
+              "emittedX": 3,
+              "omittedX": 2,
+              "emittedShare": 0.08,
+              "omittedShare": 0.02888086642599278,
+              "shareGap": 0.05111913357400722
+            },
+            {
+              "stratum": "source↔test",
+              "emittedN": 4,
+              "omittedN": 36,
+              "emittedX": 2,
+              "omittedX": 5,
+              "emittedShare": 0.08,
+              "omittedShare": 0.1299638989169675,
+              "shareGap": -0.049963898916967495
+            },
+            {
+              "stratum": "UNKNOWN↔docs",
+              "emittedN": 4,
+              "omittedN": 13,
+              "emittedX": 3,
+              "omittedX": 7,
+              "emittedShare": 0.08,
+              "omittedShare": 0.04693140794223827,
+              "shareGap": 0.033068592057761734
+            },
+            {
+              "stratum": "UNKNOWN↔source",
+              "emittedN": 1,
+              "omittedN": 14,
+              "emittedX": 0,
+              "omittedX": 6,
+              "emittedShare": 0.02,
+              "omittedShare": 0.05054151624548736,
+              "shareGap": -0.03054151624548736
+            },
+            {
+              "stratum": "test↔test",
+              "emittedN": 0,
+              "omittedN": 8,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.02888086642599278,
+              "shareGap": -0.02888086642599278
+            },
+            {
+              "stratum": "manifest-lock↔test",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.018050541516245487,
+              "shareGap": -0.018050541516245487
+            },
+            {
+              "stratum": "UNKNOWN↔manifest-lock",
+              "emittedN": 0,
+              "omittedN": 5,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.018050541516245487,
+              "shareGap": -0.018050541516245487
+            },
+            {
+              "stratum": "manifest-lock↔source",
+              "emittedN": 2,
+              "omittedN": 16,
+              "emittedX": 2,
+              "omittedX": 8,
+              "emittedShare": 0.04,
+              "omittedShare": 0.05776173285198556,
+              "shareGap": -0.01776173285198556
+            },
+            {
+              "stratum": "docs↔test",
+              "emittedN": 1,
+              "omittedN": 9,
+              "emittedX": 0,
+              "omittedX": 2,
+              "emittedShare": 0.02,
+              "omittedShare": 0.032490974729241874,
+              "shareGap": -0.012490974729241874
+            },
+            {
+              "stratum": "UNKNOWN↔test",
+              "emittedN": 0,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0,
+              "omittedShare": 0.010830324909747292,
+              "shareGap": -0.010830324909747292
+            },
+            {
+              "stratum": "docs↔manifest-lock",
+              "emittedN": 1,
+              "omittedN": 3,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.02,
+              "omittedShare": 0.010830324909747292,
+              "shareGap": 0.009169675090252708
+            },
+            {
+              "stratum": "docs↔docs",
+              "emittedN": 3,
+              "omittedN": 19,
+              "emittedX": 2,
+              "omittedX": 7,
+              "emittedShare": 0.06,
+              "omittedShare": 0.06859205776173286,
+              "shareGap": -0.008592057761732858
+            },
+            {
+              "stratum": "source↔source",
+              "emittedN": 18,
+              "omittedN": 102,
+              "emittedX": 6,
+              "omittedX": 16,
+              "emittedShare": 0.36,
+              "omittedShare": 0.36823104693140796,
+              "shareGap": -0.00823104693140797
+            },
+            {
+              "stratum": "manifest-lock↔manifest-lock",
+              "emittedN": 1,
+              "omittedN": 4,
+              "emittedX": 0,
+              "omittedX": 1,
+              "emittedShare": 0.02,
+              "omittedShare": 0.01444043321299639,
+              "shareGap": 0.00555956678700361
+            }
+          ]
+        },
+        "D4": {
+          "name": "endpoint-existence state",
+          "multiLabel": false,
+          "tvd": 0.24880866425992776,
+          "cells": [
+            {
+              "stratum": "BOTH_CURRENT",
+              "emittedN": 48,
+              "omittedN": 197,
+              "emittedX": 19,
+              "omittedX": 71,
+              "emittedShare": 0.96,
+              "omittedShare": 0.7111913357400722,
+              "shareGap": 0.24880866425992776
+            },
+            {
+              "stratum": "ONE_ABSENT",
+              "emittedN": 2,
+              "omittedN": 52,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.04,
+              "omittedShare": 0.18772563176895307,
+              "shareGap": -0.14772563176895306
+            },
+            {
+              "stratum": "BOTH_ABSENT",
+              "emittedN": 0,
+              "omittedN": 28,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.10108303249097472,
+              "shareGap": -0.10108303249097472
+            }
+          ]
+        },
+        "D5": {
+          "name": "age bucket",
+          "multiLabel": false,
+          "tvd": 0.2565342960288809,
+          "cells": [
+            {
+              "stratum": "100-249",
+              "emittedN": 11,
+              "omittedN": 132,
+              "emittedX": 2,
+              "omittedX": 14,
+              "emittedShare": 0.22,
+              "omittedShare": 0.47653429602888087,
+              "shareGap": -0.2565342960288809
+            },
+            {
+              "stratum": "0-24",
+              "emittedN": 27,
+              "omittedN": 96,
+              "emittedX": 17,
+              "omittedX": 54,
+              "emittedShare": 0.54,
+              "omittedShare": 0.34657039711191334,
+              "shareGap": 0.1934296028880867
+            },
+            {
+              "stratum": "25-99",
+              "emittedN": 12,
+              "omittedN": 49,
+              "emittedX": 0,
+              "omittedX": 3,
+              "emittedShare": 0.24,
+              "omittedShare": 0.17689530685920576,
+              "shareGap": 0.06310469314079423
+            }
+          ]
+        },
+        "D6": {
+          "name": "persistence X/Y",
+          "multiLabel": false,
+          "tvd": 0.21870036101083032,
+          "cells": [
+            {
+              "stratum": "2/5",
+              "emittedN": 27,
+              "omittedN": 89,
+              "emittedX": 8,
+              "omittedX": 17,
+              "emittedShare": 0.54,
+              "omittedShare": 0.3212996389891697,
+              "shareGap": 0.21870036101083035
+            },
+            {
+              "stratum": "1/5",
+              "emittedN": 23,
+              "omittedN": 188,
+              "emittedX": 11,
+              "omittedX": 54,
+              "emittedShare": 0.46,
+              "omittedShare": 0.6787003610108303,
+              "shareGap": -0.2187003610108303
+            }
+          ]
+        },
+        "D7": {
+          "name": "current-tree exposure",
+          "multiLabel": true,
+          "tvd": null,
+          "cells": [
+            {
+              "stratum": "E4 UNKNOWN",
+              "emittedN": 2,
+              "omittedN": 80,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0.04,
+              "omittedShare": 0.2888086642599278,
+              "shareGap": -0.2488086642599278
+            },
+            {
+              "stratum": "no E4",
+              "emittedN": 15,
+              "omittedN": 38,
+              "emittedX": 3,
+              "omittedX": 11,
+              "emittedShare": 0.3,
+              "omittedShare": 0.1371841155234657,
+              "shareGap": 0.16281588447653428
+            },
+            {
+              "stratum": "has E3",
+              "emittedN": 3,
+              "omittedN": 46,
+              "emittedX": 1,
+              "omittedX": 11,
+              "emittedShare": 0.06,
+              "omittedShare": 0.16606498194945848,
+              "shareGap": -0.10606498194945849
+            },
+            {
+              "stratum": "no E3",
+              "emittedN": 47,
+              "omittedN": 231,
+              "emittedX": 18,
+              "omittedX": 60,
+              "emittedShare": 0.94,
+              "omittedShare": 0.8339350180505415,
+              "shareGap": 0.10606498194945846
+            },
+            {
+              "stratum": "no E2",
+              "emittedN": 37,
+              "omittedN": 234,
+              "emittedX": 14,
+              "omittedX": 64,
+              "emittedShare": 0.74,
+              "omittedShare": 0.8447653429602888,
+              "shareGap": -0.10476534296028883
+            },
+            {
+              "stratum": "has E2",
+              "emittedN": 13,
+              "omittedN": 43,
+              "emittedX": 5,
+              "omittedX": 7,
+              "emittedShare": 0.26,
+              "omittedShare": 0.1552346570397112,
+              "shareGap": 0.1047653429602888
+            },
+            {
+              "stratum": "no E5",
+              "emittedN": 50,
+              "omittedN": 249,
+              "emittedX": 19,
+              "omittedX": 71,
+              "emittedShare": 1,
+              "omittedShare": 0.8989169675090253,
+              "shareGap": 0.10108303249097472
+            },
+            {
+              "stratum": "E5 UNKNOWN",
+              "emittedN": 0,
+              "omittedN": 28,
+              "emittedX": 0,
+              "omittedX": 0,
+              "emittedShare": 0,
+              "omittedShare": 0.10108303249097472,
+              "shareGap": -0.10108303249097472
+            },
+            {
+              "stratum": "has E4",
+              "emittedN": 33,
+              "omittedN": 159,
+              "emittedX": 16,
+              "omittedX": 60,
+              "emittedShare": 0.66,
+              "omittedShare": 0.5740072202166066,
+              "shareGap": 0.08599277978339348
+            },
+            {
+              "stratum": "no preregistered exposure",
+              "emittedN": 14,
+              "omittedN": 86,
+              "emittedX": 2,
+              "omittedX": 8,
+              "emittedShare": 0.28,
+              "omittedShare": 0.3104693140794224,
+              "shareGap": -0.030469314079422383
+            },
+            {
+              "stratum": "has some preregistered exposure",
+              "emittedN": 36,
+              "omittedN": 191,
+              "emittedX": 17,
+              "omittedX": 63,
+              "emittedShare": 0.72,
+              "omittedShare": 0.6895306859205776,
+              "shareGap": 0.030469314079422327
+            },
+            {
+              "stratum": "no E1",
+              "emittedN": 50,
+              "omittedN": 277,
+              "emittedX": 19,
+              "omittedX": 71,
+              "emittedShare": 1,
+              "omittedShare": 1,
+              "shareGap": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "issue": "META-377",
+  "question": "Does the current global top-50 held-out recurrence advantage survive when relationships are conditioned on descriptive characteristics observable at T0?",
+  "fiberyQuestion": "OQ-13",
+  "input": {
+    "meta375GitHubSha": "0af756a18cf376ee5b7063a98ce63deb2ad97ff4",
+    "meta375TreeSha": "3394365c1fa7581b61fdcf5c1ba1c1d08d91b7e3",
+    "relationships": 9203,
+    "bases": 9,
+    "heldOutBases": 6,
+    "pinBasesContributingRecurrence": 0
+  },
+  "freeze": {
+    "analysisPlanCommit": "f09a1c96ce7c9c868adc65ef7ed8fbb42d1d3a0d",
+    "denominatorAuditCommit": "b09ac06b35f5f0b0159ca29a67aeba10af7d0765"
+  },
+  "primaryOutcome": "overlapUsable",
+  "disposition": "MIXED_CONDITIONAL_EFFECTS",
+  "dispositionArithmetic": {
+    "C": 94,
+    "P": 64,
+    "Z": 6,
+    "N": 24,
+    "B": 6,
+    "ratios": {
+      "P/|C|": 0.6808510638297872,
+      "N/|C|": 0.2553191489361702,
+      "(P-N)/|C|": 0.425531914893617
+    },
+    "why": "P/|C|=0.681, N/|C|=0.255, (P-N)/|C|=0.426 — no branch 2 or 3 condition met (branch 4, fallback)"
+  },
+  "sensitivityOutcome": {
+    "outcome": "overlapAll",
+    "disposition": "SEPARATION_SURVIVES_CONDITIONING",
+    "C": 94,
+    "P": 79,
+    "Z": 3,
+    "N": 12,
+    "note": "Reported separately, never pooled with the primary. The two measures disagree; the divergence is a finding."
+  },
+  "meta376": "BLOCKED",
+  "rerun": "bash docs/evidence/meta-377/rerun.sh",
+  "files": [
+    {
+      "path": "ANALYSIS-PLAN.md",
+      "bytes": 14633,
+      "sha256": "61628f5ac75c78d02cc86993685cc1938b898682d141315b892c35bfbe73a42c"
+    },
+    {
+      "path": "DENOMINATOR-AUDIT.md",
+      "bytes": 9059,
+      "sha256": "8ee17fbc657a763c6a583a22f4219823a8e77bd2bf23b04dcfdc1dc554a7d857"
+    },
+    {
+      "path": "FIBERY-RECONCILIATION-DRAFT.md",
+      "bytes": 7966,
+      "sha256": "78a0469e95731597b2f0c712fab5e390721402f382ff4043982d3557f5e0d120"
+    },
+    {
+      "path": "INPUT-RECEIPT.md",
+      "bytes": 10819,
+      "sha256": "01021ba849dbba7647aeae151cbb1539a69ba8d405e1a4229bc75f5d820467a0"
+    },
+    {
+      "path": "JOINT-STRATA-RESULTS.md",
+      "bytes": 52901,
+      "sha256": "b6b4273915fc7ef6f144229b4dfa71d559332e3d20ad0d65f20a32f81e29f200"
+    },
+    {
+      "path": "ONE-DIMENSIONAL-RESULTS.md",
+      "bytes": 25926,
+      "sha256": "254701a01fb29a5afd438bc9454b59bf948e893258d2d78b2988678ec3569e0f"
+    },
+    {
+      "path": "RECEIPT.md",
+      "bytes": 8174,
+      "sha256": "89eadb59ed5603134e8ef842cd145b9590a8b2294ed499b2b6040b0bd8615834"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 16261,
+      "sha256": "47a273d983487a54814cba76f38ba029f5509ac0abb33cbb816c6f8302d19135"
+    },
+    {
+      "path": "rerun.sh",
+      "bytes": 1140,
+      "sha256": "556f490a7fee369761ec76f24e77e90d2e8f0bba4864700c630fa55f178d0045"
+    },
+    {
+      "path": "scripts/checks.mjs",
+      "bytes": 13921,
+      "sha256": "6918a56b90702240312963383d5e74617a8f2d0d22bae7c82c2dcec43a2209d9"
+    },
+    {
+      "path": "scripts/composition.mjs",
+      "bytes": 2792,
+      "sha256": "d55715a3c74c4b3dd9e7de54cab95458253c59fdd5c1bc7bcfef5fd1d75434d7"
+    },
+    {
+      "path": "scripts/condition.mjs",
+      "bytes": 6652,
+      "sha256": "e93c3a04ce8d3197df6fb80e3ccf3f6d92ae43f38c1ccbff25dd7b74f9165c77"
+    },
+    {
+      "path": "scripts/denominators.mjs",
+      "bytes": 3560,
+      "sha256": "9f0569a19c7b60bb6129bae68411a9f0ed69bffb7f88b63920d05c8e413f0c91"
+    },
+    {
+      "path": "scripts/lib.mjs",
+      "bytes": 7274,
+      "sha256": "8fcb41348461741a6bb4274cbf2b6889709d8ddc979cf7518bf92ec0435f732b"
+    },
+    {
+      "path": "scripts/manifest.mjs",
+      "bytes": 2747,
+      "sha256": "9e979fb8305c5bf5c0a241805253f479231a50a4c6139e01e9634de16767e7a1"
+    },
+    {
+      "path": "scripts/render-denominators.mjs",
+      "bytes": 5710,
+      "sha256": "e9f0060e9fb5c3728b0d98b2560075c07134254ee0ac34fce54fb5e70797162e"
+    },
+    {
+      "path": "scripts/render-results.mjs",
+      "bytes": 5878,
+      "sha256": "54f24102f2aa541e49ee837a968ed8bf5c7024bcedec8ddc3102a023d9a2dce7"
+    },
+    {
+      "path": "scripts/verify-input.mjs",
+      "bytes": 5294,
+      "sha256": "5109bd49dfc96f3aedffc4b74cffd58e04c456ab562f6bea1d0f4ce7bcbac78d"
+    },
+    {
+      "path": "tables/composition.json",
+      "bytes": 89793,
+      "sha256": "2df76ffed0e879c264ec0f5ac3241afb5f4ebddf4fa9d375435c484e0bb4a5f6"
+    },
+    {
+      "path": "tables/conditioned.overlapAll.json",
+      "bytes": 343669,
+      "sha256": "6c1c21691efad6883db60e0f91cca1bad46ad4369ec8f275714167e206d286c9"
+    },
+    {
+      "path": "tables/conditioned.overlapUsable.json",
+      "bytes": 343171,
+      "sha256": "eafbb1a0265328e492f220604943ee10693959ea46bb49d9c92c850cce8c6e59"
+    },
+    {
+      "path": "tables/denominators.json",
+      "bytes": 328281,
+      "sha256": "ebd46991ccbded1d7315d0c4316551df93c08051cc3ac04899b0c879541419b8"
+    }
+  ]
+}
