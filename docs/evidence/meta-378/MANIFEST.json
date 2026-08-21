@@ -1,0 +1,319 @@
+{
+  "issue": "META-378",
+  "question": "Do the two strongest conditional patterns discovered in META-377 -- endpoint-existence dilution/reversal within BOTH_CURRENT and age-conditioned reversal -- reproduce on unseen historical bases and/or unseen repositories under a preregistered protocol?",
+  "fiberyQuestion": "OQ-14",
+  "kind": "confirmatory replication",
+  "replicationScope": "CROSS_REPOSITORY_REPLICATION",
+  "inputs": {
+    "meta375": "0af756a18cf376ee5b7063a98ce63deb2ad97ff4",
+    "meta377": "59ca94a37b05f33d556e9fcd28bf6197648dff68",
+    "meta377Disposition": "MIXED_CONDITIONAL_EFFECTS"
+  },
+  "freeze": {
+    "preregistrationCommit": "c95f7f9001bc80453af39da784d894e984b6ff87",
+    "phaseACommit": "4505ba9001cfd3c1ef3e4e6a480a8393257f89a7"
+  },
+  "miner": {
+    "package": "@workspacejson/mining-core",
+    "treeSha": "1ab4f087a39f4526d49484e7260b080443d217f9",
+    "compatibleWithProducerPin": "031c3504a0977b8d90ac518c82a39a2f4ec741a9",
+    "windowTransitions": 500,
+    "minSupport": 3,
+    "cap": 50
+  },
+  "antiLeak": {
+    "discoveryRepositoriesExcluded": [
+      "formatjs/formatjs",
+      "JamieMason/syncpack",
+      "polyfy/polylith"
+    ],
+    "excludedFromUniverseAtSelection": [
+      "formatjs/formatjs",
+      "JamieMason/syncpack"
+    ],
+    "confirmationRepositories": [
+      "nteract/hydrogen",
+      "thepowersgang/rust_os",
+      "clojure/core.typed",
+      "hyperledger/fabric",
+      "scikit-image/scikit-image"
+    ],
+    "discoveryRowsInConfirmation": 0
+  },
+  "universe": {
+    "snapshotUtc": "2026-08-21T21:56:09.976Z",
+    "records": 3823,
+    "strata": 5
+  },
+  "seed": "META-378/OQ-14/replication/v1",
+  "cohort": {
+    "TypeScript": {
+      "repository": "nteract/hydrogen",
+      "rankTaken": 4,
+      "firstParentCount": 1324,
+      "bases": {
+        "pin": "9f353f10331218558fe401da65b32210c54e71b0",
+        "b100": "81c58fc9185f5d246d6e5f4598834b5722deedaf",
+        "b250": "a9d8c15da94515aa11c8f1f67a1f09fb76230451"
+      }
+    },
+    "Rust": {
+      "repository": "thepowersgang/rust_os",
+      "rankTaken": 1,
+      "firstParentCount": 1907,
+      "bases": {
+        "pin": "f1d2f7731a3cca5f0623969e8f32fe37f9ed6bbb",
+        "b100": "36aea6b8c27f011f32f81947240dc56f8ed8d85a",
+        "b250": "ff8135977bbb8bba2d5007bd2a22f561714f9726"
+      }
+    },
+    "Clojure": {
+      "repository": "clojure/core.typed",
+      "rankTaken": 1,
+      "firstParentCount": 2615,
+      "bases": {
+        "pin": "e0e7ae73507201c7ca74adde592a59112cf0ca96",
+        "b100": "0df8ae7788e3d973521f7cc20cb13001c18eb860",
+        "b250": "ccd62310eb25a3bbf584ac6bf42bf99a5ed1f858"
+      }
+    },
+    "Go": {
+      "repository": "hyperledger/fabric",
+      "rankTaken": 1,
+      "firstParentCount": 9284,
+      "bases": {
+        "pin": "0c423ac47fd87fc3d4084eb06d6589bc518ed1ff",
+        "b100": "4755dafa1023fbfcc7a0d11bba951b00c12f05bb",
+        "b250": "97853f3063b96f0662a69f4f68eb68be36e133ec"
+      }
+    },
+    "Python": {
+      "repository": "scikit-image/scikit-image",
+      "rankTaken": 1,
+      "firstParentCount": 3812,
+      "bases": {
+        "pin": "745baa05fc5d39c5e9679ee1ab8f19b432403ab0",
+        "b100": "bfded8096f82f41726577612954169280a7f1652",
+        "b250": "ef21164f9649759675bcfa3e1e1d8bf44ba2f807"
+      }
+    }
+  },
+  "population": {
+    "bases": 15,
+    "relationships": 5509,
+    "recurrenceContributingBases": 10,
+    "recurrenceContributingRelationships": 3551,
+    "pinRelationshipsContributingZero": 1958
+  },
+  "primaryOutcome": "overlapUsable",
+  "result": {
+    "R1": {
+      "disposition": "R1_NOT_REPLICATED",
+      "K": 9,
+      "Rv": 0,
+      "At": 1,
+      "why": "Rv=0 and At/K=0.111<0.5 (branch 3)"
+    },
+    "R2": {
+      "disposition": "R2_NOT_REPLICATED",
+      "C2": 16,
+      "P2": 12,
+      "Z2": 2,
+      "N2": 2,
+      "why": "P2/C2=0.750>=0.667 (branch 3)"
+    },
+    "composite": "NEITHER_PATTERN_REPLICATES"
+  },
+  "secondaryOutcome": {
+    "outcome": "overlapAll",
+    "R1": {
+      "disposition": "R1_INDETERMINATE",
+      "K": 9,
+      "Rv": 2,
+      "At": 3
+    },
+    "R2": {
+      "disposition": "R2_INDETERMINATE",
+      "C2": 16,
+      "P2": 9,
+      "Z2": 3,
+      "N2": 4
+    },
+    "composite": "INSUFFICIENT_REPLICATION_SUPPORT",
+    "note": "Secondary sensitivity only. Never substituted for the primary. The filter sensitivity persists out of sample but its direction does not."
+  },
+  "compatibilityCheck": {
+    "referenceBasis": "233a0b37265ff278bc96ece91f8c2bbfcaeeb280",
+    "passed": 6,
+    "total": 6
+  },
+  "meta376": "BLOCKED",
+  "rerun": "bash docs/evidence/meta-378/rerun.sh <workDir>",
+  "files": [
+    {
+      "path": "DENOMINATOR-AUDIT.md",
+      "bytes": 5364,
+      "sha256": "07ebb9940af79fc9ae7e7f357d8bbad4ec7db9b43348cf193c4ffed5495e85c7"
+    },
+    {
+      "path": "FIBERY-RECONCILIATION-DRAFT.md",
+      "bytes": 8617,
+      "sha256": "843ca0a6c2c494ee7a962c9d55cc052e7fef3ac91111f97442a24292e392a31a"
+    },
+    {
+      "path": "NEGATIVE-SPARSE-RESULTS.md",
+      "bytes": 3389,
+      "sha256": "7bff9992433cadb02fcabf8a08401696bf8051926b39e9f6ec64119490ff033e"
+    },
+    {
+      "path": "PREREGISTRATION.md",
+      "bytes": 17166,
+      "sha256": "61da7cee1f78f729d22172ad69140850fc188a472f54585ea4ec83eacbb9f821"
+    },
+    {
+      "path": "PROTOCOL-REUSE-ASSESSMENT.md",
+      "bytes": 7566,
+      "sha256": "2cc326d135297ea1779e09845102ca9bdd2446ff7b427c9f66e1dcb9e7637a3c"
+    },
+    {
+      "path": "R1-ENDPOINT-EXISTENCE.md",
+      "bytes": 3971,
+      "sha256": "9eb087fc292237bbb8f012ed1c54e9720bb901ddc6ffbfd60715c60f33c1cd93"
+    },
+    {
+      "path": "R2-AGE.md",
+      "bytes": 5320,
+      "sha256": "c8be2d9a3d5d47c5cec1e209eda54bcc7cd65e55f091f94c3018edbdf050e8e0"
+    },
+    {
+      "path": "RECEIPT.md",
+      "bytes": 12735,
+      "sha256": "57b664b0e52aefc15f9264bfae4b3de608d89d3ea6088c632c424403b93bd257"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 11676,
+      "sha256": "423c6bc0457f0a2040a27d6e191eab5377b745bf54b9a8ef106733caee4410eb"
+    },
+    {
+      "path": "SELECTION-RECEIPT.md",
+      "bytes": 6188,
+      "sha256": "1612ccc8989a2d338c56b8b30b8a9d08dc637022fbd8b73fbe401878abe934fd"
+    },
+    {
+      "path": "TRANSACTION-FILTER-SENSITIVITY.md",
+      "bytes": 3654,
+      "sha256": "b8d823d9362fa341de116504ffdd9bd6b87b0cc8f8c0e941ea6e264eff19e4d6"
+    },
+    {
+      "path": "UNIVERSE-RECEIPT.md",
+      "bytes": 1999,
+      "sha256": "c010c18c78c1065389fc1193cd67600567350a29555d6b1c073f467fd0dd8165"
+    },
+    {
+      "path": "raw/cohort.json",
+      "bytes": 11750,
+      "sha256": "a90d3c35f37b7559d395abfd70a37faf8017e155916995ec3c9f623d55857019"
+    },
+    {
+      "path": "raw/compat-check.json",
+      "bytes": 740,
+      "sha256": "76d71ae1b74b15fca35f7e10d55a960d3b320fc7d5d2dcd7d104000b23958b0f"
+    },
+    {
+      "path": "raw/ledgers.json",
+      "bytes": 3528,
+      "sha256": "30b45d08aac3b7db8db5e34378c53ddf4cae5d4dd7f66cfd62935d354a71f7df"
+    },
+    {
+      "path": "raw/phase-a.json",
+      "bytes": 2318846,
+      "sha256": "5099900e6031e439aa3c0d21e920f67b60acffe0a92f1b73f201a1da1356c6e6"
+    },
+    {
+      "path": "raw/ranked-order.json",
+      "bytes": 1393820,
+      "sha256": "3b1bbbdc4dd6be3cfc3f65588fdc27b40e933c194a93741b01cc22da65c4b6e6"
+    },
+    {
+      "path": "raw/universe.json",
+      "bytes": 1962466,
+      "sha256": "ce3cd83e0acf24dea2ea42ea332c5dc83313d8e1fa83050994e1d8afced30206"
+    },
+    {
+      "path": "rerun.sh",
+      "bytes": 2966,
+      "sha256": "4a218d5a3b380ae91dada9058e8042170d7a5df6f9af40fdbb7f067b2814073b"
+    },
+    {
+      "path": "scripts/checks.mjs",
+      "bytes": 16502,
+      "sha256": "8aabbdae5c14f688630e79e1c6927c24e1c651fe46c04bad647c6be058bcf658"
+    },
+    {
+      "path": "scripts/compat-check.mjs",
+      "bytes": 3761,
+      "sha256": "e5b3bc7b7aeb6f655d575e053372d0613a1b76391ff1b6ded818c422bbf1e948"
+    },
+    {
+      "path": "scripts/denominators.mjs",
+      "bytes": 3641,
+      "sha256": "5bcc14bfc6903fe0960d034d684da1b27869c3c8421d22cc02591e44da729148"
+    },
+    {
+      "path": "scripts/manifest.mjs",
+      "bytes": 4591,
+      "sha256": "f02d4e010171cde31153fa1e564ec02f7c8cfb249dc8bd0ba56a0c82e72c733f"
+    },
+    {
+      "path": "scripts/phase-a.mjs",
+      "bytes": 6200,
+      "sha256": "b921a908ce91ccb2ab44ad6d9610b69453bc0962554b97d95aa1682800ba5f2e"
+    },
+    {
+      "path": "scripts/phase-b.mjs",
+      "bytes": 10272,
+      "sha256": "f3772db508a5c02662f2023e289e5480d69a50337b737c7f74a0fcff81b05ee0"
+    },
+    {
+      "path": "scripts/render-phase-a.mjs",
+      "bytes": 13925,
+      "sha256": "3baab9aadba43b8fb5d86945e6c5b757c32a7f78cbb939c8af9ca7312282baa8"
+    },
+    {
+      "path": "scripts/render-results.mjs",
+      "bytes": 15466,
+      "sha256": "082efbc33115d04f4e96e113da6c58cb1ad3dd24fa901550a248cb32ab34ab4a"
+    },
+    {
+      "path": "scripts/select-cohort.mjs",
+      "bytes": 3483,
+      "sha256": "4e9a5f9fbd9888f2c2b9aff63377cf3bbc4deb2fdea6e90942593eeef0834345"
+    },
+    {
+      "path": "scripts/universe.mjs",
+      "bytes": 2445,
+      "sha256": "f25fe0feb899e2e66f389401d4ae002f5c13ec0a08c2fdf5a5925ffd3469d23e"
+    },
+    {
+      "path": "scripts/verify-and-freeze.mjs",
+      "bytes": 4128,
+      "sha256": "c71a2399e101c6ff6ab58e509b77c4ed1b1647fa4b64a2d03eee6077672c0d4d"
+    },
+    {
+      "path": "tables/denominators.json",
+      "bytes": 23215,
+      "sha256": "8244041511c4662bf563b1b5e055c5d2d251d2a7561c5af13a85ce19025e07d9"
+    },
+    {
+      "path": "tables/results.overlapAll.json",
+      "bytes": 31075,
+      "sha256": "d93d8f835043f2e27964045d3909903a33446d394d71590ec980c6ef911d77dd"
+    },
+    {
+      "path": "tables/results.overlapUsable.json",
+      "bytes": 30971,
+      "sha256": "f1d2ca65cae5e8d68f0b5e7c16a1c538707bb1ae7564c69f0e12a89cc6004c91"
+    }
+  ]
+}

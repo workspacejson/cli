@@ -1,0 +1,1225 @@
+{
+  "outcome": "overlapUsable",
+  "marginal": {
+    "coretyped-b100": {
+      "emittedX": 0,
+      "emittedN": 50,
+      "omittedX": 1,
+      "omittedN": 468,
+      "emittedRate": 0,
+      "omittedRate": 0.002136752136752137,
+      "rateDiff": -0.002136752136752137,
+      "class": "COMPARABLE"
+    },
+    "coretyped-b250": {
+      "emittedX": 13,
+      "emittedN": 50,
+      "omittedX": 7,
+      "omittedN": 466,
+      "emittedRate": 0.26,
+      "omittedRate": 0.015021459227467811,
+      "rateDiff": 0.2449785407725322,
+      "class": "COMPARABLE"
+    },
+    "fabric-b100": {
+      "emittedX": 14,
+      "emittedN": 50,
+      "omittedX": 12,
+      "omittedN": 444,
+      "emittedRate": 0.28,
+      "omittedRate": 0.02702702702702703,
+      "rateDiff": 0.252972972972973,
+      "class": "COMPARABLE"
+    },
+    "fabric-b250": {
+      "emittedX": 36,
+      "emittedN": 50,
+      "omittedX": 23,
+      "omittedN": 129,
+      "emittedRate": 0.72,
+      "omittedRate": 0.17829457364341086,
+      "rateDiff": 0.5417054263565891,
+      "class": "COMPARABLE"
+    },
+    "hydrogen-b100": {
+      "emittedX": 0,
+      "emittedN": 50,
+      "omittedX": 0,
+      "omittedN": 302,
+      "emittedRate": 0,
+      "omittedRate": 0,
+      "rateDiff": 0,
+      "class": "COMPARABLE"
+    },
+    "hydrogen-b250": {
+      "emittedX": 3,
+      "emittedN": 50,
+      "omittedX": 6,
+      "omittedN": 302,
+      "emittedRate": 0.06,
+      "omittedRate": 0.019867549668874173,
+      "rateDiff": 0.04013245033112582,
+      "class": "COMPARABLE"
+    },
+    "rustos-b100": {
+      "emittedX": 8,
+      "emittedN": 50,
+      "omittedX": 13,
+      "omittedN": 240,
+      "emittedRate": 0.16,
+      "omittedRate": 0.05416666666666667,
+      "rateDiff": 0.10583333333333333,
+      "class": "COMPARABLE"
+    },
+    "rustos-b250": {
+      "emittedX": 19,
+      "emittedN": 50,
+      "omittedX": 56,
+      "omittedN": 272,
+      "emittedRate": 0.38,
+      "omittedRate": 0.20588235294117646,
+      "rateDiff": 0.17411764705882354,
+      "class": "COMPARABLE"
+    },
+    "scikitimage-b100": {
+      "emittedX": 15,
+      "emittedN": 50,
+      "omittedX": 14,
+      "omittedN": 153,
+      "emittedRate": 0.3,
+      "omittedRate": 0.0915032679738562,
+      "rateDiff": 0.20849673202614377,
+      "class": "COMPARABLE"
+    },
+    "scikitimage-b250": {
+      "emittedX": 20,
+      "emittedN": 50,
+      "omittedX": 39,
+      "omittedN": 275,
+      "emittedRate": 0.4,
+      "omittedRate": 0.14181818181818182,
+      "rateDiff": 0.2581818181818182,
+      "class": "COMPARABLE"
+    }
+  },
+  "R1": {
+    "coretyped-b100": {
+      "BOTH_CURRENT": {
+        "emittedX": 0,
+        "emittedN": 1,
+        "omittedX": 1,
+        "omittedN": 51,
+        "emittedRate": 0,
+        "omittedRate": 0.0196078431372549,
+        "rateDiff": -0.0196078431372549,
+        "class": "SPARSE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 6,
+        "omittedX": 0,
+        "omittedN": 22,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 43,
+        "omittedX": 0,
+        "omittedN": 395,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      }
+    },
+    "coretyped-b250": {
+      "BOTH_CURRENT": {
+        "emittedX": 13,
+        "emittedN": 39,
+        "omittedX": 7,
+        "omittedN": 340,
+        "emittedRate": 0.3333333333333333,
+        "omittedRate": 0.020588235294117647,
+        "rateDiff": 0.3127450980392157,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 9,
+        "omittedX": 0,
+        "omittedN": 97,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 0,
+        "omittedN": 29,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      }
+    },
+    "fabric-b100": {
+      "BOTH_CURRENT": {
+        "emittedX": 14,
+        "emittedN": 50,
+        "omittedX": 12,
+        "omittedN": 444,
+        "emittedRate": 0.28,
+        "omittedRate": 0.02702702702702703,
+        "rateDiff": 0.252972972972973,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 0,
+        "emittedRate": null,
+        "omittedRate": null,
+        "rateDiff": null,
+        "class": "EMPTY"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 0,
+        "emittedRate": null,
+        "omittedRate": null,
+        "rateDiff": null,
+        "class": "EMPTY"
+      }
+    },
+    "fabric-b250": {
+      "BOTH_CURRENT": {
+        "emittedX": 36,
+        "emittedN": 41,
+        "omittedX": 23,
+        "omittedN": 91,
+        "emittedRate": 0.8780487804878049,
+        "omittedRate": 0.25274725274725274,
+        "rateDiff": 0.6253015277405521,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 15,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 9,
+        "omittedX": 0,
+        "omittedN": 23,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      }
+    },
+    "hydrogen-b100": {
+      "BOTH_CURRENT": {
+        "emittedX": 0,
+        "emittedN": 21,
+        "omittedX": 0,
+        "omittedN": 72,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 3,
+        "omittedX": 0,
+        "omittedN": 65,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 26,
+        "omittedX": 0,
+        "omittedN": 165,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      }
+    },
+    "hydrogen-b250": {
+      "BOTH_CURRENT": {
+        "emittedX": 3,
+        "emittedN": 20,
+        "omittedX": 6,
+        "omittedN": 78,
+        "emittedRate": 0.15,
+        "omittedRate": 0.07692307692307693,
+        "rateDiff": 0.07307692307692307,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 1,
+        "omittedX": 0,
+        "omittedN": 63,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 29,
+        "omittedX": 0,
+        "omittedN": 161,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      }
+    },
+    "rustos-b100": {
+      "BOTH_CURRENT": {
+        "emittedX": 8,
+        "emittedN": 50,
+        "omittedX": 13,
+        "omittedN": 231,
+        "emittedRate": 0.16,
+        "omittedRate": 0.05627705627705628,
+        "rateDiff": 0.10372294372294372,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 6,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 3,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      }
+    },
+    "rustos-b250": {
+      "BOTH_CURRENT": {
+        "emittedX": 19,
+        "emittedN": 48,
+        "omittedX": 56,
+        "omittedN": 268,
+        "emittedRate": 0.3958333333333333,
+        "omittedRate": 0.208955223880597,
+        "rateDiff": 0.1868781094527363,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 0,
+        "omittedN": 2,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 2,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      }
+    },
+    "scikitimage-b100": {
+      "BOTH_CURRENT": {
+        "emittedX": 15,
+        "emittedN": 23,
+        "omittedX": 14,
+        "omittedN": 48,
+        "emittedRate": 0.6521739130434783,
+        "omittedRate": 0.2916666666666667,
+        "rateDiff": 0.3605072463768116,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 5,
+        "omittedX": 0,
+        "omittedN": 66,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 22,
+        "omittedX": 0,
+        "omittedN": 39,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      }
+    },
+    "scikitimage-b250": {
+      "BOTH_CURRENT": {
+        "emittedX": 18,
+        "emittedN": 23,
+        "omittedX": 38,
+        "omittedN": 244,
+        "emittedRate": 0.782608695652174,
+        "omittedRate": 0.1557377049180328,
+        "rateDiff": 0.6268709907341412,
+        "class": "COMPARABLE"
+      },
+      "ONE_ABSENT": {
+        "emittedX": 2,
+        "emittedN": 7,
+        "omittedX": 1,
+        "omittedN": 25,
+        "emittedRate": 0.2857142857142857,
+        "omittedRate": 0.04,
+        "rateDiff": 0.2457142857142857,
+        "class": "SPARSE"
+      },
+      "BOTH_ABSENT": {
+        "emittedX": 0,
+        "emittedN": 20,
+        "omittedX": 0,
+        "omittedN": 6,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      }
+    }
+  },
+  "R2": {
+    "coretyped-b100": {
+      "0-24": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 1,
+        "omittedN": 27,
+        "emittedRate": null,
+        "omittedRate": 0.037037037037037035,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      },
+      "25-99": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 28,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      },
+      "100-249": {
+        "emittedX": 0,
+        "emittedN": 44,
+        "omittedX": 0,
+        "omittedN": 312,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 6,
+        "omittedX": 0,
+        "omittedN": 101,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      }
+    },
+    "coretyped-b250": {
+      "0-24": {
+        "emittedX": 1,
+        "emittedN": 6,
+        "omittedX": 2,
+        "omittedN": 42,
+        "emittedRate": 0.16666666666666666,
+        "omittedRate": 0.047619047619047616,
+        "rateDiff": 0.11904761904761904,
+        "class": "SPARSE"
+      },
+      "25-99": {
+        "emittedX": 12,
+        "emittedN": 39,
+        "omittedX": 3,
+        "omittedN": 295,
+        "emittedRate": 0.3076923076923077,
+        "omittedRate": 0.010169491525423728,
+        "rateDiff": 0.297522816166884,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 0,
+        "emittedN": 5,
+        "omittedX": 2,
+        "omittedN": 126,
+        "emittedRate": 0,
+        "omittedRate": 0.015873015873015872,
+        "rateDiff": -0.015873015873015872,
+        "class": "SPARSE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 0,
+        "omittedN": 3,
+        "emittedRate": null,
+        "omittedRate": 0,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      }
+    },
+    "fabric-b100": {
+      "0-24": {
+        "emittedX": 6,
+        "emittedN": 12,
+        "omittedX": 9,
+        "omittedN": 17,
+        "emittedRate": 0.5,
+        "omittedRate": 0.5294117647058824,
+        "rateDiff": -0.02941176470588236,
+        "class": "COMPARABLE"
+      },
+      "25-99": {
+        "emittedX": 4,
+        "emittedN": 12,
+        "omittedX": 0,
+        "omittedN": 26,
+        "emittedRate": 0.3333333333333333,
+        "omittedRate": 0,
+        "rateDiff": 0.3333333333333333,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 4,
+        "emittedN": 25,
+        "omittedX": 2,
+        "omittedN": 376,
+        "emittedRate": 0.16,
+        "omittedRate": 0.005319148936170213,
+        "rateDiff": 0.15468085106382978,
+        "class": "COMPARABLE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 1,
+        "omittedX": 1,
+        "omittedN": 25,
+        "emittedRate": 0,
+        "omittedRate": 0.04,
+        "rateDiff": -0.04,
+        "class": "SPARSE"
+      }
+    },
+    "fabric-b250": {
+      "0-24": {
+        "emittedX": 35,
+        "emittedN": 35,
+        "omittedX": 20,
+        "omittedN": 34,
+        "emittedRate": 1,
+        "omittedRate": 0.5882352941176471,
+        "rateDiff": 0.4117647058823529,
+        "class": "COMPARABLE"
+      },
+      "25-99": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 1,
+        "omittedN": 23,
+        "emittedRate": 0,
+        "omittedRate": 0.043478260869565216,
+        "rateDiff": -0.043478260869565216,
+        "class": "SPARSE"
+      },
+      "100-249": {
+        "emittedX": 0,
+        "emittedN": 3,
+        "omittedX": 2,
+        "omittedN": 25,
+        "emittedRate": 0,
+        "omittedRate": 0.08,
+        "rateDiff": -0.08,
+        "class": "SPARSE"
+      },
+      "250-499": {
+        "emittedX": 1,
+        "emittedN": 10,
+        "omittedX": 0,
+        "omittedN": 47,
+        "emittedRate": 0.1,
+        "omittedRate": 0,
+        "rateDiff": 0.1,
+        "class": "COMPARABLE"
+      }
+    },
+    "hydrogen-b100": {
+      "0-24": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 0,
+        "omittedN": 6,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "25-99": {
+        "emittedX": 0,
+        "emittedN": 9,
+        "omittedX": 0,
+        "omittedN": 33,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      },
+      "100-249": {
+        "emittedX": 0,
+        "emittedN": 37,
+        "omittedX": 0,
+        "omittedN": 243,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 0,
+        "omittedN": 20,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "SPARSE"
+      }
+    },
+    "hydrogen-b250": {
+      "0-24": {
+        "emittedX": 0,
+        "emittedN": 0,
+        "omittedX": 1,
+        "omittedN": 3,
+        "emittedRate": null,
+        "omittedRate": 0.3333333333333333,
+        "rateDiff": null,
+        "class": "OMITTED_ONLY"
+      },
+      "25-99": {
+        "emittedX": 1,
+        "emittedN": 37,
+        "omittedX": 0,
+        "omittedN": 237,
+        "emittedRate": 0.02702702702702703,
+        "omittedRate": 0,
+        "rateDiff": 0.02702702702702703,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 2,
+        "emittedN": 9,
+        "omittedX": 4,
+        "omittedN": 44,
+        "emittedRate": 0.2222222222222222,
+        "omittedRate": 0.09090909090909091,
+        "rateDiff": 0.1313131313131313,
+        "class": "SPARSE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 4,
+        "omittedX": 1,
+        "omittedN": 18,
+        "emittedRate": 0,
+        "omittedRate": 0.05555555555555555,
+        "rateDiff": -0.05555555555555555,
+        "class": "SPARSE"
+      }
+    },
+    "rustos-b100": {
+      "0-24": {
+        "emittedX": 1,
+        "emittedN": 5,
+        "omittedX": 3,
+        "omittedN": 47,
+        "emittedRate": 0.2,
+        "omittedRate": 0.06382978723404255,
+        "rateDiff": 0.13617021276595748,
+        "class": "SPARSE"
+      },
+      "25-99": {
+        "emittedX": 4,
+        "emittedN": 23,
+        "omittedX": 4,
+        "omittedN": 54,
+        "emittedRate": 0.17391304347826086,
+        "omittedRate": 0.07407407407407407,
+        "rateDiff": 0.0998389694041868,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 1,
+        "emittedN": 8,
+        "omittedX": 1,
+        "omittedN": 43,
+        "emittedRate": 0.125,
+        "omittedRate": 0.023255813953488372,
+        "rateDiff": 0.10174418604651163,
+        "class": "SPARSE"
+      },
+      "250-499": {
+        "emittedX": 2,
+        "emittedN": 14,
+        "omittedX": 5,
+        "omittedN": 96,
+        "emittedRate": 0.14285714285714285,
+        "omittedRate": 0.052083333333333336,
+        "rateDiff": 0.0907738095238095,
+        "class": "COMPARABLE"
+      }
+    },
+    "rustos-b250": {
+      "0-24": {
+        "emittedX": 1,
+        "emittedN": 8,
+        "omittedX": 3,
+        "omittedN": 23,
+        "emittedRate": 0.125,
+        "omittedRate": 0.13043478260869565,
+        "rateDiff": -0.0054347826086956486,
+        "class": "SPARSE"
+      },
+      "25-99": {
+        "emittedX": 0,
+        "emittedN": 3,
+        "omittedX": 4,
+        "omittedN": 30,
+        "emittedRate": 0,
+        "omittedRate": 0.13333333333333333,
+        "rateDiff": -0.13333333333333333,
+        "class": "SPARSE"
+      },
+      "100-249": {
+        "emittedX": 17,
+        "emittedN": 32,
+        "omittedX": 44,
+        "omittedN": 161,
+        "emittedRate": 0.53125,
+        "omittedRate": 0.2732919254658385,
+        "rateDiff": 0.2579580745341615,
+        "class": "COMPARABLE"
+      },
+      "250-499": {
+        "emittedX": 1,
+        "emittedN": 7,
+        "omittedX": 5,
+        "omittedN": 58,
+        "emittedRate": 0.14285714285714285,
+        "omittedRate": 0.08620689655172414,
+        "rateDiff": 0.056650246305418706,
+        "class": "SPARSE"
+      }
+    },
+    "scikitimage-b100": {
+      "0-24": {
+        "emittedX": 3,
+        "emittedN": 5,
+        "omittedX": 1,
+        "omittedN": 8,
+        "emittedRate": 0.6,
+        "omittedRate": 0.125,
+        "rateDiff": 0.475,
+        "class": "SPARSE"
+      },
+      "25-99": {
+        "emittedX": 6,
+        "emittedN": 14,
+        "omittedX": 6,
+        "omittedN": 43,
+        "emittedRate": 0.42857142857142855,
+        "omittedRate": 0.13953488372093023,
+        "rateDiff": 0.28903654485049834,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 6,
+        "emittedN": 30,
+        "omittedX": 6,
+        "omittedN": 85,
+        "emittedRate": 0.2,
+        "omittedRate": 0.07058823529411765,
+        "rateDiff": 0.12941176470588237,
+        "class": "COMPARABLE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 1,
+        "omittedX": 1,
+        "omittedN": 17,
+        "emittedRate": 0,
+        "omittedRate": 0.058823529411764705,
+        "rateDiff": -0.058823529411764705,
+        "class": "SPARSE"
+      }
+    },
+    "scikitimage-b250": {
+      "0-24": {
+        "emittedX": 9,
+        "emittedN": 33,
+        "omittedX": 32,
+        "omittedN": 78,
+        "emittedRate": 0.2727272727272727,
+        "omittedRate": 0.41025641025641024,
+        "rateDiff": -0.13752913752913754,
+        "class": "COMPARABLE"
+      },
+      "25-99": {
+        "emittedX": 10,
+        "emittedN": 13,
+        "omittedX": 1,
+        "omittedN": 21,
+        "emittedRate": 0.7692307692307693,
+        "omittedRate": 0.047619047619047616,
+        "rateDiff": 0.7216117216117217,
+        "class": "COMPARABLE"
+      },
+      "100-249": {
+        "emittedX": 1,
+        "emittedN": 2,
+        "omittedX": 4,
+        "omittedN": 151,
+        "emittedRate": 0.5,
+        "omittedRate": 0.026490066225165563,
+        "rateDiff": 0.4735099337748344,
+        "class": "SPARSE"
+      },
+      "250-499": {
+        "emittedX": 0,
+        "emittedN": 2,
+        "omittedX": 2,
+        "omittedN": 25,
+        "emittedRate": 0,
+        "omittedRate": 0.08,
+        "rateDiff": -0.08,
+        "class": "SPARSE"
+      }
+    }
+  },
+  "R1arithmetic": {
+    "K": 9,
+    "Rv": 0,
+    "At": 1,
+    "ratios": {
+      "Rv/K": 0,
+      "At/K": 0.1111111111111111
+    },
+    "cells": [
+      {
+        "basis": "coretyped-b250",
+        "repo": "clojure/core.typed",
+        "emittedX": 13,
+        "emittedN": 39,
+        "omittedX": 7,
+        "omittedN": 340,
+        "emittedRate": 0.3333333333333333,
+        "omittedRate": 0.020588235294117647,
+        "rateDiff": 0.3127450980392157,
+        "class": "COMPARABLE",
+        "dCond": 0.3127450980392157,
+        "dUncond": 0.2449785407725322,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "fabric-b100",
+        "repo": "hyperledger/fabric",
+        "emittedX": 14,
+        "emittedN": 50,
+        "omittedX": 12,
+        "omittedN": 444,
+        "emittedRate": 0.28,
+        "omittedRate": 0.02702702702702703,
+        "rateDiff": 0.252972972972973,
+        "class": "COMPARABLE",
+        "dCond": 0.252972972972973,
+        "dUncond": 0.252972972972973,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "fabric-b250",
+        "repo": "hyperledger/fabric",
+        "emittedX": 36,
+        "emittedN": 41,
+        "omittedX": 23,
+        "omittedN": 91,
+        "emittedRate": 0.8780487804878049,
+        "omittedRate": 0.25274725274725274,
+        "rateDiff": 0.6253015277405521,
+        "class": "COMPARABLE",
+        "dCond": 0.6253015277405521,
+        "dUncond": 0.5417054263565891,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "hydrogen-b100",
+        "repo": "nteract/hydrogen",
+        "emittedX": 0,
+        "emittedN": 21,
+        "omittedX": 0,
+        "omittedN": 72,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE",
+        "dCond": 0,
+        "dUncond": 0,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "hydrogen-b250",
+        "repo": "nteract/hydrogen",
+        "emittedX": 3,
+        "emittedN": 20,
+        "omittedX": 6,
+        "omittedN": 78,
+        "emittedRate": 0.15,
+        "omittedRate": 0.07692307692307693,
+        "rateDiff": 0.07307692307692307,
+        "class": "COMPARABLE",
+        "dCond": 0.07307692307692307,
+        "dUncond": 0.04013245033112582,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "rustos-b100",
+        "repo": "thepowersgang/rust_os",
+        "emittedX": 8,
+        "emittedN": 50,
+        "omittedX": 13,
+        "omittedN": 231,
+        "emittedRate": 0.16,
+        "omittedRate": 0.05627705627705628,
+        "rateDiff": 0.10372294372294372,
+        "class": "COMPARABLE",
+        "dCond": 0.10372294372294372,
+        "dUncond": 0.10583333333333333,
+        "reversal": false,
+        "attenuation": true
+      },
+      {
+        "basis": "rustos-b250",
+        "repo": "thepowersgang/rust_os",
+        "emittedX": 19,
+        "emittedN": 48,
+        "omittedX": 56,
+        "omittedN": 268,
+        "emittedRate": 0.3958333333333333,
+        "omittedRate": 0.208955223880597,
+        "rateDiff": 0.1868781094527363,
+        "class": "COMPARABLE",
+        "dCond": 0.1868781094527363,
+        "dUncond": 0.17411764705882354,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "scikitimage-b100",
+        "repo": "scikit-image/scikit-image",
+        "emittedX": 15,
+        "emittedN": 23,
+        "omittedX": 14,
+        "omittedN": 48,
+        "emittedRate": 0.6521739130434783,
+        "omittedRate": 0.2916666666666667,
+        "rateDiff": 0.3605072463768116,
+        "class": "COMPARABLE",
+        "dCond": 0.3605072463768116,
+        "dUncond": 0.20849673202614377,
+        "reversal": false,
+        "attenuation": false
+      },
+      {
+        "basis": "scikitimage-b250",
+        "repo": "scikit-image/scikit-image",
+        "emittedX": 18,
+        "emittedN": 23,
+        "omittedX": 38,
+        "omittedN": 244,
+        "emittedRate": 0.782608695652174,
+        "omittedRate": 0.1557377049180328,
+        "rateDiff": 0.6268709907341412,
+        "class": "COMPARABLE",
+        "dCond": 0.6268709907341412,
+        "dUncond": 0.2581818181818182,
+        "reversal": false,
+        "attenuation": false
+      }
+    ],
+    "disposition": "R1_NOT_REPLICATED",
+    "why": "Rv=0 and At/K=0.111<0.5 (branch 3)"
+  },
+  "R2arithmetic": {
+    "C2": 16,
+    "P2": 12,
+    "Z2": 2,
+    "N2": 2,
+    "cells": [
+      {
+        "basis": "coretyped-b100",
+        "repo": "clojure/core.typed",
+        "bucket": "100-249",
+        "emittedX": 0,
+        "emittedN": 44,
+        "omittedX": 0,
+        "omittedN": 312,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "coretyped-b250",
+        "repo": "clojure/core.typed",
+        "bucket": "25-99",
+        "emittedX": 12,
+        "emittedN": 39,
+        "omittedX": 3,
+        "omittedN": 295,
+        "emittedRate": 0.3076923076923077,
+        "omittedRate": 0.010169491525423728,
+        "rateDiff": 0.297522816166884,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "fabric-b100",
+        "repo": "hyperledger/fabric",
+        "bucket": "0-24",
+        "emittedX": 6,
+        "emittedN": 12,
+        "omittedX": 9,
+        "omittedN": 17,
+        "emittedRate": 0.5,
+        "omittedRate": 0.5294117647058824,
+        "rateDiff": -0.02941176470588236,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "fabric-b100",
+        "repo": "hyperledger/fabric",
+        "bucket": "25-99",
+        "emittedX": 4,
+        "emittedN": 12,
+        "omittedX": 0,
+        "omittedN": 26,
+        "emittedRate": 0.3333333333333333,
+        "omittedRate": 0,
+        "rateDiff": 0.3333333333333333,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "fabric-b100",
+        "repo": "hyperledger/fabric",
+        "bucket": "100-249",
+        "emittedX": 4,
+        "emittedN": 25,
+        "omittedX": 2,
+        "omittedN": 376,
+        "emittedRate": 0.16,
+        "omittedRate": 0.005319148936170213,
+        "rateDiff": 0.15468085106382978,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "fabric-b250",
+        "repo": "hyperledger/fabric",
+        "bucket": "0-24",
+        "emittedX": 35,
+        "emittedN": 35,
+        "omittedX": 20,
+        "omittedN": 34,
+        "emittedRate": 1,
+        "omittedRate": 0.5882352941176471,
+        "rateDiff": 0.4117647058823529,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "fabric-b250",
+        "repo": "hyperledger/fabric",
+        "bucket": "250-499",
+        "emittedX": 1,
+        "emittedN": 10,
+        "omittedX": 0,
+        "omittedN": 47,
+        "emittedRate": 0.1,
+        "omittedRate": 0,
+        "rateDiff": 0.1,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "hydrogen-b100",
+        "repo": "nteract/hydrogen",
+        "bucket": "100-249",
+        "emittedX": 0,
+        "emittedN": 37,
+        "omittedX": 0,
+        "omittedN": 243,
+        "emittedRate": 0,
+        "omittedRate": 0,
+        "rateDiff": 0,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "hydrogen-b250",
+        "repo": "nteract/hydrogen",
+        "bucket": "25-99",
+        "emittedX": 1,
+        "emittedN": 37,
+        "omittedX": 0,
+        "omittedN": 237,
+        "emittedRate": 0.02702702702702703,
+        "omittedRate": 0,
+        "rateDiff": 0.02702702702702703,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "rustos-b100",
+        "repo": "thepowersgang/rust_os",
+        "bucket": "25-99",
+        "emittedX": 4,
+        "emittedN": 23,
+        "omittedX": 4,
+        "omittedN": 54,
+        "emittedRate": 0.17391304347826086,
+        "omittedRate": 0.07407407407407407,
+        "rateDiff": 0.0998389694041868,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "rustos-b100",
+        "repo": "thepowersgang/rust_os",
+        "bucket": "250-499",
+        "emittedX": 2,
+        "emittedN": 14,
+        "omittedX": 5,
+        "omittedN": 96,
+        "emittedRate": 0.14285714285714285,
+        "omittedRate": 0.052083333333333336,
+        "rateDiff": 0.0907738095238095,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "rustos-b250",
+        "repo": "thepowersgang/rust_os",
+        "bucket": "100-249",
+        "emittedX": 17,
+        "emittedN": 32,
+        "omittedX": 44,
+        "omittedN": 161,
+        "emittedRate": 0.53125,
+        "omittedRate": 0.2732919254658385,
+        "rateDiff": 0.2579580745341615,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "scikitimage-b100",
+        "repo": "scikit-image/scikit-image",
+        "bucket": "25-99",
+        "emittedX": 6,
+        "emittedN": 14,
+        "omittedX": 6,
+        "omittedN": 43,
+        "emittedRate": 0.42857142857142855,
+        "omittedRate": 0.13953488372093023,
+        "rateDiff": 0.28903654485049834,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "scikitimage-b100",
+        "repo": "scikit-image/scikit-image",
+        "bucket": "100-249",
+        "emittedX": 6,
+        "emittedN": 30,
+        "omittedX": 6,
+        "omittedN": 85,
+        "emittedRate": 0.2,
+        "omittedRate": 0.07058823529411765,
+        "rateDiff": 0.12941176470588237,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "scikitimage-b250",
+        "repo": "scikit-image/scikit-image",
+        "bucket": "0-24",
+        "emittedX": 9,
+        "emittedN": 33,
+        "omittedX": 32,
+        "omittedN": 78,
+        "emittedRate": 0.2727272727272727,
+        "omittedRate": 0.41025641025641024,
+        "rateDiff": -0.13752913752913754,
+        "class": "COMPARABLE"
+      },
+      {
+        "basis": "scikitimage-b250",
+        "repo": "scikit-image/scikit-image",
+        "bucket": "25-99",
+        "emittedX": 10,
+        "emittedN": 13,
+        "omittedX": 1,
+        "omittedN": 21,
+        "emittedRate": 0.7692307692307693,
+        "omittedRate": 0.047619047619047616,
+        "rateDiff": 0.7216117216117217,
+        "class": "COMPARABLE"
+      }
+    ],
+    "disposition": "R2_NOT_REPLICATED",
+    "why": "P2/C2=0.750>=0.667 (branch 3)"
+  },
+  "composite": "NEITHER_PATTERN_REPLICATES"
+}
