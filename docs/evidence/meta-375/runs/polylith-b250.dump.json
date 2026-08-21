@@ -1,0 +1,8958 @@
+{
+ "l0DumpVersion": 1,
+ "label": "polylith-b250",
+ "basisWindow": {
+  "basisRevision": "HEAD",
+  "basisCommit": "23c976ba040ab904414e2dea02aac11ad98af155",
+  "windowTransitions": 500,
+  "availableTransitions": 144,
+  "extractedTransitions": 144,
+  "windowTruncated": false
+ },
+ "completeness": {
+  "mine": {
+   "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+   "reason": "MINED",
+   "detail": "mined 144 first-parent transition(s) from 23c976ba040ab904414e2dea02aac11ad98af155; 270577 pair(s) at or above 1 co-occurrence(s)"
+  },
+  "score": {
+   "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+   "reason": "MINED",
+   "detail": "scored 134 of 144 extracted event(s) at META-289 v2.2.1; 10 excluded for fileCount > 50; 327 pair(s) at support >= 3"
+  },
+  "selection": {
+   "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+   "reason": "MINED",
+   "detail": "327 pair(s) at support >= 3; 50 emitted under a cap of 50 (cap bound)"
+  }
+ },
+ "excludedCommits": [
+  "9b3cc9e48947b016d546ae70259c3473e790e0e6",
+  "19995f5f83bad54ea48b46312afb60efe753f525",
+  "78b2c77c56d1b41109d68b451069affac935200e",
+  "e3b148a22ad77af3e3b35d504016e1dd5ca386c9",
+  "34804e54538fad540b69498996c1b6a6adecf67c",
+  "d8b55eb42154df962b940503c5f7a5870d283b5f",
+  "febea3d8a9b30a60397594dda3cb0f25154b8d8d",
+  "31c1fe4e71fa250544b7b549ff9734a074c809a4",
+  "36b75565032dea88ee20cdc0bc5af18f6f4d4cf4",
+  "abd20bb656e2cdd712732d80e1238316d3ea1b7f"
+ ],
+ "decayOriginPosition": 143,
+ "extractedEvents": 144,
+ "scoredEventCount": 134,
+ "selectionReceipt": {
+  "minSupport": 3,
+  "pairsBeforeCap": 327,
+  "pairsEmitted": 50,
+  "cap": 50,
+  "rankingRule": "support DESC, then occurrences ASC, then files[0] ASC by UTF-8 bytes, then files[1] ASC by UTF-8 bytes",
+  "capBound": true
+ },
+ "emittedPairs": [
+  {
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 16,
+   "occurrences": 19
+  },
+  {
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "readme.md"
+   ],
+   "support": 12,
+   "occurrences": 63
+  },
+  {
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "readme.md"
+   ],
+   "support": 12,
+   "occurrences": 68
+  },
+  {
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "doc/commands.md"
+   ],
+   "support": 11,
+   "occurrences": 32
+  },
+  {
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 65
+  },
+  {
+   "files": [
+    "doc/commands.md",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 67
+  },
+  {
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 69
+  },
+  {
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 10,
+   "occurrences": 22
+  },
+  {
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "readme.md"
+   ],
+   "support": 10,
+   "occurrences": 67
+  },
+  {
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "readme.md"
+   ],
+   "support": 10,
+   "occurrences": 69
+  },
+  {
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 9,
+   "occurrences": 22
+  },
+  {
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 9,
+   "occurrences": 24
+  },
+  {
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "readme.md"
+   ],
+   "support": 9,
+   "occurrences": 80
+  },
+  {
+   "files": [
+    "scripts/output/local-dep-old-format/ws.edn",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 8,
+   "occurrences": 10
+  },
+  {
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 8,
+   "occurrences": 13
+  },
+  {
+   "files": [
+    "doc/commands.md",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 8,
+   "occurrences": 16
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 8,
+   "occurrences": 18
+  },
+  {
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 17
+  },
+  {
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "deps.edn"
+   ],
+   "support": 7,
+   "occurrences": 23
+  },
+  {
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 25
+  },
+  {
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 26
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "readme.md"
+   ],
+   "support": 7,
+   "occurrences": 67
+  },
+  {
+   "files": [
+    "deps.edn",
+    "readme.md"
+   ],
+   "support": 7,
+   "occurrences": 70
+  },
+  {
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 6,
+   "occurrences": 13
+  },
+  {
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 6,
+   "occurrences": 18
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 21
+  },
+  {
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 21
+  },
+  {
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 22
+  },
+  {
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 23
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/command/src/polylith/clj/core/command/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 24
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 6,
+   "occurrences": 24
+  },
+  {
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 26
+  },
+  {
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 62
+  },
+  {
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 65
+  },
+  {
+   "files": [
+    "development/src/dev/jocke.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 65
+  },
+  {
+   "files": [
+    "readme.md",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 6,
+   "occurrences": 66
+  },
+  {
+   "files": [
+    "scripts/output/polylith1/libs-migrated.txt",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 5,
+   "occurrences": 5
+  },
+  {
+   "files": [
+    ".circleci/config.yml",
+    "environments/poly/pom.xml"
+   ],
+   "support": 5,
+   "occurrences": 7
+  },
+  {
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/output.txt"
+   ],
+   "support": 5,
+   "occurrences": 11
+  },
+  {
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 12
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/git/src/polylith/clj/core/git/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 13
+  },
+  {
+   "files": [
+    "scripts/output/help/01-help.txt",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 5,
+   "occurrences": 13
+  },
+  {
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 5,
+   "occurrences": 14
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 16
+  },
+  {
+   "files": [
+    "deps.edn",
+    "environments/poly/deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 17
+  },
+  {
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 18
+  },
+  {
+   "files": [
+    "deps.edn",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 5,
+   "occurrences": 19
+  },
+  {
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 5,
+   "occurrences": 20
+  },
+  {
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 5,
+   "occurrences": 20
+  },
+  {
+   "files": [
+    "doc/commands.md",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 5,
+   "occurrences": 21
+  }
+ ],
+ "pairs": [
+  {
+   "rank": 1,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 16,
+   "occurrences": 19,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 16
+  },
+  {
+   "rank": 2,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "readme.md"
+   ],
+   "support": 12,
+   "occurrences": 63,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 12
+  },
+  {
+   "rank": 3,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "readme.md"
+   ],
+   "support": 12,
+   "occurrences": 68,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "4de3daea757469220156dcdc89ca8544a0a88520",
+    "deltaPos": 133
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 12
+  },
+  {
+   "rank": 4,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "doc/commands.md"
+   ],
+   "support": 11,
+   "occurrences": 32,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c0919de15dfe72cf1f2e89ca5795797a6319c84d",
+    "deltaPos": 8
+   },
+   "firstSupport": {
+    "commit": "bdf9ac72e23f898e0cd389efc0fd57d1e1eff0ce",
+    "deltaPos": 88
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 11
+  },
+  {
+   "rank": 5,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 65,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "99b9c932da362035eea60919860ae3a196d485c1",
+    "deltaPos": 139
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 11
+  },
+  {
+   "rank": 6,
+   "files": [
+    "doc/commands.md",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 67,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "68d2da4d9b19a0464b5aea36a4d180b79e5b15e6",
+    "deltaPos": 47
+   },
+   "firstSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 11
+  },
+  {
+   "rank": 7,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "readme.md"
+   ],
+   "support": 11,
+   "occurrences": 69,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 11
+  },
+  {
+   "rank": 8,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 10,
+   "occurrences": 22,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 10
+  },
+  {
+   "rank": 9,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "readme.md"
+   ],
+   "support": 10,
+   "occurrences": 67,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 10
+  },
+  {
+   "rank": 10,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "readme.md"
+   ],
+   "support": 10,
+   "occurrences": 69,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "94469bee1e00f43bf331a03924dd18767fbe9608",
+    "deltaPos": 86
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 10
+  },
+  {
+   "rank": 11,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 9,
+   "occurrences": 22,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 9
+  },
+  {
+   "rank": 12,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 9,
+   "occurrences": 24,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 9
+  },
+  {
+   "rank": 13,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "readme.md"
+   ],
+   "support": 9,
+   "occurrences": 80,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 9
+  },
+  {
+   "rank": 14,
+   "files": [
+    "scripts/output/local-dep-old-format/ws.edn",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 8,
+   "occurrences": 10,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 8
+  },
+  {
+   "rank": 15,
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 8,
+   "occurrences": 13,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 8
+  },
+  {
+   "rank": 16,
+   "files": [
+    "doc/commands.md",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 8,
+   "occurrences": 16,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "ce43dd97b972feefa15ee6865816cbca655b9639",
+    "deltaPos": 7
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 8
+  },
+  {
+   "rank": 17,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 8,
+   "occurrences": 18,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "99b9c932da362035eea60919860ae3a196d485c1",
+    "deltaPos": 139
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 8
+  },
+  {
+   "rank": 18,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 17,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "766c6367c9a36ad7dc2cb46d92d7d6daecaed0e7",
+    "deltaPos": 113
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 19,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "deps.edn"
+   ],
+   "support": 7,
+   "occurrences": 23,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 20,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 25,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 21,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 7,
+   "occurrences": 26,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 22,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "readme.md"
+   ],
+   "support": 7,
+   "occurrences": 67,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 23,
+   "files": [
+    "deps.edn",
+    "readme.md"
+   ],
+   "support": 7,
+   "occurrences": 70,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 7
+  },
+  {
+   "rank": 24,
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 6,
+   "occurrences": 13,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 25,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 6,
+   "occurrences": 18,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 26,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 21,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 27,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 21,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 28,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 22,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 29,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 23,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 30,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/command/src/polylith/clj/core/command/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 24,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 31,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 6,
+   "occurrences": 24,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 32,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 6,
+   "occurrences": 26,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 33,
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 62,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 34,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 65,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "766c6367c9a36ad7dc2cb46d92d7d6daecaed0e7",
+    "deltaPos": 113
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 35,
+   "files": [
+    "development/src/dev/jocke.clj",
+    "readme.md"
+   ],
+   "support": 6,
+   "occurrences": 65,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 36,
+   "files": [
+    "readme.md",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 6,
+   "occurrences": 66,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 6
+  },
+  {
+   "rank": 37,
+   "files": [
+    "scripts/output/polylith1/libs-migrated.txt",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 5,
+   "occurrences": 5,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 38,
+   "files": [
+    ".circleci/config.yml",
+    "environments/poly/pom.xml"
+   ],
+   "support": 5,
+   "occurrences": 7,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 39,
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/output.txt"
+   ],
+   "support": 5,
+   "occurrences": 11,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 40,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 12,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "f54afe3e4e38f41eae8c29d4fe65616eba79c7a6",
+    "deltaPos": 17
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 41,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/git/src/polylith/clj/core/git/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 13,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "99b9c932da362035eea60919860ae3a196d485c1",
+    "deltaPos": 139
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 42,
+   "files": [
+    "scripts/output/help/01-help.txt",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 5,
+   "occurrences": 13,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 43,
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 5,
+   "occurrences": 14,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 44,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 16,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 45,
+   "files": [
+    "deps.edn",
+    "environments/poly/deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 17,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 46,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 18,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 47,
+   "files": [
+    "deps.edn",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 5,
+   "occurrences": 19,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 48,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 5,
+   "occurrences": 20,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 49,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 5,
+   "occurrences": 20,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 50,
+   "files": [
+    "doc/commands.md",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 5,
+   "occurrences": 21,
+   "emitted": true,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 51,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 22,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 52,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/creator/src/polylith/clj/core/creator/workspace.clj"
+   ],
+   "support": 5,
+   "occurrences": 24,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 53,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 54,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 5,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 55,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 27,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 56,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 28,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 57,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 28,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 58,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/creator/src/polylith/clj/core/creator/workspace.clj"
+   ],
+   "support": 5,
+   "occurrences": 30,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 59,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "projects/poly/test/project/poly/workspace_test.clj"
+   ],
+   "support": 5,
+   "occurrences": 30,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "7a1545826cea4657ac9681f70f687beb5881a1de",
+    "deltaPos": 28
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 60,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 5,
+   "occurrences": 30,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0919de15dfe72cf1f2e89ca5795797a6319c84d",
+    "deltaPos": 8
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 61,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 5,
+   "occurrences": 31,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 62,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "components/version/src/polylith/clj/core/version/interface.clj"
+   ],
+   "support": 5,
+   "occurrences": 35,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 63,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "deps.edn"
+   ],
+   "support": 5,
+   "occurrences": 37,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 64,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/version/src/polylith/clj/core/version/interface.clj"
+   ],
+   "support": 5,
+   "occurrences": 39,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 65,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/version/src/polylith/clj/core/version/interface.clj"
+   ],
+   "support": 5,
+   "occurrences": 40,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6f3777fd1e5ce77ae0b7dc68f6db13d0757d84cd",
+    "deltaPos": 9
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 66,
+   "files": [
+    "components/help/src/polylith/clj/core/help/ws.clj",
+    "readme.md"
+   ],
+   "support": 5,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 67,
+   "files": [
+    "components/git/src/polylith/clj/core/git/core.clj",
+    "readme.md"
+   ],
+   "support": 5,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "99b9c932da362035eea60919860ae3a196d485c1",
+    "deltaPos": 139
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 68,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "readme.md"
+   ],
+   "support": 5,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 69,
+   "files": [
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj",
+    "readme.md"
+   ],
+   "support": 5,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 70,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "readme.md"
+   ],
+   "support": 5,
+   "occurrences": 65,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 71,
+   "files": [
+    "readme.md",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 5,
+   "occurrences": 65,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 72,
+   "files": [
+    "readme.md",
+    "scripts/create-example.sh"
+   ],
+   "support": 5,
+   "occurrences": 68,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 5
+  },
+  {
+   "rank": 73,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/base_test.clj",
+    "components/creator/test/polylith/clj/core/creator/component_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 74,
+   "files": [
+    "environments/api/pom.xml",
+    "environments/poly/pom.xml"
+   ],
+   "support": 4,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "9bb7d55968c057f06c8761f9f4e03285d20f566c",
+    "deltaPos": 127
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 75,
+   "files": [
+    "environments/migrator/pom.xml",
+    "environments/poly/pom.xml"
+   ],
+   "support": 4,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 76,
+   "files": [
+    "scripts/output/output.sh",
+    "scripts/output/output.txt"
+   ],
+   "support": 4,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 77,
+   "files": [
+    ".circleci/config.yml",
+    "environments/api/pom.xml"
+   ],
+   "support": 4,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "9bb7d55968c057f06c8761f9f4e03285d20f566c",
+    "deltaPos": 127
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 78,
+   "files": [
+    ".circleci/config.yml",
+    "environments/migrator/pom.xml"
+   ],
+   "support": 4,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 79,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "environments/poly/pom.xml"
+   ],
+   "support": 4,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 80,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "components/help/src/polylith/clj/core/help/info.clj"
+   ],
+   "support": 4,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 81,
+   "files": [
+    ".circleci/config.yml",
+    "components/deployer/src/polylith/clj/core/deployer/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 82,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "environments/poly/deps.edn"
+   ],
+   "support": 4,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 83,
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/output.sh"
+   ],
+   "support": 4,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 84,
+   "files": [
+    "scripts/output/local-dep/ws.edn",
+    "scripts/output/output.txt"
+   ],
+   "support": 4,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 85,
+   "files": [
+    "scripts/output/help/01-help.txt",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 4,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 86,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_workspace.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 4,
+   "occurrences": 14,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 87,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/help/src/polylith/clj/core/help/ws.clj"
+   ],
+   "support": 4,
+   "occurrences": 14,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 88,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 89,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 90,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "environments/deployer/deps.edn"
+   ],
+   "support": 4,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 91,
+   "files": [
+    "deps.edn",
+    "environments/deployer/deps.edn"
+   ],
+   "support": 4,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 92,
+   "files": [
+    "scripts/create-example.sh",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 4,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 93,
+   "files": [
+    "components/git/src/polylith/clj/core/git/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "99b9c932da362035eea60919860ae3a196d485c1",
+    "deltaPos": 139
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 94,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_workspace.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 95,
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 96,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 97,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/creator/test/polylith/clj/core/creator/base_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 98,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 4,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 99,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "environments/poly/deps.edn"
+   ],
+   "support": 4,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 100,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 101,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/command/src/polylith/clj/core/command/create.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 102,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 103,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/base_test.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 104,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 105,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 106,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "deps.edn"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 107,
+   "files": [
+    "deps.edn",
+    "projects/poly/test/project/poly/workspace_test.clj"
+   ],
+   "support": 4,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "28cca05514500fe995d4107dd5649c162b57b02a",
+    "deltaPos": 2
+   },
+   "firstSupport": {
+    "commit": "7a1545826cea4657ac9681f70f687beb5881a1de",
+    "deltaPos": 28
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 108,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/info.clj"
+   ],
+   "support": 4,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 109,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/migrator/src/polylith/clj/core/migrator/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 110,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 111,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 4,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 112,
+   "files": [
+    "doc/commands.md",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 4,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 113,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/validator/src/polylith/clj/core/validator/interface.clj"
+   ],
+   "support": 4,
+   "occurrences": 22,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 114,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 22,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 115,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 4,
+   "occurrences": 22,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 116,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 4,
+   "occurrences": 23,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "35cc2b5e5721306bda6ccaaaf8e32b67b59af33a",
+    "deltaPos": 13
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 117,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 4,
+   "occurrences": 23,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 118,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 4,
+   "occurrences": 23,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 119,
+   "files": [
+    "doc/commands.md",
+    "scripts/create-example.sh"
+   ],
+   "support": 4,
+   "occurrences": 23,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 120,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 4,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 121,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 4,
+   "occurrences": 27,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 122,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/polylith1/libs-migrated.txt"
+   ],
+   "support": 4,
+   "occurrences": 28,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 123,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 4,
+   "occurrences": 28,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 124,
+   "files": [
+    "example/sections/workspace/deps.edn",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "94469bee1e00f43bf331a03924dd18767fbe9608",
+    "deltaPos": 86
+   },
+   "firstSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 125,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_workspace.clj",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 126,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "94469bee1e00f43bf331a03924dd18767fbe9608",
+    "deltaPos": 86
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 127,
+   "files": [
+    "readme.md",
+    "scripts/output/output.txt"
+   ],
+   "support": 4,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 128,
+   "files": [
+    "components/migrator/src/polylith/clj/core/migrator/core.clj",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 64,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 129,
+   "files": [
+    "environments/poly/deps.edn",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 65,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 130,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "readme.md"
+   ],
+   "support": 4,
+   "occurrences": 71,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "firstSupport": {
+    "commit": "f74042c84d72cb0b2ea43d491892ba463cc7824c",
+    "deltaPos": 122
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 4
+  },
+  {
+   "rank": 131,
+   "files": [
+    "components/change/src/polylith/clj/core/change/bricks_to_test.clj",
+    "components/change/test/polylith/clj/core/change/bricks_to_test_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 132,
+   "files": [
+    "components/change/src/polylith/clj/core/change/environments_to_test.clj",
+    "components/change/test/polylith/clj/core/change/environments_to_test_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 133,
+   "files": [
+    "components/command/src/polylith/clj/core/command/cmd_validator/executable.clj",
+    "components/command/test/polylith/clj/core/command/cmd_validator/executable_outside_ws_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 134,
+   "files": [
+    "components/deps/src/polylith/clj/core/deps/text_table/lib_table.clj",
+    "components/deps/test/polylith/clj/core/deps/text_table/lib_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 135,
+   "files": [
+    "components/help/src/polylith/clj/core/help/core.clj",
+    "components/help/src/polylith/clj/core/help/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 136,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_base.clj",
+    "components/help/src/polylith/clj/core/help/create_component.clj"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 137,
+   "files": [
+    "example/output/git-log-pretty.txt",
+    "example/output/git-log.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 138,
+   "files": [
+    "example/output/git-log-pretty.txt",
+    "example/output/tagging-log-release.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 139,
+   "files": [
+    "example/output/git-log-pretty.txt",
+    "example/output/tagging-log.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 140,
+   "files": [
+    "example/output/git-log-pretty.txt",
+    "example/output/testing-test-all.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 141,
+   "files": [
+    "example/output/git-log.txt",
+    "example/output/tagging-log-release.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 142,
+   "files": [
+    "example/output/git-log.txt",
+    "example/output/tagging-log.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 143,
+   "files": [
+    "example/output/git-log.txt",
+    "example/output/testing-test-all.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 144,
+   "files": [
+    "example/output/tagging-log-release.txt",
+    "example/output/tagging-log.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 145,
+   "files": [
+    "example/output/tagging-log-release.txt",
+    "example/output/testing-test-all.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 146,
+   "files": [
+    "example/output/tagging-log.txt",
+    "example/output/testing-test-all.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "be419d4e6976d88e2a755e3f62689f944e28ceb4",
+    "deltaPos": 109
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 147,
+   "files": [
+    "projects/api/partial_pom.xml",
+    "projects/poly/partial_pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "57e0217762c166a92b007736c198d100642e22c1",
+    "deltaPos": 31
+   },
+   "firstSupport": {
+    "commit": "204c059b15548cc0e0379a7ec5eccee05de0d63d",
+    "deltaPos": 83
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 148,
+   "files": [
+    "scripts/output/polylith1/deps-migrated.txt",
+    "scripts/output/polylith1/deps.txt"
+   ],
+   "support": 3,
+   "occurrences": 3,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 149,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/m107_missing_componens_in_environment.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 4,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 150,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/environment.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 4,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 151,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_base.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 152,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_component.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 153,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/environment.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 154,
+   "files": [
+    "environments/api/pom.xml",
+    "environments/migrator/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "36db1c36b51f8877cb0149f97151308bb03a0e19",
+    "deltaPos": 121
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 155,
+   "files": [
+    "environments/migrator/deps.edn",
+    "environments/migrator/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 156,
+   "files": [
+    "scripts/output/polylith1/deps-migrated.txt",
+    "scripts/output/polylith1/libs-migrated.txt"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 157,
+   "files": [
+    "scripts/output/polylith1/deps-migrated.txt",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 158,
+   "files": [
+    "scripts/output/polylith1/deps.txt",
+    "scripts/output/polylith1/libs-migrated.txt"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 159,
+   "files": [
+    "scripts/output/polylith1/deps.txt",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 3,
+   "occurrences": 5,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 160,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/change/src/polylith/clj/core/change/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 161,
+   "files": [
+    "components/change/src/polylith/clj/core/change/interface.clj",
+    "components/git/src/polylith/clj/core/git/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 162,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "components/help/src/polylith/clj/core/help/deps.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 163,
+   "files": [
+    "components/help/src/polylith/clj/core/help/core.clj",
+    "components/help/src/polylith/clj/core/help/info.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 164,
+   "files": [
+    "components/help/src/polylith/clj/core/help/deps.clj",
+    "components/help/src/polylith/clj/core/help/info.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 165,
+   "files": [
+    "components/help/src/polylith/clj/core/help/info.clj",
+    "components/help/src/polylith/clj/core/help/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 166,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 167,
+   "files": [
+    "environments/migrator/deps.edn",
+    "environments/poly/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 6,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 168,
+   "files": [
+    "bases/deployer-cli/src/polylith/clj/core/deployer_cli/core.clj",
+    "components/deployer/src/polylith/clj/core/deployer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 169,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/git/src/polylith/clj/core/git/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "76936c752fb5b729c216b23d92c8a8d71cfdc92f",
+    "deltaPos": 75
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 170,
+   "files": [
+    "components/git/src/polylith/clj/core/git/core.clj",
+    "components/git/src/polylith/clj/core/git/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 171,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 7,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 172,
+   "files": [
+    ".circleci/config.yml",
+    "environments/migrator/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 173,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "environments/api/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "9bb7d55968c057f06c8761f9f4e03285d20f566c",
+    "deltaPos": 127
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 174,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "environments/migrator/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 175,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "environments/migrator/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68191a2afb537b81ec2644a9511f0e66598964a0",
+    "deltaPos": 107
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 176,
+   "files": [
+    "components/file/deps.edn",
+    "projects/poly/test/project/poly/workspace_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "28cca05514500fe995d4107dd5649c162b57b02a",
+    "deltaPos": 2
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 177,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace/src/polylith/clj/core/workspace/environment.clj"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 178,
+   "files": [
+    "environments/core/deps.edn",
+    "environments/poly/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 179,
+   "files": [
+    "environments/deployer/deps.edn",
+    "environments/poly/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 8,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 180,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/git/src/polylith/clj/core/git/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 9,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 181,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/core.clj",
+    "components/validator/src/polylith/clj/core/validator/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 9,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f54afe3e4e38f41eae8c29d4fe65616eba79c7a6",
+    "deltaPos": 17
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 182,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 9,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 183,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/environment.clj"
+   ],
+   "support": 3,
+   "occurrences": 9,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 184,
+   "files": [
+    "environments/poly/deps.edn",
+    "environments/poly/pom.xml"
+   ],
+   "support": 3,
+   "occurrences": 9,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "36db1c36b51f8877cb0149f97151308bb03a0e19",
+    "deltaPos": 121
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 185,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 186,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 187,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/text_table/info_tables.clj"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 188,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 189,
+   "files": [
+    "development/src/dev/jocke.clj",
+    "environments/deployer/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 190,
+   "files": [
+    "projects/poly/test/project/poly/workspace_test.clj",
+    "scripts/output/polylith1/libs-migrated.txt"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 191,
+   "files": [
+    "projects/poly/test/project/poly/workspace_test.clj",
+    "scripts/output/polylith1/libs.txt"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "19aaaa78094a433862d999c82b3536714ab96973",
+    "deltaPos": 20
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 192,
+   "files": [
+    "scripts/output/help/01-help.txt",
+    "scripts/output/output.txt"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 193,
+   "files": [
+    "scripts/output/local-dep-old-format/ws.edn",
+    "scripts/output/output.txt"
+   ],
+   "support": 3,
+   "occurrences": 10,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 194,
+   "files": [
+    ".circleci/config.yml",
+    "environments/poly/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "36db1c36b51f8877cb0149f97151308bb03a0e19",
+    "deltaPos": 121
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 195,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "4de3daea757469220156dcdc89ca8544a0a88520",
+    "deltaPos": 133
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 196,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 197,
+   "files": [
+    "scripts/output/local-dep/ws.edn",
+    "scripts/output/output.sh"
+   ],
+   "support": 3,
+   "occurrences": 11,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 198,
+   "files": [
+    "components/change/src/polylith/clj/core/change/bricks_to_test.clj",
+    "components/change/src/polylith/clj/core/change/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 199,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/change/src/polylith/clj/core/change/environments_to_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 200,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/change/src/polylith/clj/core/change/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 201,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/change/test/polylith/clj/core/change/bricks_to_test_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 202,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/change/test/polylith/clj/core/change/core_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 203,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/change/test/polylith/clj/core/change/environments_to_test_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 204,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 205,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 206,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f54afe3e4e38f41eae8c29d4fe65616eba79c7a6",
+    "deltaPos": 17
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 207,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/interface.clj",
+    "environments/poly/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 12,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 208,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/git/src/polylith/clj/core/git/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 209,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 210,
+   "files": [
+    "components/help/src/polylith/clj/core/help/core.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 211,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 212,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_base.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 213,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_component.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 214,
+   "files": [
+    "components/help/src/polylith/clj/core/help/interface.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 215,
+   "files": [
+    "components/help/src/polylith/clj/core/help/libs.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 216,
+   "files": [
+    "development/src/dev/jocke.clj",
+    "environments/poly/deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 13,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 217,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/create_workspace.clj"
+   ],
+   "support": 3,
+   "occurrences": 14,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 218,
+   "files": [
+    "components/help/src/polylith/clj/core/help/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 14,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 219,
+   "files": [
+    "components/help/src/polylith/clj/core/help/interface.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 14,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 220,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/change/src/polylith/clj/core/change/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 221,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/help/src/polylith/clj/core/help/info.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 222,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 223,
+   "files": [
+    "components/file/deps.edn",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "28cca05514500fe995d4107dd5649c162b57b02a",
+    "deltaPos": 2
+   },
+   "firstSupport": {
+    "commit": "436d80d6a504d5f87d679da775a48e8101c8a3ec",
+    "deltaPos": 25
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 224,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_base.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 225,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_component.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 226,
+   "files": [
+    "components/help/src/polylith/clj/core/help/libs.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 227,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/output/output.sh"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 228,
+   "files": [
+    "components/validator/src/polylith/clj/core/validator/m107_missing_componens_in_environment.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 229,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/environment.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 230,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 3,
+   "occurrences": 15,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 231,
+   "files": [
+    "components/file/src/polylith/clj/core/file/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 232,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "components/help/src/polylith/clj/core/help/summary.clj"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "bc9884088124e02a8112728696e66d1a251b484e",
+    "deltaPos": 119
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 233,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_workspace.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 234,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/output/output.txt"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 235,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/text_table/info_tables.clj"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 236,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 16,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 237,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 238,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 239,
+   "files": [
+    "components/command/src/polylith/clj/core/command/create.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 240,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/base_test.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 241,
+   "files": [
+    "components/file/src/polylith/clj/core/file/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 242,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "4de3daea757469220156dcdc89ca8544a0a88520",
+    "deltaPos": 133
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 243,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 17,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 244,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 245,
+   "files": [
+    "components/command/src/polylith/clj/core/command/cmd_validator/executable.clj",
+    "components/command/src/polylith/clj/core/command/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 246,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/command/test/polylith/clj/core/command/cmd_validator/executable_outside_ws_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 247,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 248,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/create.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 249,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/create_base.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 250,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/create_component.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 251,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 252,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/libs.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 253,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/validator/src/polylith/clj/core/validator/m107_missing_componens_in_environment.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 254,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/creator/test/polylith/clj/core/creator/component_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 255,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 256,
+   "files": [
+    "components/help/src/polylith/clj/core/help/check.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "766c6367c9a36ad7dc2cb46d92d7d6daecaed0e7",
+    "deltaPos": 113
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 257,
+   "files": [
+    "components/migrator/src/polylith/clj/core/migrator/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 258,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 259,
+   "files": [
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj",
+    "components/ws-explorer/src/polylith/clj/core/ws_explorer/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 260,
+   "files": [
+    "doc/commands.md",
+    "scripts/output/output.txt"
+   ],
+   "support": 3,
+   "occurrences": 18,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cce9d97249a7cb7d8894139798ec6011360c924a",
+    "deltaPos": 11
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 261,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 262,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/workspace/src/polylith/clj/core/workspace/text_table/info_tables.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 263,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 264,
+   "files": [
+    "components/command/src/polylith/clj/core/command/create.clj",
+    "components/creator/src/polylith/clj/core/creator/workspace.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 265,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "94469bee1e00f43bf331a03924dd18767fbe9608",
+    "deltaPos": 86
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 266,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/component_test.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 267,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 268,
+   "files": [
+    "components/deployer/src/polylith/clj/core/deployer/core.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "645dd8ff5e8b16ce9efeb6111af50dcb3ca840ad",
+    "deltaPos": 105
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 269,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "components/workspace/src/polylith/clj/core/workspace/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 270,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "development/src/dev/jocke.clj"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 271,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 272,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 19,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 273,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/file/src/polylith/clj/core/file/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "79c43343b538fdd91d5054006046aa053d876bec",
+    "deltaPos": 135
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 274,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "components/help/src/polylith/clj/core/help/ws.clj"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c8277379f035848c30acc0c50754eaa89e159eba",
+    "deltaPos": 115
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 275,
+   "files": [
+    "components/command/src/polylith/clj/core/command/create.clj",
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 276,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/migrator/src/polylith/clj/core/migrator/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cec566a708987787056a7227cae395e414390992",
+    "deltaPos": 103
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 277,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/workspace/test/polylith/clj/core/workspace/text_table/ws_table_test.clj"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "94469bee1e00f43bf331a03924dd18767fbe9608",
+    "deltaPos": 86
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 278,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 20,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 279,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "components/command/src/polylith/clj/core/command/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 21,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 280,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/git/src/polylith/clj/core/git/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 21,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 281,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/migrator/src/polylith/clj/core/migrator/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 21,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "cec566a708987787056a7227cae395e414390992",
+    "deltaPos": 103
+   },
+   "firstSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 282,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 3,
+   "occurrences": 21,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 283,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/core.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 21,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 284,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 22,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 285,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 23,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 286,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 24,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 287,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "components/user-input/src/polylith/clj/core/user_input/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 24,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 288,
+   "files": [
+    "components/change/src/polylith/clj/core/change/core.clj",
+    "doc/commands.md"
+   ],
+   "support": 3,
+   "occurrences": 25,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 289,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 25,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 290,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 25,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 291,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "components/workspace-clj/src/polylith/clj/core/workspace_clj/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 25,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "fa796a9dd3316c6e18572e2f5da9fff4027451cc",
+    "deltaPos": 140
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 292,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 3,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "594b9bb6df31af1944ff1a90c42f457061df22ab",
+    "deltaPos": 62
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 293,
+   "files": [
+    "components/help/src/polylith/clj/core/help/summary.clj",
+    "doc/commands.md"
+   ],
+   "support": 3,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 294,
+   "files": [
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj",
+    "doc/commands.md"
+   ],
+   "support": 3,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 295,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "deps.edn"
+   ],
+   "support": 3,
+   "occurrences": 26,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 296,
+   "files": [
+    "components/creator/src/polylith/clj/core/creator/workspace.clj",
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 27,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "f74042c84d72cb0b2ea43d491892ba463cc7824c",
+    "deltaPos": 122
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 297,
+   "files": [
+    "components/user-input/src/polylith/clj/core/user_input/core.clj",
+    "doc/commands.md"
+   ],
+   "support": 3,
+   "occurrences": 27,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 298,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/ws-state-settings.txt"
+   ],
+   "support": 3,
+   "occurrences": 27,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 299,
+   "files": [
+    "components/creator/test/polylith/clj/core/creator/workspace_test.clj",
+    "components/test-runner/src/polylith/clj/core/test_runner/core.clj"
+   ],
+   "support": 3,
+   "occurrences": 28,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "f74042c84d72cb0b2ea43d491892ba463cc7824c",
+    "deltaPos": 122
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 300,
+   "files": [
+    "components/deps/src/polylith/clj/core/deps/lib_deps.clj",
+    "components/version/src/polylith/clj/core/version/interface.clj"
+   ],
+   "support": 3,
+   "occurrences": 29,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "5f74c8b8675dbb091258165d327af3958716a247",
+    "deltaPos": 21
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 301,
+   "files": [
+    "components/command/src/polylith/clj/core/command/core.clj",
+    "doc/commands.md"
+   ],
+   "support": 3,
+   "occurrences": 31,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 302,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/local-dep-old-format/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 32,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 303,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/output/local-dep/ws.edn"
+   ],
+   "support": 3,
+   "occurrences": 34,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 304,
+   "files": [
+    "components/version/src/polylith/clj/core/version/interface.clj",
+    "scripts/create-example.sh"
+   ],
+   "support": 3,
+   "occurrences": 35,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "8586ca47b597d90b24173fce5fefde39e6aeb38d",
+    "deltaPos": 10
+   },
+   "firstSupport": {
+    "commit": "4b08954dbdc6305e365265a2c6e9d4c571067bca",
+    "deltaPos": 49
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 305,
+   "files": [
+    "components/change/src/polylith/clj/core/change/environments_to_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 306,
+   "files": [
+    "components/change/test/polylith/clj/core/change/environments_to_test_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "08fbcb31103caa7cd536e4f7a165d5ddb18ed944",
+    "deltaPos": 129
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 307,
+   "files": [
+    "components/deps/src/polylith/clj/core/deps/text_table/lib_table.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 308,
+   "files": [
+    "components/deps/test/polylith/clj/core/deps/text_table/lib_table_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 309,
+   "files": [
+    "components/git/test/polylith/clj/core/git/interface_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "13afdbce17295bd8dce089a085b570810a731f0f",
+    "deltaPos": 61
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 310,
+   "files": [
+    "components/help/src/polylith/clj/core/help/core.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 311,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "7551fb659cb8bf18343376cb0f9f994e99f9d9e3",
+    "deltaPos": 96
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 312,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_base.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 313,
+   "files": [
+    "components/help/src/polylith/clj/core/help/create_component.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "013c0e4531164c83213dc967edf8a45d4a0b2b30",
+    "deltaPos": 101
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 314,
+   "files": [
+    "components/help/src/polylith/clj/core/help/deps.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 315,
+   "files": [
+    "components/help/src/polylith/clj/core/help/interface.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 316,
+   "files": [
+    "images/development.png",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "6ddaebe047f7036a30d9b62ff5d1bdb9ca14bf18",
+    "deltaPos": 69
+   },
+   "firstSupport": {
+    "commit": "d6abede1152321c941165e90907e492c6331b584",
+    "deltaPos": 136
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 317,
+   "files": [
+    "images/realworld-lib-deps.png",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4de3daea757469220156dcdc89ca8544a0a88520",
+    "deltaPos": 133
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 318,
+   "files": [
+    "images/refresh-ws-2.png",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 62,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "firstSupport": {
+    "commit": "424fcee96ad0b2e243fc1e27d1ffe7eb65bbfb2a",
+    "deltaPos": 138
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 319,
+   "files": [
+    "components/user-config/src/polylith/clj/core/user_config/core.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "f83f1867cbfe2132fefee1213adabf0a8a8c10d1",
+    "deltaPos": 95
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 320,
+   "files": [
+    "components/workspace-clj/test/polylith/clj/core/workspace_clj/environment_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "25a00a63182cacca3860ca95bc8313264d80e089",
+    "deltaPos": 124
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 321,
+   "files": [
+    "components/workspace/src/polylith/clj/core/workspace/text_table/info_tables.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "424fcee96ad0b2e243fc1e27d1ffe7eb65bbfb2a",
+    "deltaPos": 138
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 322,
+   "files": [
+    "components/workspace/test/polylith/clj/core/workspace/environment_test.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "744e84da666f2afdc2055d9cf60f587e6fc5bdbf",
+    "deltaPos": 114
+   },
+   "firstSupport": {
+    "commit": "4df8a95a663dac25821e5130394d205f18cd6297",
+    "deltaPos": 141
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 323,
+   "files": [
+    "environments/deployer/deps.edn",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "b9acbe5de0146af6f57a300334367bc928323a65",
+    "deltaPos": 125
+   },
+   "firstSupport": {
+    "commit": "80f3c3a06b276e0fe5abab449a89593a113b45d6",
+    "deltaPos": 137
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 324,
+   "files": [
+    "readme.md",
+    "scripts/output/output.sh"
+   ],
+   "support": 3,
+   "occurrences": 63,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "adb8617af2df33361e9eb5715693b5c8a08e0b43",
+    "deltaPos": 42
+   },
+   "firstSupport": {
+    "commit": "27f888577c73781d9fc15bf81e2c6ab21b179231",
+    "deltaPos": 60
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 325,
+   "files": [
+    "components/command/src/polylith/clj/core/command/create.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 64,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "acce4e6f93af92edb392c919878b047b2530a862",
+    "deltaPos": 106
+   },
+   "firstSupport": {
+    "commit": "1c462c1b10b32cb7265eccf7b64c1d0346e75e13",
+    "deltaPos": 134
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 326,
+   "files": [
+    "components/api/src/polylith/clj/core/api/core.clj",
+    "readme.md"
+   ],
+   "support": 3,
+   "occurrences": 65,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "c0985a9df68c6886eca304a902bf656cc055cb76",
+    "deltaPos": 117
+   },
+   "firstSupport": {
+    "commit": "51d87d1f172189e290624de367055b435cbe46c6",
+    "deltaPos": 132
+   },
+   "subwindowPresence": [
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  },
+  {
+   "rank": 327,
+   "files": [
+    "readme.md",
+    "scripts/output/help/01-help.txt"
+   ],
+   "support": 3,
+   "occurrences": 67,
+   "emitted": false,
+   "mostRecentSupport": {
+    "commit": "68d2da4d9b19a0464b5aea36a4d180b79e5b15e6",
+    "deltaPos": 47
+   },
+   "firstSupport": {
+    "commit": "c92acd5829c6da2fa90f5c9d7f5a0c5f7c9742f5",
+    "deltaPos": 50
+   },
+   "subwindowPresence": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "scoredSupportingEvents": 3
+  }
+ ]
+}

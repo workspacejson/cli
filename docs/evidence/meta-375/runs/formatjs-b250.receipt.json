@@ -1,0 +1,199 @@
+{
+  "label": "formatjs-b250",
+  "repoRoot": "formatjs-b250",
+  "pinnedRevision": "50031ffe85c20ac46491c0afd0a43704893daac0",
+  "shallow": false,
+  "firstParentCountAtPin": 6295,
+  "producerElapsedMs": 24953,
+  "historyRefresh": {
+    "requested": true,
+    "mined": true,
+    "preserved": false
+  },
+  "artifact": {
+    "path": ".agents/workspace.json",
+    "bytes": 113797,
+    "sha256": "930ad607d6778f376deb451b31b0954045119f10ae6b8d7f5e02c16d167c037a",
+    "specVersion": "0.4",
+    "basisRevision": "50031ffe85c20ac46491c0afd0a43704893daac0",
+    "coChangePresent": true,
+    "entryCount": 50,
+    "historyBlockSha256": "a20a0b47081895aecec6927c9bbbc2d7d40015659a074dfa164bf6c3590fe921",
+    "shapeAudit": {
+      "distinctKeysets": [
+        "files,occurrences,support"
+      ],
+      "anyStoredRate": false,
+      "anyGeneratedFlag": false,
+      "allPairsUtf8Ordered": true,
+      "supportLteOccurrences": true,
+      "minSupportEmitted": 19,
+      "maxSupportEmitted": 94
+    },
+    "topEntries": [
+      {
+        "files": [
+          "package.json",
+          "pnpm-lock.yaml"
+        ],
+        "support": 94,
+        "occurrences": 238
+      },
+      {
+        "files": [
+          "packages/intl-displaynames/BUILD.bazel",
+          "packages/intl-listformat/BUILD.bazel"
+        ],
+        "support": 28,
+        "occurrences": 28
+      },
+      {
+        "files": [
+          "packages/intl-displaynames/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 28,
+        "occurrences": 29
+      },
+      {
+        "files": [
+          "packages/intl-listformat/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 28,
+        "occurrences": 29
+      },
+      {
+        "files": [
+          "packages/intl-displaynames/BUILD.bazel",
+          "packages/intl-pluralrules/BUILD.bazel"
+        ],
+        "support": 27,
+        "occurrences": 29
+      },
+      {
+        "files": [
+          "packages/intl-listformat/BUILD.bazel",
+          "packages/intl-pluralrules/BUILD.bazel"
+        ],
+        "support": 27,
+        "occurrences": 29
+      },
+      {
+        "files": [
+          "packages/intl-pluralrules/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 27,
+        "occurrences": 30
+      },
+      {
+        "files": [
+          "packages/intl-datetimeformat/BUILD.bazel",
+          "packages/intl-displaynames/BUILD.bazel"
+        ],
+        "support": 26,
+        "occurrences": 33
+      },
+      {
+        "files": [
+          "packages/intl-datetimeformat/BUILD.bazel",
+          "packages/intl-listformat/BUILD.bazel"
+        ],
+        "support": 26,
+        "occurrences": 33
+      },
+      {
+        "files": [
+          "packages/intl-datetimeformat/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 26,
+        "occurrences": 34
+      }
+    ]
+  },
+  "validation": {
+    "valid": true,
+    "errorCount": 0,
+    "errors": []
+  },
+  "receipts": {
+    "completeness": {
+      "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+      "reason": "MINED",
+      "detail": "mined 500 first-parent transition(s) from 50031ffe85c20ac46491c0afd0a43704893daac0; 143865 pair(s) at or above 1 co-occurrence(s)"
+    },
+    "basisWindow": {
+      "basisRevision": "HEAD",
+      "basisCommit": "50031ffe85c20ac46491c0afd0a43704893daac0",
+      "windowTransitions": 500,
+      "availableTransitions": 6295,
+      "extractedTransitions": 500,
+      "windowTruncated": true
+    },
+    "scoringBasis": {
+      "weightingVersion": "META-289 v2.2.1",
+      "sizeWeightNumerator": 10,
+      "positionDecayHalfLife": 250,
+      "maxScoredFileCount": 50,
+      "basisRevision": "50031ffe85c20ac46491c0afd0a43704893daac0",
+      "windowOldestCommit": "15b3917db29ed743ad2960017859e509e61a4f15",
+      "windowNewestCommit": "50031ffe85c20ac46491c0afd0a43704893daac0",
+      "decayOriginPosition": 499
+    },
+    "exclusions": {
+      "maxFileCount": 50,
+      "scoredEventCount": 479,
+      "excludedEventCount": 21,
+      "excludedCommits": [
+        "bc79a4b3fc46356ec21a29ccbbb0f19063618e2a",
+        "93744d4732ab2dfdc93e7ddb2a73e80a6e461534",
+        "69fdebd037ac391606c039b42f4081de28aaf5c5",
+        "4c04aa2726107ab1d0b9dab8a54a82fa62a73680",
+        "910f83e70f9f0f0a33f7aa11b74b7763231cc8d0",
+        "e46b88040ba7feaa28e76d085c8666a30d547169",
+        "57d822b5445ae811e2872c58ed61dba580d19afc",
+        "4224da31479e6b0bfb3d7d7a7059c44bdae7c4f0",
+        "ee67d735a18e003ad9cef050241512a8ee43c14b",
+        "cab7b446408e5d2e17a5ec1bdce7efcf9f7f812e",
+        "24c35e074bca39d2118fc7e769d6917a5bc25d8a",
+        "0f5e9f8d4fcc2e2c3e5a4642bdcd87d52cdda40a",
+        "c8a49977d6b1fd5cac824a6b08661d0ac2b8ea8a",
+        "9298fba2c560cf455719b56a2c787171975c5daf",
+        "e778a9094cc08a63b12cfbbba3560c0e1e1d4bb8",
+        "303ee1464b52c45cbb5af504b7848308b87ee94f",
+        "19952b13da35fe21c3caf18b9eda103343627d1c",
+        "eae0fff3eff9d55260fc610cc5f717c2d34c55fa",
+        "d86264a068023158633d74043f3bdc07da5f0d5b",
+        "ab0fa561f4483f95afa2531a28ef02e5a3825425",
+        "470f98a083308aab438808a40569d39ca1342b31"
+      ],
+      "excludedCommitsTotal": 21
+    },
+    "selection": {
+      "minSupport": 3,
+      "pairsBeforeCap": 1776,
+      "pairsEmitted": 50,
+      "cap": 50,
+      "rankingRule": "support DESC, then occurrences ASC, then files[0] ASC by UTF-8 bytes, then files[1] ASC by UTF-8 bytes",
+      "capBound": true
+    },
+    "pairsEmitted": 50
+  },
+  "crossCheck": {
+    "producerEntries": 50,
+    "receiptEntries": 50,
+    "identical": true
+  },
+  "determinism": {
+    "secondRunHistoryBlockSha256": "a20a0b47081895aecec6927c9bbbc2d7d40015659a074dfa164bf6c3590fe921",
+    "historyBlockStable": true,
+    "wholeFileIdentical": true,
+    "secondRunRefresh": {
+      "requested": true,
+      "mined": true,
+      "preserved": false
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "label": "formatjs-b100",
+  "repoRoot": "formatjs-b100",
+  "pinnedRevision": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+  "shallow": false,
+  "firstParentCountAtPin": 6445,
+  "producerElapsedMs": 24966,
+  "historyRefresh": {
+    "requested": true,
+    "mined": true,
+    "preserved": false
+  },
+  "artifact": {
+    "path": ".agents/workspace.json",
+    "bytes": 115665,
+    "sha256": "ecafea67326b32756704e0f5d7a8b3a0f0ca3af6aee826bf9a0aa368eeffb0e0",
+    "specVersion": "0.4",
+    "basisRevision": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+    "coChangePresent": true,
+    "entryCount": 50,
+    "historyBlockSha256": "0868f1fa39f487637f69b64013db1583a8881aad2d7026efe21c55809d67c19f",
+    "shapeAudit": {
+      "distinctKeysets": [
+        "files,occurrences,support"
+      ],
+      "anyStoredRate": false,
+      "anyGeneratedFlag": false,
+      "allPairsUtf8Ordered": true,
+      "supportLteOccurrences": true,
+      "minSupportEmitted": 10,
+      "maxSupportEmitted": 99
+    },
+    "topEntries": [
+      {
+        "files": [
+          "package.json",
+          "pnpm-lock.yaml"
+        ],
+        "support": 99,
+        "occurrences": 244
+      },
+      {
+        "files": [
+          "MODULE.bazel.lock",
+          "package.json"
+        ],
+        "support": 34,
+        "occurrences": 149
+      },
+      {
+        "files": [
+          "Cargo.lock",
+          "crates/formatjs_cli/Cargo.toml"
+        ],
+        "support": 31,
+        "occurrences": 47
+      },
+      {
+        "files": [
+          "MODULE.bazel.lock",
+          "pnpm-lock.yaml"
+        ],
+        "support": 31,
+        "occurrences": 255
+      },
+      {
+        "files": [
+          ".github/workflows/release.yml",
+          "package.json"
+        ],
+        "support": 17,
+        "occurrences": 134
+      },
+      {
+        "files": [
+          "examples/rescripts/package.json",
+          "examples/rescripts/pnpm-lock.yaml"
+        ],
+        "support": 15,
+        "occurrences": 18
+      },
+      {
+        "files": [
+          "Cargo.lock",
+          "MODULE.bazel.lock"
+        ],
+        "support": 15,
+        "occurrences": 93
+      },
+      {
+        "files": [
+          "packages/intl-displaynames/BUILD.bazel",
+          "packages/intl-listformat/BUILD.bazel"
+        ],
+        "support": 14,
+        "occurrences": 14
+      },
+      {
+        "files": [
+          "packages/intl-displaynames/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 14,
+        "occurrences": 16
+      },
+      {
+        "files": [
+          "packages/intl-listformat/BUILD.bazel",
+          "packages/intl-relativetimeformat/BUILD.bazel"
+        ],
+        "support": 14,
+        "occurrences": 16
+      }
+    ]
+  },
+  "validation": {
+    "valid": true,
+    "errorCount": 0,
+    "errors": []
+  },
+  "receipts": {
+    "completeness": {
+      "state": "QUALIFYING_RELATIONSHIP_OBSERVED",
+      "reason": "MINED",
+      "detail": "mined 500 first-parent transition(s) from f3f07cd92a7ffb8e4686187aaa09dc3669f001da; 49066 pair(s) at or above 1 co-occurrence(s)"
+    },
+    "basisWindow": {
+      "basisRevision": "HEAD",
+      "basisCommit": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+      "windowTransitions": 500,
+      "availableTransitions": 6445,
+      "extractedTransitions": 500,
+      "windowTruncated": true
+    },
+    "scoringBasis": {
+      "weightingVersion": "META-289 v2.2.1",
+      "sizeWeightNumerator": 10,
+      "positionDecayHalfLife": 250,
+      "maxScoredFileCount": 50,
+      "basisRevision": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+      "windowOldestCommit": "2698e8252911ea5ffc6d97e00fee6ac723c7ff88",
+      "windowNewestCommit": "f3f07cd92a7ffb8e4686187aaa09dc3669f001da",
+      "decayOriginPosition": 499
+    },
+    "exclusions": {
+      "maxFileCount": 50,
+      "scoredEventCount": 481,
+      "excludedEventCount": 19,
+      "excludedCommits": [
+        "24c35e074bca39d2118fc7e769d6917a5bc25d8a",
+        "0f5e9f8d4fcc2e2c3e5a4642bdcd87d52cdda40a",
+        "c8a49977d6b1fd5cac824a6b08661d0ac2b8ea8a",
+        "9298fba2c560cf455719b56a2c787171975c5daf",
+        "e778a9094cc08a63b12cfbbba3560c0e1e1d4bb8",
+        "303ee1464b52c45cbb5af504b7848308b87ee94f",
+        "19952b13da35fe21c3caf18b9eda103343627d1c",
+        "eae0fff3eff9d55260fc610cc5f717c2d34c55fa",
+        "d86264a068023158633d74043f3bdc07da5f0d5b",
+        "ab0fa561f4483f95afa2531a28ef02e5a3825425",
+        "470f98a083308aab438808a40569d39ca1342b31",
+        "77eccdb8bbe62fd9cf874b1fa6ba68aa3ed902de",
+        "368aa193b14dcf4bff5db38034b27eb6d50c4d04",
+        "7930811f7b8d23093aa730ad7050fe8cf116f8fb",
+        "c6ddb0e82c15c43e58010384213c4b183a162e0d",
+        "6449dd1e23d5bac9ffacd5b4918cea0728d09f3a",
+        "ebb9948d10b39e4970a71e685c8446b24b768a59",
+        "afe004c6e7797d3e05ae58be3658c4d2521ca07c",
+        "b53acd03db36a661b7332e49407c10fd1b275924"
+      ],
+      "excludedCommitsTotal": 19
+    },
+    "selection": {
+      "minSupport": 3,
+      "pairsBeforeCap": 1242,
+      "pairsEmitted": 50,
+      "cap": 50,
+      "rankingRule": "support DESC, then occurrences ASC, then files[0] ASC by UTF-8 bytes, then files[1] ASC by UTF-8 bytes",
+      "capBound": true
+    },
+    "pairsEmitted": 50
+  },
+  "crossCheck": {
+    "producerEntries": 50,
+    "receiptEntries": 50,
+    "identical": true
+  },
+  "determinism": {
+    "secondRunHistoryBlockSha256": "0868f1fa39f487637f69b64013db1583a8881aad2d7026efe21c55809d67c19f",
+    "historyBlockStable": true,
+    "wholeFileIdentical": true,
+    "secondRunRefresh": {
+      "requested": true,
+      "mined": true,
+      "preserved": false
+    }
+  }
+}
