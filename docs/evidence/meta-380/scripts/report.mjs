@@ -15,6 +15,9 @@ const U = JSON.parse(readFileSync(`${DIR}/raw/ranked-order.json`, 'utf8'));
 
 const PREREG = '5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d';
 const PREOUT = '04557b2e3f33636e53fbfc5d7bd857315960083f';
+// The commit carrying raw/outcomes.json, raw/results.json and raw/validation.json.
+const RESULTS_SHA = process.env.META380_RESULTS_SHA ?? '752f089ad3d26e826c66aae1f5fb8fb7fb167184';
+const INTERPRETATION_BOUNDARY = 'Establishes only reproducible observational later test-file co-touch signal. Does NOT establish dependency, coverage, required tests, affected tests, regression-catching capability, correctness, impact, risk, which tests an agent should run, which files an agent should edit, or agent usefulness.';
 const KS = [1, 3, 5, 10];
 const ORDER = ['glideapps/quicktype', 'solidjs/solid-start', 'tinymce/tinymce', 'tutao/tutanota', 'refined-github/refined-github'];
 const by = Object.fromEntries(R.repos.map((x) => [x.repo, x]));
@@ -867,7 +870,7 @@ requires a separate explicit decision.
 | -- | -- |
 | Preregistration | \`${PREREG}\` |
 | Pre-outcome freeze | \`${PREOUT}\` |
-| Final evidence | *(recorded in \`RECEIPT.md\` after commit)* |
+| META-380 results | \`${RESULTS_SHA}\` |
 `);
 console.log('part 4 done');
 
@@ -880,7 +883,7 @@ const PHASE_A_FROZEN = [
 ];
 const listFiles = (d, base = '') => readdirSync(join(DIR, d), { withFileTypes: true })
   .flatMap((e) => (e.isDirectory() ? listFiles(join(d, e.name), join(base, e.name)) : [join(base, e.name)]));
-const all = [...listFiles('.')].filter((p) => !p.startsWith('.')).sort();
+const all = [...listFiles('.')].filter((p) => !p.startsWith('.') && p !== 'MANIFEST.json').sort();
 const fileSha = (p) => createHash('sha256').update(readFileSync(join(DIR, p))).digest('hex');
 
 // Byte-for-byte check of every Phase-A artifact against the pre-outcome commit.
@@ -892,44 +895,7 @@ const frozenCheck = PHASE_A_FROZEN.map((p) => {
   return { path: p, preOutcomeBlob: committed, workingBlob: working, unchanged: committed !== null && committed === working };
 });
 
-const manifest = {
-  issue: 'META-380',
-  title: 'Replicate source-test historical residual on unseen TypeScript repositories',
-  preregistration: PREREG,
-  preOutcomeCommit: PREOUT,
-  stage: 'PHASE-B-COMPLETE',
-  disposition: R.disposition,
-  dispositionRule: R.rule,
-  I: R.I, P: R.P, N: R.N,
-  primaryMetric: 'macro recall@10 over POSITIVE queries, per repository',
-  materiality: 0.05,
-  kValues: KS,
-  cohort: ORDER.map((n) => {
-    const x = by[n], a = C.strata.TypeScript.attempts.find((y) => y.full_name === n);
-    return { fullName: n, pin: x ? P.repos[n].pin : null, selectionRank: a.rank, orderKey: a.orderKey,
-      queries: x.counts.total, POSITIVE: x.counts.POSITIVE, NEW_TEST_ONLY: x.counts.NEW_TEST_ONLY,
-      ZERO_TEST_TOUCH: x.counts.ZERO_TEST_TOUCH,
-      b2Validity: x.b2Disposition, b2Failures: x.b2Failures, informative: x.informative,
-      coverageH: x.methods.H.coverage,
-      recallAt10: { H: x.methods.H.recall[10], B0: x.methods.B0.recall[10], B1: x.methods.B1.recall[10], B2: x.methods.B2.recall[10] },
-      delta0: x.delta0, delta2: x.delta2, noninflated: x.noninflated, POS: x.POS, NEG: x.NEG };
-  }),
-  validation: {
-    invariants: { total: invRows.length, pass: invRows.filter((r) => r.status === 'PASS').length },
-    redTests: { total: redRows.length, pass: redRows.filter((r) => r.status === 'PASS').length, allNonInert: redRows.every((r) => r.status === 'PASS') },
-  },
-  deviations: ['D1 symlinks excluded from B2 traversal (pre-freeze)',
-    'D2 incremental B2 graph construction (pre-freeze)',
-    'D3 b2EdgeCount diverges from full rebuild; zero ranking effect (post-freeze finding)',
-    'D4 git rename-detection limit on 1 tinymce commit (environment)',
-    'D5 Phase-A descriptive docs authored in Phase B from frozen raw/ (process)'],
-  phaseAFrozenArtifacts: frozenCheck,
-  files: all.map((p) => ({ path: p, bytes: statSync(join(DIR, p)).size, sha256: fileSha(p) })),
-  toolchain: { node: process.version, git: execFileSync('git', ['--version'], { encoding: 'utf8' }).trim(), typescript: '5.9.3' },
-  interpretationBoundary: 'Establishes only reproducible observational later test-file co-touch signal. Does NOT establish dependency, coverage, required tests, affected tests, regression-catching capability, correctness, impact, risk, which tests an agent should run, which files an agent should edit, or agent usefulness.',
-};
-writeFileSync(`${DIR}/MANIFEST.json`, `${JSON.stringify(manifest, null, 2)}\n`);
-console.log('wrote MANIFEST.json');
+
 
 W('RECEIPT.md', `${HDR}# RECEIPT — META-380
 
@@ -942,9 +908,9 @@ ${PRE}
 | META-289 preregistration | \`8f3f762dbc6ae7006f2317fb6137e6e2a754a92a\` | verified remotely |
 | META-289 pre-outcome freeze | \`7bd2f17c1b715875d0dc8dbace5d2002f46a29dd\` | verified remotely |
 | META-379 diagnostic | \`e1b2cfa42d75f623455677283a894d21b20d0c53\` | verified remotely |
-| **META-380 preregistration** | \`${PREREG}\` | *(verified at closeout)* |
-| **META-380 pre-outcome freeze** | \`${PREOUT}\` | *(pushed and verified at closeout)* |
-| **META-380 final evidence** | *(recorded at closeout)* | *(verified at closeout)* |
+| **META-380 preregistration** | \`${PREREG}\` | verified via GitHub API at closeout |
+| **META-380 pre-outcome freeze** | \`${PREOUT}\` | pushed at closeout; verified via GitHub API |
+| **META-380 results** | \`${RESULTS_SHA}\` | verified via GitHub API at closeout |
 
 ## Phase-A artifacts preserved byte-for-byte
 
@@ -1003,6 +969,46 @@ Toolchain: node ${process.version}, ${execFileSync('git', ['--version'], { encod
 
 ## Interpretation boundary
 
-${manifest.interpretationBoundary}
+${INTERPRETATION_BOUNDARY}
 `);
 console.log('part 5 done');
+
+const manifest = {
+  issue: 'META-380',
+  title: 'Replicate source-test historical residual on unseen TypeScript repositories',
+  preregistration: PREREG,
+  preOutcomeCommit: PREOUT,
+  resultsCommit: RESULTS_SHA,
+  stage: 'PHASE-B-COMPLETE',
+  disposition: R.disposition,
+  dispositionRule: R.rule,
+  I: R.I, P: R.P, N: R.N,
+  primaryMetric: 'macro recall@10 over POSITIVE queries, per repository',
+  materiality: 0.05,
+  kValues: KS,
+  cohort: ORDER.map((n) => {
+    const x = by[n], a = C.strata.TypeScript.attempts.find((y) => y.full_name === n);
+    return { fullName: n, pin: x ? P.repos[n].pin : null, selectionRank: a.rank, orderKey: a.orderKey,
+      queries: x.counts.total, POSITIVE: x.counts.POSITIVE, NEW_TEST_ONLY: x.counts.NEW_TEST_ONLY,
+      ZERO_TEST_TOUCH: x.counts.ZERO_TEST_TOUCH,
+      b2Validity: x.b2Disposition, b2Failures: x.b2Failures, informative: x.informative,
+      coverageH: x.methods.H.coverage,
+      recallAt10: { H: x.methods.H.recall[10], B0: x.methods.B0.recall[10], B1: x.methods.B1.recall[10], B2: x.methods.B2.recall[10] },
+      delta0: x.delta0, delta2: x.delta2, noninflated: x.noninflated, POS: x.POS, NEG: x.NEG };
+  }),
+  validation: {
+    invariants: { total: invRows.length, pass: invRows.filter((r) => r.status === 'PASS').length },
+    redTests: { total: redRows.length, pass: redRows.filter((r) => r.status === 'PASS').length, allNonInert: redRows.every((r) => r.status === 'PASS') },
+  },
+  deviations: ['D1 symlinks excluded from B2 traversal (pre-freeze)',
+    'D2 incremental B2 graph construction (pre-freeze)',
+    'D3 b2EdgeCount diverges from full rebuild; zero ranking effect (post-freeze finding)',
+    'D4 git rename-detection limit on 1 tinymce commit (environment)',
+    'D5 Phase-A descriptive docs authored in Phase B from frozen raw/ (process)'],
+  phaseAFrozenArtifacts: frozenCheck,
+  files: all.map((p) => ({ path: p, bytes: statSync(join(DIR, p)).size, sha256: fileSha(p) })),
+  toolchain: { node: process.version, git: execFileSync('git', ['--version'], { encoding: 'utf8' }).trim(), typescript: '5.9.3' },
+  interpretationBoundary: INTERPRETATION_BOUNDARY,
+};
+writeFileSync(`${DIR}/MANIFEST.json`, `${JSON.stringify(manifest, null, 2)}\n`);
+console.log('wrote MANIFEST.json');

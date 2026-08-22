@@ -3,6 +3,7 @@
   "title": "Replicate source-test historical residual on unseen TypeScript repositories",
   "preregistration": "5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d",
   "preOutcomeCommit": "04557b2e3f33636e53fbfc5d7bd857315960083f",
+  "resultsCommit": "752f089ad3d26e826c66aae1f5fb8fb7fb167184",
   "stage": "PHASE-B-COMPLETE",
   "disposition": "INSUFFICIENT_REPLICATION_SUPPORT",
   "dispositionRule": "D5",
@@ -290,8 +291,8 @@
     },
     {
       "path": "FIBERY-RECONCILIATION-DRAFT.md",
-      "bytes": 2909,
-      "sha256": "2630d0f54744579b3409e37d3dda99a5d7838af356ed6da5f52d51d3d337fc85"
+      "bytes": 2912,
+      "sha256": "80f73738f00ecf2c2793a3dfa9131af465bdfe89505690009a8888f949c75f83"
     },
     {
       "path": "H-HISTORICAL.md",
@@ -312,6 +313,11 @@
       "path": "PREREGISTRATION.md",
       "bytes": 32752,
       "sha256": "19a9df059a47ac2a07da2b0b7092eac7e93550c0ac9721239bbcbb191264b0b2"
+    },
+    {
+      "path": "RECEIPT.md",
+      "bytes": 5043,
+      "sha256": "dcef84195fcdffd06c53763be72e5a9bbdf7428627d30eff2b1c66c174b34a15"
     },
     {
       "path": "REPORT.md",
@@ -379,6 +385,11 @@
       "sha256": "a3390c47ac83f742ada3ff6e2eab557c76e8798c6dcbc3f2276a345abce886da"
     },
     {
+      "path": "rerun.sh",
+      "bytes": 2782,
+      "sha256": "23849376dde411fc53c1ea9cd70f86c7e68f6e458363fc1dffb87addd747c358"
+    },
+    {
       "path": "scripts/checks.mjs",
       "bytes": 34836,
       "sha256": "78f6b06f7d8d5e56d617bf636d64c3accc078d58672bfdc945d48d97f5cfd013"
@@ -405,8 +416,8 @@
     },
     {
       "path": "scripts/report.mjs",
-      "bytes": 54814,
-      "sha256": "a2fba574afc70f75953c785d1b0c80838e7e26c59d80045c34566b3bb5a84349"
+      "bytes": 55097,
+      "sha256": "91e0d472320ea7bc61844d7e48c0fc559a9092a5c99f462f36046fda22abf5f4"
     },
     {
       "path": "scripts/select-cohort.mjs",

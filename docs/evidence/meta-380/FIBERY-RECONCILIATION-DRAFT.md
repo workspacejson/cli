@@ -58,4 +58,4 @@ requires a separate explicit decision.
 | -- | -- |
 | Preregistration | `5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d` |
 | Pre-outcome freeze | `04557b2e3f33636e53fbfc5d7bd857315960083f` |
-| Final evidence | *(recorded in `RECEIPT.md` after commit)* |
+| META-380 results | `752f089ad3d26e826c66aae1f5fb8fb7fb167184` |

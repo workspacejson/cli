@@ -12,9 +12,9 @@
 | META-289 preregistration | `8f3f762dbc6ae7006f2317fb6137e6e2a754a92a` | verified remotely |
 | META-289 pre-outcome freeze | `7bd2f17c1b715875d0dc8dbace5d2002f46a29dd` | verified remotely |
 | META-379 diagnostic | `e1b2cfa42d75f623455677283a894d21b20d0c53` | verified remotely |
-| **META-380 preregistration** | `5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d` | *(verified at closeout)* |
-| **META-380 pre-outcome freeze** | `04557b2e3f33636e53fbfc5d7bd857315960083f` | *(pushed and verified at closeout)* |
-| **META-380 final evidence** | *(recorded at closeout)* | *(verified at closeout)* |
+| **META-380 preregistration** | `5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d` | verified via GitHub API at closeout |
+| **META-380 pre-outcome freeze** | `04557b2e3f33636e53fbfc5d7bd857315960083f` | pushed at closeout; verified via GitHub API |
+| **META-380 results** | `752f089ad3d26e826c66aae1f5fb8fb7fb167184` | verified via GitHub API at closeout |
 
 ## Phase-A artifacts preserved byte-for-byte
 
