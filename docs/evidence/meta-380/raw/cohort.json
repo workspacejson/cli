@@ -1,0 +1,292 @@
+{
+  "issue": "META-380",
+  "scanBound": 600,
+  "evalN": 200,
+  "cohortSize": 5,
+  "thresholds": {
+    "MIN_FP": 1500,
+    "MIN_SOURCE": 100,
+    "MIN_TEST": 30
+  },
+  "strata": {
+    "TypeScript": {
+      "attempts": [
+        {
+          "full_name": "rejetto/hfs",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": false
+          },
+          "pin": "1635e687391b7a2e1a52ac5c8c25a4288fe52a11",
+          "pinDate": "2026-07-26T10:17:55+01:00",
+          "firstParentCommits": 3241,
+          "sourceFilesAtPin": 174,
+          "testFilesAtPin": 6,
+          "failed": "V5",
+          "rank": 1,
+          "orderKey": "0096375c6b820a4b4f65748073a4717512f264e4ca9bae38d6e4a58a8090d93c"
+        },
+        {
+          "full_name": "shfshanyue/Daily-Question",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "710fb4ae0b6cb6432679567b31deb1649567b3fd",
+          "pinDate": "2026-03-27T15:13:10+08:00",
+          "firstParentCommits": 114,
+          "failed": "V3",
+          "rank": 2,
+          "orderKey": "00fb50bed63adceca9b4881ba3ea825f4799641e3b1a2e453a160e85d386e28b"
+        },
+        {
+          "full_name": "glideapps/quicktype",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true,
+            "V7": true
+          },
+          "pin": "10cdaef273530caef2fdf9afdc07cdd0d1f9cae7",
+          "pinDate": "2026-07-24T16:05:02-04:00",
+          "firstParentCommits": 1637,
+          "sourceFilesAtPin": 225,
+          "testFilesAtPin": 65,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "tsconfigCount": 10,
+          "dir": "/private/tmp/meta-380-clones/glideapps__quicktype",
+          "passed": true,
+          "rank": 3,
+          "orderKey": "0115a6ccf2fd991bb7d016392d362469b9784f975a09bba35244e8965dd20e8c"
+        },
+        {
+          "full_name": "solidjs/solid-start",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true,
+            "V7": true
+          },
+          "pin": "22f07b8bbeeb17b52660d32be0132acc9841e8ad",
+          "pinDate": "2026-08-20T23:22:13+02:00",
+          "firstParentCommits": 1771,
+          "sourceFilesAtPin": 162,
+          "testFilesAtPin": 92,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "tsconfigCount": 10,
+          "dir": "/private/tmp/meta-380-clones/solidjs__solid-start",
+          "passed": true,
+          "rank": 4,
+          "orderKey": "0158860aaf2c2f7fa4b9906938088179a39af74178e2e1f88d3eab4c06bbdb69"
+        },
+        {
+          "full_name": "tinymce/tinymce",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true,
+            "V7": true
+          },
+          "pin": "9c1ee77ca0398837538115afa39e960e1a25c122",
+          "pinDate": "2026-08-17T10:55:09+10:00",
+          "firstParentCommits": 8862,
+          "sourceFilesAtPin": 2360,
+          "testFilesAtPin": 1591,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "tsconfigCount": 24,
+          "dir": "/private/tmp/meta-380-clones/tinymce__tinymce",
+          "passed": true,
+          "rank": 5,
+          "orderKey": "016a341b611c8a532945664ad4973677fa15615e9dfb8137a8a5ae697caba9f8"
+        },
+        {
+          "full_name": "steveukx/git-js",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "c427fbad33f1f2b11341f1cf852eedecbb106400",
+          "pinDate": "2026-05-10T21:39:47+01:00",
+          "firstParentCommits": 800,
+          "failed": "V3",
+          "rank": 6,
+          "orderKey": "01793b0387871aa034bc72f86e32d8acf9c44b7554e64382ba95be4df37a229a"
+        },
+        {
+          "full_name": "lyswhut/lx-music-mobile",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "d2956044533150057d65bfeaf2ae0fb5179433f5",
+          "pinDate": "2026-05-01T17:26:46+08:00",
+          "firstParentCommits": 1135,
+          "failed": "V3",
+          "rank": 7,
+          "orderKey": "01b10f62759f3233a57731dc57908eaff2dcbe110938d3cdc633d6887028b21d"
+        },
+        {
+          "full_name": "callstack/react-native-testing-library",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "17a3435962a0d3958bba95685f64d4f5241623c4",
+          "pinDate": "2026-08-13T10:22:15+02:00",
+          "firstParentCommits": 1224,
+          "failed": "V3",
+          "rank": 8,
+          "orderKey": "01f2b25d90d37754e81cddedb3be5cc7d4593a999060471402c27bece212e852"
+        },
+        {
+          "full_name": "tutao/tutanota",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true,
+            "V7": true
+          },
+          "pin": "0f34397ae95db354b707ab963bec84cdcbd8f5b6",
+          "pinDate": "2026-08-21T18:29:50+02:00",
+          "firstParentCommits": 10653,
+          "sourceFilesAtPin": 1541,
+          "testFilesAtPin": 342,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "tsconfigCount": 3,
+          "dir": "/private/tmp/meta-380-clones/tutao__tutanota",
+          "passed": true,
+          "rank": 9,
+          "orderKey": "0256a166496896c56e18950a1f0e8e77ee9133275db9640fdcb3aa0a26a0574c"
+        },
+        {
+          "full_name": "ytmdesktop/ytmdesktop",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": false
+          },
+          "pin": "fd0e4a1abaa4f3f7f88a07e3710f830867682fd8",
+          "pinDate": "2026-08-12T12:09:11Z",
+          "firstParentCommits": 742,
+          "failed": "V3",
+          "rank": 10,
+          "orderKey": "029cf07de12ac794246438534969f8b2b560825dd52e6765801c2547ebddc480"
+        },
+        {
+          "full_name": "refined-github/refined-github",
+          "checks": {
+            "V1": true,
+            "V2": true,
+            "V3": true,
+            "V4": true,
+            "V5": true,
+            "V6": true,
+            "V7": true
+          },
+          "pin": "cc22fe3434b082a982da1efcfbd4f14b4518c747",
+          "pinDate": "2026-08-19T10:11:44Z",
+          "firstParentCommits": 4886,
+          "sourceFilesAtPin": 306,
+          "testFilesAtPin": 31,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "tsconfigCount": 1,
+          "dir": "/private/tmp/meta-380-clones/refined-github__refined-github",
+          "passed": true,
+          "rank": 11,
+          "orderKey": "02c506cc2d30760302aac71092923b8b12b112caff90e29f5020c584b5f36f5d"
+        }
+      ],
+      "selected": [
+        {
+          "full_name": "glideapps/quicktype",
+          "rank": 3,
+          "pin": "10cdaef273530caef2fdf9afdc07cdd0d1f9cae7",
+          "pinDate": "2026-07-24T16:05:02-04:00",
+          "firstParentCommits": 1637,
+          "sourceFilesAtPin": 225,
+          "testFilesAtPin": 65,
+          "tsconfigCount": 10,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/meta-380-clones/glideapps__quicktype"
+        },
+        {
+          "full_name": "solidjs/solid-start",
+          "rank": 4,
+          "pin": "22f07b8bbeeb17b52660d32be0132acc9841e8ad",
+          "pinDate": "2026-08-20T23:22:13+02:00",
+          "firstParentCommits": 1771,
+          "sourceFilesAtPin": 162,
+          "testFilesAtPin": 92,
+          "tsconfigCount": 10,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/meta-380-clones/solidjs__solid-start"
+        },
+        {
+          "full_name": "tinymce/tinymce",
+          "rank": 5,
+          "pin": "9c1ee77ca0398837538115afa39e960e1a25c122",
+          "pinDate": "2026-08-17T10:55:09+10:00",
+          "firstParentCommits": 8862,
+          "sourceFilesAtPin": 2360,
+          "testFilesAtPin": 1591,
+          "tsconfigCount": 24,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/meta-380-clones/tinymce__tinymce"
+        },
+        {
+          "full_name": "tutao/tutanota",
+          "rank": 9,
+          "pin": "0f34397ae95db354b707ab963bec84cdcbd8f5b6",
+          "pinDate": "2026-08-21T18:29:50+02:00",
+          "firstParentCommits": 10653,
+          "sourceFilesAtPin": 1541,
+          "testFilesAtPin": 342,
+          "tsconfigCount": 3,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/meta-380-clones/tutao__tutanota"
+        },
+        {
+          "full_name": "refined-github/refined-github",
+          "rank": 11,
+          "pin": "cc22fe3434b082a982da1efcfbd4f14b4518c747",
+          "pinDate": "2026-08-19T10:11:44Z",
+          "firstParentCommits": 4886,
+          "sourceFilesAtPin": 306,
+          "testFilesAtPin": 31,
+          "tsconfigCount": 1,
+          "scanned": 600,
+          "sourceChangingInScan": 200,
+          "dir": "/private/tmp/meta-380-clones/refined-github__refined-github"
+        }
+      ]
+    }
+  }
+}
