@@ -273,6 +273,6 @@
     "queriesWithTestToSourcePathFraction": 1,
     "queriesRankingDiffersFromB1": 1,
     "testsMovedTop10": 14,
-    "edgeAblationQueriesChanged": 0
+    "edgeAblationQueriesChanged": 1
   }
 }

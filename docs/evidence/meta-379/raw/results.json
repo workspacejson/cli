@@ -1,0 +1,1408 @@
+{
+  "issue": "META-379",
+  "stage": "OUTCOME",
+  "positiveQueries": 68,
+  "b2": {
+    "coverage": 1,
+    "mrr": 0.5550131532173305,
+    "recall": {
+      "1": 0.4191176470588235,
+      "3": 0.5249999999999999,
+      "5": 0.604656862745098,
+      "10": 0.6181372549019608
+    },
+    "precision": {
+      "1": 0.47058823529411764,
+      "3": 0.20588235294117654,
+      "5": 0.14999999999999994,
+      "10": 0.07941176470588233
+    },
+    "fraction": {
+      "1": 0.007535730718838403,
+      "3": 0.02260719215651522,
+      "5": 0.037678653594192,
+      "10": 0.075357307188384
+    },
+    "missingGroundTruth": []
+  },
+  "h": {
+    "coverage": 0.9852941176470589,
+    "mrr": 0.6151506718445237,
+    "recall": {
+      "1": 0.45821078431372547,
+      "3": 0.5519607843137254,
+      "5": 0.6075980392156862,
+      "10": 0.6816176470588236
+    },
+    "precision": {
+      "1": 0.5373134328358209,
+      "3": 0.28855721393034817,
+      "5": 0.23805970149253725,
+      "10": 0.20117270788912572
+    },
+    "fraction": {
+      "1": 0.007424322519194909,
+      "3": 0.0204883112804597,
+      "5": 0.03252432481839504,
+      "10": 0.058592970863625214
+    }
+  },
+  "b1": {
+    "coverage": 1,
+    "mrr": 0.24699316536030935,
+    "recall": {
+      "1": 0.12058823529411763,
+      "3": 0.2541666666666667,
+      "5": 0.3178921568627451,
+      "10": 0.4134803921568627
+    },
+    "precision": {
+      "1": 0.14705882352941177,
+      "3": 0.1029411764705882,
+      "5": 0.07647058823529415,
+      "10": 0.050000000000000024
+    },
+    "fraction": {
+      "1": 0.007535730718838403,
+      "3": 0.02260719215651522,
+      "5": 0.037678653594192,
+      "10": 0.075357307188384
+    }
+  },
+  "hMinusB2": 0.06348039215686274,
+  "perQuery": [
+    {
+      "T": "5197c17b0ebac40a6503f3d9c07c1acdb31087d2",
+      "g": [
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "a003e4529ec01cac87b7f9382aac2b216ff8581b",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "8b4c2dad1cd2876daf3adeb42f33656b1185c575",
+      "g": [
+        "projects/tests/dbs/sql-stuff/reusable-custom-filter.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 0.01694915254237288,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "dc64208ccd2b5675852ed80cbe1a189efb15e64e",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "77ea3f37c922a12baf820ee2b8e4f526f6693493",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "311f4d97a0060aa71faab319b88abdbe1a1e5b82",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "f4ab19b04d4afcbab30049a7568ac5635e8812e6",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "8b71b262d9a58fdc941f36010df669ace9c0c721",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts",
+        "projects/tests/dbs/sqlite3.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "f8357dabdf3fecf0ff7a5c4c8bfabe7f148e88da",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts",
+        "projects/tests/backend-tests/test-express-double-init-request.spec.ts",
+        "projects/tests/backend-tests/test-express-server.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 2,
+            "10": 3
+          }
+        }
+      }
+    },
+    {
+      "T": "2e6f5a41fa733640276f2c9b6a731bcd1471706a",
+      "g": [
+        "projects/tests/backend-tests/all-server-tests.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 0.3333333333333333,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "15c0f6fb57b8c726d5698ddf8c92b7bf75616b12",
+      "g": [
+        "projects/tests/backend-tests/test-koa-server.spec.ts",
+        "projects/tests/backend-tests/test-nuxt-server.spec.ts",
+        "projects/tests/backend-tests/test-sveltekit-server.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 0.1,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "d2d9d57f2f09fbdfbf1bdf88ce24ceaa2ba5334d",
+      "g": [
+        "projects/tests/async-hooks.spec.ts",
+        "projects/tests/backend-tests/test-express-double-init-request.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 0.5,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 2,
+            "10": 2
+          }
+        }
+      }
+    },
+    {
+      "T": "13e3d7cc35bd915a8c3c17c73b9e6f03b214d744",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "1f710d2b8337466706ddba360c077d4318f30ca6",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "866174ec2dbdbe3597fefb2d67e63f5559cd832b",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "e07e0ae10420f99f1d4a6e50699e02432b4cccc0",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "6c85d69ae473128c4ac28364e65bfc4c4d613b60",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "0ddafd16deff23f32796ece428aaaeaf2d93a0d3",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "b94332ba71c7035382090d62e83ca234943db522",
+      "g": [
+        "projects/tests/tests/test-json.spec.ts"
+      ],
+      "suiteSize": 126,
+      "score": {
+        "B2": {
+          "len": 126,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "6d93afb712ed9eb1f161820feec60d6e05d23af1",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 127,
+      "score": {
+        "B2": {
+          "len": 127,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "f30c2f6a783375202c750d31111ad3dbb855c5e8",
+      "g": [
+        "projects/tests/async-hooks.spec.ts",
+        "projects/tests/backend-tests/test-express-double-init-request.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.5,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 2,
+            "10": 2
+          }
+        }
+      }
+    },
+    {
+      "T": "06cd4b37538e9e236cf12cf1f059b00dd40f3c17",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "71dee10a8e3f348a54f749a24afb894e6caaa0e5",
+      "g": [
+        "projects/tests/tests/validatons.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.2,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "f6174565f4258d66842ef1a307353d68a6319a67",
+      "g": [
+        "projects/tests/dbs/rest.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.023255813953488372,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "10e7869a8754607a316447275b84f9549727a1c4",
+      "g": [
+        "projects/tests/tests/validatons.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.2,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "2fa320166a62b3d663b5f34f65c0ca2d2eee60c7",
+      "g": [
+        "projects/tests/tests/RowProvider.spec.ts",
+        "projects/tests/tests/test-many-operations.spec.ts",
+        "projects/tests/tests/validatons.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.012987012987012988,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "891f43169227f6681d4789219aa64abb24611f90",
+      "g": [
+        "projects/tests/tests/relations/test-relations.spec.ts"
+      ],
+      "suiteSize": 131,
+      "score": {
+        "B2": {
+          "len": 131,
+          "rr": 0.014492753623188406,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "e0acdc3fd280f2eeeffce2d2a5e1dbc6d30a1bc1",
+      "g": [
+        "projects/tests/dbs/shared-tests/db-tests.ts",
+        "projects/tests/tests/basicRowFunctionality.spec.ts",
+        "projects/tests/tests/test-where-api.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "65476cb96a17d537e25a0793884cc68737e142f2",
+      "g": [
+        "projects/tests/backend-tests/all-server-tests.ts",
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "fe0985b7d74c5e331fe6a0ea60999301faeb1c4d",
+      "g": [
+        "projects/tests/backend-tests/test-express-server.spec.ts",
+        "projects/tests/tests/test-remult-admin.spec.ts",
+        "projects/tests/tests/test-where-api.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "db4b6322f57d3a9198941b8c5991f3327745d6cc",
+      "g": [
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "5137268f821de5c79d73689440e7688aaec7add6",
+      "g": [
+        "projects/tests/tests/RowProvider.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.3333333333333333,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "d0d2e10cf26de9c9349c2f047a05644f3755a578",
+      "g": [
+        "projects/tests/tests/test-subscribe.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.030303030303030304,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "23da44732758aee47ac213984b3fc53e78565cdf",
+      "g": [
+        "projects/tests/tests/remult-3-basic-tests.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.023809523809523808,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "0ca6902b69f7b4e3c8881db6bd980eebab44847d",
+      "g": [
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "5b1f60120b7d7672fb2e3f86dfed8d3e2ad1fdd3",
+      "g": [
+        "projects/tests/dbs/shared-tests/sql-db-tests.ts",
+        "projects/tests/dbs/sql-server.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.2,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "e52586dfe5b709dbda57ce2e50b029f80d6f8995",
+      "g": [
+        "projects/tests/tests/basicRowFunctionality.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.5,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "ac1cc1c37f977fae2c88c205871d803ac3519889",
+      "g": [
+        "projects/tests/dbs/duckdb.spec.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "57b9b4b64a719ad5d94a2254f06ce5067210629a",
+      "g": [
+        "projects/tests/dbs/rest.spec.ts",
+        "projects/tests/dbs/shared-tests/db-tests.ts"
+      ],
+      "suiteSize": 132,
+      "score": {
+        "B2": {
+          "len": 132,
+          "rr": 0.5,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "56b45f5f35e95e86df8e80f823a82a3cdd24c955",
+      "g": [
+        "projects/tests/dbs/shared-tests/db-tests.ts"
+      ],
+      "suiteSize": 133,
+      "score": {
+        "B2": {
+          "len": 133,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "0e5be90b71141cff52b71984d8d667941ef27d09",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 133,
+      "score": {
+        "B2": {
+          "len": 133,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "fe16b592339a4fec54f3731ddd68b6556d920853",
+      "g": [
+        "projects/tests/tests/basicRowFunctionality.spec.ts"
+      ],
+      "suiteSize": 133,
+      "score": {
+        "B2": {
+          "len": 133,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "ce9ba75ef05f86e9ba8657e2a074f260db46a0a8",
+      "g": [
+        "projects/tests/dbs/shared-tests/test-aggregate.ts",
+        "projects/tests/from-and-to-json.spec.ts",
+        "projects/tests/tests/RowProvider.spec.ts",
+        "projects/tests/tests/test-decorator-precedence.spec.ts"
+      ],
+      "suiteSize": 135,
+      "score": {
+        "B2": {
+          "len": 135,
+          "rr": 0.027777777777777776,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "684ab5bed6697941d5f5a7169ce9bc38231631d3",
+      "g": [
+        "projects/tests/dbs/cloudflare/d1-http.spec.ts",
+        "projects/tests/dbs/cloudflare/d1.spec.ts"
+      ],
+      "suiteSize": 136,
+      "score": {
+        "B2": {
+          "len": 136,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 2,
+            "5": 2,
+            "10": 2
+          }
+        }
+      }
+    },
+    {
+      "T": "b85bd701a2225a1617cc962168133281034394a1",
+      "g": [
+        "projects/tests/dbs/shared-tests/fields-id.ts"
+      ],
+      "suiteSize": 137,
+      "score": {
+        "B2": {
+          "len": 137,
+          "rr": 0.022727272727272728,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "acab82f415a8dac0520b5a199f31630ee4e398a0",
+      "g": [
+        "projects/tests/standard-schema.spec.ts"
+      ],
+      "suiteSize": 138,
+      "score": {
+        "B2": {
+          "len": 138,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "e76044d6daf27081ed6873c7fc023286d16b5feb",
+      "g": [
+        "projects/tests/dbs/shared-tests/db-tests.ts",
+        "projects/tests/dbs/test-sql-database.spec.ts",
+        "projects/tests/tests/live-query-tests.spec.ts",
+        "projects/tests/tests/relations/test-relations.spec.ts"
+      ],
+      "suiteSize": 138,
+      "score": {
+        "B2": {
+          "len": 138,
+          "rr": 0.25,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 2
+          }
+        }
+      }
+    },
+    {
+      "T": "a0b2366d108695aca5f19ab4c4e971b4f83643f9",
+      "g": [
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "ad6ad037ceb697d2357f13168e9064fbbde23bba",
+      "g": [
+        "projects/tests/tests/relations/test-backend-instance-method.spec.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.013157894736842105,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "8255a60ddacab118e55327110494575cd3b1fd0e",
+      "g": [
+        "projects/tests/tests/test-many-operations.spec.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.009523809523809525,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "70bc3353554de3839ecfa94b54862eb180ae5464",
+      "g": [
+        "projects/tests/dbs/shared-tests/db-tests.ts",
+        "projects/tests/tests/TestDataApiResponse.ts",
+        "projects/tests/tests/basicRowFunctionality.spec.ts",
+        "projects/tests/tests/relations/test-to-one-relation-variatons/test-relations-on-api.spec.ts",
+        "projects/tests/tests/test-data-api/predefined-filter.spec.ts",
+        "projects/tests/tests/test-data-api/test-put-with-validation.spec.ts",
+        "projects/tests/tests/test-many-to-one-relation-in-entity.spec.ts",
+        "projects/tests/tests/testHelper.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.037037037037037035,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "11b5ea47faf1c487dc99176f712d4814b7929326",
+      "g": [
+        "projects/tests/tests/RowProvider.spec.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.3333333333333333,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "076c2e9b52ee3caa29f5c12d372af363ba39d7bc",
+      "g": [
+        "projects/tests/dbs/shared-tests/sql-db-tests.ts",
+        "projects/tests/dbs/shared-tests/test-knex.ts",
+        "projects/tests/dbs/sql-stuff/sub-query/sub-query.spec.ts",
+        "projects/tests/dbs/test-sql-database.spec.ts",
+        "projects/tests/tests/basicRowFunctionality.spec.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.3333333333333333,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "bdebd580643527e4adade75d9587b39834439802",
+      "g": [
+        "projects/tests/dbs/inMemory.spec.ts",
+        "projects/tests/dbs/shared-tests/index.ts"
+      ],
+      "suiteSize": 139,
+      "score": {
+        "B2": {
+          "len": 139,
+          "rr": 0.043478260869565216,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "81137f6af34d23f5e6a519320828efb3091f2833",
+      "g": [
+        "projects/tests/dbs/postgres.spec.ts",
+        "projects/tests/tests/relations/test-repository-relations-based-on-columns.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.02564102564102564,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "61913b281765483f626b9d25ae3943a89cd33492",
+      "g": [
+        "projects/tests/dbs/shared-tests/db-tests.ts",
+        "projects/tests/dbs/shared-tests/test-aggregate.ts",
+        "projects/tests/dbs/sql-server.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.2,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "99af4fc9a3c67261f2a5dcb2536c5becb651ac6c",
+      "g": [
+        "projects/tests/dbs/shared-tests/test-aggregate.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.25,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "0d3767bc44f4c05b238240ad3322ec451dd1e6fa",
+      "g": [
+        "projects/tests/tests/test-paged-foreach.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.041666666666666664,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "19b81711a25e9277e87bbad4d3881f105111859a",
+      "g": [
+        "projects/tests/tests/test-paged-foreach.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "a6212635fbe3f668de85e49c83e93fc10407ef75",
+      "g": [
+        "projects/tests/tests/relations/test-to-one-relation-variatons/test-relations-on-api.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.011363636363636364,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "27656158cce52aa88a627c86cda778e76ebf4808",
+      "g": [
+        "projects/create-remult/src/tests/test-it.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "43b675783ac445a0544eec400a3aff4b42872b25",
+      "g": [
+        "projects/tests/tests/test-remult-admin.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 1,
+          "hits": {
+            "1": 1,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "4cea3ffa2289b101dc22ad27f6d6a869d7a66c8a",
+      "g": [
+        "projects/tests/tests/RowProvider.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.5,
+          "hits": {
+            "1": 0,
+            "3": 1,
+            "5": 1,
+            "10": 1
+          }
+        }
+      }
+    },
+    {
+      "T": "1fef2031ef5bd9a76d086a64768fc2fb4bd802d2",
+      "g": [
+        "projects/tests/dbs/postgres.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.03333333333333333,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "0962479b12f432f6fc155c50b0fdc0aa3b3b4c7c",
+      "g": [
+        "projects/tests/dbs/inMemory.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.024390243902439025,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "25be50393fda55e12d3aafebb5082fc37549e29f",
+      "g": [
+        "projects/tests/dbs/inMemory.spec.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.024390243902439025,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "fc258b5ef1359725864d090eeaf49abb8cf87c78",
+      "g": [
+        "projects/tests/dbs/shared-tests/test-aggregate.ts"
+      ],
+      "suiteSize": 140,
+      "score": {
+        "B2": {
+          "len": 140,
+          "rr": 0.05,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    },
+    {
+      "T": "08c94616d1b4493b13ed4266faa095cf7f4b2b24",
+      "g": [
+        "projects/tests/dbs/shared-tests/test-aggregate.ts",
+        "projects/tests/dbs/test-sql-database.spec.ts",
+        "projects/tests/test-api-data-provider.spec.ts"
+      ],
+      "suiteSize": 141,
+      "score": {
+        "B2": {
+          "len": 141,
+          "rr": 0.02127659574468085,
+          "hits": {
+            "1": 0,
+            "3": 0,
+            "5": 0,
+            "10": 0
+          }
+        }
+      }
+    }
+  ],
+  "disposition": "HISTORY_RETAINS_RESIDUAL_SIGNAL"
+}
