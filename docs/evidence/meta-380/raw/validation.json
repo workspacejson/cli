@@ -1,0 +1,529 @@
+{
+ "issue": "META-380",
+ "results": [
+  {
+   "id": "I1",
+   "kind": "invariant",
+   "name": "cohort reproducible from committed universe + seed alone",
+   "status": "PASS",
+   "note": "eligible=998 (frozen 998); full seeded order reproduces byte-for-byte=true; 11 verification attempts follow frozen ranks 1..11 in order=true"
+  },
+  {
+   "id": "I2",
+   "kind": "invariant",
+   "name": "T0 is T first parent and strictly precedes T",
+   "status": "PASS",
+   "note": "1000 queries checked, 0 violations"
+  },
+  {
+   "id": "I3",
+   "kind": "invariant",
+   "name": "T contributes zero features to itself (solidjs/solid-start H reproduces)",
+   "status": "PASS",
+   "note": "rebuilt H digest 440ecf3c99aaf4a1 vs frozen 440ecf3c99aaf4a1"
+  },
+  {
+   "id": "I4",
+   "kind": "invariant",
+   "name": "pre-outcome records and commit tree contain no outcome key/file",
+   "status": "PASS",
+   "note": "disallowed keys=0; outcome-shaped keys absent=true; pre-outcome tree files=[PREDECESSOR-RECEIPT.md, PREREGISTRATION.md, SELECTION-RECEIPT.md, UNIVERSE-RECEIPT.md, cohort.json, pre-outcome.json, ranked-order.json, universe.json, classify.mjs, gitmine.mjs, phase-a.mjs, select-cohort.mjs, universe.mjs, verify-cohort.mjs]"
+  },
+  {
+   "id": "I5",
+   "kind": "invariant",
+   "name": "B0 byte-identical under permuted and emptied S(T)",
+   "status": "PASS",
+   "note": "base=e0359ecdfabfba6e permuted=e0359ecdfabfba6e emptied=e0359ecdfabfba6e"
+  },
+  {
+   "id": "I6",
+   "kind": "invariant",
+   "name": "B1 is history-independent and reproduces frozen ranking",
+   "status": "PASS",
+   "note": "B1 never reads the accumulator: rebuilt digest b2012b35bdc700fa == frozen b2012b35bdc700fa"
+  },
+  {
+   "id": "I7",
+   "kind": "invariant",
+   "name": "historyTxnCount equals eligible transactions strictly before T",
+   "status": "PASS",
+   "note": "1000 queries checked, 0 mismatches (T never folded into its own features)"
+  },
+  {
+   "id": "I8",
+   "kind": "invariant",
+   "name": "S(T) reproduces byte-for-byte from the frozen §6/§7 classifiers",
+   "status": "PASS",
+   "note": "1000 queries checked across all 5 repositories, 0 mismatches"
+  },
+  {
+   "id": "I9",
+   "kind": "invariant",
+   "name": "Suite(T0) recomputed at outcome time matches frozen size+sha256",
+   "status": "PASS",
+   "note": "1000 suites recomputed from T0 trees, 0 mismatches"
+  },
+  {
+   "id": "I10",
+   "kind": "invariant",
+   "name": "reported rates reconcile to exact numerators/denominators in raw/",
+   "status": "PASS",
+   "note": "all 5 repositories: class counts sum to 200, coverage numerator/denominator reconcile"
+  },
+  {
+   "id": "I11",
+   "kind": "invariant",
+   "name": "cohort scored == cohort selected; every skip records a mechanical V-failure",
+   "status": "PASS",
+   "note": "selected=[glideapps/quicktype, solidjs/solid-start, tinymce/tinymce, tutao/tutanota, refined-github/refined-github]; skipped=rejetto/hfs:V5, shfshanyue/Daily-Question:V3, steveukx/git-js:V3, lyswhut/lx-music-mobile:V3, callstack/react-native-testing-library:V3, ytmdesktop/ytmdesktop:V3"
+  },
+  {
+   "id": "I-EXCL",
+   "kind": "invariant",
+   "name": "zero rows from any excluded predecessor repository",
+   "status": "PASS",
+   "note": "12 excluded full_names checked; 0 contributed rows"
+  },
+  {
+   "id": "I-B2",
+   "kind": "invariant",
+   "name": "B2 ranking function references no history accumulator and no outcome set",
+   "status": "PASS",
+   "note": "b2Rank inputs are (root, edges, tests, sourcePaths) only; edges come from the T0 tree archive"
+  },
+  {
+   "id": "I-B2V",
+   "kind": "invariant",
+   "name": "B2 validity recomputed from raw statistics matches frozen §22 thresholds",
+   "status": "PASS",
+   "note": "5 repositories recomputed, 0 mismatches"
+  },
+  {
+   "id": "RT1",
+   "kind": "red",
+   "name": "fold T into accumulator before ranking (solidjs/solid-start) -> H ranking digest",
+   "status": "PASS",
+   "before": {
+    "digest": "440ecf3c99aaf4a1d7e67cd4",
+    "queriesChanged": 0
+   },
+   "after": {
+    "digest": "8a57701ed130b0af72011844",
+    "queriesChanged": 21
+   },
+   "unit": "H ranking"
+  },
+  {
+   "id": "RT2",
+   "kind": "red",
+   "name": "splice G(q) to head of L_H(q) (solidjs/solid-start) -> macro recall@10 H",
+   "status": "PASS",
+   "before": 0.450617284,
+   "after": 1,
+   "unit": "recall@10"
+  },
+  {
+   "id": "RT3",
+   "kind": "red",
+   "name": "invert §7 T-JS test rule (solidjs/solid-start) -> suite sizes + S(T) + role labels",
+   "status": "PASS",
+   "before": {
+    "suiteSizeSum": 8002,
+    "sourcePathSum": 508
+   },
+   "after": {
+    "suiteSizeSum": 51533,
+    "sourcePathSum": 0
+   },
+   "unit": "suite size / |S(T)|"
+  },
+  {
+   "id": "RT4",
+   "kind": "red",
+   "name": "make B0 source-conditioned (solidjs/solid-start) -> B0 ranking digest",
+   "status": "PASS",
+   "before": {
+    "digest": "e0359ecdfabfba6ef12d67df",
+    "queriesChanged": 0
+   },
+   "after": {
+    "digest": "c09f5ed410a4a55bcd389cea",
+    "queriesChanged": 55
+   },
+   "unit": "B0 ranking"
+  },
+  {
+   "id": "RT5",
+   "kind": "red",
+   "name": "make B1 history-dependent (solidjs/solid-start) -> B1 ranking digest",
+   "status": "PASS",
+   "before": {
+    "digest": "b2012b35bdc700fa7ab26e83",
+    "queriesChanged": 0
+   },
+   "after": {
+    "digest": "ed44357d311e9a1dcf043110",
+    "queriesChanged": 49
+   },
+   "unit": "B1 ranking"
+  },
+  {
+   "id": "RT6",
+   "kind": "red",
+   "name": "inject non-extant path into Suite(T0) (solidjs/solid-start) -> suite size + fraction@10 + I9 detector",
+   "status": "PASS",
+   "before": {
+    "suiteSum": 8002,
+    "meanFractionAt10H": 0.0684686454,
+    "suiteMismatches": 0
+   },
+   "after": {
+    "suiteSum": 8202,
+    "meanFractionAt10H": 0.0674825299,
+    "suiteMismatches": 200
+   },
+   "unit": "suite size / fraction@10"
+  },
+  {
+   "id": "RT7",
+   "kind": "red",
+   "name": "flip G(q) for query tIndex=97 (solidjs/solid-start) -> macro recall@10 H",
+   "status": "PASS",
+   "before": 0.450617284,
+   "after": 0.4135802469,
+   "unit": "recall@10"
+  },
+  {
+   "id": "RT7b",
+   "kind": "red",
+   "name": "flip G(q) on EVERY POSITIVE query in ALL FIVE repositories -> macro recall@10 (H,B0,B2)",
+   "status": "PASS",
+   "before": {
+    "glideapps/quicktype": {
+     "H": 0.639362,
+     "B0": 0.818085,
+     "B2": 0.87305
+    },
+    "solidjs/solid-start": {
+     "H": 0.450617,
+     "B0": 0.559671,
+     "B2": 0.609053
+    },
+    "tinymce/tinymce": {
+     "H": 0.629921,
+     "B0": 0.021354,
+     "B2": 0.604209
+    },
+    "tutao/tutanota": {
+     "H": 0.62252,
+     "B0": 0.15754,
+     "B2": 0.728621
+    },
+    "refined-github/refined-github": {
+     "H": 0.916667,
+     "B0": 0.458333,
+     "B2": 0.625
+    }
+   },
+   "after": {
+    "glideapps/quicktype": {
+     "H": 0,
+     "B0": 0,
+     "B2": 0
+    },
+    "solidjs/solid-start": {
+     "H": 0,
+     "B0": 0,
+     "B2": 0
+    },
+    "tinymce/tinymce": {
+     "H": 0,
+     "B0": 0,
+     "B2": 0
+    },
+    "tutao/tutanota": {
+     "H": 0,
+     "B0": 0,
+     "B2": 0
+    },
+    "refined-github/refined-github": {
+     "H": 0,
+     "B0": 0,
+     "B2": 0
+    }
+   },
+   "unit": "recall@10"
+  },
+  {
+   "id": "RT8",
+   "kind": "red",
+   "name": "inject remult/remult into the cohort -> exclusion detector hit count",
+   "status": "PASS",
+   "before": {
+    "cohort": 5,
+    "exclusionHits": 0
+   },
+   "after": {
+    "cohort": 6,
+    "exclusionHits": 1
+   },
+   "unit": "exclusion hits"
+  },
+  {
+   "id": "RT9",
+   "kind": "red",
+   "name": "inject history+outcome edges into B2 graph (solidjs/solid-start tIndex=97 T0=12f3a3d865) -> B2 top-10 ranking",
+   "status": "PASS",
+   "before": {
+    "top10": [
+     "packages/start/src/server/fetchEvent.spec.ts",
+     "packages/tests/app.config.ts",
+     "packages/tests/cypress.config.ts",
+     "packages/tests/cypress/e2e/hydration.cy.ts",
+     "packages/tests/cypress/e2e/route-groups.cy.ts",
+     "packages/tests/cypress/e2e/server-function.cy.ts",
+     "packages/tests/cypress/support/e2e.ts",
+     "packages/tests/src/app.test.tsx",
+     "packages/tests/src/app.tsx",
+     "packages/tests/src/entry-client.tsx"
+    ]
+   },
+   "after": {
+    "top10": [
+     "packages/tests/app.config.ts",
+     "packages/tests/cypress.config.ts",
+     "packages/tests/cypress/e2e/route-groups.cy.ts",
+     "packages/tests/cypress/e2e/server-function.cy.ts",
+     "packages/tests/cypress/support/e2e.ts",
+     "packages/tests/src/app.test.tsx",
+     "packages/tests/src/app.tsx",
+     "packages/tests/src/entry-client.tsx",
+     "packages/tests/src/entry-server.tsx",
+     "packages/tests/src/functions/use-is-server.ts"
+    ]
+   },
+   "unit": "B2 top-10 ranking",
+   "context": {
+    "baseEdges": 275,
+    "injectedEdges": 50
+   }
+  },
+  {
+   "id": "I-B2R",
+   "kind": "invariant",
+   "name": "full non-incremental B2 rebuild reproduces frozen ranking (solidjs/solid-start, 20 strided T0s)",
+   "status": "PASS",
+   "note": "20/20 rankings byte-identical; 14/20 T0s differ in reported edge COUNT between the incremental Phase-A graph and a full rebuild (recorded as deviation D3; no ranking affected, BV3 margin unaffected)"
+  },
+  {
+   "id": "RT10",
+   "kind": "red",
+   "name": "ablate all import edges over 5 path-bearing T0 graphs of 20 strided probes (solidjs/solid-start) -> B2 rankings changed",
+   "status": "PASS",
+   "before": {
+    "pathBearingProbes": 5,
+    "rankingsChanged": 0
+   },
+   "after": {
+    "pathBearingProbes": 5,
+    "rankingsChanged": 5
+   },
+   "unit": "B2 rankings changed",
+   "context": {
+    "strided": 20,
+    "pathBearing": 5,
+    "nonPathBearing": 15,
+    "probes": [
+     {
+      "tIndex": 0,
+      "T0": "3f02cbebb0",
+      "reproduces": true,
+      "liveEdges": 194,
+      "frozenEdgeCount": 194,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 10,
+      "T0": "9fd3073cb7",
+      "reproduces": true,
+      "liveEdges": 240,
+      "frozenEdgeCount": 219,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 20,
+      "T0": "ac3c504721",
+      "reproduces": true,
+      "liveEdges": 241,
+      "frozenEdgeCount": 220,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 30,
+      "T0": "1ec5e29c72",
+      "reproduces": true,
+      "liveEdges": 241,
+      "frozenEdgeCount": 220,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 40,
+      "T0": "7682fca96a",
+      "reproduces": true,
+      "liveEdges": 240,
+      "frozenEdgeCount": 219,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 50,
+      "T0": "d80e982290",
+      "reproduces": true,
+      "liveEdges": 244,
+      "frozenEdgeCount": 223,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 60,
+      "T0": "fa1128ad23",
+      "reproduces": true,
+      "liveEdges": 226,
+      "frozenEdgeCount": 225,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 70,
+      "T0": "b47ba5304b",
+      "reproduces": true,
+      "liveEdges": 229,
+      "frozenEdgeCount": 229,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 80,
+      "T0": "b8ac19bc30",
+      "reproduces": true,
+      "liveEdges": 238,
+      "frozenEdgeCount": 238,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 90,
+      "T0": "3400dfc6bb",
+      "reproduces": true,
+      "liveEdges": 241,
+      "frozenEdgeCount": 241,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 100,
+      "T0": "8aa10f52cc",
+      "reproduces": true,
+      "liveEdges": 278,
+      "frozenEdgeCount": 250,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 110,
+      "T0": "fc91e608bc",
+      "reproduces": true,
+      "liveEdges": 188,
+      "frozenEdgeCount": 186,
+      "pathBearing": true,
+      "ablationChangesRanking": true
+     },
+     {
+      "tIndex": 120,
+      "T0": "814e3c662f",
+      "reproduces": true,
+      "liveEdges": 192,
+      "frozenEdgeCount": 192,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 130,
+      "T0": "40d5a271e2",
+      "reproduces": true,
+      "liveEdges": 196,
+      "frozenEdgeCount": 196,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 140,
+      "T0": "7c288f66bd",
+      "reproduces": true,
+      "liveEdges": 225,
+      "frozenEdgeCount": 218,
+      "pathBearing": true,
+      "ablationChangesRanking": true
+     },
+     {
+      "tIndex": 150,
+      "T0": "6690835bf5",
+      "reproduces": true,
+      "liveEdges": 227,
+      "frozenEdgeCount": 228,
+      "pathBearing": true,
+      "ablationChangesRanking": true
+     },
+     {
+      "tIndex": 160,
+      "T0": "a8e5a6daa0",
+      "reproduces": true,
+      "liveEdges": 223,
+      "frozenEdgeCount": 224,
+      "pathBearing": true,
+      "ablationChangesRanking": true
+     },
+     {
+      "tIndex": 170,
+      "T0": "eeff49a876",
+      "reproduces": true,
+      "liveEdges": 277,
+      "frozenEdgeCount": 247,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     },
+     {
+      "tIndex": 180,
+      "T0": "d8f1ea85bf",
+      "reproduces": true,
+      "liveEdges": 276,
+      "frozenEdgeCount": 277,
+      "pathBearing": true,
+      "ablationChangesRanking": true
+     },
+     {
+      "tIndex": 190,
+      "T0": "ffeb0be59d",
+      "reproduces": true,
+      "liveEdges": 285,
+      "frozenEdgeCount": 286,
+      "pathBearing": false,
+      "ablationChangesRanking": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "RT10b",
+   "kind": "red",
+   "name": "import-edge ablation non-inert on ALL FIVE repositories (frozen Phase-A statistic)",
+   "status": "PASS",
+   "note": "glideapps/quicktype=15.0%  solidjs/solid-start=26.5%  tinymce/tinymce=44.5%  tutao/tutanota=85.5%  refined-github/refined-github=9.0%"
+  }
+ ]
+}

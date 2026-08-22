@@ -1,0 +1,433 @@
+{
+  "issue": "META-380",
+  "title": "Replicate source-test historical residual on unseen TypeScript repositories",
+  "preregistration": "5ccb7ff6dd7a59a276aa3d6aa372f3df3bf1505d",
+  "preOutcomeCommit": "04557b2e3f33636e53fbfc5d7bd857315960083f",
+  "stage": "PHASE-B-COMPLETE",
+  "disposition": "INSUFFICIENT_REPLICATION_SUPPORT",
+  "dispositionRule": "D5",
+  "I": 3,
+  "P": 0,
+  "N": 2,
+  "primaryMetric": "macro recall@10 over POSITIVE queries, per repository",
+  "materiality": 0.05,
+  "kValues": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "cohort": [
+    {
+      "fullName": "glideapps/quicktype",
+      "pin": "10cdaef273530caef2fdf9afdc07cdd0d1f9cae7",
+      "selectionRank": 3,
+      "orderKey": "0115a6ccf2fd991bb7d016392d362469b9784f975a09bba35244e8965dd20e8c",
+      "queries": 200,
+      "POSITIVE": 94,
+      "NEW_TEST_ONLY": 23,
+      "ZERO_TEST_TOUCH": 83,
+      "b2Validity": "STATIC_BASELINE_NOT_DISTINCTIVE",
+      "b2Failures": [
+        "BV2"
+      ],
+      "informative": false,
+      "coverageH": 0.7978723404255319,
+      "recallAt10": {
+        "H": 0.6393617021276596,
+        "B0": 0.8180851063829788,
+        "B1": 0.1897163120567376,
+        "B2": 0.873049645390071
+      },
+      "delta0": -0.17872340425531918,
+      "delta2": -0.23368794326241138,
+      "noninflated": true,
+      "POS": 0,
+      "NEG": 0
+    },
+    {
+      "fullName": "solidjs/solid-start",
+      "pin": "22f07b8bbeeb17b52660d32be0132acc9841e8ad",
+      "selectionRank": 4,
+      "orderKey": "0158860aaf2c2f7fa4b9906938088179a39af74178e2e1f88d3eab4c06bbdb69",
+      "queries": 200,
+      "POSITIVE": 27,
+      "NEW_TEST_ONLY": 20,
+      "ZERO_TEST_TOUCH": 153,
+      "b2Validity": "B2_VALID",
+      "b2Failures": [],
+      "informative": true,
+      "coverageH": 0.6296296296296297,
+      "recallAt10": {
+        "H": 0.4506172839506173,
+        "B0": 0.5596707818930041,
+        "B1": 0.4547325102880658,
+        "B2": 0.6090534979423867
+      },
+      "delta0": -0.10905349794238683,
+      "delta2": -0.15843621399176944,
+      "noninflated": true,
+      "POS": 0,
+      "NEG": 1
+    },
+    {
+      "fullName": "tinymce/tinymce",
+      "pin": "9c1ee77ca0398837538115afa39e960e1a25c122",
+      "selectionRank": 5,
+      "orderKey": "016a341b611c8a532945664ad4973677fa15615e9dfb8137a8a5ae697caba9f8",
+      "queries": 200,
+      "POSITIVE": 112,
+      "NEW_TEST_ONLY": 25,
+      "ZERO_TEST_TOUCH": 63,
+      "b2Validity": "B2_VALID",
+      "b2Failures": [],
+      "informative": true,
+      "coverageH": 1,
+      "recallAt10": {
+        "H": 0.6299213435374151,
+        "B0": 0.02135416666666667,
+        "B1": 0.5761373299319728,
+        "B2": 0.6042091836734694
+      },
+      "delta0": 0.6085671768707485,
+      "delta2": 0.025712159863945705,
+      "noninflated": true,
+      "POS": 0,
+      "NEG": 0
+    },
+    {
+      "fullName": "tutao/tutanota",
+      "pin": "0f34397ae95db354b707ab963bec84cdcbd8f5b6",
+      "selectionRank": 9,
+      "orderKey": "0256a166496896c56e18950a1f0e8e77ee9133275db9640fdcb3aa0a26a0574c",
+      "queries": 200,
+      "POSITIVE": 48,
+      "NEW_TEST_ONLY": 0,
+      "ZERO_TEST_TOUCH": 152,
+      "b2Validity": "B2_VALID",
+      "b2Failures": [],
+      "informative": true,
+      "coverageH": 0.9583333333333334,
+      "recallAt10": {
+        "H": 0.6225198412698413,
+        "B0": 0.15753968253968254,
+        "B1": 0.6220238095238095,
+        "B2": 0.7286210317460317
+      },
+      "delta0": 0.46498015873015874,
+      "delta2": -0.10610119047619038,
+      "noninflated": true,
+      "POS": 0,
+      "NEG": 1
+    },
+    {
+      "fullName": "refined-github/refined-github",
+      "pin": "cc22fe3434b082a982da1efcfbd4f14b4518c747",
+      "selectionRank": 11,
+      "orderKey": "02c506cc2d30760302aac71092923b8b12b112caff90e29f5020c584b5f36f5d",
+      "queries": 200,
+      "POSITIVE": 12,
+      "NEW_TEST_ONLY": 5,
+      "ZERO_TEST_TOUCH": 183,
+      "b2Validity": "STATIC_BASELINE_NOT_DISTINCTIVE",
+      "b2Failures": [
+        "BV2"
+      ],
+      "informative": false,
+      "coverageH": 1,
+      "recallAt10": {
+        "H": 0.9166666666666666,
+        "B0": 0.4583333333333333,
+        "B1": 0.625,
+        "B2": 0.625
+      },
+      "delta0": 0.4583333333333333,
+      "delta2": 0.29166666666666663,
+      "noninflated": true,
+      "POS": 0,
+      "NEG": 0
+    }
+  ],
+  "validation": {
+    "invariants": {
+      "total": 15,
+      "pass": 15
+    },
+    "redTests": {
+      "total": 12,
+      "pass": 12,
+      "allNonInert": true
+    }
+  },
+  "deviations": [
+    "D1 symlinks excluded from B2 traversal (pre-freeze)",
+    "D2 incremental B2 graph construction (pre-freeze)",
+    "D3 b2EdgeCount diverges from full rebuild; zero ranking effect (post-freeze finding)",
+    "D4 git rename-detection limit on 1 tinymce commit (environment)",
+    "D5 Phase-A descriptive docs authored in Phase B from frozen raw/ (process)"
+  ],
+  "phaseAFrozenArtifacts": [
+    {
+      "path": "PREREGISTRATION.md",
+      "preOutcomeBlob": "84ff4b51ba1461f1c77e4850ca6c178cb5341787",
+      "workingBlob": "84ff4b51ba1461f1c77e4850ca6c178cb5341787",
+      "unchanged": true
+    },
+    {
+      "path": "PREDECESSOR-RECEIPT.md",
+      "preOutcomeBlob": "8a95807cc48487f6f05b997c3c6e5b433de5a14f",
+      "workingBlob": "8a95807cc48487f6f05b997c3c6e5b433de5a14f",
+      "unchanged": true
+    },
+    {
+      "path": "UNIVERSE-RECEIPT.md",
+      "preOutcomeBlob": "f10ada6bbda9484699daa82da21a63f8b4c9cf68",
+      "workingBlob": "f10ada6bbda9484699daa82da21a63f8b4c9cf68",
+      "unchanged": true
+    },
+    {
+      "path": "SELECTION-RECEIPT.md",
+      "preOutcomeBlob": "b6c56f4681fc1537d7cb39dbd57527bafa38f1b5",
+      "workingBlob": "b6c56f4681fc1537d7cb39dbd57527bafa38f1b5",
+      "unchanged": true
+    },
+    {
+      "path": "raw/universe.json",
+      "preOutcomeBlob": "e6d7bfc8dfe80297683b24532e3bb5cb2a21bc18",
+      "workingBlob": "e6d7bfc8dfe80297683b24532e3bb5cb2a21bc18",
+      "unchanged": true
+    },
+    {
+      "path": "raw/ranked-order.json",
+      "preOutcomeBlob": "9d546d525d9988388e98d9492ad834f0f9fbf7af",
+      "workingBlob": "9d546d525d9988388e98d9492ad834f0f9fbf7af",
+      "unchanged": true
+    },
+    {
+      "path": "raw/cohort.json",
+      "preOutcomeBlob": "caa03e8b08b888f884f7d64704483c5fb73f16bc",
+      "workingBlob": "caa03e8b08b888f884f7d64704483c5fb73f16bc",
+      "unchanged": true
+    },
+    {
+      "path": "raw/pre-outcome.json",
+      "preOutcomeBlob": "79fb8f5a84b58e0713a321b44a0adef25b32e75c",
+      "workingBlob": "79fb8f5a84b58e0713a321b44a0adef25b32e75c",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/classify.mjs",
+      "preOutcomeBlob": "68d555e09951fdd88bcc72463f4e7ce800cb868f",
+      "workingBlob": "68d555e09951fdd88bcc72463f4e7ce800cb868f",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/gitmine.mjs",
+      "preOutcomeBlob": "a393d3939632a6bdf963331e723089a38aa033f9",
+      "workingBlob": "a393d3939632a6bdf963331e723089a38aa033f9",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/universe.mjs",
+      "preOutcomeBlob": "05339db414ee657559cf6839612d7a91bf48d6c4",
+      "workingBlob": "05339db414ee657559cf6839612d7a91bf48d6c4",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/select-cohort.mjs",
+      "preOutcomeBlob": "e3b594d4bfa1db72e293d1bd43bc48ba919359ea",
+      "workingBlob": "e3b594d4bfa1db72e293d1bd43bc48ba919359ea",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/verify-cohort.mjs",
+      "preOutcomeBlob": "eeb84f53f4bec615f550c9ebdf7b0d95c01cc312",
+      "workingBlob": "eeb84f53f4bec615f550c9ebdf7b0d95c01cc312",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/phase-a.mjs",
+      "preOutcomeBlob": "852eac651dbc97e5b855c7fd962129a86349be3d",
+      "workingBlob": "852eac651dbc97e5b855c7fd962129a86349be3d",
+      "unchanged": true
+    }
+  ],
+  "files": [
+    {
+      "path": "B0-POPULARITY.md",
+      "bytes": 2271,
+      "sha256": "3d144191f444ccdfc1f25e4dfeab3e4c54dbdba78dafa4ccf651ddfd9ec63ba3"
+    },
+    {
+      "path": "B1-REPRODUCTION.md",
+      "bytes": 2395,
+      "sha256": "b3538c3c94cc5485f4d8acc864796cf0931d45ac54dfa873f1d2ef754d314276"
+    },
+    {
+      "path": "B2-STATIC.md",
+      "bytes": 2568,
+      "sha256": "ff369004d948937998d48575e35cc603fdba130c9d265e7a78618357a8b6b809"
+    },
+    {
+      "path": "B2-VALIDITY.md",
+      "bytes": 3845,
+      "sha256": "a18ffb44a83e1851f2e8f98a15899c689d4e5aca8968bb1a3385ebc37cc23cb7"
+    },
+    {
+      "path": "CLASSIFIERS.md",
+      "bytes": 2041,
+      "sha256": "615d42d47d4c02f264558cebfbac01b656e8fa0b0332788b4a255a3c66a869de"
+    },
+    {
+      "path": "COMPARISON.md",
+      "bytes": 8769,
+      "sha256": "a2e84dbf34763c81881f5aea9f891ef227ae48be50e39e432552c988aaaff9b7"
+    },
+    {
+      "path": "DENOMINATOR-AUDIT.md",
+      "bytes": 2698,
+      "sha256": "392f74345ca367570ddf211b21a1531e286059540481207a6a28ba09327287f8"
+    },
+    {
+      "path": "FIBERY-RECONCILIATION-DRAFT.md",
+      "bytes": 2909,
+      "sha256": "2630d0f54744579b3409e37d3dda99a5d7838af356ed6da5f52d51d3d337fc85"
+    },
+    {
+      "path": "H-HISTORICAL.md",
+      "bytes": 2878,
+      "sha256": "fe888d4ba78c08ffaaa8ce1fda5e9d2cfb81f117d40316e72b81bc03db0d90be"
+    },
+    {
+      "path": "NEGATIVE-ABSTENTION-RESULTS.md",
+      "bytes": 4111,
+      "sha256": "a636b0b88e9becb188fcd515e2d521ac6f6d42bb7a47311cff56b59cc4007c03"
+    },
+    {
+      "path": "PREDECESSOR-RECEIPT.md",
+      "bytes": 3618,
+      "sha256": "59e33c181c18b69e906a42cfeb6b0e23a31ae46c6e33c92bd1ddb735bb3ec72e"
+    },
+    {
+      "path": "PREREGISTRATION.md",
+      "bytes": 32752,
+      "sha256": "19a9df059a47ac2a07da2b0b7092eac7e93550c0ac9721239bbcbb191264b0b2"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 12961,
+      "sha256": "f5dcf67760f3e3751861d60f7f4a86115e20c25ce86e22c0076c0ceed8b725c2"
+    },
+    {
+      "path": "SELECTION-RECEIPT.md",
+      "bytes": 3495,
+      "sha256": "3c0789431e83c679578ea204ea66cc30a22fdc6e59d0b1e66de1c4c8ad894986"
+    },
+    {
+      "path": "TEMPORAL-ISOLATION.md",
+      "bytes": 3620,
+      "sha256": "39119b53c68de3c5d1e45111399b1150c4b2642913ea53f5a9b58cec00b5b599"
+    },
+    {
+      "path": "TYPESCRIPT-RESOLUTION.md",
+      "bytes": 2719,
+      "sha256": "1979af48410c52acca542abc5ee7052cd7449fd524f48b19c10dee09d593cf35"
+    },
+    {
+      "path": "UNIVERSE-RECEIPT.md",
+      "bytes": 2177,
+      "sha256": "e2d928845304574ebc4a3ff48652d890bd7421854cb4e28a8761c37d7f617efb"
+    },
+    {
+      "path": "ZERO-NEW-TEST-RESULTS.md",
+      "bytes": 2519,
+      "sha256": "c47b3e63f62f4d31ca18960bdf0c27927e71af5c844cb44cf267d1d725366462"
+    },
+    {
+      "path": "raw/cohort.json",
+      "bytes": 9430,
+      "sha256": "819e472dee866b5b5652e70e899749a0ed30b3cc67c49b0e114f3091a1072c4d"
+    },
+    {
+      "path": "raw/outcomes.json",
+      "bytes": 1429614,
+      "sha256": "77314c6821fc0fff83b3d633f60b2f7341ba3ae0634af42aaf4fff2384cf62b8"
+    },
+    {
+      "path": "raw/pre-outcome.json",
+      "bytes": 5144320,
+      "sha256": "f43f2a8f8b320bfafa939391f993ce2f90db5e108d53b6a22da6ee47e861ec00"
+    },
+    {
+      "path": "raw/ranked-order.json",
+      "bytes": 366547,
+      "sha256": "efd816e171244accfeb9f05f730d499172cab936e01ce60e18933ecf1a1779c0"
+    },
+    {
+      "path": "raw/results.json",
+      "bytes": 22753,
+      "sha256": "176015cf3d847bbfaca43b358aab2b6bf7d10c2d9329bec594ee12790b8e3542"
+    },
+    {
+      "path": "raw/universe.json",
+      "bytes": 521137,
+      "sha256": "c19e1469c6d62bc55365ca54547a06cf946fabe7f73678bdb8f67dff15ecd678"
+    },
+    {
+      "path": "raw/validation.json",
+      "bytes": 13994,
+      "sha256": "a3390c47ac83f742ada3ff6e2eab557c76e8798c6dcbc3f2276a345abce886da"
+    },
+    {
+      "path": "scripts/checks.mjs",
+      "bytes": 34836,
+      "sha256": "78f6b06f7d8d5e56d617bf636d64c3accc078d58672bfdc945d48d97f5cfd013"
+    },
+    {
+      "path": "scripts/classify.mjs",
+      "bytes": 5186,
+      "sha256": "81b64321cbf3197f40af9f2a3b0af1fd99184bbe4c8cf1908a7c41de01ef9184"
+    },
+    {
+      "path": "scripts/gitmine.mjs",
+      "bytes": 2295,
+      "sha256": "9e189abfd754594898f0fa5e10593ce3479472778f8f58ef907a0c9bf3c10dd5"
+    },
+    {
+      "path": "scripts/phase-a.mjs",
+      "bytes": 20968,
+      "sha256": "c30aa032969d35d750a22f164866ce944fec52a85bdc1964c3852ab2d9fee796"
+    },
+    {
+      "path": "scripts/phase-b.mjs",
+      "bytes": 10991,
+      "sha256": "bbee9270fa5d438deaa3e9604071d77423a7945c872e14ce708d340f9e5a2804"
+    },
+    {
+      "path": "scripts/report.mjs",
+      "bytes": 54814,
+      "sha256": "a2fba574afc70f75953c785d1b0c80838e7e26c59d80045c34566b3bb5a84349"
+    },
+    {
+      "path": "scripts/select-cohort.mjs",
+      "bytes": 3441,
+      "sha256": "d95df620b14429a61ea52fdf98225abd5b22118607a1c437b13cf4933be80eee"
+    },
+    {
+      "path": "scripts/universe.mjs",
+      "bytes": 2288,
+      "sha256": "779056db35ec7c1543a54d1b24b451213bd5b798e79654275153f08747ca3e06"
+    },
+    {
+      "path": "scripts/verify-cohort.mjs",
+      "bytes": 5779,
+      "sha256": "e48aa7f1e44347a69c8facc63d539359c6614a6e7bdb221f71fc52984843e8b3"
+    }
+  ],
+  "toolchain": {
+    "node": "v22.19.0",
+    "git": "git version 2.52.0",
+    "typescript": "5.9.3"
+  },
+  "interpretationBoundary": "Establishes only reproducible observational later test-file co-touch signal. Does NOT establish dependency, coverage, required tests, affected tests, regression-catching capability, correctness, impact, risk, which tests an agent should run, which files an agent should edit, or agent usefulness."
+}
